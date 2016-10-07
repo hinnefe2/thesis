@@ -225,8 +225,10 @@ process with me, always offering support and love.
     
     \section{Sample Fabrication}
     
-        Sample fabrication is the primary task for experimental work on graphene devices. 
-        In this section I present the experimental techniques used to fabricate graphene devices.
+        Sample fabrication is the primary task for experimental work on graphene devices, 
+        and can broadly be divided into two subtasks: producing graphene and shaping it into useful geometries.
+        In this section I present the experimental techniques used to produce graphene
+        and shape it into devices appropriate for optical and electrical transport measurements.
     
         \subsection{Graphene synthesis and transfer}
         
@@ -303,39 +305,115 @@ process with me, always offering support and love.
                 `Wet transfer' of CVD graphene.
                 Image adapted from \cite{kumar2013synthesis}}
             \label{fig:wettransfer}
-            \end{figure}
+        \end{figure}
 
-        The simplest transfer procedure is illustrated schematically in Figure \ref{fig:wettransfer}.
+        The simplest transfer procedure is illustrated schematically in Figure \ref{fig:wettransfer} \cite{reina2008large, kim2009large, li2009large}.
         Copper foil with CVD graphene grown on top is coated with a thin, sacrifical layer of the 
-        polymer poly(methyl methacrylate) (PMMA) and then placed in a chemical
-        bath to etch away the metal. Once the metal is removed the PMMA-coated graphene 
-        remains floating on the surface of the solution. The solvent is then flushed and replaced
+        polymer poly(methyl methacrylate) (PMMA) and then placed in a bath of 0.1M ammonium persulfate
+        to etch away the metal. Once the metal is removed the PMMA-coated graphene 
+        remains floating on the surface of the solution. The ammonium persulfate solution is then flushed and replaced
         with de-ionized water.
         Finally the floating graphene / PMMA stack can be
-        scooped onto the desired substrate, at which point the PMMA is removed using acetone
-        \cite{reina2008large, kim2009large, li2009large}.
+        scooped onto the desired substrate, at which point the PMMA is removed using acetone.
         
+        This process is delicate, and in practice the quality of the transfer depends on several 
+        analog factors. First, the ammonium persulfate solution must be thoroughly replaced by de-ionized water;
+        if traces of the original solution remain when the graphene is transferred to the target substrate
+        then redeposited copper residue will be present between the graphene and the target substrate upon drying. 
+        Figure \ref{fig:bad_xfer_cu} shows a substrate contaminated by redeposited copper after graphene transfer.
+        Second, the angle of the substrate relative to the surface during the scooping step must be close
+        to ninety degress. If the graphene is scooped at a shallow angle the graphene will trap a bubble of water
+        beneath itself; as the water evaporates the graphene will wrinkle.
         
-        This method produces large graphene
-        sheets (limited only by the size of the vacuum furnace, on the order of
-        1 cm$^2$ in most cases), and by covering the entire substrate offers
-        the possibility of aligning graphene with substrate features. However,
-        the transfer process can degrade the graphene by introducing chemical
-        dopants and mechanical defects.
-        
-            
+         \begin{figure}
+            \centering
+            \includegraphics[width=0.4\linewidth]{images/experimentaltechniques/bad_xfer_cu.png}
+            \caption[Copper contamination from bad graphene transfer]{
+                SEM micrograph of a substrate contaminated by redeposited copper as a result of 
+                imcomplete removal of the ammonium persulfate solution. The round debris are 
+                the copper; the regularly spaced pillars are the result of deliberate fabrication.
+            }
+            \label{fig:bad_xfer_cu}
+        \end{figure}
+
+
             \subsubsection{Copper transfer}
-            Graphene was grown using established chemical vapor deposition (CVD) techniques \cite{Li2009}, and then transferred to a copper-coated silicon wafer where it was patterned using photolithography and reactive ion etching. Next, a piece of PDMS was mechanically pressed onto the silicon wafer, and the copper was then etched to leave patterned graphene on the PDMS substrate\cite{Lee2010}.
+            
+        The standard wet transfer procedure fails in cases where the graphene must be 
+        transferred to polymer substrates: the final acetone step which removes the sacrificial
+        PMMA layer also damages the target substrate.
+        In this case the transfer can be accomplished using a two-part process as illustrated in
+        Figure \ref{fig:cutransfer} and adapted from \cite{Lee2010}. First, using the standard wet transfer process
+        graphene is transferred to an intermediate substrate coated in a thin layer of copper. Next the 
+        target substrate is mechanically pressed onto the intermediate substrate. The two substrates
+        are then immersed in a chemical bath which etches the copper layer, leaving the graphene
+        attached to the target, polymer substrate.
+        
+        This transfer procedure also allows the creation of patterned graphene devices on polymer substrates.
+        Typical lithographic processes do not work with flexible substrates, however when using this
+        copper transfer procedure the graphene can be patterned on the rigid intermediate substrate. The
+        final transfer onto the target substrate then produces patterned graphene on a flexible substrate.
             
             \subsubsection{Critical point drying transfer}
             
+        Substrates having topographic features present another complication when transferring graphene.
+        For such substrates the graphene will delaminate from the substrate in the vicinity of the 
+        vertical substrate features. When the sample is allowed to dry
+        after the removal of the sacrificial PMMA layer, the surface tension of the evaporating solvent will tear
+        the suspended graphene. Figure \ref{fig:cpdtear} shows a scanning electron microscope microgram of 
+        graphene torn by this mechanism.
+        
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.5\linewidth]{images/experimentaltechniques/cpdtear.png}
+            \caption[Graphene tears from solvent surface tension]{
+                Graphene ripped in the vicinity of an array of pillars. The graphene 
+                was ripped by the surface tension
+                of evaporating solvents. The dark rectangle in the middle of the ripped region
+                is an artifact of surface charging from a previous SEM scan.
+                }
+            \label{fig:cpdtear}
+        \end{figure}
+
+        The damaging effect of the evaporating solvent can be mitigated by performing the final
+        drying step in a critical point drying apparatus. In this procedure graphene
+        is transferred to the target substrate using the standard wet transfer process. 
+        However after the 
+        final acetone step to remove the sacrificial PMMA the substrate is transferred
+        to the chamber of a critical point drying machine while still in liquid.
+        The chamber is sealed, liquid CO$_2$ is introduced, and then the chamber is heated until the environment 
+        reaches a super-critical phase. The chamber is flushed while in the super-critical state,
+        then depressurized, thereby drying the sample without ever exposing the suspended graphene 
+        to the surface tension of evaporating solvents.
+            
             
         \subsection{Substrate patterning}
+        
             \subsubsection{Lithography}
+            
+            Once transferred to the desired substrate, graphene must be shaped into geometries
+            appropriate for measurements and contacted with metal leads; for both tasks the 
+            required patterns are defined using either photo- or electron-beam lithography.
+            Lithography is a standard experimental technique, and as such a complete description
+            of the principles behind its operation lies outside the scope of this thesis. However,
+            certain aspects of the devices fabricated in the course of this research required
+            slight modifications to established lithography procedures.
+            
+            ...
+            
+            Finally, devices having suspended graphene (like those produced by the critical point
+            drying method described above) present an additional challenge
+            [using same PMMA from transfer for patterning]
+            
             \subsubsection{Deposition}
             \subsubsection{Reactive ion etching}
+            
+            Reactive ion etching is a 
+            
+            For the exact RIE processes used in this work see Appendix \ref{appendix:fab}.
     
     \section{Sample Characterization}
+    
     The primary challenge of experimental condensed matter research, at least as measured by graduate student effort, lies in fabricating working devices. The fabrication techniques described above require finesse, skill, and a certain degree of luck (especially when working with temperamental equipment). As such, a substantial fraction of the fabricated devices will fail to work. Characterizing the different failure modes of a given fabrication process -- and thereby determining the optimal process parameters -- is a crucial part of each research project. In this section several techniques which effectively characterize the quality and physical integrity of graphene and other fabricated device elements are described.
     
     \note{mostly about checking quality and integrity of graphene}
