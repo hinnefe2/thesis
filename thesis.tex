@@ -1,5 +1,6 @@
 \def\fileversion{v2.25a} \def\filedate{2009/10/10}
 %% Package and Class "uiucthesis2009" for use with LaTeX2e.
+
 \documentclass[edeposit,fullpage,draftthesis]{uiucthesis2009}
 
 \usepackage[letterpaper, margin=1in]{geometry}
@@ -11,9 +12,15 @@
 \usepackage{hyperref}
 \usepackage[toc,page]{appendix}
 
+% so that figures are numberd per chapter.section, ie 4.1.1, 4.1.2
+\usepackage{chngcntr}
+\counterwithin{figure}{section}
+
 % thai character stuff
 \usepackage[thai,english]{babel}
 \usepackage[utf8x]{inputenc}
+
+\newcommand{\code}[1]{\texttt{#1}}
 
 % Hack into CJKutf8 package for an option clash error
 %\makeatletter
@@ -32,7 +39,7 @@
 \committee{
 Professor S. Lance Cooper, Chair\\
 Associate Professor Nadya Mason, Director of Research\\
-Associate Professor Lane Martin, University of California, Berkeley\\
+Assistant Professor Arend van der Zande \\
 Professor Emeritus Richard Weaver}
 \maketitle
 
@@ -82,7 +89,7 @@ process with me, always offering support and love.
 %% List Symbols and/or Abbreviations
 %% etc.
 
-\setcounter{tocdepth}{4}
+\setcounter{tocdepth}{2}
 
 \tableofcontents
 \listoftables
@@ -301,7 +308,7 @@ process with me, always offering support and love.
         \begin{figure}
             \centering
             \includegraphics[width=0.8\linewidth]{images/experimentaltechniques/wettransfer.png}
-            \caption[Mechanical exfoliation of graphene]{
+            \caption[Wet transfer of CVD graphene]{
                 `Wet transfer' of CVD graphene.
                 Image adapted from \cite{kumar2013synthesis}}
             \label{fig:wettransfer}
@@ -394,69 +401,772 @@ process with me, always offering support and love.
             Once transferred to the desired substrate, graphene must be shaped into geometries
             appropriate for measurements and contacted with metal leads; for both tasks the 
             required patterns are defined using either photo- or electron-beam lithography.
+            Similarly, for devices where the substrate is modified lithography is used to
+            define the required profiles.
             Lithography is a standard experimental technique, and as such a complete description
             of the principles behind its operation lies outside the scope of this thesis. However,
-            certain aspects of the devices fabricated in the course of this research required
-            slight modifications to established lithography procedures.
+            certain aspects of the fabrication used in this research required
+            slight modifications to established lithography procedures. These modifications
+            are described conceptually below, for the exact processes used see Appendix \ref{appendix:fab}.
             
-            ...
+            First, the flexible substrates used in this research are not amenable to standard lithography. 
+            In order to produce graphene devices on such substrates the graphene must be patterned
+            prior to being transferred to the flexible substrate. The copper transfer procedure
+            described above allows for this: after the first transfer step the graphene 
+            can be patterned while on the intermediate, copper coated substrate. Once the graphene
+            is patterned the transfer process is completed, yielding patterned graphene on a flexible 
+            substrate.
             
-            Finally, devices having suspended graphene (like those produced by the critical point
-            drying method described above) present an additional challenge
-            [using same PMMA from transfer for patterning]
+            Second, devices having suspended graphene (like those produced by the critical point
+            drying method described above) present an additional challenge: once graphene is freely
+            suspended on the substrate no further patterning can be done because applying a new layer
+            of resist will destroy the graphene. To circumvent this issue we pattern the graphene
+            before it becomes free standing by using the same PMMA layer
+            used to transfer the graphene as a resist layer during an electron beam lithography step.
             
             \subsubsection{Deposition}
+            
+            A substantial fraction of the results in this thesis are the result of electrical transport measurements.
+            Performing transport measurements on graphene requires robust electrical contact between
+            graphene and the measurement apparatus; this contact is created by depositing
+            metal leads atop the graphene using an electron beam evaporator. 
+            Metal deposition using an electron beam evaporator is also a standard experimental technique
+            so we again omit a detailed description of the technique.
+            For the devices described here we use gold leads along with a sticking layer made of either
+            titanium or chromium; for the exact deposition recipes used see Appendix \ref{appendix:fab}.
+            
             \subsubsection{Reactive ion etching}
             
-            Reactive ion etching is a 
-            
+            Reactive ion etching (RIE) is the primary subtractive patterning technique used 
+            to fabricate our devices. We use RIE for two particular patterning tasks: first, to 
+            shape uniform sheets of CVD graphene into device geometries, and second to etch
+            topographic features into SiO$_2$ substrates. 
+            Each etching task requires an appropriate chemistry; for graphene etching we use
+            an O$_2$ plasma and for SiO$_2$ etching we use CHF$_3$ CHECK THIS.
             For the exact RIE processes used in this work see Appendix \ref{appendix:fab}.
     
     \section{Sample Characterization}
     
     The primary challenge of experimental condensed matter research, at least as measured by graduate student effort, lies in fabricating working devices. The fabrication techniques described above require finesse, skill, and a certain degree of luck (especially when working with temperamental equipment). As such, a substantial fraction of the fabricated devices will fail to work. Characterizing the different failure modes of a given fabrication process -- and thereby determining the optimal process parameters -- is a crucial part of each research project. In this section several techniques which effectively characterize the quality and physical integrity of graphene and other fabricated device elements are described.
     
-    \note{mostly about checking quality and integrity of graphene}
         \subsection{Atomic Force Microscopy}
+        
+        Atomic force microscopy (AFM) measurements offer an excellent way to verify the mechanical integrity
+        of graphene. A complete description of the principles underlying the operation of an AFM lies beyond
+        the scope of this thesis; here we offer a brief description of several of the primary modes of 
+        atomic force microscope operation which are used in this research.
+        Atomic force microscopes can be operated in two primary modes: tapping and contact.
+        In contact mode a sharp tip mounted on a cantilever is dragged across a surface, and the 
+        topography of the surface is measured by observing the deflection of a laser reflected off of the cantilever.
+        Tapping mode proceeds similarly, however the tip is raised slightly above the surface and oscillated.
+        In this mode both the amplitude and phase (relative to the driving force) of the tip's oscillation are measured.
+        
+        Phase measurements in tapping mode (i.e. measurements of the phase between the drive
+        and response of an oscillating AFM tip) are particularly sensitive to the interaction of the AFM tip and 
+        the substrate. This sensitivity produces a high contrast in measurements that scan across two different materials,
+        for example graphene and SiO$_2$. This contrast in turn makes it easy to observe rips in graphene
+        and thereby investigate its mechanical integrity. Figure \ref{fig:afm_rips} illustrates this high contrast.
+        
+         \begin{figure}
+            \centering
+            \includegraphics[width=0.5\linewidth]{images/experimentaltechniques/AFMrips.png}
+            \caption[AFM micrograph of ripped graphene]{
+                AFM phase measurements of ripped graphene on a PDMS substrate. The vertical, light-colored
+                features are rips in the graphene; the high contrast is due to the different tip 
+                interaction on the graphene compared to the PDMS. Horizontal features are wrinkles
+                in the graphene.
+                }
+            \label{fig:afm_rips}
+        \end{figure}
+       
+        Conductive AFM tips enable a secondary set of measurement modes which probe electrical properties of the sample.
+        In piezoresponse force microscopy (PFM) mode, an AFM tip is placed in contact with the substrate
+        and an AC bias is applied to the tip. For ferroelectric substrates the applied voltage
+        will create a deformation in the substrate which can be measured by the deflection of the AFM cantilever. 
+        The deformation is proportional to the ferroelectric polarization; in particular opposite polarizations in the substrate
+        will reverse the direction of the deformation, thereby changing the relative phase between the driving AC bias
+        and the observed response by a factor of $\pi$. By measuring the phase one can therefore measure
+        the polarization of the substrate. 
+        
+        Conductive AFM tips can also be used to `write' polarization domains in ferroelectic substrates.
+        In this mode, a bias above the conducive voltage of the ferroelectric material is applied to the tip 
+        during a contact-mode scan. As the tip is scanned across the substrate the local voltage applied by the 
+        tip bias flips the substrate polarization and establishes a domain.
+        Examples of PFM measurements and domain writing are shown in Figure \ref{fig:PFM_example}.
+        
+        \begin{figure}
+        \centering
+        \includegraphics[width=0.25\textwidth,height=0.225\textwidth]{images/experimentaltechniques/PFM-1.png}\hspace{0.05\textwidth}
+        \includegraphics[width=0.25\textwidth]{images/experimentaltechniques/PFM-2.png}\hspace{0.05\textwidth}
+        \includegraphics[width=0.25\textwidth]{images/experimentaltechniques/PFM-3.png}
+        \caption[PFM micrographs of ferrelectric domains in PZT]{PFM phase images of a PZT substrate. Left: as grown, in a
+                 polydomain configuration. Center: after writing a `poled down' domain
+                 with a negatively biased AFM tip in contact mode. Right: after writing a
+                 smaller `poled up' domain with a positively biased AFM tip. The `poled down'
+                 domain is approximately 5 microns wide.}
+        \label{fig:PFM_example}
+        \end{figure}
+        
+        
+        Kelvin probe force microscopy is an AFM mode which probes the surface potential of a substrate.
+        In KPFM mode, a conductive AFM tip is placed a constant distance above the substrate
+        and an AC bias is applied to the tip. In this configuration the AFM tip and the substrate form a capacitor.
+        The energy stored in a capacitor is proportional to the potential difference across the capacitor, 
+        which in this case is a function of both the applied AC bias and any DC offset between the tip and the substrate.
+        If the AC bias is applied at the resonant frequency of the AFM cantilever the energy takes the form
+        \begin{equation}
+        E = \frac{1}{2}C[V_{DC} + V_{AC}\sin(\omega_0 t)]^2 = \frac{1}{2}C[2V_{DC}V_{AC}\sin(\omega_0 t) - \frac{1}{2}V_{AC}^2 \cos(2\omega_0 t)]
+        \end{equation}
+        In this case the force on the cantilever (and thus the measured response) at the cantilever's resonant 
+        frequency is proportional to the DC offset between the tip and the substrate. By scanning the tip across
+        the substrate at a constant separation and observing the change in oscillation amplitude 
+        the potential difference between the tip and the substrate, and thereby
+        the work function can be mapped over the whole substrate.
+        
+        AFM measurements are well suited to flat sample geometries. For samples with topographic features
+        however the measurements are limited by the sharpness of the AFM tip: AFM measurements are a convolution
+        of the AFM tip shape and the substrate shape, and when the substrate is sharper than the AFM tip the finer details
+        of the measurement will be washed out.
+        This limitation is especially apparent on samples which have very sharp topographic features.
+        
         \subsection{Scanning Electron Microscopy}
+        
+        Scanning electron microscopy (SEM) is another useful characterization tool, especially for samples
+        which have very sharp topographic features. 
+        
         \subsection{Raman Spectroscopy}
-            \subsubsection{Characterizing Defects and Number of Layers}
-            \subsubsection{Characterizing Doping and Strain}
+        
+        Raman spectroscopy is another characterization technique which is particularly useful for
+        its ability to non-intrusively measure certain electrical properties of graphene.
+        Pristine graphene has a well characterized Raman signature \cite{ferrari2006raman}, and deviations
+        from this signature can be used to measure the quality of the graphene.
+        Two features in graphene's Raman signature are particularly relevant: first, the presence of a 
+        Raman peak near 1350 cm$^{-1}$ (referred to as the D peak) indicates that there are defects present in the graphene lattice
+        which will reduce the electrical quality of the graphene. Second, the shapes and relative magnitudes
+        of the Raman peaks at 1590 cm$^{-1}$ and 2600 cm$^{-1}$ (referred to as the G and 2D peaks, respectively)
+        can be used to determine the number of graphene layers present in the sample: for high quality
+        monolayer graphene the 2D peak should have a greater intensity than the G peak, and both peaks
+        should be well approximated by a Lorentzian distribution. Figure \ref{fig:pristine_raman}
+        shows the change in the shape of the 2D peak with increasing graphene thickness.
+        
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.49\linewidth]{images/experimentaltechniques/pristine_raman_2.png}
+            \includegraphics[width=0.49\linewidth]{images/experimentaltechniques/pristine_raman_1.png}
+            \caption[Raman spectra of graphene]{
+                Raman spectra of mono- and multilayer graphene. As the number of layers increases the G peak
+                (at 1600 cm$^{-1}$) intensity increases relative to the 2D peak (at 2700 cm$^{-1}$) and the 
+                shape of the 2D peak deviates from a Lorentzian.
+                Adapted from \cite{ferrari2006raman}.
+                }
+            \label{fig:pristine_raman}
+        \end{figure}
+        
+        Raman measurements of graphene can also be used to gain information about the electrical doping
+        and strain present in graphene \cite{lee2012optical}. Both strain and doping produce shifts
+        in the G and 2D peak locations by modifying the bond lengths in the graphene lattice. 
+        A measurement of either peak shift by itself is therefore insufficient to disentangle the competing effects
+        of strain and doping. However, the ratio
+        $$
+        r = \frac{\Delta \omega_{2D}}{\Delta \omega_G}
+        $$
+        differs between the two mechanisms \cite{lee2012optical}.
+        Experimental measurements \cite{zabel2012raman, metzger2009biaxial, ding2010stretchable} and theoretical \cite{mohr2010splitting, mohiuddin2009uniaxial} results place the ratio for strain between 2.25 and 2.8 and the ratio for doping at approximately 0.75 \cite{lee2012optical}.
+        Thus by plotting the Raman G and 2D peak positions against one another and comparing to the expected
+        values for intrinsic, unstrained graphene one can decompose the peak shifts into components due to
+        strain and doping\cite{lee2012optical}. This decomposition is shown in Figure \ref{fig:raman_decomposition}.
+        
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.5\linewidth]{images/experimentaltechniques/lee2012_raman.png}
+            \caption[Graphene G vs 2D peak positions for strain and doping]{
+                Raman G and 2D peak locations for graphene.
+                The black dashed line shows the ratio 
+                $r = \frac{\Delta \, \omega_\text{2D}}{\Delta \, \omega_\text{G}}$ expected for shifts due to
+                strain, and the purple dashed line shows the ratio expected for shifts due to doping.
+                The two lines intersect at the expected peak positions for undoped, unstrained graphene.
+                Adapted from \cite{lee2012optical}.
+                }
+            \label{fig:raman_decomposition}
+        \end{figure}
+        
+        Finally, Raman measurements can be used to measure spatial variations in the electronic quality
+        and physical integrity of a graphene sample. By performing Raman measurements in a raster pattern
+        across a region of interest on can map local variations in peak locations.
+        
+        \note{PUT MORE DETAIL HERE, INTRO TO STRAIN ARRAY PAPER}
+        
     
     \section{Data collection}
-        \subsection{Transport Measurements}
+    
+    Once a working device has been fabricated it must be measured. In practice, this entails two distinct
+    tasks. First, the device must be placed in an environment appropriate for the desired measurement:
+    i.e. the device must be cooled, or strained, or placed in vacuum depending on the effect
+    which the measurement aims to observe. Second, the device must be coupled to the measurement instrumentation.
+    In this section I describe the methods used to create the required environments, the equipment use to
+    perform the measurements, and the various configurations used to connect devices to measurement instrumentation.
+    
+        \subsection{Sample environments}
+        
+        \subsubsection*{Uniaxial strain environments}
+        
+        Uniaxial strain can be applied to graphene devices by fabricating devices on a flexible substrate
+        and then stretching the substrate. For the measurements described in this thesis this 
+        is accomplished through the use of the custom stretching stage shown in Figure \ref{fig:stretcher}.
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.4\linewidth]{images/experimentaltechniques/StretcherComparison.png}
+            \caption[Custom sample stretching stage]{
+                A custom sample stretching stage. Clamps at either end of the stage secure the ends
+                of a flexible substrate. The rightmost clamp is mounted on rails and can be translated
+                by turning a threaded rod, thereby stretching the substrate and applying strain
+                to graphene devices fabricated on the substrate.
+                }
+            \label{fig:stretcher}
+        \end{figure}
+        Clamps secure either end of a flexible substrate. The rightmost clamp is mounted on rails,
+        and can be translated back and forth by means of a threaded rod. This threaded rod is attached
+        to a stepper motor which precisely controls the angular position of the threaded rod rotation,
+        and thus the lateral displacement of the second clamp. At maximum extension this device is capable of applying up to three
+        percent strain to substrates. 
+        
+        \note{something about the arduino to control it}
+        
+        \subsubsection*{Vacuum environments}
+        
+        Vacuum environments are created by the mechanical evacuation of sealed chambers. 
+        For the experiments described in this thesis this is accomplished through the combined use
+        of mechanical and turbomolecular pumps. 
+        When combined, these techniques are capable of producing vacuums in the XXX mtorr range.
+        \note{maybe talk about two stage process, being careful not to damage the turbo pump}
+        
+        \note{LOOK UP VACUUM VALUE}
+        
+        \subsubsection*{Cooled environments}
+        
+        
+        \subsection{Measurement equipment}
+        
+            When configuring equipment for electronic transport measurements there are two primary considerations: 
+            applying as clean a signal as possible to the device, and extracting as clean
+            a signal as possible from the resulting noisy measurement. Different instruments have widely
+            varying noise characteristics which can drastically affect both considerations, thus a careful
+            consideration of the advantages and disadvantages of each piece of equipment is necessary.
+            In this section we describe the relevant characteristics of the primary pieces of measurement
+            instrumentation used in this research.
+            
+            \subsubsection*{Keithley 2400 SMU} The Keithley 2400 is a source-measure unit (SMU) capable of 
+            sourcing both current and voltage, and simultaneously measuring either current, voltage,
+            or resistance. Its primary advantage is its wide operational range: it can source and measure
+            up to 1 A in current mode, or 200 V in voltage mode.
+            The wide operational range comes at the expense of precision; Figure \ref{fig:electronics_noise}A
+            shows the measured output of a Keithley 2400 set to source 100 mV
+            
+            \subsubsection*{National Instruments BNC2110 DAC} The National Instruments BNC2110 digital-to-analog converter (DAC)
+            is another source-measure unit.
+            Makes the opposite tradeoffs : it provides high precision sourcing and measurement in a 
+            limited operational range.
+            
+            \subsubsection*{Stanford Research System SR830} The SR830 is a lock-in amplifier.
+            
+            \subsubsection*{Current preamplifiers}
+            
+            \subsubsection*{Voltage preamplifiers}
+            
+         \begin{figure}
+            \centering
+            \includegraphics[width=0.75\linewidth]{images/experimentaltechniques/DACvKeithley.png}\\
+            \includegraphics[width=0.75\linewidth]{images/experimentaltechniques/preams_k.png}\\
+            \includegraphics[width=0.75\linewidth]{images/experimentaltechniques/preamps.png}
+            \caption[Noise characteristics of electronic measurement instruments]{
+                Top: The voltage output of a Keithley 2400 SMU and a National Instruments BNC2110 Digital to Analog Converter
+                measured over 10 seconds. Both were set to source 1 V.
+                Middle: The output of a Keithley 2400 SMU before and after being passed through three different
+                voltage pre-amplifiers.
+                Bottom: The same data as above with only the amplified signals shown.
+                }
+            \label{fig:electronics_noise}
+        \end{figure}
+        
+        
+        \subsection{Transport measurements}
+        This thesis is concerned with graphene's electronic properties, and these properties are most 
+        readily observed via electrical transport measurements. 
+        
+            
+           
+            
+            
+            
+       
+           
             \subsubsection*{Two-Point Measurements}
             \subsubsection*{Four-Point Measurements}
             \subsubsection*{Hall Measurements}
-        \subsection{Raman Spectroscopy Mapping}
     
     
 \chapter{Results and Discussion}
 
 \section{Graphene on flexible substrates}
-Recent advances in graphene production \cite{Kim2009, Bae2010, Lee2010} have enabled the fabrication of a variety of flexible, graphene-based electronic components, including transparent interconnects \cite{Kim2011}, high-performance capacitors \cite{El-Kady2012}, and transistors \cite{Lee2011}. The prospect of flexible, graphene-based electronic devices suggested by these results raises an important question: are graphene's electrical properties and mechanical integrity robust under the strains graphene is likely to experience in such devices? Pristine graphene has an exceptionally high breaking strength \cite{Lee2008}, yet it may be susceptible to ripping, particularly if it has defects \cite{Kim2012} and/or strong  surface adhesion \cite{Sen2010}. It is still relatively unknown under what strain conditions substrate-supported graphene rips, and how the electrical properties are then altered.
 
-In this section I describe the results of a research project wherein atomic force microscopy (AFM) and electrical transport measurements were combined to study the effects of lateral strain on rips in graphene. We find that graphene adhered to a flexible substrate and then stretched laterally can develop small rips with only 1\% applied strain. However, even with ripping, the electrical properties remain relatively robust: introducing small rips slightly increases the resistance, but subsequent strain-relaxation cycles over the same strain range change transport only modestly, and in a largely reversible fashion. Such resilience is atypical for conducting thin films, which typically demonstrate rapid and irreversible device failure after the onset of rip formation \cite{Cairns2000,Fortunato2002}.
-
+    In this section I present the results of research which examines
+    the mechanical properties of graphene devices stretched on flexible
+    elastomer substrates. Using atomic force microscopy, electrical transport
+    measurements, and mechanics simulations, we show that micro-rips form in the
+    graphene during the initial application of tensile strain; however subsequent
+    applications of the same tensile strain elastically open and close the existing
+    rips. Correspondingly, while the initial tensile strain degrades the devices'
+    transport properties, subsequent strain-relaxation cycles affect transport only
+    moderately, and in a largely reversible fashion, yielding robust electrical
+    transport even after partial mechanical failure. Graphene's combination of
+    superlative electronic properties, extreme flexibility, and robust
+    functionality after partial mechanical failure is unique among conducting thin
+    films and lends itself to a variety of promising future device applications;
+    the new understanding provided here of when and how graphene rips can directly
+    impact the design of novel graphene-based devices which are required to
+    function under strain.
+    
+    \subsection{Introduction}
+    
+        Recent advances in graphene production\cite{Kim2009, Bae2010, Lee2010} have
+        enabled the fabrication of a variety of flexible, graphene-based electronic
+        components, including transparent interconnects\cite{Kim2011}, high-performance
+        capacitors\cite{El-Kady2012}, and transistors\cite{Lee2011}. The prospect of
+        flexible and transparent graphene-based electronic devices suggested by these
+        results raises an important question: are graphene's electrical properties and
+        mechanical integrity robust under the strains graphene is likely to experience
+        in such devices? Pristine graphene has an exceptionally high breaking
+        strength\cite{Lee2008}, yet it may be susceptible to ripping, particularly if
+        it has defects \cite{Kim2012} and/or strong  surface adhesion\cite{Sen2010}. It
+        is still relatively unknown under what strain conditions substrate-supported
+        graphene rips, and how the electrical properties are then altered.
+        
+        
+        In this section I present the results of a research project in which 
+        we combine atomic force microscopy (AFM), coarse-grained
+        mechanical simulations, and electrical transport measurements to study the
+        effects of lateral strain on rips in graphene. We find that graphene adhered to
+        a flexible substrate and then stretched laterally can develop small rips with
+        only 1\% applied strain. However, even with ripping, the electrical properties
+        remain relatively robust: introducing small rips slightly increases the
+        resistance, but subsequent strain-relaxation cycles over the same strain range
+        change transport only modestly, and in a largely reversible fashion. Such
+        resilience is atypical for conducting thin films, which typically demonstrate
+        rapid and irreversible device failure after the onset of rip
+        formation\cite{Cairns2000,Fortunato2002}.
+    
+        This new understanding of when and how graphene rips, and how its electrical
+        properties are thereby altered is immediately applicable to the implementation
+        and production of devices which include the graphene-based components mentioned
+        above. Some applications, for instance frequency-tuned RC circuits using
+        graphene capacitors and interconnects, would require careful consideration of
+        what strains the device can withstand while keeping strain-induced variations
+        in the electronic properties of graphene within the required specifications.
+        Likewise, in applications such as portable consumer electronics where low power
+        consumption is a priority the increased resistance of strained graphene films
+        may limit the potentially applicable strain, or require the use of more
+        complicated interconnect geometries\cite{Kim2011}. Graphene's exceptional
+        resilience as described here may also motivate its inclusion in device
+        applications where other conducting thin films have been used to date;
+        bio-integrated devices\cite{Viventi2010} are especially appealing candidates
+        because of the difficulty involved in replacing devices installed \textit{in
+        vivo}, as well as because of graphene's non-toxicity.
+       
     \subsection{Device configuration}
     
-    Devices consisted of patterned graphene placed on flexible polydimethylsiloxane (PDMS) substrates. The devices were fabricated using a modified transfer printing process, similar to that described in Ref \cite{Kim2009}. Graphene was grown using established chemical vapor deposition (CVD) techniques \cite{Li2009}, and then transferred to a copper-coated silicon wafer where it was patterned using photolithography and reactive ion etching. Next, a piece of PDMS was mechanically pressed onto the silicon wafer, and the copper was then etched to leave patterned graphene on the PDMS substrate \cite{Lee2010}. Raman spectroscopy was used to confirm the presence of graphene on the PDMS as shown in Figure 1c; the shape of the Raman 2D peak \cite{Ferrari2006}, as well as subsequent AFM measurements verified the single-layer character of the graphene. Finally, shadow-mask evaporation was used to deposit Ti/Au contact pads. The device geometry is illustrated in Figure 1a: a narrow graphene bridge connects two large graphene pads, each of which is covered with a Ti/Au contact pad. We studied 13 different devices having bridge aspect ratios ranging from 1.5:1 to 12:1 (length:width) and widths of 100, 50, and 25 $\mu$m. The data in this manuscript focuses on a device with a bridge width of 25 $\mu$m and an aspect ratio of 2:1. The data for all samples yielded similar qualitative results. Quantitative differences in transport data between different devices seemed to be uncorrelated with the bridge dimensions, and were instead dominated by pre-existing rips in the graphene, which are often introduced during the graphene transfer process \cite{Kim2012}. Graphene produced by CVD is known to be polydomain, but it has been shown that rips in graphene do not preferentially follow grain boundaries \cite{Kim2012}.
-    
-    Transport and AFM measurements were performed while the PDMS substrate was mounted in a mechanical stretching stage, as shown in Figure 1b. The substrate was clamped at either end, and then strained by turning the threaded rod, which laterally moves the sliding clamp along its guide rails. A mechanical stepper motor was used to control the stretching stage position to ensure reproducibility. Variable device positioning on the substrate as well as slight variations in substrate thickness preclude exact conversion between strain applied to the substrate and to the device, therefore strain values reported in this work are given in `turns of the stretching stage control rod'. Each turn strains the substrate by approximately one percent, and we estimate that the strain applied to the graphene differs from that applied to the PDMS substrate by no more than ten percent. However, our conclusions are unaffected by this uncertainty, as variations in the magnitude of applied strain between devices only shift the strain axis of the data while preserving the observed trends. Transport measurements were performed by placing micro-manipulator probes in contact with the gold contact pads at each strain value, and AFM measurements were performed with an Asylum Research MFP-3D.
-    
+        \begin{figure}
+        \centering
+        \vspace{0.2cm}
+        \includegraphics[width=\linewidth]{images/resultsanddiscussion/rippingpaper/Figure1.eps}
+        \caption[Device geometry and measurement apparatus for uniaxially strained graphene]
+            {\textbf{(a)} False-color optical image of a graphene bridge device
+            (outlined by dashed line) patterned on a PDMS substrate with gold contact pads
+            (light yellow). The length (L) and width (W) of the bridge are described in the
+            text. The scale bar is 25 $\mu$m. Inset: A schematic illustration of the device
+            geometry. \textbf{(b)}  The mechanical stretching stage with PDMS inserted
+            between the clamps. The devices are stretched along the axis of the
+            micro-bridge. \textbf{(c)} Offset Raman spectra for a bare PDMS region and a
+            graphene device region. The graphene G and 2D peaks, at 1599 cm$^{-1}$ and 2659
+            cm$^{-1}$ respectively, in the spectra from the device region confirm the
+            presence of graphene.}
+        \label{fig:rip-device}
+        \end{figure}
+   
+        Devices consisted of patterned graphene placed on flexible polydimethylsiloxane
+        (PDMS) substrates. The devices were fabricated using a modified transfer
+        printing process, similar to that described in Ref \cite{Kim2009}.
+        Single-layer graphene was grown using established chemical vapor deposition
+        (CVD) techniques \cite{Li2009}, and then transferred to a copper-coated silicon
+        wafer where it was patterned using photolithography and reactive ion etching.
+        Next, a piece of PDMS was mechanically pressed onto the silicon wafer, and the
+        copper was then etched to leave patterned graphene on the PDMS
+        substrate\cite{Lee2010}. Raman spectroscopy was used to confirm the presence of
+        graphene on the PDMS as shown in Figure \ref{fig:rip-device}c; the shape of the Raman 2D
+        peak\cite{Ferrari2006}, as well as subsequent AFM measurements verified the
+        single-layer character of the graphene. Finally, shadow-mask evaporation was
+        used to deposit Ti/Au contact pads. The device geometry is illustrated in
+        Figure \ref{fig:rip-device}a: a narrow graphene bridge connects two large graphene pads, each of
+        which is covered with a Ti/Au contact pad. We studied 13 different devices
+        having bridge aspect ratios ranging from 1.5:1 to 12:1 (length:width) and
+        widths of 100, 50, and 25 $\mu$m. The data in this manuscript focuses on a
+        device with a bridge width of 25 $\mu$m and an aspect ratio of 2:1. The data
+        for all samples yielded similar qualitative results. Quantitative differences
+        in transport data between different devices were uncorrelated with the bridge
+        dimensions, and instead seemed to be dominated by pre-existing rips in the
+        graphene, which are often introduced during the graphene transfer
+        process\cite{Kim2012}.
+
+        AFM and transport measurements were performed while the PDMS substrate was
+        mounted in a mechanical stretching stage, as shown in Figure \ref{fig:rip-device}. The substrate
+        was clamped at either end, and then strained by turning the threaded rod, which
+        laterally moves the sliding clamp along its guide rails. A mechanical stepper
+        motor was used to control the stretching stage position to ensure
+        reproducibility. Variable device positioning on the substrate as well as slight
+        variations in substrate thickness preclude exact conversion between strain
+        applied to the substrate and to the device, therefore `turns of the stretching
+        stage control rod' were used as the controlled variable. Each turn strains the
+        substrate by approximately one percent, and we estimate that the strain applied
+        to the graphene differs from that applied to the PDMS substrate by no more than
+        ten percent. However, our conclusions are unaffected by this uncertainty, as
+        variations in the magnitude of applied strain between devices only shift the
+        strain axis of the data while preserving the observed trends. Optical
+        observations indicated that the Ti/Au pad adhesion to the substrate was robust
+        and did not slip during measurements. Transport measurements were performed by
+        placing micro-manipulator probes in contact with the gold contact pads at each
+        strain value, and AFM measurements were performed with an Asylum Research
+        MFP-3D.
+        
+    \subsection{Rip formation under strain}
+ 
+        \begin{figure}
+        \centering
+        \includegraphics[width=\linewidth]{images/resultsanddiscussion/rippingpaper/Figure3.eps}
+        \caption[AFM measurements of uniaxially strained graphene]
+            {\textbf{(a-f)} AFM phase measurements of graphene on a polymer
+            substrate at approximately 0, 5, 0, 5, 10, and 0 percent strain (applied along
+            the horizontal axis), as labeled. Rips are evident as light-gray, elongated
+            vertical features. An example of a rip that opens and closes with applied
+            strain is indicated by the dashed line. Dark spots present in each image are
+            debris on the substrate surface; white halos surrounding some of the debris are
+            indicative of graphene slightly delaminating from the substrate. Elongated
+            horizontal features are strain-dependent wrinkles. \textbf{(g)} AFM phase and
+            \textbf{(h)} height data. Variations in the height data distinguish between
+            wrinkles and rips in the graphene, which have similar signatures in the phase
+            data. The scanned area in each image is 25 $\mu$m$^2$.}
+        \label{fig:rip-afm}
+        \end{figure}
+   
+        \subsubsection*{Experimental results}
+        
+        Figures \ref{fig:rip-afm}-f show AFM phase images of graphene in the bridge region of a device
+        at 0, 5, 0, 5, 10, and 0 percent strain applied along the horizontal axis of
+        the images. Both rips and delaminations caused by wrinkles appear as a function
+        of strain, and can be distinguished via AFM height data: Figures \ref{fig:rip-afm}g and \ref{fig:rip-afm}h show
+        that wrinkles have corresponding undulations in the height data (peaks and
+        dips) while rips are indicated by a uniform depression (consistent with the
+        substrate exposed between graphene regions). In Fig. 2, the vertical features
+        are rips and the majority of the horizontal features are wrinkles.
+        
+        \ref{fig:rip-afm}
+        
+        The opening and closing of rips is clear in the Figure:  the unstrained device
+        (Fig. \ref{fig:rip-afm}a) exhibits some small rips and defects. When the substrate is
+        mechanically stretched (Fig. \ref{fig:rip-afm}b) the existing rips widen and new rips form;
+        when the applied strain is relaxed (Fig. \ref{fig:rip-afm}c), pre-existing defects return to
+        nearly their original condition and newly formed rips close. Subsequent
+        strain-relaxation cycles over the same strain range re-open existing rips (Fig.\ref{fig:rip-afm}d), 
+        but proceeding to a higher strain range forms new rips and widens
+        pre-existing ones (Fig.\ref{fig:rip-afm}e), which then close less completely when the strain
+        is relaxed (Fig.\ref{fig:rip-afm}f). The strain values at which we observe micro-rip formation
+        are substantially lower than the reported fracture strength of
+        graphene\cite{Lee2008}, however the tensile strength of graphene is strongly
+        susceptible to defects such as holes and tears\cite{Lee2013}. Although graphene
+        produced by CVD is known to be polydomain, it has been shown that rips in
+        graphene do not preferentially follow grain boundaries\cite{Kim2012}. Rather,
+        the fabrication procedures used to generate patterned graphene devices on
+        polymer substrates routinely introduce rips and other defects in the graphene,
+        which accounts for the mechanical failure observed at low strain values.
+ 
+        \begin{figure}
+        \centering
+        \includegraphics[width=0.5\linewidth]{images/resultsanddiscussion/rippingpaper/Figure4.eps}
+        \caption[Simulations of rip formation in uniaxially strained graphene]
+            {Coarse-grained simulations show the elastic opening and closing of
+            rips during initial and subsequent tensile loading cycles, in good agreement
+            with AFM measurements in Figure 2. The graphene region was simulated at 0, 5,
+            0, 5, 10, and 0 percent strain applied along the horizontal axis, as labeled.
+            Values given in nm refer to the rip lengths. The vertical contraction of the
+            graphene region at higher strain values is due to the Poisson effect.}
+        \label{fig:rip-simulation}
+        \end{figure}
+       
+        \subsubsection*{Simulation results}
+        
+        To shed light on the underlying mechanism of the rip formation and evolution,
+        our collaborators simulated rip formation and the subsequent elastic opening and closing of
+        rips in graphene, via a coarse-grained (CG) modeling scheme\cite{Zhu2014}.
+        The following description of simulation results describes their work.
+        Given the prohibitive simulation expense to model rips of real size in
+        experiments (microns in length), they simulated a scaled-down model of a graphene
+        monolayer with a size of 24 nm by 200 nm (Fig. \ref{fig:rip-simulation}). Three pre-cracks of various
+        sizes were introduced in the model (Fig. \ref{fig:rip-simulation}a) to mimic the pre-existing defects
+        in the as-made sample. Each CG bead in the graphene interacts with a virtual
+        substrate via a Lennard-Jones potential\cite{Scharfenberg2011} $V_{gs}(r)
+        =4\varepsilon_{gs} \left( \frac{\sigma_{gs}^{12}}{r^{12}} -
+        \frac{\sigma_{gs}^6}{r^6} \right)$, where $\varepsilon_{gs}=0.01844 \,
+        \text{eV}$ and $\sigma_{gs}=0.29 \, \text{nm}$, which gives rise to an adhesion
+        energy around 0.044 eV/nm$^{2}$. In addition, the CG beads on the four outer
+        edges of the simulation model were not allowed to slide relative to the
+        substrate so that the tensile loading of the graphene can be applied by
+        stretching the substrate along the horizontal direction, similar to the
+        experimental setup.
+        
+        As the applied tensile strain first increases to 5\%, the stress concentration
+        near the tips of the short middle crack ($\sim$15.7 nm in length) becomes
+        sufficiently high to cause the propagation of the short crack in both
+        directions. Due to the nature of displacement loading, the driving force for
+        crack propagation decreases as the crack extends. As a result, the middle crack
+        stops advancing at a length of $\sim$40.1 nm (Fig. \ref{fig:rip-simulation}b). Upon unloading of the
+        tensile strain the elongated middle crack closes, nearly fully recovering the
+        original shape of the graphene (Fig. \ref{fig:rip-simulation}c); however, the atomic bond breaking in
+        graphene during crack propagation is not reversible. Consequently, the graphene
+        cannot fully recover its original mechanical integrity.
+        
+        Further tensile loading up to 5\% causes the cracks to reopen but further
+        extension of the cracks is shown to be negligible (Fig. \ref{fig:rip-simulation}d), largely due to a
+        lack of sufficient driving force for crack propagation. The application of a
+        tensile loading of 10\% provides sufficient driving force to cause all three
+        cracks to extend significantly. The crack propagation eventually saturates due
+        to the decreasing driving force under displacement loading (Fig. \ref{fig:rip-simulation}e). Upon
+        unloading to zero strain, all newly formed cracks close, resulting in a
+        graphene morphology nearly identical to its original shape (Fig. \ref{fig:rip-simulation}f), similar
+        to the experimental observation (Fig. \ref{fig:rip-afm}e to Fig. \ref{fig:rip-afm}f).
+        
+        Simulations also show the formation of delaminations and horizontal wrinkles in
+        graphene upon tensile loading and the disappearance of such features upon
+        unloading, which agrees with the experimental observations (Fig. \ref{fig:rip-afm}). We
+        attribute the formation of these delamination and wrinkle features to the
+        combined effect of a mismatch in Poisson's ratios between graphene and the PDMS
+        substrate and the relatively weak graphene/PDMS interfacial bonding. In
+        addition, recent studies show that the location of wrinkles in graphene can be
+        guided by the debris distribution on the substrate surface \cite{Zhu2014b},
+        consistent with our experimental observations in Fig. \ref{fig:rip-afm}.
+        
+        The close agreement between the experimental observations and mechanics
+        simulations yields two conclusions: first, pre-existing defects play a decisive
+        role in the formation of rips in graphene. The concentration of stress near the
+        edge of rips causes graphene to mechanically fail at lower strain values than
+        its high intrinsic breaking strength would suggest, therefore when fabricating
+        flexible graphene-based devices optimizing the mechanical integrity of the
+        graphene is important not only to maximize the initial quality of the device
+        but also its subsequent durability. Second, the generic nature of the
+        simulations suggests that the first conclusion is generally applicable to thin
+        membrane devices; while other thin films may not have the flexibility,
+        transparency, and electronic properties of graphene the simulations suggest
+        that their failure modes when supported by flexible substrates are similar.
+
     \subsection{Resistance changes under uniaxial strain}
     
-    Typical electrical transport vs. strain data is shown in Figure 2. Figure 2a demonstrates three important features of the data: first, during the initial application of strain (A to B in the Figure) the resistance increases (for this sample, by approximately 43 percent). Typical values for this initial increase in other devices ranged from 20 to 40 percent of the starting resistance. Second, the resistance of the device decreases as the applied strain is relaxed (from B to C) by 7 percent for this device, and typically by between 6 and 14 percent. Finally, in subsequent strain-relaxation cycles over the same strain range the resistance changes only moderately, and in a largely reversible fashion. This reversibility is further demonstrated in Figure 2b; data from the same device recorded during the third, fourth, and fifth strain-relaxation cycles are shown in green, blue, and red respectively. In each case the resistance changes by $\sim$14\% for $\sim$3\% applied strain, and returns to within 8\% of its original value. This behavior -- an increase in resistance with the initial application of tensile strain, followed by moderate and reversible changes in the resistance during subsequent strain-relaxation cycles over the same strain region -- persists up to approximately 15\% applied strain, at which point the devices become permanently non-conducting.
+        \begin{figure*}
+        \centering
+        \includegraphics[width=0.49\linewidth]{images/resultsanddiscussion/rippingpaper/Fig2a.eps}
+        \includegraphics[width=0.49\linewidth]{images/resultsanddiscussion/rippingpaper/Fig2b.eps}
+            \caption[Resistance vs strain for graphene on flexible substrates]{
+                \textbf{(a)} Electrical resistance of a graphene device vs. applied tensile strain. 
+                The initial application of strain significantly increases the resistance while subsequent 
+                strain-relaxation cycles over the same strain range yield smaller, mostly reversible 
+                changes in the resistance. \textbf{(b)} Three consecutive strain-relaxation cycles 
+                (Cycles 3,4,5), showing largely reversible transport characteristics. Three arb. units 
+                correspond roughly to three percent applied strain.}
+        \label{fig:rip-RvsStrain}
+        \end{figure*}
+   
+        The behavior of the rips determines the electrical transport as a function of
+        strain, as evident in Figure \ref{fig:rip-RvsStrain}. Figure \ref{fig:rip-RvsStrain}a 
+        demonstrates three important features
+        of the data: first, during the initial application of strain (A to B in the
+        Figure) the resistance increases (for this sample, by approximately 43
+        percent). Typical values for this initial increase in other devices ranged from
+        20 to 40 percent of the starting resistance. Second, the resistance of the
+        device decreases as the applied strain is relaxed (from B to C) by 7 percent
+        for this device, and typically by between 6 and 14 percent. Finally, in
+        subsequent strain-relaxation cycles over the same strain range the resistance
+        changes only moderately, and in a largely reversible fashion.
+        
+        The transport behavior can be explained by the opening and closing of rips: in
+        the unstrained device, small rips largely determine the initial resistivity.
+        The device's resistance increases when the substrate is mechanically stretched,
+        due to the widening of existing rips and formation of new ones; subsequent
+        strain-relaxation cycles over the same strain range, which re-open and close
+        existing rips, generate largely reversible changes in resistance. This
+        reversibility is demonstrated in Figure \ref{fig:rip-RvsStrain}b; data from the same device recorded
+        during the third, fourth, and fifth strain-relaxation cycles are shown in
+        green, blue, and red respectively. In each case the resistance changes by
+        $\sim$14\% for $\sim$3\% applied strain, and returns to within 8\% of its
+        original value. Proceeding to a higher strain range forms new rips, consistent
+        with a jump in resistance when the strain range is increased. This behavior --
+        an increase in resistance with the initial application of tensile strain,
+        followed by moderate and reversible changes in the resistance during subsequent
+        strain-relaxation cycles over the same strain region -- persists up to
+        approximately 15\% applied strain, at which point the devices become
+        permanently non-conducting.
+        
+        Previous experimental work has demonstrated reversible transport changes in
+        strained graphene, either by depositing graphene on pre-strained substrates so
+        as to create controlled crumpling\cite{Zang2013} and buckling\cite{Wang2011},
+        by patterning complex interconnect geometries\cite{Kim2011,Lee2010}, or by
+        measuring transport across macroscopic graphene films\cite{Kim2009,Bae2010}. In
+        comparison, this work demonstrates the continuing robustness of device
+        functionality \textit{after} partial mechanical failure. Such resilience is
+        distinctly atypical for conducting thin films: similar studies performed on
+        tin-doped indium oxide (ITO)\cite{Cairns2000} and zinc
+        oxide\cite{Fortunato2002} reported rapid and irreversible device failure after
+        the onset of rip formation.  One potential explanation for graphene's
+        exceptional resilience is its morphological simplicity: as a two-dimensional
+        membrane re-establishing electrical contact between two sides of a rip is as
+        simple as overlaying two sheets of paper, while for typical three-dimensional
+        thin films the process is more similar to fitting two halves of a snapped
+        pencil back together.
+        
 
-    \begin{figure}
-    \includegraphics[width=\linewidth]{images/resultsanddiscussion/rippingpaper-RvsStrain.eps}
-    \caption[Resistance vs Strain for graphene on flexible substrates]{\textbf{(a)} Electrical resistance of a graphene device vs. applied tensile strain. The initial application of strain significantly increases the resistance while subsequent strain-relaxation cycles over the same strain range yield smaller, mostly reversible changes in the resistance. \textbf{(b)} Three consecutive strain-relaxation cycles (Cycles 3,4,5), showing largely reversible transport characteristics. Three arb. units correspond roughly to three percent applied strain.}
-    \label{fig:rippingpaper-RvsStrain}
-    \end{figure}
+    \subsection{Summary}
 
-    \subsection{Rip formation under strain}
+        In summary, we have observed the formation and subsequent evolution of
+        micro-rips in graphene using atomic force microscopy. While an initial
+        application of tensile strain introduces new mechanical defects, successive
+        strain-relaxation cycles over the same strain range elastically open and close
+        the existing rips. Mechanics simulations further reveal the underlying
+        deformation and failure mechanisms of the graphene sample under initial and
+        subsequent cyclic tensile loadings, which agree well with the AFM measurements.
+        This mechanical effect has a corresponding electrical effect: the graphene's
+        transport properties are degraded by the initial application of strain, but
+        show small, mostly reversible changes during ensuing strain-relaxation cycles.
+        
+        Graphene's combination of superlative electronic properties, extreme
+        flexibility, and robust functionality after partial mechanical failure is
+        unique among conducting thin films and lends itself to a variety of promising
+        future device applications. For applications with stringent component
+        requirements such as RC frequency filters or devices used for precise metrology
+        the onset of rip formation and the subsequent variation in electrical
+        properties described here are crucial design considerations. Similarly, the
+        interplay between strain-dependent resistance increases and power consumption
+        requirements may impose design limits on the use of graphene in next-generation
+        flexible displays and touchscreens. If graphene is to be used in applied
+        devices outside the laboratory a thorough understanding of when and how it will
+        fail is essential. In this manuscript we present a detailed description of
+        precisely this situation, with exciting implications for robust, graphene-based
+        electronic devices.
+
+        We thank Scott Maclaren (UIUC MRL/CMM) for technical assistance on this project. This work was
+        supported by NSF grants \#1069076 and \#1129826, NSF-CMMI grant
+        \#1130364 and NSF-NEB grant \#486171, and was carried out
+        in part in the Frederick Seitz Materials Research Laboratory Central
+        Facilities, University of Illinois.
+
+
 
 \section{Graphene on ferroelectric substrates}
+
+
+Graphene's linear dispersion relation and the attendant implications for bipolar electronics applications have motivated a range of experimental efforts aimed at producing p-n junctions in graphene. Here we report electrical transport measurements of graphene p-n junctions formed via simple modifications to a PbZr$_{0.2}$Ti$_{0.8}$O$_3$ substrate, combined with a self-assembled layer of ambient environmental dopants. We show that the substrate configuration controls the local doping region, and that the p-n junction behavior can be controlled with a single gate. Finally, we show that the ferroelectric substrate induces a hysteresis in the environmental doping which can be utilized to activate and deactivate the doping, yielding an `on-demand' p-n junction in graphene controlled by a single, universal backgate.
+
+
+Graphene is a subject of intense research interest due to the enormous potential of its electronic and mechanical properties\cite{Geim2007}. In particular, p-n junctions in graphene have great potential for both fundamental research and commercial applications, and have been utilized to study the quantum Hall effect \cite{Williams2007, Ozyilmaz2007, Velasco2010} and Klein tunneling\cite{Stander2009, Young2009} as well as to fabricate flexible transistors\cite{Kim2010}. Previous work on p-n junctions in graphene employed multiple electrostatic gates \cite{Meric2008, Williams2007, Ozyilmaz2007, Huard2007, Liu2008, Stander2009, Velasco2009, Velasco2010, Young2009}, charge transfer from the controlled deposition of chemical adsorbates \cite{Farmer2009,Lohmann2009,Brenner2010,Cheng2011,Sojoudi2012,Seo2014,Park2015}, high current-induced charging of trap states in the substrate \cite{Chiu2010}, or periodically poled ferroelectric substrates\cite{Baeumer2015}.
+
+In this Letter we report the fabrication of p-n junctions in graphene deposited on a uniformly poled ferroelectric substrate. The local doping in our devices is accomplished by combining simple modifications to a lead zirconium titanate (PbZr$_{0.2}$Ti$_{0.8}$O$_3$) substrate -- the evaporation of thin SiO$_2$ films in some regions -- with a self-assembled layer of environmental dopants. We find that the PbZr$_{0.2}$Ti$_{0.8}$O$_3$ substrate modulates the doping effect of the adsorbed dopants: devices are exposed to ambient conditions after fabrication whereupon experimental observations confirm both the presence of adsorbed dopants (likely primarily H$_2$O) and their enhanced doping effect on the PbZr$_{0.2}$Ti$_{0.8}$O$_3$ relative to the SiO$_2$.
+Furthermore, we demonstrate that the PbZr$_{0.2}$Ti$_{0.8}$O$_3$ substrate induces a hysteresis in the environmental doping which can be used to activate and deactivate the doping via the application of large gate voltages. We employ this effect to create p-n junctions which can be reversibly transitioned between p-n junction and uniformly conducting configurations.
+
+Devices consist of graphene micro-ribbons deposited on substrates which are partially covered by a thin layer of evaporated SiO$_2$, and contacted in a four-point geometry, as illustrated in Figures \ref{fig:devices}a-c. An SEM micrograph of a typical device is shown in the inset of Figure \ref{fig:devices}d. The devices are fabricated using standard lithography and deposition techniques on thin-film ferroelectric substrates. For the ferroelectric substrates, 120 nm thick (001)-oriented lead zirconium titanate (PbZr$_{0.2}$Ti$_{0.8}$O$_3$) films are prepared by pulsed-laser deposition (PLD) on a strontium titanate (SrTiO$_3$) substrate coated with 20 nm of strontium ruthenate (SrRuO$_3$), following established procedures\cite{Xu2014,Karthik2012}. For each substrate, an 80 nm-thick layer of SiO$_2$ is evaporated in small rectangular regions, with region widths ranging from 0.5 $\mu$m to 3 $\mu$m, as illustrated in Figs. \ref{fig:devices}a-c. CVD graphene is then transferred using standard wet transfer techniques\cite{Li2009}, and patterned into ribbons spanning the deposited SiO$_2$ using photolithography and reactive ion etching. The graphene channel is 6 $\mu$m by 4 $\mu$m measured from the inner contacts. Control devices which span regions with no evaporated SiO$_2$ are also fabricated. Finally, Cr/Au (3 nm/20 nm) leads are deposited in a four-point measurement configuration.  Raman spectroscopy is used to confirm the monolayer character and high quality of the graphene after fabrication; a representative spectra is shown in Figure \ref{fig:devices}d.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.8\textwidth]{images/resultsanddiscussion/pztpaper/figure1}
+  \caption[Schematic illustration of graphene-ferroelectric pn junction device geometry]{
+   (a-c) Schematic illustration of the device geometry. The graphene (grey) spans the regions of evaporated SiO$_2$ (purple) on the bare substrate (teal) and is contacted by Cr/Au electrodes (yellow). The universal backgate is shown in red.
+   (d) Raman spectra of graphene from a device fabricated on a thermal SiO$_2$ substrate. %The relative intensities of the G and 2D peaks, at 1593 cm$^{-1}$ and 2688 cm$^{-1}$ respectively, and the shape of the G peak confirm the monolayer character and high quality of the graphene.
+   Inset: a false-color SEM micrograph of a representative device. The scale bar is 2 $\mu$m.
+  }
+  \label{fig:devices}
+\end{figure}
+
+Transport measurements in air are performed using two Keithley 2400 SourceMeters. Measurements in vacuum are performed using an Agilent 4156C Semiconductor Parameter Analyzer. In both cases source-drain current is measured with a constant source-drain bias of 5 mV while the voltage applied to the backgate is swept. Gate leakage distorts transport results for gate voltages more positive than 1.5 V or more negative than -1 V, so gate voltages are limited to this range. Gate voltage sweep rates range from 10 mV/s to 100 mV/s; the data presented here are from sweeps at 100 mV/s. Slower sweep rates yield qualitatively similar results.
+
+%\section*{Results and Discussion}
+
+Figure \ref{fig:PZTdata}a shows room temperature $I_{sd}$ vs $V_{gate}$ curves for devices having different widths of evaporated SiO$_2$ on a PbZr$_{0.2}$Ti$_{0.8}$O$_3$ substrate. For the data shown here, the fraction of the graphene channel screened by evaporated SiO$_2$ ranges from 0\% to 50\% (corresponding to SiO$_2$ widths of 0 to 3 microns). Two features of the data are immediately apparent: first, for devices which span an evaporated SiO$_2$ region, the characteristic conductance minimum typically observed in graphene at the Dirac point is split into two distinct minima, one at the original Dirac point location and a second shifted to the right. This is apparent in the top and bottom curves of the Figure: the bottom curve, corresponding to a device with 0\% screening, displays a single minimum, while the top curve, corresponding to a device with 50\% screening, displays two pronounced minima. Second, the width of the evaporated SiO$_2$ region determines which of the two minima has a smaller absolute value. As the screening fraction is increased, `weight' is transferred from the minimum at the original Dirac point location to the secondary minimum, and the depths of the two minima vary accordingly. We attribute both of these effects to the presence of two different doping regions in the graphene, defined by the PbZr$_{0.2}$Ti$_{0.8}$O$_3$ substrate and the evaporated SiO$_2$.
+
+The data can be understood by considering that as the gate voltage is swept from negative to positive, the Fermi level passes through the charge-neutrality point (CNP) of each graphene region separately. Taking the conductance to be linear with carrier density\cite{Hwang2007} $\sigma \propto k_F \langle\tau\rangle \propto n$ and the carrier density to be linear with the thermally smeared energy difference between the Fermi level and the CNP\cite{CastroNeto2009}, we model the conductance in the vicinity of the CNP as: $\rho^{-1} \propto n \propto 1 - e^{{-(V_{gate}}-\mu-\delta)^2/2c^2} + \epsilon$ where the constant $\mu$ accounts for the extrinsic doping introduced by the fabrication process, $\delta \in \{0,1\}$ describes the substrate-dependent doping, and $\epsilon$ accounts for the non-vanishing carrier density at the CNP. Assuming diffusive transport in the graphene, the relative weight of each separately doped region, and therefore the relative magnitude of the measured conductance minima, is determined by the fraction of the graphene channel which is screened:
+$$I_{sd} \propto \left[ \rho_\text{scr.} \times (\text{pct.}_\text{scr.}) + \rho_\text{non-scr.} \times (\text{pct.}_\text{non-scr.}) \right]^{-1}$$
+This is simulated in Figure \ref{fig:PZTdata}b which shows $I_{sd}$ vs $V_{gate}$ curves for screening fractions ranging from 0\% to 75\% and is in excellent agreement with our experimental data. We note that the simulations agree with our data for $\mu > 0$ and $\delta \geq 0$, which is consistent with the extrinsic p-doping typically observed in graphene devices fabricated on PbZr$_{0.2}$Ti$_{0.8}$O$_3$\cite{Baeumer2013}.
+
+\begin{figure}[!b]
+  \centering
+  \includegraphics[width=.8\textwidth]{images/resultsanddiscussion/pztpaper/figure2}
+
+  \caption[I-V curves for graphene-ferroelectric pn junction devices]{
+   (a) $I_{sd}$ vs $V_{gate}$ curves (manually offset for clarity) for devices having different widths of evaporated SiO$_2$ on a PbZr$_{0.2}$Ti$_{0.8}$O$_3$ substrate. The devices having evaporated SiO$_2$ show split Dirac points, and the relative dominance of the left and right Dirac points can be tuned by varying the evaporated SiO$_2$ width.
+   (b) Simulations of transport across a graphene device having two different locally doped regions, as a function of applied gate voltage. The simulations show both Dirac point splitting and variations in left vs. right Dirac point dominance as a function of screening region width, consistent with the experimental data.
+}
+\label{fig:PZTdata}
+\end{figure}
+
+The substrate-selectivity of the doping in our devices suggests that the ambient dopants are polar H$_2$O molecules. Polar surface adsorbates have been shown to dramatically affect the electronic properties of complex oxide systems\cite{Xie2011} as well as graphene\cite{Schedin2007, Lohmann2009,Lu2014}. The H$_2$O doping is substrate-selective because of the unique ferroelectric nature of the PbZr$_{0.2}$Ti$_{0.8}$O$_3$ substrate. Previous work\cite{Leenaerts2007,Leenaerts2009} has established the importance of the orbital structure of the adsorbate in determining the most energetically favorable orientation. For standard graphene devices on SiO$_2$ substrates, the structure of H$_2$O favors a uniform polarization throughout the range of applicable gate voltages. For graphene on ferroelectric substrates however, previous work\cite{Lu2014} indicates that electrostatic effects of the remnant polarization and substrate lattice geometry can modulate the stability of the H$_2$O polarization. In the devices described here, it is likely that the interaction between the remnant polarization of the PbZr$_{0.2}$Ti$_{0.8}$O$_3$ substrate and the H$_2$O molecules sufficiently alters the energetics of different H$_2$O orientations as to destroy the stability of the H$_2$O polarization, and thus create less-polarized regions. This hypothesis is in agreement with data collected from similar devices fabricated on non-ferroelectric substrates; such devices show none of the characteristic Dirac point splitting associated with p-n junctions.
+
+The gate-voltage dependence of the H$_2$O polarization configurations on PbZr$_{0.2}$Ti$_{0.8}$O$_3$ vs SiO$_2$ leads to hysteresis in the devices. This can be seen in figure \ref{fig:doping_dynamics}a, which shows $I_{sd}$ vs $V_{gate}$ curves for forward and reverse gate sweeps performed on the same devices as measured in Fig. \ref{fig:PZTdata}a. A pronounced hysteresis between forward and reverse gate sweeps is apparent. As in Fig. \ref{fig:PZTdata}a, devices spanning a region of evaporated SiO$_2$ display two distinct minima during forward sweeps, while a control device having no SiO$_2$ displays a single minimum. However, all devices display a single minimum during reverse gate sweeps. We note that the gate voltages applied here remain below the coercive voltage of the PbZr$_{0.2}$Ti$_{0.8}$O$_3$ film, therefore ferroelectric switching is not a possible cause of the observed hysteresis. Ferroelectric switching has been shown to produce similar behavior\cite{Park2015b}, however in this work gate voltages above the coercive voltage of the film are experimentally inaccessible due to large gate leakage in our devices.
+
+In order to understand how the hysteresis is related to the different H$_2$O polarization configurations on the PbZr$_{0.2}$Ti$_{0.8}$O$_3$ as compared to the evaporated SiO$_2$, it is instructive to consider the gate voltages at which the various minima appear. For example, for the 17\% screened curve in Fig. \ref{fig:doping_dynamics}a the red arrows point out two minima on the forward sweep (at 0.6 V and 1.1V) and one minimum on the reverse sweep (at 0.9 V). These can be compared to the position of the Dirac point in vacuum at 0.6 V (see Fig. \ref{fig:PZTvacuum}). The minimum on the forward sweep at 0.6 V occurs at the same gate voltage as the vacuum Dirac point, implying that it corresponds to a region of the graphene without a net polarization in the adsorbed H$_2$O. The remaining minima occur at voltages larger than the Dirac point (0.9 V and 1.1 V) and thus correspond to regions of the graphene on which the adsorbed H$_2$O is polarized and produces p-doping. Polarized H$_2$O typically produces p-doping in graphene, though the precise mechanism is the subject of continuing research\cite{Leenaerts2007,Moser2008,Wang2010,Wehling2008,Sabio2008}. We identify the forward-sweep minimum at 0.6 V as corresponding to graphene on the non-screened PbZr$_{0.2}$Ti$_{0.8}$O$_3$ region. This is supported by the fact that all devices demonstrate a minimum at 0.6 V, independent of different SiO$_2$ screening fractions. In contrast, the minimum indicated by the rightmost arrow (e.g. at 1.1 V for the 17\% screened device) corresponds to graphene on the evaporated SiO$_2$ region, as evidenced by its evolution with increasing SiO$_2$ screening fraction.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.8\textwidth]{images/resultsanddiscussion/pztpaper/figure3}
+
+  \caption[Polariztion induced hysteresis in I-V curves on graphene-ferroelectric pn junctions]{
+   (a) $I_{sd}$ vs $V_{gate}$ curves (manually offset for clarity) for forward (light) and reverse (dark) gate voltage sweeps. Representative minima locations are indicated by the vertical arrows.
+   (b) H$_2$O polarization by device region, as prepared by positive and negative gate voltages. For negative gate voltages, H$_2$O on the PbZr$_{0.2}$Ti$_{0.8}$O$_3$ region is unpolarized, and H$_2$O on the SiO$_2$ region is polarized. For positive gate voltages both regions have a net polarization.
+   (c) Simulated carrier density vs. applied gate voltage. The onset of H$_2$O polarization is indicated by grey shading. Inset: simulated conductance vs. applied gate voltage.
+   (d) A schematic illustration of the H$_2$O doping hysteresis with applied gate voltage; arrows indicate the direction of the gate voltage sweep.
+  }
+  \label{fig:doping_dynamics}
+\end{figure}
+
+We conclude that the application of a negative gate voltage destroys the net polarization of adsorbed H$_2$O on PbZr$_{0.2}$Ti$_{0.8}$O$_3$, but preserves a net polarization on the SiO$_2$-screened regions. This creates different local doping levels and thus a p-n junction. A positive gate voltage establishes a net polarization in both regions, and thus a uniform channel with no p-n junction, as depicted in Figure \ref{fig:doping_dynamics}b. This interpretation is further corroborated by the different widths of the forward and reverse minima for the control (0\% screened) device, as evident in Fig. \ref{fig:doping_dynamics}a. This difference can be explained by considering that conductance is linear with carrier density\cite{Hwang2007}, so the width of the conductance minimum at the Dirac point is determined by the slope of the carrier density vs. gate voltage curve. Typically the slope is constant, determined by the gate capacitance. However, for our devices the onset of H$_2$O dipole doping introduces a nonlinearity in the regime where the adsorbed H$_2$O transitions from unpolarized to polarized; this is shown schematically in Fig. \ref{fig:doping_dynamics}c. The polarized H$_2$O in our devices p-dopes the graphene, so the onset of its doping contribution temporarily reduces the slope of the carrier density vs. gate voltage curve, broadening the conductance minimum. During reverse sweeps, the transition from polarized to unpolarized H$_2$O occurs far from the CNP, so the width of the conductance minimum is unaffected. The hysteresis in H$_2$O polarization is illustrated schematically in Figure \ref{fig:doping_dynamics}d. Experimentally, the polarization hysteresis displays a dependence on both the magnitude of the applied gate voltage and the duration of its application, which prevents an exact determination of the gate voltages required to establish or destroy the H$_2$O polarization.
+
+The hysteresis of the H$_2$O polarization on PbZr$_{0.2}$Ti$_{0.8}$O$_3$ substrates adds an `on/off' switching element to the p-n behavior. Specifically, we can selectively transition the device into and out of the p-n junction configuration through the application of large positive and negative gate voltages. The initial application of a large positive gate voltages establishes a uniform polarization across the device, yielding a unipolar conducting channel, while a large negative gate voltage destabilizes the polarization on regions supported by PbZr$_{0.2}$Ti$_{0.8}$O$_3$. In the latter case the different H$_2$O polarizations create separate locally doped regions, and thus a p-n junction. This `on/off' switching is different than the standard gate induced switching observed in p-n junctions, for example from p-n to p$^+$-p. By comparison, in our devices the same applied gate voltage can generate either a p-n junction or a uniformly doped channel, depending on the H$_2$O polarization condition.
+
+The ferroelectric nature of the PbZr$_{0.2}$Ti$_{0.8}$O$_3$ substrate might suggest that the residual electric field from the substrate polarization dopes the regions of graphene in direct contact with the substrate\cite{Baeumer2013,Zheng2010}, but has less effect in the graphene regions screened by evaporated SiO$_2$. Similarly, graphene-ferroelectric interfaces are known to have complex interfacial charge trap dynamics which can generate similar transport signatures\cite{Park2015b}. However, both explanations are precluded by several further experimental observations. First, the Dirac point splitting effect disappears when the devices are measured in vacuum. Figure \ref{fig:PZTvacuum} shows $I_{sd}$ vs $V_{gate}$ curves for the same devices measured at $5\times10^{-6}$ Torr but otherwise under conditions identical to those of Figure \ref{fig:PZTdata}a. All devices show a single minimum, independent of evaporated SiO$_2$ width or gate sweep rate. Second, leaving the devices in ambient conditions overnight recovers the splitting effect. The observed behavior is consistent with an ambient dopant mechanism, i.e., the substrate-selective formation of a self-assembled layer of dopant molecules. In vacuum, dopant molecules desorb from the surface leaving all regions of the graphene identically doped. Leaving the device in ambient conditions allows the dopant layer to reassemble, thereby re-establishing the separately doped regions.
+
+The absence of Dirac point splitting in vacuum measurements also eliminates differences in gate capacitance as a dominant source of the splitting effect. The screened and non-screened regions of the device have different gate thicknesses and dielectric constants, which might suggest that the application of the same gate voltage would generate different doping levels in each region, and hence the transport behavior we observe. However, any capacitative differences between the regions are static, depending only on the geometry of the device, while the Dirac point splitting effect is dynamic, disappearing in vacuum. Capacitance-based explanations are further ruled out by the nearly identical Dirac point locations observed in all devices under vacuum. In particular, the similarity of data under vacuum from the control device (having no evaporated SiO$_2$), and from the devices which do span an evaporated SiO$_2$ region confirms that gate capacitance differences between the two regions are not the primary cause of the Dirac point splitting effect.
+
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.5\textwidth]{images/resultsanddiscussion/pztpaper/figure4}
+  \caption[I-V curves for graphene-ferroelectric pn junction devices measured in vacuum]{
+   Offset $I_{sd}$ vs $V_{gate}$ curves for devices measured in vacuum. The Dirac point splitting effect disappears in vacuum, but can be recovered by leaving the device in ambient conditions overnight.
+  }
+  \label{fig:PZTvacuum}
+\end{figure}
+
+%We note that the vacuum-dependence of our results requires that the ambient dopant molecules be present on top of the graphene rather than trapped between the graphene and the substrate. Pristine monolayer graphene is impermeable to atomic and molecular species\cite{Bunch2008}, therefore the brief application of a moderate vacuum would be insufficient to remove any molecules trapped underneath the graphene. This in turn requires that the substrate-dependent localization of the ambient dopants occurs through the graphene; similar behavior has been previously reported elsewhere\cite{Moser2007, Moser2008, Lohmann2009, Lafkioti2010}.
+
+%\section*{Conclusions}
+
+In summary, we have fabricated a controllable p-n junction in graphene on a ferroelectric substrate. We employ simple substrate modifications to define local doping regions, where the doping is accomplished through the substrate-selective formation of a self-assembled layer of ambient doping molecules. Alternative explanations for the local doping effect are ruled out, and the dynamics of the ambient doping suggest that it is due to polar H$_2$O molecules. Finally, the PbZr$_{0.2}$Ti$_{0.8}$O$_3$ substrate creates a hysteresis in the ambient doping effect which can be used to controllably bias the device into and out of a p-n junction configuration, using a single, universal backgate.
+
+%\section*{Methods}
+
+%\textbf{Device Fabrication.} Substrates were prepared by pulsed-laser deposition: strontium titanate (SrTiO$_3$) substrates were first coated with 20 nm of strontium ruthenate (SrRuO$_3$) followed by 120 nm of (001)-oriented lead zirconium titanate (PbZr$_{0.2}$Ti$_{0.8}$O$_3$). The details of the substrate fabrication are discussed in refs. [21,22].
+%\citet{Xu2014,Karthik2012}.
+%For each substrate, 80 nm of SiO$_2$ was evaporated in small rectangular regions defined by conventional photolithography. CVD graphene was then transferred onto the substrate using standard wet-transfer techniques as discussed in ref. [23].
+%\citet{Li2009}.
+%Photolithography was used to define graphene channels which spanned the evaporated SiO$_2$ regions; the remainder of the graphene was removed by oxygen plasma etching. Finally, electrical leads were defined in a four-point measurement configuration using photolithography, and 20 nm of gold was deposited by electron-beam evaporation with a 3 nm sticking layer of titanium.
+
+%\textbf{Transport Measurements.} Transport measurements in air were performed using two Keithley 2400 SourceMeters. Current through the graphene channel was measured under a constant bias of 5 mV, while the gate voltage was swept between -1.0 and +1.5 V. Measurements in vacuum were performed using an Agilent 4156C Semiconductor Parameter Analyzer under identical electrical parameters. In both cases gate voltage sweep rates ranged from 10 mV/s to 100 mV/s; data from different sweep rates yielded qualitatively similar results.
+
+\textit{Acknowledgement.} J.H.H., R.X., S.R., and M.S. acknowledge support from the National Science Foundation and the Nanoelectronics Research Initiative under NSF-NEB grant DMR-1124696.
+S.P. acknowledges support from the Army Research Office under grant W911NF-14-1-0104. N.M. and L.W.M. acknowledge support from the National Science Foundation under grant ENG-1434147. This work was carried out in part in the Frederick Seitz Materials Research Laboratory Central Facilities at the University of Illinois.
+
+
     \subsection{Device configuration}
     \subsection{Variable local doping via substrate modifications}
     \subsection{Hysteresis in local doping}
@@ -479,16 +1189,129 @@ In this section I describe the results of a research project wherein atomic forc
 \section{Graphene on strain array substrates}
 
 \chapter{Python Measurement Code}
+
+During the course of this research I became frustrated with the existing instrument control programs
+our lab used to perform measurements.
+Most of this frustration stemmed from what I perceived to be shortcomings in LabVIEW, the programming
+language in which they were implemented. Briefly, these shortcomings are as follows:
+
+    \begin{enumerate}
+        \item \textbf{Code modification and reuse:} LabVIEW is a graphical programming language: 
+            programs are `written' by connecting boxes representing functions and variables with `wires` which
+            pass input and output values. This paradigm makes it nearly impossible to modify
+            an existing program of any complexity. To understand the logical flow of the program
+            one must trace the paths and connections of upwards of 100 wires, each with multiple forks
+            and branches; see Figure \ref{fig:labview} for an example. 
+            The result of this is that any existing code can only be used to
+            perform the exact same measurement for which it was created; to perform an only slightly 
+            different measurement one must create an entirely new program, or invest an equivalent 
+            amount of time in debugging changes to an existing program.
+        \item \textbf{Commenting and versioning:} LabVIEW does not have robust options for commenting
+            or versioning\footnote{`Versioning' refers to the process of tracking changes
+            between sequential versions of some code. For example, the Track Changes functionality in Microsoft
+            Office is used to version text docuemnts.} code. The lack of commenting exacerbates the difficulty of understanding
+            an existing program, and the lack of version control makes it difficult to incrementally
+            develop a program. Taken together these shortcomings also require that all meta-information about the
+            program must be stored in the program file name, leading to program names like 
+            `gate\_sweep\_keithley\_sr830\_jeffs\_edit\_v3\_new\_B\_usethisone.vi'.
+        \item \textbf{Version incompatibility:} New versions of LabVIEW are released 
+            yearly, however each new version breaks backwards compatibility.
+            This causes many, many headaches when trying to run measurement programs inherited
+            from previous students in the lab, or when trying to run a new program on a workstation
+            with an earlier version of LabVIEW installed.
+    \end{enumerate}
+        
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{images/python/labview.png}
+    \caption[Example LabVIEW program]{
+        A portion of a LabVIEW program. The boxes are functions and variables, 
+        and the wires pass input and output values between the functions.
+    }
+    \label{fig:labview}
+\end{figure}
+        
+Given these frustrations, the obvious question is ``Why use LabVIEW at all?". ``Instrument drivers" is the short answer.
+Nearly every conceivable lab instrument provides drivers which allow the instrument to communicate
+with LabVIEW. The primary barrier to writing instrument control programs in languages other than
+LabVIEW is the absence of instrument drivers in those languages.
+
+
 \section{Instrument Drivers}
-\section{Gate-sweep Example}
-\section{Field-sweep Example}
-\section{Sheet Resistance Example}
+
+In order to address these issues I wrote drivers in the Python programming language
+for most of the instruments in our lab. These drivers can be found at \url{https://github.com/masonlab/labdrivers}
+and their usage is documented at \url{http://labdrivers.readthedocs.io/en/latest/}.
+In the rest of this section I describe the process used to create these drivers.
+
+    \subsection{Writing new drivers}
+    
+    The purpose of an instrument driver is to facilitate communication between an instrument and a
+    computer. Each instrument has a fixed set of commands it accepts, and a fixed set of outputs it will
+    provide upon request. The task when writing a driver is to provide a convenient way to send commands
+    and retrieve the relevant data.
+    Most instruments provide a complete list of the commands they accept, often at the end of their instruction manual.
+    These commands are not convenient for human use however, they are typically short and obscure 
+    (``\code{*IDN?}" or ``\code{*RST}" for example).
+    The task is to write a set of Python functions with simple, meaningful names which pass the
+    appropriate command to the instrument (for example ``\code{get\_instrument\_id}" or ``\code{reset\_instrument}"). 
+    For convenience, these functions can then be collected in a
+    Python class to group all the functions for a particular instrument.
+    
+    The majority of the instruments in our lab communicate with a computer using the National Instruments VISA
+    standard. This standard describes how commands (like \code{*RST}) get translated into a format interpretable by the instrument.
+    Conveniently, there is already a Python library called PyVISA which implements this standard.
+    In practice, this means we can pass a command to the PyVISA library, and the library will handle the low-level
+    work of passing that command to the instrument in a format it understands.
+    Writing a Python instrument driver is thus a three step process:
+    \begin{enumerate}
+        \item Enumerate the commands which the instrument accepts
+        \item Write a python function to pass each instrument command to PyVISA
+        \item Collect the python functions into a class
+    \end{enumerate}
+    Below I demonstrate this process for a single command.
+    
+    
+    \subsection{Wrapping existing drivers}
+    
+    The process described above requires that the instrument can be controlled using the VISA standard.
+    For instruments where this is not the case, another option is to `wrap' existing drivers which are
+    written in other languages. The practical implementation is more complex, but this wrapping process is logically
+    similar to the VISA-based process: 
+    \begin{enumerate}
+        \item Enumerate the commands which the other driver accepts
+        \item Write a python function to invoke each command in the existing driver
+        \item Collect the python functions into a class
+    \end{enumerate}
+    Instead of passing commands to the PyVISA library we invoke commands in the existing driver, but otherwise
+    the process of creating a Python driver is the same.
+    
+    The difficulty of wrapping other drivers mostly lies in figuring out how to run commands from another
+    programming language (the language that the original driver was written for) from within Python.
+    The method required to do this depends on the language of the original driver, however there are often
+    existing Python libraries to facilitate this task. A complete accounting of these existing libraries
+    is beyond the scope of this thesis, and in fact would likely be immediately out of date;
+    the motivated reader is encouraged to Google around. For examples
+    of drivers created by this process see the drivers for the National Instruments BNC-2100 DAC
+    (\href{https://github.com/masonlab/labdrivers/blob/master/labdrivers/ni/bnc2110.py}{\textbf{link}})
+    and the Quantum Design PPMS DynaCool 
+    (\href{https://github.com/masonlab/labdrivers/blob/master/labdrivers/quantumdesign/dynacool.py}{\textbf{link}}).
+    
+    
+\section{Example measurement programs}
+\subsection{Gate-sweep Example}
+\subsection{Field-sweep Example}
+\subsection{Sheet Resistance Example}
 
 \end{appendices}
 
 \backmatter
 
 \bibliographystyle{catunsrt}
+%\addbibresource{rippingpaper.bib}
+%\addbibresource{pztpaper.bib}
+%\addbibresource{PrelimPaper.bib}
+%\addbibresource{thesis.bib}
 \bibliography{rippingpaper,pztpaper,PrelimPaper,thesis}
 
 
