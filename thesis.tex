@@ -13,8 +13,8 @@
 \usepackage[toc,page]{appendix}
 
 % so that figures are numberd per chapter.section, ie 4.1.1, 4.1.2
-\usepackage{chngcntr}
-\counterwithin{figure}{section}
+%\usepackage{chngcntr}
+%\counterwithin{figure}{section}
 
 % thai character stuff
 \usepackage[thai,english]{babel}
@@ -442,7 +442,7 @@ process with me, always offering support and love.
             shape uniform sheets of CVD graphene into device geometries, and second to etch
             topographic features into SiO$_2$ substrates. 
             Each etching task requires an appropriate chemistry; for graphene etching we use
-            an O$_2$ plasma and for SiO$_2$ etching we use CHF$_3$ CHECK THIS.
+            an O$_2$ plasma and for SiO$_2$ etching we use CHF$_3$.
             For the exact RIE processes used in this work see Appendix \ref{appendix:fab}.
     
     \section{Sample Characterization}
@@ -532,7 +532,9 @@ process with me, always offering support and love.
         \subsection{Scanning Electron Microscopy}
         
         Scanning electron microscopy (SEM) is another useful characterization tool, especially for samples
-        which have very sharp topographic features. 
+        which have very sharp topographic features. SEM is a standard experimental technique and does
+        not require any special adaptations for the devices described in this thesis, and so will
+        not be described in detail here.
         
         \subsection{Raman Spectroscopy}
         
@@ -592,9 +594,7 @@ process with me, always offering support and love.
         
         Finally, Raman measurements can be used to measure spatial variations in the electronic quality
         and physical integrity of a graphene sample. By performing Raman measurements in a raster pattern
-        across a region of interest on can map local variations in peak locations.
-        
-        \note{PUT MORE DETAIL HERE, INTRO TO STRAIN ARRAY PAPER}
+        across a region of interest one can map local variations in peak locations.
         
     
     \section{Data collection}
@@ -603,8 +603,9 @@ process with me, always offering support and love.
     tasks. First, the device must be placed in an environment appropriate for the desired measurement:
     i.e. the device must be cooled, or strained, or placed in vacuum depending on the effect
     which the measurement aims to observe. Second, the device must be coupled to the measurement instrumentation.
-    In this section I describe the methods used to create the required environments, the equipment use to
-    perform the measurements, and the various configurations used to connect devices to measurement instrumentation.
+    In this section I describe the methods used to create the required environments, the equipment used to
+    perform the measurements, and the various device configurations and independent variables used in the
+    transport measurements described in this thesis.
     
         \subsection{Sample environments}
         
@@ -627,22 +628,32 @@ process with me, always offering support and love.
         Clamps secure either end of a flexible substrate. The rightmost clamp is mounted on rails,
         and can be translated back and forth by means of a threaded rod. This threaded rod is attached
         to a stepper motor which precisely controls the angular position of the threaded rod rotation,
-        and thus the lateral displacement of the second clamp. At maximum extension this device is capable of applying up to three
-        percent strain to substrates. 
-        
-        \note{something about the arduino to control it}
+        and thus the lateral displacement of the second clamp. The position of the stepper motor is
+        controlled by an Arduino-based microcontroller.
+        At maximum extension this device is capable of applying up to three percent strain to substrates. 
         
         \subsubsection*{Vacuum environments}
         
         Vacuum environments are created by the mechanical evacuation of sealed chambers. 
         For the experiments described in this thesis this is accomplished through the combined use
         of mechanical and turbomolecular pumps. 
-        When combined, these techniques are capable of producing vacuums in the XXX mtorr range.
-        \note{maybe talk about two stage process, being careful not to damage the turbo pump}
-        
-        \note{LOOK UP VACUUM VALUE}
+        When combined, these techniques are capable of producing vacuums in the 10$^{-6}$ mtorr range.
+        For applications where the turbomolecular pumps are employed care must be taken to first produce a sufficiently 
+        low vacuum with the mechanical pump to avoid damaging the turbopump.
         
         \subsubsection*{Cooled environments}
+        
+        Many of the effects described in this research are only visible at low temperatures; to perform
+        the desired measurements the devices must be cooled to temperatures near or below 1 Kelvin. A complete
+        description of the operation of the cooling mechanisms used to produce low temperatures is beyond the scope
+        of this report; here I give an overview of the cooling techniques employed in the course of this research.
+        For measurements which only require temperatures in the 1 to 2 Kelvin range, evaporative cooling
+        of $^4$He is sufficient. In this case liquid $^4$He is used to cool the sample environment to 4.2 Kelvin,
+        then a vacuum is applied to the liquid $^4$He which can lower temperatures to approximately 1.8 Kelvin.
+        For measurements which require temperatures below 1.8 Kelvin we use evaporative cooling of $^3$He. This
+        technique proceeds in two steps: first evaporative cooling of $^4$He is used to produce temperatures
+        around 2 Kelvin, then a second evaporative cooling step, this time using $^3$He is used to reach temperatures
+        around 250 mK.
         
         
         \subsection{Measurement equipment}
@@ -652,28 +663,10 @@ process with me, always offering support and love.
             a signal as possible from the resulting noisy measurement. Different instruments have widely
             varying noise characteristics which can drastically affect both considerations, thus a careful
             consideration of the advantages and disadvantages of each piece of equipment is necessary.
-            In this section we describe the relevant characteristics of the primary pieces of measurement
+            In this section I describe the relevant characteristics of the primary pieces of measurement
             instrumentation used in this research.
             
-            \subsubsection*{Keithley 2400 SMU} The Keithley 2400 is a source-measure unit (SMU) capable of 
-            sourcing both current and voltage, and simultaneously measuring either current, voltage,
-            or resistance. Its primary advantage is its wide operational range: it can source and measure
-            up to 1 A in current mode, or 200 V in voltage mode.
-            The wide operational range comes at the expense of precision; Figure \ref{fig:electronics_noise}A
-            shows the measured output of a Keithley 2400 set to source 100 mV
-            
-            \subsubsection*{National Instruments BNC2110 DAC} The National Instruments BNC2110 digital-to-analog converter (DAC)
-            is another source-measure unit.
-            Makes the opposite tradeoffs : it provides high precision sourcing and measurement in a 
-            limited operational range.
-            
-            \subsubsection*{Stanford Research System SR830} The SR830 is a lock-in amplifier.
-            
-            \subsubsection*{Current preamplifiers}
-            
-            \subsubsection*{Voltage preamplifiers}
-            
-         \begin{figure}
+        \begin{figure}
             \centering
             \includegraphics[width=0.75\linewidth]{images/experimentaltechniques/DACvKeithley.png}\\
             \includegraphics[width=0.75\linewidth]{images/experimentaltechniques/preams_k.png}\\
@@ -687,23 +680,197 @@ process with me, always offering support and love.
                 }
             \label{fig:electronics_noise}
         \end{figure}
-        
-        
-        \subsection{Transport measurements}
-        This thesis is concerned with graphene's electronic properties, and these properties are most 
-        readily observed via electrical transport measurements. 
-        
             
-           
+            \subsubsection*{Keithley 2400 SMU} 
             
+            The Keithley 2400 is a source-measure unit (SMU) capable of 
+            sourcing both current and voltage, and simultaneously measuring either current, voltage,
+            or resistance. Its primary advantage is its wide operational range: it can source and measure
+            up to 1 A in current mode, or 200 V in voltage mode.
+            The Keithley 2400's wide operational range comes at the expense of precision; Figure \ref{fig:electronics_noise}A
+            shows the measured output of a Keithley 2400 set to source 1 V, along with a similarly
+            configured BNC2110 DAQ. The Keithley's output fluctuates by up to 0.5\% of the specified output value.
+            The Keithley's precision can be improved by setting the `Range' parameter of the input and
+            output: using the smallest range which still encompasses all the required values will provide the
+            best precision.
+            
+            In practice, the Keithley 2400 is most useful for preliminary sample characterization (i.e. determining
+            if a device conducts, and if so approximately what its resistance is) and for applying gate voltages.
+            In the first case, the Keithley is useful because it can be manually configured by using the buttons
+            on its face; for simple `Does the device conduct or not?'-type measurements this is often the most 
+            convenient option.
+            The Keithley 2400 is also particularly well suited to the latter use case: effectively gating graphene
+            samples often requires gate voltages in the tens of volts, and the precise value of the supplied voltage
+            is typically less critical for gating than for other applications.
+            
+            
+            \subsubsection*{National Instruments Multifunction Data Acquisition Device (DAQ)} 
+            
+            The National Instruments Multifunction Data Acquisition Device (DAQ) is a source-measure unit 
+            mounted on a PCI card. The PCI card must be physically installed in a computer, at which point
+            it can be connected to an external connector block (e.g. the NI BNC-2110) which provides
+            BNC connectors. Measurements using the DAQ must use instrument control programs installed
+            on the computer which makes it less suitable for quick, one-of measurements.
+            
+            The DAQ makes the opposite trade-offs as the Keithley: 
+            it provides high precision sourcing and measurement in a limited operational range.
+            The DAQ can source and measure voltages from -10 V to 10 V.
+            However, within this limited range the DAQ is more precise than the Keithley as seen
+            in Figure \ref{fig:electronics_noise}A.
+            The DAQ is particularly useful for applications which require high precision, for example
+            providing the bias voltage in an I-V sweep or in a $V_\text{gate}$ vs $V_\text{bias}$ Coulomb
+            blockade-type scan.
+            
+            \subsubsection*{Stanford Research System SR830} 
+            
+            The SR830 is a lock-in amplifier. Lock-in amplifiers operate by applying an AC drive to
+            a device, measuring the resulting signal, and then multiplying the original drive
+            and resulting signal and integrating over time.
+            Because sinusoidal functions at different frequencies are orthogonal, the multiplication
+            of the original drive and resulting signal and the subsequent integration combine to filter out
+            components of the measured signal which are not at the same frequency as the original drive.
+            Since most noise components will not be at the same frequency as the drive this technique
+            is particularly effective at extracting a desired signal from a noisy measurement.
+            
+            In practice the SR830 is the preferred instrument for measuring resistance,
+            provided the particular measurement is amenable to an AC bias.
+            Additionally, the SR830 can only provide a voltage output; for applications which require a current bias 
+            the output of the SR830 must be passed through a large resistor to convert the 
+            voltage to a current. `Large' in this case means `large enough that the resistance of the device 
+            being measured in
+            series does not appreciably change the total resistance of the circuit'.
+            
+            \subsubsection*{Voltage and current preamplifiers}
+            
+            Voltage and current preamplifiers are useful for amplifying and filtering signals. Current
+            preamplifiers are also useful for converting current signals into voltage signals.
+            Figure \ref{fig:electronics_noise}B demonstrates the filtering capabilities of 
+            a voltage preamplifier: it shows the output of a Keithley 2400 before and after
+            being passed through several different preamplifiers (the raw Keithley signal has been
+            rescaled to allow for direct comparison). All three preamplifiers drastically improve
+            the cleanliness of the signal. Figure \ref{fig:electronics_noise}C compares the performance
+            of the three preamplifiers; The PAR 113 provedes the best performance, while the 
+            SRS 560 and ITHACO provide good accuracy at the expense of precision, and vice versa.
+            
+            %\subsubsection*{The probe station}
             
             
        
+        
+        \subsection{Transport measurements}
+        
+        This thesis is concerned with graphene's electronic properties, and these properties are most 
+        readily observed via electrical transport measurements. There are a variety of factors which 
+        affect what information can be gained via transport measurements,
+        from the arrangement of the electrical contacts on the device to the dependent variables which 
+        are varied in the course of the measurement. In this section I detail these factors, and describe
+        their effects.
+        
+        \subsubsection*{Electronic contact configuration}
+        
+            Graphene devices can be measured using a variety of contact geometries, the simplest of which
+            is the two-point configuration shown in Figure \ref{fig:contact_config}a. In this configuration
+            the device being measured is contacted once at either end, and then these two leads are used both
+            to bias the device and measure the result. This configuration has the advantage of being simple
+            to fabricate and measure, however this simplicity comes at the cost of accuracy. Contacts between
+            an electrical lead and a graphene device will necessarily create a contact resistance; when a 
+            measurement is performed using the same leads which are used to bias the graphene the resulting
+            signal is in fact a measurement of the device and the contact resistances in series. This situation
+            is illustrated schematically in Figure \ref{fig:contact_config}b.
+            
+            To remove the confounding effect of contact resistances between the electrical leads and the graphene
+            device one can perform measurements using a four-point configuration, illustrated in
+            Figure \ref{fig:contact_config}c. This configuration employs two separate sets of leads, one set to
+            bias the sample and a second set, placed in between the first set, to record the measurement. 
+            In this case no current flows through the measurement leads, and thus there is no voltage drop
+            across their contact resistances and the resulting measurement reflects only the properties of 
+            the graphene device. This is illustrated schematically in Figure \ref{fig:contact_config}d.
+            
+            The contact configurations above are appropriate for measuring the longitudinal resistance, however it 
+            is also useful to measure the lateral (or Hall) resistance. This requires a third contact configuration
+            which is commonly called a Hall bar and which is illustrated in Figure \ref{fig:contact_config}e.
+            In this configuration a bias current is applied through the two leads at the end of the device
+            and the voltage is measured between either the horizontal or the vertical set of leads; the former 
+            is equivalent to a four-point measurement of the longitudinal resistance while the latter measures
+            the lateral (Hall) resistance.
+            
+            Finally, it is sometimes useful to measure the sheet resistance of a device in addition to 
+            its longitudinal and Hall resistances.
+            This measurement requires another contact configuration which is illustrated in Figure XXX
+            and which is commonly called the van der Pauw configuration\cite{van1958method}.
+            The sheet resistance cannot be measured directly in this configuration; it must be calculated
+            using the results of two preliminary measurements. First, current is made to flow along one
+            edge of the sample and the voltage drop is measured across the edge opposite to the current flow.
+            The resulting current and voltage values can be used to calculate a resistance.
+            The same measurement is then repeated using the two edges perpendicular to the original edges.
+            The sheet resistance can then be calculated from the two resistance measurements by numerically
+            solving the following equation:
+            
+            \begin{equation}
+                e^{-\pi R_{\text{vertical}}/R_S}+e^{-\pi R_{\text{horizontal}}/R_S}=1
+            \end{equation}
            
-            \subsubsection*{Two-Point Measurements}
-            \subsubsection*{Four-Point Measurements}
-            \subsubsection*{Hall Measurements}
+        \subsubsection*{Types of transport measurements}
+        
+            The contact configurations described above are capable of measuring the resistance of a graphene
+            device, however a single resistance measurement by itself is much less informative than
+            a sequence of measurements taken as a function of some independent variable. For the graphene
+            devices measured in the course of this research there are three particularly relevant
+            independent variables: the bias voltage, gate voltage, and magnetic field.
+            Here I describe the different types of transport measurements which can be performed by 
+            varying each of these variables independently or together, and what information each
+            type of measurement provides.
+            
+            \textbf{Gate sweeps}
+            
+            Measuring the resistance of a graphene sample as a function of the applied gate voltage 
+            provides a basic characterization of the doping present in the graphene. For the
+            devices described in this thesis the bottom surface of the chip on which the devices
+            are fabricated serves as the gate.
+            When a voltage is applied between the gate and the device the two form a capacitor, and
+            the gate voltage serves to shift the Fermi level up or down, depending on the sign of the applied voltage. 
+            By sweeping the gate voltage one can therefore sweep
+            the Fermi level through the charge neutrality point (the point where graphene's conduction and valence bands touch). 
+            The point where the Fermi level crosses the charge neutrality point will appear as a maximum
+            in the measured resistance, so by measuring resistance as a function of gate voltage one
+            can determine the polarity and degree of doping in a graphene device. This point is often called
+            the Dirac point. Gate sweeps can also be used to confirm the presence of regions with different
+            doping levels in graphene (e.g. pn junctions): gate sweeps on such devices will show two distinct
+            resistance maxima corresponding to the two offset charge neutrality points in the regions with
+            different doping levels.
+            
+            \textbf{Magnetic field sweeps}
+            
+            Measurements of graphene's resistance as a function of an applied magnetic field offer
+            additional information about the graphene's characteristics. In particular, such measurements
+            can be used to determine the carrier density and mobility.
+            The carrier density can be determined in multiple ways. First, one can measure the
+            longitudinal resistance as a function of an applied, perpendicular field. At low fields
+            the resistance will display Shubnikov-de Haas oscillations. As described in Chapter 2, the 
+            maxima of the oscillations are characterized by the equation $B_i = n \cdot h / 2 \cdot e \cdot i$
+            where $i$ denotes the index of the oscillation and $n$ the carrier density. 
+            By plotting the inverse of the field maxima against their indices one can therefore extract the carrier density:
+            \begin{equation}
+                \Delta\left(\frac{1}{B}\right) = \frac{1}{B_{i+1}}-\frac{1}{B_i} = \frac{2 \cdot e}{n\cdot h}\,.
+            \end{equation}
+            This technique is useful for situations where the device is not in a Hall bar configuration. For
+            devices which are configured as Hall bars the Hall voltage can also be used to determine the carrier
+            density, as well as the carrier mobility.
+            
+            As detailed in Chapter 2, the Hall resistance is given by $\rho_\text{xy} = B / e \cdot n$.
+            The carrier density can therefore be extracted from the measured Hall voltage via 
+            \note{why do we have to take the derivative here? instead of just dividing}
+            \begin{equation}
+                n = \left(e \, \frac{d\rho_\text{xy}}{dB}\right)^{-1} = \left(\frac{e}{I} \, \frac{dV_\text{xy}}{dB}\right)^{-1} \,.
+            \end{equation}
+            Armed with the carrier density and a measurement of the longitudinal resistance $\rho_\text{xx}$,
+            we can also compute the carrier mobility via
+            \begin{equation}
+                \mu = \frac{1}{\rho_\text{xx} \cdot e \cdot n}
+            \end{equation}
+            
     
+            \textbf{Coulomb blockade measurements}
     
 \chapter{Results and Discussion}
 
@@ -777,7 +944,7 @@ process with me, always offering support and love.
         \begin{figure}
         \centering
         \vspace{0.2cm}
-        \includegraphics[width=\linewidth]{images/resultsanddiscussion/rippingpaper/Figure1.eps}
+        \includegraphics[width=0.75\linewidth]{images/resultsanddiscussion/rippingpaper/Figure1.eps}
         \caption[Device geometry and measurement apparatus for uniaxially strained graphene]
             {\textbf{(a)} False-color optical image of a graphene bridge device
             (outlined by dashed line) patterned on a PDMS substrate with gold contact pads
