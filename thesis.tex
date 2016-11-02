@@ -7,6 +7,9 @@
 \usepackage{graphicx}
 \usepackage{amsmath}
 
+% for quotations
+\usepackage{epigraph}
+
 \usepackage[numbers, square, sort]{natbib}
 
 \usepackage{hyperref}
@@ -67,16 +70,32 @@ To my family.
 %% include funding support in this.
 \chapter*{Acknowledgments}
 
-This project would not have been possible without the support of
-many people. Many thanks to my adviser, Lawrence T. Strongarm, who
-read my numerous revisions and helped make some sense of the
-confusion. Also thanks to my committee members, Reginald Bottoms,
-Karin Vegas, and Cindy Willy, who offered guidance and support.
-Thanks to the University of Illinois Graduate College for awarding
-me a Dissertation Completion Fellowship, providing me with the
-financial means to complete this project. And finally, thanks to
-my husband, parents, and numerous friends who endured this long
-process with me, always offering support and love.
+Whenever anyone asks me for advice about graduate school the first thing
+I say is ``Find a good advisor.'' Nothing has a larger impact on your quality
+of life as a graduate student than your advisor, and I have been incredibly fortunate
+to have Nadya as mine. Grad school is a time to learn and 
+grow as a scientist and researcher, and I certainly have, but I've also grown as a person
+during this time by having a broad and meaningful life outside of lab.
+Many, many thanks to Nadya for creating an environment and fostering relationships with all
+of us in the group that made this possible.
+
+Thanks to everyone in the group too -- Nick who convinced me to come to UIUC and join
+the lab in the first place, Scott for showing me the ropes in the beginning, Serena and Clare 
+for modeling the persistence it takes to graduate, Malcolm for always knowing how
+everything in the lab works, Jeff and Stephen for their Statler-and-Waldorf style take
+on lab stuff, Angela and Rita for commiserating about failed experiments, Sungjae, Joe, Yingjie,
+and Vincent for their advice from the other side, and Greg and Junseok for keeping things going.
+
+Thanks to everyone in both of the bands -- Adrian, Jackson, Matt, Alex, and Apoorv,
+Venanzio, Nate, Ariel, Sergio, and Carlos. First, for putting up with me as I
+was learning the fiddle, and then for being so much fun to make music with.
+Of all the things (bar one) that I did in graduate school, making music
+with all of you was far and away my favorite.
+
+Mondays at the Hootenanny, \textit{mulats\'{a}gs} at Apoorv's place till the wee hours of the morning,
+cookouts in the summer and hot-pots in the winter,
+
+My wife (!) Nadha
 
 %% The thesis format requires the Table of Contents to come
 %% before any other major sections, all of these sections after
@@ -116,6 +135,9 @@ process with me, always offering support and love.
 \mainmatter
 \chapter{Introduction}
 
+   \epigraph{God created the bulk; surfaces were invented by the devil.}{Wolfgang Pauli}
+    
+
     \section{Motivation}
     \section{Statement of thesis problem}
 
@@ -127,10 +149,19 @@ process with me, always offering support and love.
 
     \section{Introduction to graphene}
 
-    Much of graphene's interesting behavior comes from its unique, two-dimensional structure. As illustrated in Figure \ref{fig:lattice}, graphene is composed of carbon atoms in a hexagonal lattice. The hexagonal lattice contains two interlaced triangular lattices, labelled \textbf{A} and \textbf{B}. Each individual sublattice has unit vectors $a_1$ and $a_2$. The Brillouin zone of graphene's lattice is also illustrated in Figure \ref{fig:lattice}; the corners, indicated by the labels \textbf{K} and \textbf{K'} are referred to as Dirac points for reasons described below. 
-\note{fix this}
-    This unique structure gives graphene  a variety of interesting characteristics, however a complete description of its attributes is beyond the scope of this report. Those properties of graphene which are relevant to the proposed research are summarized below; for a more complete description of graphene please see one of the existing review articles \cite{Geim2007}, \cite{CastroNeto2009}. Here I discuss graphene's band structure, the unique variant of the quantum Hall effect this band structure gives rise to, and the possibility of observing this quantum Hall effect in zero magnetic field due to strain effects as well as the general effects of strain on graphene's electronic properties.
-
+    Much of graphene's interesting behavior comes from its unique, two-dimensional structure. 
+    This unique structure gives graphene a variety of interesting characteristics, however a complete 
+    description of its attributes is beyond the scope of this report. Those properties of graphene 
+    which are relevant to the research comprising this thesis are summarized below; for a more complete description 
+    of graphene see one of the existing review articles \cite{Geim2007}, \cite{CastroNeto2009}. 
+    Here I discuss graphene's band structure and several relevant consequences, namely 
+    the massless Dirac fermion character of charge carriers in graphene, 
+    the unique variant of the quantum Hall effect these carriers give rise to, 
+    and the presence of Klein tunnelling.
+    I also discuss the means and effects of doping and straining graphene. The latter discussion (of strain)
+    includes a description of graphene's mechanical properties as well as the optical signatures of 
+    lattice vibrations in graphene.
+    
     \begin{figure}
     \centering
     \includegraphics{images/background/ElecPropertiesFig2.png}
@@ -139,21 +170,21 @@ process with me, always offering support and love.
     \end{figure}
 		
 	\subsection{Band structure}
+    As illustrated in Figure \ref{fig:lattice}, graphene is composed of carbon atoms in a hexagonal lattice. The hexagonal lattice contains two interlaced triangular lattices, labelled \textbf{A} and \textbf{B}. Each individual sublattice has unit vectors $a_1$ and $a_2$. The Brillouin zone of graphene's lattice is also illustrated in Figure \ref{fig:lattice}; the corners, indicated by the labels \textbf{K} and \textbf{K'} are referred to as Dirac points for reasons described below. 
     The band structure of graphene is shown in Figure \ref{fig:bandstructure}; undoped graphene is a zero-gap semiconductor. This band structure is calculated using a simple tight-binding model, with a Hamiltonian (using units where $\hbar=1$) \cite{CastroNeto2009}:
-    $$
+    \begin{equation}
     H = - t \sum\limits_{\langle i,j\rangle,\sigma} (a_{\sigma,i}^\dagger b_{\sigma,j} + \text{H.c.})
     - t' \sum\limits_{\langle\langle i,j\rangle\rangle,\sigma} (a_{\sigma,i}^\dagger a_{\sigma,j} + b_{\sigma,i}^\dagger b_{\sigma,j} + \text{H.c.})
-    $$
+    \end{equation}
     where $t$ is the nearest neighbor hopping amplitude, $t'$ is the next nearest neighbor hopping amplitude, and $a_{\sigma,i}$ is the annihilation operator for an electron of pseudo-spin $\sigma$ at position $i$ on sublattice \textbf{A}. The Hermitian conjugate $a^\dagger$ gives the creation operator, and the $b$ operators are similarly defined for the \textbf{B} sublattice. This Hamiltonian yields an energy spectrum of the form \cite{CastroNeto2009}:
 
-    $$
-    E(\mathbf{k}) = \pm t \sqrt{3 + f(\mathbf{k})} - t' f(\mathbf{k}) \;\;\; \text{with} \;\;\;
-    f(\mathbf{k}) = 2 \cos{\sqrt{3} k_y a } + 4 \cos{\frac{\sqrt{3}}{2} k_y a} \cos{\frac{3}{2} k_x a}
-    $$
+    \begin{equation}
+    E(\mathbf{k}) = \pm t \sqrt{3 + f(\mathbf{k})} - t' f(\mathbf{k}) \;\;\; \text{with} \;\;\; f(\mathbf{k}) = 2 \cos{\sqrt{3} k_y a } + 4 \cos{\frac{\sqrt{3}}{2} k_y a} \cos{\frac{3}{2} k_x a}
+    \end{equation} 
 
     \begin{figure}
     \centering
-    \includegraphics[width=0.4\textwidth]{images/background/ElecPropertiesFig3.png}
+    \includegraphics[width=0.6\textwidth]{images/background/ElecPropertiesFig3.png}
     \caption[The band structure of graphene]{The band structure of graphene. At the corners of the Brillouin zone the upper and lower bands meet. Near these points, known as Dirac points, the dispersion relation is approximately linear. Adapted from \cite{CastroNeto2009}.}
     \label{fig:bandstructure}
     \end{figure}
@@ -161,16 +192,60 @@ process with me, always offering support and love.
 
 	\subsection{Dirac fermions}
     In the low energy regions near the corners of the Brillouin zone the dispersion relation for graphene is approximately linear, as indicated in Figure \ref{fig:bandstructure}. That is, for electrons or holes near these points,
-    $$
+    \begin{equation}
     E = \hbar v_F \sqrt{k_x^2 + k_y^2}
-    $$
-    (where $k_x$ and $k_y$ are measured from the corner point) which has the same form as the energy of a massless, relativistic particle governed by the Dirac equation. These points are therefore called Dirac points, and in their vicinity the electrons behave as massless Dirac fermions. Each corner of the hexagonal Brillouin zone is related to two others by a reciprocal lattice vector, therefore two of the Dirac points, typically labelled $K$ and $K'$ are inequivalent.
+    \end{equation}
+    (where $k_x$ and $k_y$ are measured from the corner point). This has the same form as the energy of a massless, relativistic particle governed by the Dirac equation. These points are therefore called Dirac points, and in their vicinity the electrons behave as massless Dirac fermions. Each corner of the hexagonal Brillouin zone is related to two others by a reciprocal lattice vector, therefore two of the Dirac points, typically labelled $K$ and $K'$ are inequivalent.
 
     The linear dispersion relation is not the only factor which ties transport in graphene to the Dirac equation; the two-component wavefunction of pseudoparticles in graphene is analogous to the spinor wavefunction used to describe spin $\frac{1}{2}$ particles in the Dirac equation \cite{Katsnelson2006}. In graphene the two components correspond to the contributions to the pseudoparticle wavefunction from each of the two sublattices, whereas in quantum electrodynamics (QED) the spinor accounts for the spin up and spin down components of the wavefunction.
 
 	\subsection{Quantum Hall effect}
-    Graphene displays a unique variant of the quantum Hall effect (QHE) due to the massless, Dirac fermion nature of its charge carriers \cite{Novoselov2005}, \cite{Zhang2005}, as seen in Figure \ref{fig:QHEinG}. In typical materials the application of a large magnetic field leads to the formation of Landau levels (LLs), which when successively filled by increasing the carrier concentration yield plateaux in the Hall conductivity at $\sigma_{xy} = \pm (4e^2/h) N$ where $N$ is an integer. Additionally, in typical materials there is no Landau level at $E=0$, due to the $E=\hbar \omega_c (n + 1/2)$ energy quantization of massive particles in a magnetic field, therefore the first plateaux appear at $\pm 4 e^2/h$. The quantum Hall effect as observed in graphene differs from the standard, integer QHE in two ways: the plateaux are shifted by $2 e^2/h$ and the sequence is uninterrupted as it passes through zero carrier density. Both differences stem from the massless character of graphene's charge carriers.
+    Graphene displays a unique variant of the quantum Hall effect due to the massless, 
+    Dirac fermion nature of its charge carriers \cite{Novoselov2005}, \cite{Zhang2005}. In fact,
+    the observation of graphene's alternative manifestation of the quantum Hall effect provided
+    one of the first experimental confirmations of the nature of charge carriers in graphene.
+    In order to better emphasize the uniqueness of the quantum Hall effect
+    in graphene we begin with a description of the standard quantum Hall effect.
+    
+    In typical two-dimensional materials the application of a large magnetic 
+    field leads to a quantization of the allowed energy levels. These quantized energy states are 
+    called Landau levels, and for massive carriers the allowed energies are given by
+    \begin{equation}
+        E=\hbar \omega_c (n + 1/2) \;\;\; \text{with} \;\;\; \omega_c = \frac{e B}{m^*}.
+    \end{equation}
+    The conductivity of a two-dimensional device in a high magnetic field depends on the location of the Fermi level
+    relative to these Landau level energy states.
+    
+    slight digression: experimentally what is measured in both the lateral and longitudinal case is the 
+    voltage between two contacts.
+    \note{why this gives conductivity in one direction, resistivity in the other}
+    
+    \note{understand this better}
+    When the Fermi level coincides with one of the allowed Landau level energies the longitudinal 
+    resistivity $\rho_{xx}$ displays a peak.
+    Additionally, the lateral Hall conductivity $\sigma_{xy}$ will increase by $4 e^2/h$.
+    When the Fermi level lies between the allowed energy levels the longitudinal resistivity goes to 0,
+    and the Hall conductivity remains constant.
+    
+    These features are most readily observed by sweeping the Fermi level through successive Landau
+    level states, which can be accomplished by varying either the applied magnetic field
+    or the carrier density. In the former case the Fermi level remains fixed while the allowed Landau level energies
+    vary, while in the latter case the Fermi level is varied and the Landau level energies are constant.
+    
+    which when successively filled by 
+    increasing the carrier concentration yield plateaux in the Hall conductivity at 
+    $\sigma_{xy} = \pm (4e^2/h) N$ where $N$ is an integer. Additionally, in typical materials 
+    there is no Landau level at $E=0$, due to the 
+    quantization of massive particles in a magnetic field, therefore the first plateaux 
+    appear at $\pm 4 e^2/h$. 
+    
+    The quantum Hall effect as observed in graphene differs from the 
+    standard, integer QHE in two ways: the plateaux are shifted by $2 e^2/h$ and the sequence 
+    is uninterrupted as it passes through zero carrier density. Both differences stem from 
+    the massless character of graphene's charge carriers.
 
+    , as seen in Figure \ref{fig:QHEinG}. 
+    
     For massless particles in a magnetic field, such as the Dirac fermions in graphene, the energy quantization is $E = [ 2 e \hbar {c\ast}^2 B (N + 1/2 \pm 1/2) ]^{1/2}$ \cite{Novoselov2005}, where the sign of the last term depends on the pseudospin (or sublattice index) of the particle. This has two consequences; first, when $\pm \rightarrow -$ this quantization admits an $E=0$ Landau level, which in turn causes the sequence of plateaux in the Hall conductivity to be uninterrupted as it passes through zero carrier density. Second, the $E=0$ Landau level admits only those particles with `minus' pseudospin polarization, therefore it is half as degenerate as all other LLs. This accounts for the $1/2$ offset in the locations of the Hall conductivity plateaux in graphene, $\sigma_{xy} = (4 e^2/h )(N + 1/2)$.
 
     An additional consequence of the masslessness of charge carriers in graphene is the persistence of quantum Hall effects to room temperature \cite{Novoselov2007}. Considering again the energy quantization for Dirac fermions in a magnetic field quoted above, for $c\ast = v_F \approx 10^6$ m $s^{-1}$ a 45 T field yields an energy gap of $\approx$ 2400 K between the $N=0$ and $N=\pm1$ Landau levels, an order of magnitude greater than thermal fluctuations at room temperature. The high carrier concentration and temperature-independent carrier mobility also contribute to the robustness of the effect \cite{Novoselov2007}.
@@ -568,11 +643,12 @@ process with me, always offering support and love.
         and strain present in graphene \cite{lee2012optical}. Both strain and doping produce shifts
         in the G and 2D peak locations by modifying the bond lengths in the graphene lattice. 
         A measurement of either peak shift by itself is therefore insufficient to disentangle the competing effects
-        of strain and doping. However, the ratio
+        of strain and doping. However, the two mechanisms (strain and doping) shift the locations of the two
+        peaks by different relative amounts; the ratio
         $$
         r = \frac{\Delta \omega_{2D}}{\Delta \omega_G}
         $$
-        differs between the two mechanisms \cite{lee2012optical}.
+        where $\Delta \omega$ is the shift in the specified Raman peak, differs between the two mechanisms \cite{lee2012optical}.
         Experimental measurements \cite{zabel2012raman, metzger2009biaxial, ding2010stretchable} and theoretical \cite{mohr2010splitting, mohiuddin2009uniaxial} results place the ratio for strain between 2.25 and 2.8 and the ratio for doping at approximately 0.75 \cite{lee2012optical}.
         Thus by plotting the Raman G and 2D peak positions against one another and comparing to the expected
         values for intrinsic, unstrained graphene one can decompose the peak shifts into components due to
@@ -587,6 +663,9 @@ process with me, always offering support and love.
                 $r = \frac{\Delta \, \omega_\text{2D}}{\Delta \, \omega_\text{G}}$ expected for shifts due to
                 strain, and the purple dashed line shows the ratio expected for shifts due to doping.
                 The two lines intersect at the expected peak positions for undoped, unstrained graphene.
+                By comparing measured Raman G and 2D peak positions to vectors corresponding to the
+                black and purple lines one can determine the degree to which strain and doping, respectively,
+                contribute to the observed shifts in peak positions.
                 Adapted from \cite{lee2012optical}.
                 }
             \label{fig:raman_decomposition}
@@ -637,7 +716,7 @@ process with me, always offering support and love.
         Vacuum environments are created by the mechanical evacuation of sealed chambers. 
         For the experiments described in this thesis this is accomplished through the combined use
         of mechanical and turbomolecular pumps. 
-        When combined, these techniques are capable of producing vacuums in the 10$^{-6}$ mtorr range.
+        When combined, these techniques are capable of producing vacuums in the 10$^{-6}$ Torr range.
         For applications where the turbomolecular pumps are employed care must be taken to first produce a sufficiently 
         low vacuum with the mechanical pump to avoid damaging the turbopump.
         
@@ -767,7 +846,8 @@ process with me, always offering support and love.
         their effects.
         
         \subsubsection*{Electronic contact configuration}
-        
+             
+       
             Graphene devices can be measured using a variety of contact geometries, the simplest of which
             is the two-point configuration shown in Figure \ref{fig:contact_config}a. In this configuration
             the device being measured is contacted once at either end, and then these two leads are used both
@@ -793,6 +873,24 @@ process with me, always offering support and love.
             and the voltage is measured between either the horizontal or the vertical set of leads; the former 
             is equivalent to a four-point measurement of the longitudinal resistance while the latter measures
             the lateral (Hall) resistance.
+            
+         \begin{figure}
+            \centering
+            \includegraphics[width=0.4\linewidth]{images/experimentaltechniques/2pt-crop.png}
+            \hspace{0.1\linewidth}
+            \includegraphics[width=0.4\linewidth]{images/experimentaltechniques/4pt-crop.png}\\
+            \vspace{0.04\linewidth}
+            \includegraphics[width=0.4\linewidth]{images/experimentaltechniques/hallbar-crop.png}
+            \hspace{0.1\linewidth}
+            \includegraphics[width=0.4\linewidth]{images/experimentaltechniques/vdp-crop.png}\\
+            \caption[Electronic contact configurations]{
+                Schematic illustration of different electrical contact geometries. Clockwise from top-left
+                they are two-point, four-point, van der Pauw, and Hall bar configurations. In each figure
+                the purple region is the bare substrate, the grey region is graphene, and the yellow
+                regions are the electrical contacts.
+                }
+            \label{fig:contact_config}
+        \end{figure}
             
             Finally, it is sometimes useful to measure the sheet resistance of a device in addition to 
             its longitudinal and Hall resistances.
@@ -1316,7 +1414,9 @@ Transport measurements in air are performed using two Keithley 2400 SourceMeters
         Figure \ref{fig:PZTdata}a shows room temperature $I_{sd}$ vs $V_{gate}$ curves for devices having different widths of evaporated SiO$_2$ on a PbZr$_{0.2}$Ti$_{0.8}$O$_3$ substrate. For the data shown here, the fraction of the graphene channel screened by evaporated SiO$_2$ ranges from 0\% to 50\% (corresponding to SiO$_2$ widths of 0 to 3 microns). Two features of the data are immediately apparent: first, for devices which span an evaporated SiO$_2$ region, the characteristic conductance minimum typically observed in graphene at the Dirac point is split into two distinct minima, one at the original Dirac point location and a second shifted to the right. This is apparent in the top and bottom curves of the Figure: the bottom curve, corresponding to a device with 0\% screening, displays a single minimum, while the top curve, corresponding to a device with 50\% screening, displays two pronounced minima. Second, the width of the evaporated SiO$_2$ region determines which of the two minima has a smaller absolute value. As the screening fraction is increased, `weight' is transferred from the minimum at the original Dirac point location to the secondary minimum, and the depths of the two minima vary accordingly. We attribute both of these effects to the presence of two different doping regions in the graphene, defined by the PbZr$_{0.2}$Ti$_{0.8}$O$_3$ substrate and the evaporated SiO$_2$.
 
         The data can be understood by considering that as the gate voltage is swept from negative to positive, the Fermi level passes through the charge-neutrality point (CNP) of each graphene region separately. Taking the conductance to be linear with carrier density\cite{Hwang2007} $\sigma \propto k_F \langle\tau\rangle \propto n$ and the carrier density to be linear with the thermally smeared energy difference between the Fermi level and the CNP\cite{CastroNeto2009}, we model the conductance in the vicinity of the CNP as: $\rho^{-1} \propto n \propto 1 - e^{{-(V_{gate}}-\mu-\delta)^2/2c^2} + \epsilon$ where the constant $\mu$ accounts for the extrinsic doping introduced by the fabrication process, $\delta \in \{0,1\}$ describes the substrate-dependent doping, and $\epsilon$ accounts for the non-vanishing carrier density at the CNP. Assuming diffusive transport in the graphene, the relative weight of each separately doped region, and therefore the relative magnitude of the measured conductance minima, is determined by the fraction of the graphene channel which is screened:
-        $$I_{sd} \propto \left[ \rho_\text{scr.} \times (\text{pct.}_\text{scr.}) + \rho_\text{non-scr.} \times (\text{pct.}_\text{non-scr.}) \right]^{-1}$$
+        \begin{equation}
+            I_{sd} \propto \left[ \rho_\text{scr.} \times (\text{pct.}_\text{scr.}) + \rho_\text{non-scr.} \times (\text{pct.}_\text{non-scr.}) \right]^{-1}
+        \end{equation}
         This is simulated in Figure \ref{fig:PZTdata}b which shows $I_{sd}$ vs $V_{gate}$ curves for screening fractions ranging from 0\% to 75\% and is in excellent agreement with our experimental data. We note that the simulations agree with our data for $\mu > 0$ and $\delta \geq 0$, which is consistent with the extrinsic p-doping typically observed in graphene devices fabricated on PbZr$_{0.2}$Ti$_{0.8}$O$_3$\cite{Baeumer2013}.
 
 \begin{figure}[!b]
@@ -1400,6 +1500,7 @@ S.P. acknowledges support from the Army Research Office under grant W911NF-14-1-
 
 \chapter{Device Fabrication Procedures}
 \label{appendix:fab}
+\section{Growing CVD graphene}
 \section{Graphene on flexible substrates}
 \section{Graphene on ferroelectric substrates}
 
