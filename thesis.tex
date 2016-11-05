@@ -6,6 +6,7 @@
 \usepackage[letterpaper, margin=1in]{geometry}
 \usepackage{graphicx}
 \usepackage{amsmath}
+\usepackage{braket}
 
 % for quotations
 \usepackage{epigraph}
@@ -170,99 +171,323 @@ My wife (!) Nadha
     \end{figure}
 		
 	\subsection{Band structure}
-    As illustrated in Figure \ref{fig:lattice}, graphene is composed of carbon atoms in a hexagonal lattice. The hexagonal lattice contains two interlaced triangular lattices, labelled \textbf{A} and \textbf{B}. Each individual sublattice has unit vectors $a_1$ and $a_2$. The Brillouin zone of graphene's lattice is also illustrated in Figure \ref{fig:lattice}; the corners, indicated by the labels \textbf{K} and \textbf{K'} are referred to as Dirac points for reasons described below. 
-    The band structure of graphene is shown in Figure \ref{fig:bandstructure}; undoped graphene is a zero-gap semiconductor. This band structure is calculated using a simple tight-binding model, with a Hamiltonian (using units where $\hbar=1$) \cite{CastroNeto2009}:
-    \begin{equation}
-    H = - t \sum\limits_{\langle i,j\rangle,\sigma} (a_{\sigma,i}^\dagger b_{\sigma,j} + \text{H.c.})
-    - t' \sum\limits_{\langle\langle i,j\rangle\rangle,\sigma} (a_{\sigma,i}^\dagger a_{\sigma,j} + b_{\sigma,i}^\dagger b_{\sigma,j} + \text{H.c.})
-    \end{equation}
-    where $t$ is the nearest neighbor hopping amplitude, $t'$ is the next nearest neighbor hopping amplitude, and $a_{\sigma,i}$ is the annihilation operator for an electron of pseudo-spin $\sigma$ at position $i$ on sublattice \textbf{A}. The Hermitian conjugate $a^\dagger$ gives the creation operator, and the $b$ operators are similarly defined for the \textbf{B} sublattice. This Hamiltonian yields an energy spectrum of the form \cite{CastroNeto2009}:
-
-    \begin{equation}
-    E(\mathbf{k}) = \pm t \sqrt{3 + f(\mathbf{k})} - t' f(\mathbf{k}) \;\;\; \text{with} \;\;\; f(\mathbf{k}) = 2 \cos{\sqrt{3} k_y a } + 4 \cos{\frac{\sqrt{3}}{2} k_y a} \cos{\frac{3}{2} k_x a}
-    \end{equation} 
-
-    \begin{figure}
-    \centering
-    \includegraphics[width=0.6\textwidth]{images/background/ElecPropertiesFig3.png}
-    \caption[The band structure of graphene]{The band structure of graphene. At the corners of the Brillouin zone the upper and lower bands meet. Near these points, known as Dirac points, the dispersion relation is approximately linear. Adapted from \cite{CastroNeto2009}.}
-    \label{fig:bandstructure}
-    \end{figure}
-
-
-	\subsection{Dirac fermions}
-    In the low energy regions near the corners of the Brillouin zone the dispersion relation for graphene is approximately linear, as indicated in Figure \ref{fig:bandstructure}. That is, for electrons or holes near these points,
-    \begin{equation}
-    E = \hbar v_F \sqrt{k_x^2 + k_y^2}
-    \end{equation}
-    (where $k_x$ and $k_y$ are measured from the corner point). This has the same form as the energy of a massless, relativistic particle governed by the Dirac equation. These points are therefore called Dirac points, and in their vicinity the electrons behave as massless Dirac fermions. Each corner of the hexagonal Brillouin zone is related to two others by a reciprocal lattice vector, therefore two of the Dirac points, typically labelled $K$ and $K'$ are inequivalent.
-
-    The linear dispersion relation is not the only factor which ties transport in graphene to the Dirac equation; the two-component wavefunction of pseudoparticles in graphene is analogous to the spinor wavefunction used to describe spin $\frac{1}{2}$ particles in the Dirac equation \cite{Katsnelson2006}. In graphene the two components correspond to the contributions to the pseudoparticle wavefunction from each of the two sublattices, whereas in quantum electrodynamics (QED) the spinor accounts for the spin up and spin down components of the wavefunction.
-
-	\subsection{Quantum Hall effect}
-    Graphene displays a unique variant of the quantum Hall effect due to the massless, 
-    Dirac fermion nature of its charge carriers \cite{Novoselov2005}, \cite{Zhang2005}. In fact,
-    the observation of graphene's alternative manifestation of the quantum Hall effect provided
-    one of the first experimental confirmations of the nature of charge carriers in graphene.
-    In order to better emphasize the uniqueness of the quantum Hall effect
-    in graphene we begin with a description of the standard quantum Hall effect.
+    	
+        As illustrated in Figure \ref{fig:lattice}, graphene is composed of carbon atoms in a hexagonal lattice. The hexagonal lattice contains two interlaced triangular lattices, labelled \textbf{A} and \textbf{B}. Each individual sublattice has unit vectors $a_1$ and $a_2$. The Brillouin zone of graphene's lattice is also illustrated in Figure \ref{fig:lattice}; the corners, indicated by the labels \textbf{K} and \textbf{K'} are referred to as Dirac points for reasons described below. 
+        The band structure of graphene is shown in Figure \ref{fig:bandstructure}; undoped graphene is a zero-gap semiconductor. This band structure is calculated using a simple tight-binding model, with a Hamiltonian (using units where $\hbar=1$) \cite{CastroNeto2009}:
+        \begin{equation}
+        H = - t \sum\limits_{\langle i,j\rangle,\sigma} (a_{\sigma,i}^\dagger b_{\sigma,j} + \text{H.c.})
+        - t' \sum\limits_{\langle\langle i,j\rangle\rangle,\sigma} (a_{\sigma,i}^\dagger a_{\sigma,j} + b_{\sigma,i}^\dagger b_{\sigma,j} + \text{H.c.})
+        \end{equation}
+        where $t$ is the nearest neighbor hopping amplitude, $t'$ is the next nearest neighbor hopping amplitude, and $a_{\sigma,i}$ is the annihilation operator for an electron of pseudo-spin $\sigma$ at position $i$ on sublattice \textbf{A}. The Hermitian conjugate $a^\dagger$ gives the creation operator, and the $b$ operators are similarly defined for the \textbf{B} sublattice. This Hamiltonian yields an energy spectrum of the form \cite{CastroNeto2009}:
+        \begin{equation}
+        E(\mathbf{k}) = \pm t \sqrt{3 + f(\mathbf{k})} - t' f(\mathbf{k}) \;\;\; \text{with} \;\;\; f(\mathbf{k}) = 2 \cos{\sqrt{3} k_y a } + 4 \cos{\frac{\sqrt{3}}{2} k_y a} \cos{\frac{3}{2} k_x a}
+        \end{equation} 
+        which is plotted in Figure \ref{fig:bandstructure}.
     
-    In typical two-dimensional materials the application of a large magnetic 
-    field leads to a quantization of the allowed energy levels. These quantized energy states are 
-    called Landau levels, and for massive carriers the allowed energies are given by
-    \begin{equation}
-        E=\hbar \omega_c (n + 1/2) \;\;\; \text{with} \;\;\; \omega_c = \frac{e B}{m^*}.
-    \end{equation}
-    The conductivity of a two-dimensional device in a high magnetic field depends on the location of the Fermi level
-    relative to these Landau level energy states.
+        \begin{figure}
+        \centering
+        \includegraphics[width=0.6\textwidth]{images/background/ElecPropertiesFig3.png}
+        \caption[The band structure of graphene]{The band structure of graphene. At the corners of the Brillouin zone the upper and lower bands meet. Near these points, known as Dirac points, the dispersion relation is approximately linear. Adapted from \cite{CastroNeto2009}.}
+        \label{fig:bandstructure}
+        \end{figure}
     
-    slight digression: experimentally what is measured in both the lateral and longitudinal case is the 
-    voltage between two contacts.
-    \note{why this gives conductivity in one direction, resistivity in the other}
     
-    \note{understand this better}
-    When the Fermi level coincides with one of the allowed Landau level energies the longitudinal 
-    resistivity $\rho_{xx}$ displays a peak.
-    Additionally, the lateral Hall conductivity $\sigma_{xy}$ will increase by $4 e^2/h$.
-    When the Fermi level lies between the allowed energy levels the longitudinal resistivity goes to 0,
-    and the Hall conductivity remains constant.
+    \subsection{Dirac fermions}
+    	
+        In the low energy regions near the corners of the Brillouin zone the dispersion relation for graphene is approximately linear, as indicated in Figure \ref{fig:bandstructure}. That is, for electrons or holes near these points,
+        \begin{equation}
+        E = \hbar v_F \sqrt{k_x^2 + k_y^2}
+        \end{equation}
+        (where $k_x$ and $k_y$ are measured from the corner point). This has the same form as the energy of a massless, relativistic particle governed by the Dirac equation. These points are therefore called Dirac points, and in their vicinity the electrons behave as massless Dirac fermions. Each corner of the hexagonal Brillouin zone is related to two others by a reciprocal lattice vector, therefore two of the Dirac points, typically labelled $K$ and $K'$ are inequivalent.
     
-    These features are most readily observed by sweeping the Fermi level through successive Landau
-    level states, which can be accomplished by varying either the applied magnetic field
-    or the carrier density. In the former case the Fermi level remains fixed while the allowed Landau level energies
-    vary, while in the latter case the Fermi level is varied and the Landau level energies are constant.
+        The linear dispersion relation is not the only factor which ties transport in graphene to the Dirac equation; the two-component wave function of pseudoparticles in graphene is analogous to the spinor wavefunction used to describe spin $\frac{1}{2}$ particles in the Dirac equation \cite{Katsnelson2006}. In graphene the two components correspond to the contributions to the pseudoparticle wavefunction from each of the two sublattices, whereas in quantum electrodynamics the spinor accounts for the spin up and spin down components of the wavefunction.
+        The correspondence relies on the linkage of electron-like and hole-like states in graphene:
+        in the vicinity of the Dirac point the positive-momentum, positive-charge states come from
+        the same sublattice contribution as the negative-momentum, negative-charge states. 
+        This linkage between positive and negative energy and charge states is analogous
+        to the charge conjugation symmetry present in quantum electrodynamics.
+        This last point leads to the manifestation of Klein tunneling in graphene, as described below.
     
-    which when successively filled by 
-    increasing the carrier concentration yield plateaux in the Hall conductivity at 
-    $\sigma_{xy} = \pm (4e^2/h) N$ where $N$ is an integer. Additionally, in typical materials 
-    there is no Landau level at $E=0$, due to the 
-    quantization of massive particles in a magnetic field, therefore the first plateaux 
-    appear at $\pm 4 e^2/h$. 
+        Note that there are two distinct two-fold degeneracies. The \textit{pseudospin} degeneracy
+        accounts for the contribution to the wave function from each of the two carbon atoms in
+        the unit cell. This is the degeneracy which causes the wave function of an electron in graphene
+        to have two components.
+        The \textit{valley} degeneracy accounts for the fact that the Bravais lattice for graphene
+        has a basis of two elements. This is the degeneracy that leads to the presence
+        of two inequivalent Dirac points \textbf{K} and \textbf{K'}. In the absence of the latter
+        \note{ASK NADYA ABOUT THIS}
+        degeneracy charge carriers in graphene would still act as massless Dirac fermions, however
+        the former degeneracy is critical to this behavior.
+        
+    \subsection{Quantum Hall effect}
+    	
+        Graphene displays a unique variant of the quantum Hall effect due to the massless, 
+        Dirac fermion nature of its charge carriers \cite{Novoselov2005}, \cite{Zhang2005}. In fact,
+        the observation of graphene's alternative manifestation of the quantum Hall effect provided
+        one of the first experimental confirmations of the nature of charge carriers in graphene.
+        In order to better emphasize the uniqueness of the quantum Hall effect
+        in graphene we begin with a description of the standard quantum Hall effect.
+        
+        In typical two-dimensional materials the application of a large magnetic 
+        field leads to a quantization of the allowed energy levels. These quantized energy states are 
+        called Landau levels, and for massive carriers the allowed energies are given by
+        \begin{equation}
+            E=\hbar \omega_c (n + 1/2) \;\;\; \text{with} \;\;\; \omega_c = \frac{e B}{m^*}.
+        \end{equation}
+        Additionally, each of these energy levels is highly degenerate, having
+        \begin{equation}
+            \mathcal{N} = g_s \frac{e B A}{h} = g_s \frac{A B}{\Phi_0}
+            \label{eqn:ll_degeneracy}
+        \end{equation}
+        states per level, where $g_s$ accounts for additional degeneracies in each state (for example,
+        the spin and sublattice degeneracies in graphene)
+        and $\Phi_0 = h / e$ is the quantum of flux. 
+        %note that $g_s=4$ for graphene due to the combined effects of spin and sublattice degeneracy. 
+        The former result 
+        can be derived from a quantum mechanical treatment of the cyclotron orbits of particles in a magnetic field,
+        while the latter can be calculated from the k-space density of allowed states. For a complete
+        derivation see e.g. \cite{kittel1966introduction}.
+        
+        The resistivity of a two-dimensional device in a high magnetic field depends on the location of the Fermi level
+        relative to these Landau level energy states. To calculate the resistivity we start from the Drude model 
+        for the motion of an electron of mass $m$ and scattering time $\tau$ in a magnetic field $B$
+        \begin{equation}
+            m \frac{d \mathbf{v}}{dt} = -e \mathbf{E} - e \mathbf{v} \times \mathbf{B} - \frac{m \mathbf{v}}{\tau}
+            \label{eqn:drude}
+        \end{equation}
+        and take the equilibrium solutions where $d \mathbf{v}/dt = 0$. Substituting $\mathbf{v} = \mathbf{J} / n e$
+        where $\mathbf{J}$ is the current density and $n$ is the carrier density, and setting $\mathbf{B} = (0,0,1)$
+        allows us to rearrange Equation \ref{eqn:drude} as
+        \begin{equation}
+            \rho \, \mathbf{J} = \mathbf{E} \;\;\; \text{with} \;\;\; \rho = \frac{m}{n e^2 \tau} \begin{bmatrix} 1 & \omega_c \tau \\ - \omega_c \tau & 1 \end{bmatrix}.     
+            \label{eqn:rho}
+        \end{equation}
+        Thus we expect to find
+        \begin{equation}
+            \rho_{xx} = \frac{m}{n e^2 \tau} \;\;\; \text{and} \;\;\; \rho_{xy} = \frac{m}{n e^2 \tau} \omega_c \tau = \frac{B}{n e}.
+        \end{equation}
+        
+        Both $\rho_{xx}$ and $\rho_{xy}$ depend on the position of the Fermi level $E_F$ relative to the Landau level
+        energies. Considering first $\rho_{xx}$, when $E_F$ lies between Landau levels all available states are filled,
+        and scattering is therefore strongly suppressed. When scattering is suppressed $\tau$ goes to infinity, and 
+        we expect $\rho_{xx}$ to go to zero. Conversely, when $E_F$ lies within a Landau level scattering is allowed,
+        and we expect a finite value for $\rho_{xx}$.
+        For $\rho_{xy}$, we recall that the degeneracy of each Landau level is given by Equation \ref{eqn:ll_degeneracy}
+        and so the carrier density is given by $n = \nu g_s \frac{\mathcal{N}}{A} = \nu g_s \frac{B}{\Phi_0}$ where $\nu$ 
+        is the number of Landau levels which are occupied. The magnetic field dependence of the density cancels
+        and we're left with $\rho_{xy} = \frac{1}{\nu\,g_s} \frac{h}{e^2}$,
+        therefore we expect $\rho_{xy}$ to display plateaux, each at some whole number fraction of $h / e^2$, 
+        where the steps coincide with the points when $E_F$ crosses through a Landau level energy.
+        Finally, the conductivity and resistivity are related by $\rho = \sigma^{-1}$. Following from
+        the definition of $\rho$ in Equation \ref{eqn:rho} one can show that when $\rho_{xx} = 0$
+        (as is the case on the plateaux) then the Hall resistivity and Hall conductivity are related by
+        $-\rho_{xy} = 1 / \sigma_{xy}$ so we expect to see plateaux in the Hall conductivity at $\nu g_s \frac{e^2}{h}.
+         
+        \begin{figure}
+        \centering
+        \includegraphics[width=0.45\textwidth]{images/background/integerQHE.jpg}
+        \includegraphics[width=0.45\textwidth]{images/background/QHEinG.png}
+        \caption[The quantum Hall effect]{
+        Left: The quantum Hall effect in standard two-dimensional materials. 
+        Right: The quantum Hall effect in graphene. The Hall conductivity and longitudinal resistivity are 
+        plotted as a function of carrier concentration. Hall plateaux are present at $4 e^2 / h (N + 1/2)$, 
+        offset from the expected values by $2 e^2 / h$, and continue uninterrupted through zero concentration. 
+        Inset: Hall conductivity versus carrier concentration for bilayer graphene, showing the expected 
+        characteristics of the integer quantum Hall effect for comparison. Adapted from 
+        \cite{schurr2004width} and \cite{Novoselov2005}.}
+        \label{fig:QHEinG}
+        \end{figure}
+      
+        These features are most readily observed by sweeping the Fermi level through successive Landau
+        level states, which can be accomplished by varying either the applied magnetic field
+        or the carrier density. In the former case the Fermi level remains fixed while the allowed Landau level energies
+        vary, while in the latter case the Fermi level is varied and the Landau level energies are constant.
+        Both types of measurement are shown in Figure \ref{fig:QHEinG}; the left-hand plot shows $\rho_{xx}$ 
+        and $\rho_{xy}$ as a function of the applied field for a non-graphene sample, while the right-hand plot
+        shows $\rho_{xx}$ and $\sigma_{xy}$ as a function of carrier density for a graphene sample.
+        
+        The quantum Hall effect as observed in graphene differs from the 
+        standard, integer QHE in two ways: the plateaux in $\sigma_{xy}$ are shifted by $2 e^2/h$ and the sequence 
+        is uninterrupted as it passes through zero carrier density. Both differences stem from 
+        the massless character of graphene's charge carriers.
+        For massless particles in a magnetic field, such as the Dirac fermions in graphene, 
+        the energy quantization is \cite{Novoselov2005}, 
+        \begin{equation}
+            E = \left[ 2\,e\,\hbar\,{c\ast}^2\,B \left(N + \frac{1}{2} \pm \frac{1}{2}\right) \right]^{1/2} 
+        \end{equation}
+        where the sign of the last term depends on the pseudospin (or sublattice index) of the particle. 
+        This has two consequences; first, when $\pm \rightarrow -$ this quantization admits an $E=0$ Landau level, 
+        which in turn causes the sequence of plateaux in the Hall conductivity to be uninterrupted as it 
+        passes through zero carrier density. Second, the $E=0$ Landau level admits only those particles 
+        with `minus' pseudospin (sublattice) polarization, therefore it is half as degenerate as all other Landau levels. 
+        This accounts for the $1/2$ offset in the locations of the Hall conductivity plateaux in graphene, 
+        $\sigma_{xy} = (4 e^2/h )(N + 1/2)$.
+     
+%        which when successively filled by 
+%        increasing the carrier concentration yield plateaux in the Hall conductivity at 
+%        $\sigma_{xy} = \pm (4e^2/h) N$ where $N$ is an integer. Additionally, in typical materials 
+%        there is no Landau level at $E=0$, due to the 
+%        quantization of massive particles in a magnetic field, therefore the first plateaux 
+%        appear at $\pm 4 e^2/h$. 
+        
+        An additional consequence of the masslessness of charge carriers in graphene is the persistence of quantum Hall effects to room temperature \cite{Novoselov2007}. Considering again the energy quantization for Dirac fermions in a magnetic field quoted above, for $c\ast = v_F \approx 10^6$ m $s^{-1}$ a 45 T field yields an energy gap of $\approx$ 2400 K between the $N=0$ and $N=\pm1$ Landau levels, an order of magnitude greater than thermal fluctuations at room temperature. The high carrier concentration and temperature-independent carrier mobility also contribute to the robustness of the effect \cite{Novoselov2007}.
     
-    The quantum Hall effect as observed in graphene differs from the 
-    standard, integer QHE in two ways: the plateaux are shifted by $2 e^2/h$ and the sequence 
-    is uninterrupted as it passes through zero carrier density. Both differences stem from 
-    the massless character of graphene's charge carriers.
 
-    , as seen in Figure \ref{fig:QHEinG}. 
+    \subsection{Klein tunneling}
     
-    For massless particles in a magnetic field, such as the Dirac fermions in graphene, the energy quantization is $E = [ 2 e \hbar {c\ast}^2 B (N + 1/2 \pm 1/2) ]^{1/2}$ \cite{Novoselov2005}, where the sign of the last term depends on the pseudospin (or sublattice index) of the particle. This has two consequences; first, when $\pm \rightarrow -$ this quantization admits an $E=0$ Landau level, which in turn causes the sequence of plateaux in the Hall conductivity to be uninterrupted as it passes through zero carrier density. Second, the $E=0$ Landau level admits only those particles with `minus' pseudospin polarization, therefore it is half as degenerate as all other LLs. This accounts for the $1/2$ offset in the locations of the Hall conductivity plateaux in graphene, $\sigma_{xy} = (4 e^2/h )(N + 1/2)$.
-
-    An additional consequence of the masslessness of charge carriers in graphene is the persistence of quantum Hall effects to room temperature \cite{Novoselov2007}. Considering again the energy quantization for Dirac fermions in a magnetic field quoted above, for $c\ast = v_F \approx 10^6$ m $s^{-1}$ a 45 T field yields an energy gap of $\approx$ 2400 K between the $N=0$ and $N=\pm1$ Landau levels, an order of magnitude greater than thermal fluctuations at room temperature. The high carrier concentration and temperature-independent carrier mobility also contribute to the robustness of the effect \cite{Novoselov2007}.
-
-    \begin{figure}
-    \centering
-    \includegraphics[width=0.45\textwidth]{images/background/QHEinG.png}
-    \caption[The quantum Hall effect in graphene]{The quantum Hall effect in graphene. The Hall conductivity and longitudinal resistivity are plotted as a function of carrier concentration. Hall plateaux are present at $4 e^2 / h (N + 1/2)$, offset from the expected values by $2 e^2 / h$, and continue uninterrupted through zero concentration. Inset: Hall conductivity versus carrier concentration for bilayer graphene, showing the expected characteristics of the integer quantum Hall effect for comparison. Adapted from \cite{Novoselov2005}.}
-    \label{fig:QHEinG}
-    \end{figure}
-
+        Another consequence of the `relativistic' nature of carriers in graphene is the manifestation
+        of Klein tunneling \cite{katsnelson2006chiral, cheianov2007focusing, beenakker2008colloquium, stander2009evidence, bai2007klein, young2009quantum}. 
+        Klein tunneling \cite{klein1929reflexion} is the counter-intuitive perfect
+        transmission of massless, relativistic particles through a potential barrier. The effect
+        was first proposed in 1929, however experimental tests of the theory remained ellusive
+        because it was impossible to produce relativistic particles in a transport measurement-type
+        environment.
+        The advent of graphene, and the relativistic nature of its charge carriers,
+        provided a way to test the theory. Here I give a brief description of
+        the theory, and summarize the relevant experimental results in graphene.
+        
+        Consider a massless, relativistic particle incident on a potential barrier. The particle's
+        wave function is governed by the Dirac equation; taking the
+        motion to be in the $x$ direction we have
+        \begin{equation}
+            \left( \sigma_x p + V \right) \psi = E_0\psi, \quad \sigma_x = \left( \begin{matrix} 0 & 1 \\ 1 & 0 \end{matrix}\right), \quad V=\begin{cases} 0, & x<0 \\ V_0, & x>0 \end{cases}
+        \end{equation}
+        where $\sigma_x$ is the Pauli matrix. We can write the wave function of a particle incident
+        on the barrier in terms of the wave function in either region:
+        \begin{align}
+        \begin{split}
+            \psi_1 &= Ae^{ikx} \ket{\uparrow} + A'e^{-ikx} \ket{\downarrow} \\
+            \psi_2 &= Be^{iqx} \ket{\uparrow}
+        \end{split}
+        \end{align}
+        where $k=E_0 / \hbar$ and $q = (V_0 - E_0) / \hbar$.
+        Note that $\ket{\uparrow}$ and $\ket{\downarrow}$ here refer to the \textit{pseudospin}
+        polarization, not the standard spin polarization. The polarization of each term in the 
+        wave function (incident $A$, reflected $A'$, and transmitted $B$) depends on the 
+        sublattice origin of the relevant branch of the dispersion relation, as illustrated in Figure
+        \ref{fig:pseudospin}: to the left of the barrier electrons with positive momentum have
+        positive pseudospin, and vice versa. To the left of the barrier however the hole states with
+        negative momentum have positive pseudospin.
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.5\textwidth]{images/background/pseudospin.png}
+            \caption[Klein tunneling in graphene]{
+            Band structure of carriers in graphene incident on a potential barrier. 
+            The color (red / teal) of
+            each line indicates the sublattice origin, i.e. pseudospin, of states at the 
+            specified energy and momentum. Notably, 
+            positive-momentum electron states have the same pseudospin as negative-momentum 
+            hole states.
+            Adapted from \cite{katsnelson2006chiral}.
+            }
+            \label{fig:pseudospin}
+        \end{figure}
+        Continuity of the wave function requires
+        \begin{align}
+        \begin{split}
+            \left|A\right|^2  &= \left|B\right|^2 \\
+            \left|A'\right|^2 &= 0
+        \end{split}
+        \end{align}
+        and so we have perfect transmission and no reflection.
+        
+        Klein tunneling has been observed in graphene
+        by both indirect \cite{Huard2007, stander2009evidence} and direct \cite{young2009quantum} measurements. 
+        Indirect measurements proceed by measuring transport across electrostatically 
+        defined potential barriers and comparing
+        the observed resistance to theoretically expected values. This method shows qualitative
+        signatures of Klein tunneling, however it is difficult to distinguish perfect from near-perfect
+        transmission. The direct measurement proceeds by observing interference effects in transport
+        across two separate potential barriers. This technique is sensitive to phase differences as
+        well, and can thus conclusively demonstrate the presence of Klein tunneling.
+        
         
     \section{Doping graphene}
     
+        Graphene is eminently dopable. In fact, many of the most interesting experimental
+        results involving graphene exploit the ease with which it can be doped; the 
+        ability to easily tune the carrier concentration, Fermi level, and even carrier
+        species, and the ability to do so in finely defined spatial regions has exposed
+        a host of interesting physics results. In this section I summarize previous work
+        on methods of doping graphene.
+        
         \subsection{Electrostatic gating}
+      
+            \begin{figure}
+            \centering
+            \includegraphics[width=0.55\textwidth]{images/background/fermi_level.jpg}
+            \includegraphics[width=0.4\textwidth]{images/background/gate_sweep_doping.png}
+            \caption[Gate voltage and Fermi level in graphene]{
+            Left: Schematic of graphene's band structure in the vicinity of the Dirac point.
+            As the Fermi level is swept by applying a gate voltage the carrier species changes.
+            Adapted from \cite{stander2007}.
+            
+            Right: Conductance vs gate voltage measurements for a graphene device exposed to a 
+            chemical dopant for increasing periods of time. As the doping period is increased
+            the minimum in conductance shifts farther and farther to the left, indicating that
+            the Fermi level shifts farther and farther from the charge neutrality point.
+            Adapted from \cite{chen2008charged}.
+            }
+            \label{fig:gate_sweeps}
+            \end{figure}
+        
+        The primary method by which graphene is doped is by capacitative coupling to an external gate
+        electrode. As a voltage is applied between the graphene and the external gate, charge accumulates
+        on both according to $C = q / V$. By varying the applied voltage one can therefore vary
+        the carrier concentration in graphene, and due to graphene's distinct semi-metallic band structure,
+        the carrier species as well. This is illustrated in Figure \ref{fig:gate_sweeps}
+        
+        In addition to providing experimental control over the doping
+        in a graphene device this technique can also be used to determine the intrinsic 
+        position of the Fermi level, i.e. the position of Fermi level in the absence of external doping. 
+        The conductance of a graphene device is proportional to the carrier density, and thus should
+        reach a minimum as the Fermi level passes through the charge neutrality point (CNP) where
+        graphene's valence and conduction bands touch. By measuring the conductance of a graphene
+        device as a function of applied gate voltage and observing the gate voltage which corresponds
+        to the minimum conductance
+        one can determine how far, and in which direction, the Fermi level
+        is from the charge neutrality point. This provides a basic characterization
+        of the doping present in the device in the absence of any gate voltage, as shown in Figure
+        \ref{fig:gate_sweeps}.
+       
+        Finally, it is also possible to produce separate, distinctly doped regions in
+        graphene devices through the use of multiple gate electrodes. An example device configuration
+        is shown in Figure \ref{fig:multigate_pn} \cite{williams2007quantum}. In such devices
+        the Fermi level can be tuned separately in each region by adjusting the relative
+        gate voltages applied to each gate electrode. This in turn allows the device to
+        be biased into p-n, n-p, n-n, or p-p junctions at will. 
+        Transport measurements on these devices display results
+        similar to the conductance profile shown in Figure \ref{fig:gate_sweeps}, however
+        instead of a single minimum graphene p-n junction devices will show two distinct
+        minima. This is because the charge neutrality points are offset between the two doping
+        regions, and as the Fermi level is swept it passes through the two CNPs separately.
+        
+            \begin{figure}
+            \centering
+            \includegraphics[width=0.4\textwidth]{images/background/multigate_pn.png}
+            \caption[PN junctions in graphene via multiple gates]{
+            PN junctions can be formed in graphene using device geometries having multiple
+            gate electrodes. By varying the voltage applied to each gate electrode individually
+            one can control the carrier species in each region, producing p-n, n-p, p-p, and n-n 
+            junctions.
+            Adapted from \cite{williams2007quantum}.
+            }
+            \label{fig:multigate_pn}
+            \end{figure}
         
         \subsection{Chemical adsorbates}
+        
+        Graphene can also be doped via chemical adsorbates. Both p- and n-type doping are possible
+        using simple reagents; NH$_3$ and CO have been reported to produce n-type doping,
+        while H$_2$O and NO$_2$ are known to produce p-type doing \cite{schedin2007detection}.
+        
+        Polar dopant molecules add an additional degree of freedom to a graphene device. In particular
+        if the dopant molecule contributes a varying amount of charge depending on its polarization
+        then measurement processes which alter the polarization of the dopant molecule can induce
+        additional dynamics in the measurements.
+        
+        In practice graphene is also often inadvertently (and undesirably) doped by the chemicals
+        used in the fabrication process.
     
         \subsection{Substrate effects in graphene}
         The substrate used to support graphene strongly affects electrical transport in the graphene. Scattering by surface phonons at the SiO$_2$ interface has been shown to limit the room temperature mobility of graphene \cite{Chen2008}, and scattering by charge impurities is responsible for the asymmetry between electron and hole conductivities \cite{Hwang2007}. Charge impurities can also create inhomogeneities in graphene's local carrier density, which are thought to be responsible for the saturation of conductivity at low carrier densities \cite{Hwang2007}. Substrate features can also cause delamination of the graphene from the substrate; previous work has observed a snap-through transition for multilayer graphene on corrugated substrates \cite{Scharfenberg2012} as well as the formation of network of wrinkle delaminations on a substrate decorated with silica nanoparticles \cite{Yamamoto2012}.
@@ -873,6 +1098,25 @@ My wife (!) Nadha
             and the voltage is measured between either the horizontal or the vertical set of leads; the former 
             is equivalent to a four-point measurement of the longitudinal resistance while the latter measures
             the lateral (Hall) resistance.
+            
+            A slight digression here on \textit{resistance} vs \textit{resistivity}: experimentally quantum Hall measurements 
+            measure the lateral and longitudinal voltage drop caused by a known bias current. The ratio of the measured voltage
+            to the bias current
+            gives the resistance $R = V / I$. However, the quantity of interest is typically the
+            resistivity $\rho = E / J$ (where $E$ is the electric field and $J$ is the current density) because
+            resistivity displays the precise quantization that is the hallmark of the Hall effect.
+            Conveniently, in the lateral case the resistance $R_{xy}$ is equal to the resistivity $\rho_{xy}$.
+            For a device of width $W$ we have
+            \begin{equation}
+                R_{xy} = \frac{V_y}{I_x} = \frac{W E_y}{W J_x} = \frac{E_y}{J_x} = -\rho_{xy}
+            \end{equation}
+            For the longitudinal case however we must account for the geometry of the sample: for a device of width $W$ and 
+            length $L$ we have
+            \begin{equation}
+                R_{xx} = \frac{V_x}{I_x} = \frac{L E_x}{W J_x} = \alpha \rho_{xx}
+            \end{equation}
+            where $\alpha = L / W$ is the aspect ratio of the device.
+            
             
          \begin{figure}
             \centering
@@ -1647,7 +1891,7 @@ In the rest of this section I describe the process used to create these drivers.
         def get_frequency(my_instrument):
             return my_instrument.query('FREQ?')
     \end{verbatim}
-    Now we can call either the functions defined above to get or set the frequency of the SR830.
+    Now we can use the functions defined above to get or set the frequency of the SR830.
     
     \subsubsection*{Collect the functions into a class}
     
