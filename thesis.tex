@@ -8,6 +8,11 @@
 \usepackage{amsmath}
 \usepackage{braket}
 
+% for code blocks
+\usepackage{listings}
+\usepackage{minted}
+\usepackage{xcolor}
+
 % for quotations
 \usepackage{epigraph}
 
@@ -74,29 +79,34 @@ To my family.
 Whenever anyone asks me for advice about graduate school the first thing
 I say is ``Find a good advisor.'' Nothing has a larger impact on your quality
 of life as a graduate student than your advisor, and I have been incredibly fortunate
-to have Nadya as mine. Grad school is a time to learn and 
+to have had Nadya as mine. I'm leaving grad school with both my sanity and my enthusiasm
+for physics intact, both of which are due to Nadya's consistently upbeat attitude, generous mentorship,
+and supportive guidance. Finally, grad school is a time to learn and 
 grow as a scientist and researcher, and I certainly have, but I've also grown as a person
 during this time by having a broad and meaningful life outside of lab.
-Many, many thanks to Nadya for creating an environment and fostering relationships with all
-of us in the group that made this possible.
+Many, many thanks to Nadya for creating an environment and offering perspective 
+%fostering relationships with all of us in the group 
+which made this all possible.
 
 Thanks to everyone in the group too -- Nick who convinced me to come to UIUC and join
 the lab in the first place, Scott for showing me the ropes in the beginning, Serena and Clare 
 for modeling the persistence it takes to graduate, Malcolm for always knowing how
-everything in the lab works, Jeff and Stephen for their Statler-and-Waldorf style take
+everything in the lab works, Jeff and Stephen for their Statler-and-Waldorf style commentary
 on lab stuff, Angela and Rita for commiserating about failed experiments, Sungjae, Joe, Yingjie,
 and Vincent for their advice from the other side, and Greg and Junseok for keeping things going.
 
 Thanks to everyone in both of the bands -- Adrian, Jackson, Matt, Alex, and Apoorv,
 Venanzio, Nate, Ariel, Sergio, and Carlos. First, for putting up with me as I
 was learning the fiddle, and then for being so much fun to make music with.
-Of all the things (bar one) that I did in graduate school, making music
-with all of you was far and away my favorite.
+Of all the things (bar one) that I did while in graduate school, making music
+with all of you was far and away my favorite. Also thanks to Brian, Mo, Srinidhi, Brandon,
+and everyone else who made Urbana such a fun place to be for six years. I already miss the
+cookouts in the summer, the hot-pots in the winter,
+Mondays at the Hootenanny, \textit{mulats\'{a}gs} at Apoorv's place til the wee hours of the morning,
+and all the rest.
 
-Mondays at the Hootenanny, \textit{mulats\'{a}gs} at Apoorv's place till the wee hours of the morning,
-cookouts in the summer and hot-pots in the winter,
-
-My wife (!) Nadha
+Last, and most importantly, thanks to my family and especially my wife (!) Nadha.
+I wouldn't be where I am without all their love and support and good advice (looking at you Brother).
 
 %% The thesis format requires the Table of Contents to come
 %% before any other major sections, all of these sections after
@@ -281,7 +291,7 @@ My wife (!) Nadha
         Finally, the conductivity and resistivity are related by $\rho = \sigma^{-1}$. Following from
         the definition of $\rho$ in Equation \ref{eqn:rho} one can show that when $\rho_{xx} = 0$
         (as is the case on the plateaux) then the Hall resistivity and Hall conductivity are related by
-        $-\rho_{xy} = 1 / \sigma_{xy}$ so we expect to see plateaux in the Hall conductivity at $\nu g_s \frac{e^2}{h}.
+        $-\rho_{xy} = 1 / \sigma_{xy}$ so we expect to see plateaux in the Hall conductivity at $\nu g_s \frac{e^2}{h}$.
          
         \begin{figure}
         \centering
@@ -416,17 +426,17 @@ My wife (!) Nadha
             \begin{figure}
             \centering
             \includegraphics[width=0.55\textwidth]{images/background/fermi_level.jpg}
-            \includegraphics[width=0.4\textwidth]{images/background/gate_sweep_doping.png}
+            \includegraphics[width=0.4\textwidth]{images/background/kimgatesweep.png}
             \caption[Gate voltage and Fermi level in graphene]{
             Left: Schematic of graphene's band structure in the vicinity of the Dirac point.
             As the Fermi level is swept by applying a gate voltage the carrier species changes.
             Adapted from \cite{stander2007}.
             
-            Right: Conductance vs gate voltage measurements for a graphene device exposed to a 
-            chemical dopant for increasing periods of time. As the doping period is increased
-            the minimum in conductance shifts farther and farther to the left, indicating that
-            the Fermi level shifts farther and farther from the charge neutrality point.
-            Adapted from \cite{chen2008charged}.
+            Right: Conductance vs gate voltage measurements for a graphene device.
+            The conductance reaches a minimum at the point where the Fermi level crosses
+            the charge neutrality point, which can be used to determine the level of intrinsic
+            doping in the graphene.
+            Adapted from \cite{kim2013methane}.
             }
             \label{fig:gate_sweeps}
             \end{figure}
@@ -439,7 +449,7 @@ My wife (!) Nadha
         
         In addition to providing experimental control over the doping
         in a graphene device this technique can also be used to determine the intrinsic 
-        position of the Fermi level, i.e. the position of Fermi level in the absence of external doping. 
+        position of the Fermi level, i.e. the position of Fermi level in the absence of gate-induced doping. 
         The conductance of a graphene device is proportional to the carrier density, and thus should
         reach a minimum as the Fermi level passes through the charge neutrality point (CNP) where
         graphene's valence and conduction bands touch. By measuring the conductance of a graphene
@@ -450,7 +460,7 @@ My wife (!) Nadha
         of the doping present in the device in the absence of any gate voltage, as shown in Figure
         \ref{fig:gate_sweeps}.
        
-        Finally, it is also possible to produce separate, distinctly doped regions in
+        It is also possible to produce separate, distinctly doped regions in
         graphene devices through the use of multiple gate electrodes. An example device configuration
         is shown in Figure \ref{fig:multigate_pn} \cite{williams2007quantum}. In such devices
         the Fermi level can be tuned separately in each region by adjusting the relative
@@ -476,25 +486,86 @@ My wife (!) Nadha
             \end{figure}
         
         \subsection{Chemical adsorbates}
-        
+       
         Graphene can also be doped via chemical adsorbates. Both p- and n-type doping are possible
-        using simple reagents; NH$_3$ and CO have been reported to produce n-type doping,
+        using simple reagents: NH$_3$ and CO have been reported to produce n-type doping,
         while H$_2$O and NO$_2$ are known to produce p-type doing \cite{schedin2007detection}.
+        The degree of chemical doping can be controlled by varying the exposure time as shown in 
+        Figure \ref{fig:chemical_doping}.
         
-        Polar dopant molecules add an additional degree of freedom to a graphene device. In particular
-        if the dopant molecule contributes a varying amount of charge depending on its polarization
+        Doping by H$_2$O is particularly relevant experimentally because ambient water molecules
+        will attach to graphene devices left in atmosphere. This produces p-doping in measurements
+        performed in ambient conditions, though the precise mechanism behind the p-doping is
+        a subject of continuing research 
+        \cite{leenaerts2008adsorption, Moser2008, wang2010hysteresis, Wehling2008, Sabio2008}.
+        When present, polar dopant molecules like H$_2$O add an additional degree of freedom to a graphene device. 
+        In particular if the doping strength of the molecule depends on its polarization
         then measurement processes which alter the polarization of the dopant molecule can induce
-        additional dynamics in the measurements.
+        additional dynamics in measurements.
         
         In practice graphene is also often inadvertently (and undesirably) doped by the chemicals
-        used in the fabrication process.
+        used in the fabrication process; such dopants usually produce
+        p-type doping in the graphene and reduce the mobility of carriers. 
+        Efforts to remove unwanted chemical contaminants can be divided into two categories:
+        annealing-based and solvent-based. The former category encompasses two main techniques,
+        thermal \cite{pirkle2011effect, lin2011graphene} and current \cite{bolotin2008ultrahigh}
+        annealing in vacuum. Current annealing requires that the graphene be suspended, and
+        must be done cautiously so as not to destroy the sample. However, when successful current annealing produces
+        samples of extraordinarily high quality, as measured by mobility (\~200,000 cm$^2$ / V s \cite{bolotin2008ultrahigh});
+        note that the high mobility is largely due to the suspension of the graphene, however the 
+        cleaning is an important step.
+        
+        Vacuum annealing is also used to remove residual dopants from chemicals used in fabrication, in particular
+        poly(methyl methacrylate) (PMMA). The technique has several drawbacks however. First, the temperatures
+        required to completely remove PMMA residues are beyond what graphene can withstand \cite{lin2011graphene}.
+        Lower temperatures do remove an appreciable portion of the PMMA residue \cite{pirkle2011effect}, 
+        however the temperatures required to effectively remove residues ($T > 300$K) also bring the graphene
+        into closer contact with its substrate. For graphene on SiO$_2$ substrates this closer contact induces
+        significant p-doping and dramatically reduces the mobility of the graphene, effectively leaving
+        the graphene in no better shape than it was to begin with.
+        
+        Solvent-based cleaning techniques have reported significant success in removing residual dopants 
+        \cite{liang2011toward} as shown in Figure \ref{fig:chemical_doping}. This efficacy comes at
+        the cost of increase hazard to the researcher however;
+        such processes typically involve hazardous, volatile, and / or chlorinated solvents (e.g. HF).
+        
+            \begin{figure}
+            \centering
+            \includegraphics[width=0.39\textwidth]{images/background/gate_sweep_doping.png}
+            \includegraphics[width=0.6\textwidth]{images/background/rca_clean.png}
+            \caption[Conductance vs gate voltage after chemical doping]{
+            Left: Conductance vs gate voltage measurements for a graphene device exposed to a 
+            chemical dopant for increasing periods of time. As the doping period is increased
+            the minimum in conductance shifts farther and farther to the left, indicating that
+            the Fermi level shifts farther and farther from the charge neutrality point.
+            Adapted from \cite{chen2008charged}.
+            Right: The Dirac point locations for a collection of devices fabricated with (left)
+            and without (right) a solvent-based cleaning step. Devices which were cleaned show 
+            significantly less doping.
+            Adapted from \cite{liang2011toward}.
+            }
+            \label{fig:chemical_doping}
+            \end{figure}
     
         \subsection{Substrate effects in graphene}
         The substrate used to support graphene strongly affects electrical transport in the graphene. Scattering by surface phonons at the SiO$_2$ interface has been shown to limit the room temperature mobility of graphene \cite{Chen2008}, and scattering by charge impurities is responsible for the asymmetry between electron and hole conductivities \cite{Hwang2007}. Charge impurities can also create inhomogeneities in graphene's local carrier density, which are thought to be responsible for the saturation of conductivity at low carrier densities \cite{Hwang2007}. Substrate features can also cause delamination of the graphene from the substrate; previous work has observed a snap-through transition for multilayer graphene on corrugated substrates \cite{Scharfenberg2012} as well as the formation of network of wrinkle delaminations on a substrate decorated with silica nanoparticles \cite{Yamamoto2012}.
     
-        Certain experiments, in an attempt to minimize the effect of the substrate have fabricated devices using suspended graphene \cite{Bolotin2008}, \cite{Du2008}. In a particularly noteworthy example, the authors of ref \cite{Bolotin2008} observed carrier mobilities of up to 200,000 cm$^2$ V$^{-1}$ s$^{-1}$, an order of magnitude greater than the best results for graphene on silicon substrates, showing that the substrate can have a distinct impact on graphene's electrical properties. Recently several groups have also begun fabricating graphene devices on hexagonal boron nitrides (hBN) substrates, where the atomically flat surface, large bandgap, and similar lattice constant to graphene yield drastically improved electronic properties compared to samples fabricated on SiO$_2$ substrates \cite {Dean2010}, \cite{Xue2011}.
+        Certain experiments, in an attempt to minimize the effect of the substrate have fabricated 
+        devices using suspended graphene \cite{Bolotin2008}, \cite{Du2008}. In a particularly noteworthy 
+        example, the authors of ref \cite{bolotin2008ultrahigh} observed carrier mobilities of up 
+        to 200,000 cm$^2$ V$^{-1}$ s$^{-1}$, an order of magnitude greater than the best results for 
+        graphene on silicon substrates, showing that the substrate can have a distinct impact on 
+        graphene's electrical properties. Recently several groups have also begun fabricating graphene 
+        devices on hexagonal boron nitrides (hBN) substrates, where the atomically flat surface, large 
+        bandgap, and similar lattice constant to graphene yield drastically improved electronic 
+        properties compared to samples fabricated on SiO$_2$ substrates \cite {Dean2010}, \cite{Xue2011}.
     
-        Alternatively, strong substrate interactions can also be used to deliberately tune graphene's electrical properties. In particular, functional ferroelectric substrates such as PbZr$_{0.2}$Ti$_{0.8}$O$_3$ (PZT) have been shown to vary carrier type and density in graphene with varying substrate polarizations \cite{Baeumer2013}, as seen in Figure \ref{fig:GonPZT}. This effect is bidirectional: application of a large bias to the graphene can also flip the polarization of the underlying PZT.
+        Alternatively, strong substrate interactions can also be used to deliberately tune graphene's 
+        electrical properties. In particular, functional ferroelectric substrates such as 
+        PbZr$_{0.2}$Ti$_{0.8}$O$_3$ (PZT) have been shown to vary carrier type and density in 
+        graphene with varying substrate polarizations \cite{Baeumer2013}, as seen in Figure 
+        \ref{fig:GonPZT}. This effect is bidirectional: application of a large bias to the graphene 
+        can also flip the polarization of the underlying PZT.
     
             %\begin{wrapfigure}[25]{R}{0.50\textwidth}
             \begin{figure}
@@ -518,7 +589,7 @@ My wife (!) Nadha
         \subsection{Pseudomagnetic fields}
         Recent work, both theoretical \cite{Guinea2009} and experimental \cite{Levy2010}, \cite{Yan2012} suggests that non-uniform strains in graphene have an effect similar to an applied magnetic field. From a theoretical perspective these strain-induced pseudomagnetic fields stem from a modification of the nearest and next nearest neighbor hopping amplitudes; as the lattice is strained the distances between lattice sites vary, and with them the relevant hopping amplitudes $t$ and $t'$. This strain effect can be modeled by introducing a gauge field vector potential, which has an effect similar to that of a magnetic vector potential field. However, unlike an actual magnetic field a strain-generated pseudomagnetic field has a different sign for charge carriers in the \textbf{K} and \textbf{K'} Dirac points, and therefore does not violate time reversal symmetry \cite{Guinea2009}.
     
-        These pseudomagnetic fields are predicted to be on the order of tens of tesla. Such high fields, in conjunction with graphene's high carrier concentration and mobility, offer the potential to observe a zero field quantum Hall effect. A key requirement in generating pseudomagnetic fields is that the strain profile be anisotropic; to date experimental efforts have focused on strain created by nanobubble \cite{Levy2010} or nanoridge \cite{Yan2012} defects. However defect-oriented experimental design schemes yield extremely small areas of graphene under strain, and as such the strain-related physics is only accessible through scanning tunneling microscopy (STM) measurements. Therefore in order to observe macroscopic transport effects like a zero field quantum Hall effect I propose a device scheme with arrays of patterned strain-inducing features.
+        These pseudomagnetic fields are predicted to be on the order of tens of tesla. Such high fields, in conjunction with graphene's high carrier concentration and mobility, offer the potential to observe a zero field quantum Hall effect. A key requirement in generating pseudomagnetic fields is that the strain profile be anisotropic; to date experimental efforts have focused on strain created by nanobubble \cite{Levy2010} or nanoridge \cite{Yan2012} defects. However defect-oriented experimental design schemes yield extremely small areas of graphene under strain, and as such the strain-related physics is only accessible through scanning tunneling microscopy (STM) measurements. 
 
 
 
@@ -1236,11 +1307,11 @@ My wife (!) Nadha
             
             Measurements of graphene's resistance as a function of both bias and gate voltage can be used to
             characterize confinement in the graphene. This is most useful in samples where the geometry
-            of the graphene provide the confinement; recall from Chapter 2 that because electrons in graphene
+            of the graphene provides the confinement; recall from Chapter 2 that because electrons in graphene
             display Klein tunneling they cannot be confined by purely electrostatic means.
             For devices which provide spatial confinement, e.g. quantum dot-type devices, measurements
             of the differential conductance ($dI/dV$) will display a Coulomb blockade diamond pattern
-            like the one shown in Figure \ref{fig:cb_diamond}. Information about the 
+            like the one shown in Figure \ref{fig:cb_diamond}.
             Regular oscillations (like those shown in Figure \ref{fig:cb_diamond}) indicate that the device
             is operating as a single electron transistor
             and therefore that the relevant energy scale is the charging energy of adding another electron the the quantum dot.
@@ -1249,13 +1320,26 @@ My wife (!) Nadha
             is also relevant. This latter case is a consequence of the dispersion relation in graphene: the spacing
             between energy levels for massless carriers in a quantum box is much larger than for standard, massive carriers.
             
+            Coulomb blockade measurements are also useful for determining the capacitive lever arm of the 
+            back gate as shown in Figure \ref{fig:cb_diamond}. The ratio of the extent of the diamond along
+            the bias axis divided by the extent along the gate axis gives $\alpha$, the capacitive lever arm.
+            Knowing the lever arm is useful for relating changes in gate voltage to changes in the Fermi level
+            in graphene:
+            \begin{equation}
+                \Delta E_F = e \cdot \alpha \cdot \Delta V_g .
+            \end{equation}
+            
             \begin{figure}
                 \centering
-                \includegraphics[width=0.5\linewidth]{images/experimentaltechniques/cb_diamond.jpg}\\
+                \includegraphics[width=0.6\linewidth]{images/experimentaltechniques/cb_diamond.jpg}
+                \includegraphics[width=0.39\linewidth]{images/experimentaltechniques/cb_slope.png}
                 \caption[Coulomb blockade diamonds in graphene]{
-                    Differential conductance measurements as a function of gate and bias voltage in a 
+                    Left: Differential conductance measurements as a function of gate and bias voltage in a 
                     graphene quantum dot device. The data display clear Coulomb blockade diamonds.
                     Adapted from \cite{guttinger2008coulomb}.
+                    Right: The extent of the Coulomb diamond along the two axes can be used to
+                    determine the capacitive lever arm of the back gate $\alpha$.
+                    Adapted from 
                     }
                 \label{fig:cb_diamond}
             \end{figure}
@@ -1415,7 +1499,7 @@ My wife (!) Nadha
    
         \subsubsection*{Experimental results}
         
-        Figures \ref{fig:rip-afm}-f show AFM phase images of graphene in the bridge region of a device
+        Figures \ref{fig:rip-afm}a-f show AFM phase images of graphene in the bridge region of a device
         at 0, 5, 0, 5, 10, and 0 percent strain applied along the horizontal axis of
         the images. Both rips and delaminations caused by wrinkles appear as a function
         of strain, and can be distinguished via AFM height data: Figures \ref{fig:rip-afm}g and \ref{fig:rip-afm}h show
@@ -1423,8 +1507,6 @@ My wife (!) Nadha
         dips) while rips are indicated by a uniform depression (consistent with the
         substrate exposed between graphene regions). In Fig. 2, the vertical features
         are rips and the majority of the horizontal features are wrinkles.
-        
-        \ref{fig:rip-afm}
         
         The opening and closing of rips is clear in the Figure:  the unstrained device
         (Fig. \ref{fig:rip-afm}a) exhibits some small rips and defects. When the substrate is
@@ -1733,7 +1815,272 @@ S.P. acknowledges support from the Army Research Office under grant W911NF-14-1-
 
 
 \section{Graphene on strain array substrates}
+
+            
+    In this section I describe a research project which examined electrical transport in graphene
+    devices fabricated on substrates having arrays of topographic features.
+    Engineered substrates offer an interesting avenue towards graphene devices with tunable properties.
+    In particular, substrates which apply strain to graphene can expose unique behavior.
+    However, existing options for fabricating strain-inducing substrates are not suitable for creating 
+    devices for electrical transport measurements.
+    In this section I describe the fabrication of strain-inducing substrates suitable for transport measurements,
+    and I report both optical and transport measurements of graphene devices showing characteristics induced by these substrates.
+            
+            
+    \subsection{Introduction}
+    
+            Graphene is a material with enormous potential for both scientific research and technical applications
+            \cite{novoselov2004electric,novoselov2005two,zhang2005experimental,geim2007rise}.
+            In particular, the ability to tune graphene's properties through the use of engineered substrates offers a practical
+            method to explore graphene's properties and modify them for specific applications\cite{guinea2010energy, zhou2007substrate}.
+            Engineered substrates offer a variety of avenues by which to modulate graphene's properties:
+            previous work has employed substrate topography\cite{Tomori2011},
+            electrostatic charge injection\cite{chiu2010controllable},
+            substrate lattice mis-match\cite{zhou2007substrate},
+            and ferroelectric polarization\cite{hinnefeld2016single}
+            to achieve a range of modifications to graphene's properties.
+             
+            Of the various substrate engineering techniques, applying strain via substrate topography is particularly interesting
+            because of the large effect strain has on graphene's electrical 
+            properties\cite{guinea2010energy, pereira2009strain, levy2010strain}. 
+            To date however, the techniques used to produce strain in graphene are either not tunable\cite{levy2010strain}
+            or not amenable to performing electrical transport measurements on graphene
+            \cite{Tomori2011, mohiuddin2009uniaxial, ni2008uniaxial, gill2015mechanical}.
+            Here we demonstrate a fabrication procedure for producing engineered arrays of strain-generating features on standard silicon
+            substrates, and we report optical and transport measurements which display characteristics induced by these substrates.
+            
+            \begin{figure}
+            \centering
+            \includegraphics[width=0.5\columnwidth]{images/resultsanddiscussion/strainarraypaper/Figure1}
+            \caption{Fabrication procedure for creating graphene devices on strain-array substrates.}
+            \label{'fig:fab'}
+            \end{figure}
+            
     \subsection{Device configuration}
+            
+           
+          
+           
+            The process used to create the strain features on the substrate is illustrated schematically in Figures \ref{'fig:fab'}A-D.
+            First an array of copper circles is deposited, using standard electron-beam lithography and evaporation techniques, 
+            on a silicon chip covered with a 1000 nm layer of thermal oxide. 
+            The thick oxide layer is necessary because subsequent etching steps remove several hundred nanometers of oxide, 
+            which would completely strip the oxide layer of a chip with the standard 300 nm of SiO$_2$.
+            The deposited copper is then used as a mask in a reactive ion etching 
+            (RIE) step to produce cylindrical pillars in the SiO$_2$ layer. For the devices described here the etch was performed in 
+            a PlasmaLab Freon RIE at 35 mtorr for 10 minutes 
+            using 100 W of incident power and 70 sccm of CF$_4$. 
+            The RIE etch time and the diameter of the deposited copper mask circles together define the aspect ratio of the resulting 
+            pillars. For these devices we use a diameter of 100 nm, and the 10 minute etch time gives a height of approximately  
+            200 nm.
+            After the etch, the copper mask is removed by immersing the chip 
+            in a 0.1M solution of ammonium persulfate for several hours. Finally, the chip is dipped in buffered oxide etchant 
+            (6:1 40\% NH$_4$F : 49\% HF) to sharpen the SiO$_2$ pillars produced during the RIE step into pointed, conical shapes. 
+            The BOE dip time is an important parameter which depends on the initial diameter of the pillars; for the the devices
+            described here BOE was found to etch the tip of the pillars at a constant rate of approximately 2 nm/s. 
+            
+            Graphene devices are fabricated on substrates prepared by this method using the process shown in Figures \ref{'fig:fab'}E-F. 
+            First Ti/Au (5 nm/30 nm) leads and contact pads are defined and deposited using electron-beam lithography and evaporation. 
+            Next, a monolayer of graphene is grown using established chemical vapor deposition techniques\cite{Li2009}. 
+            The graphene is then transferred to the strain array substrate using standard polymer-assisted wet-transfer 
+            techniques\cite{li2009transfer}. The same polymer layer used to transfer the graphene is then used as a 
+            resist in an electron-beam lithography step. Next the exposed graphene is removed using a reactive ion etch 
+            (100 W, 50 mtorr, 20 sccm O$_2$, 30 s), yielding graphene in a Hall bar configuration. Finally the remaining 
+            polymer resist is dissolved in acetone and the chip is dried in a critical point drying apparatus. 
+            The critical point drying is necessary because for certain array spacings the graphene remains suspended between
+            strain features, and when the device is allowed to dry in air the surface tension 
+            of the evaporating solvent tears the suspended graphene.
+            Figure \ref{'fig:sem'} shows scanning electron microscope (SEM) micrographs of substrates and
+            graphene devices produced by this process.
+            
+            \begin{figure}
+            \centering
+            \includegraphics[width=0.7\columnwidth]{images/resultsanddiscussion/strainarraypaper/Figure2}
+            \caption{SEM micrographs of substrates prepared by this method. 
+            (A) SiO$_2$ pillars before the BOE etch. The scale bar is 1$\mu$m.
+            (B) After the BOE dip the SiO$_2$ pillars are sharpened into cones with a tip diameter of less than 10 nm.
+            The scale bar is 1 $\mu$m. Inset: A single sharpened cone. The scale bar is 100 nm.
+            (C) For tight strain array spacings the graphene is suspended on the pointed tips of the substrate features.
+            Here the substrate is visible through rips in the graphene. The scale bar is 500 nm.
+            (D) After transfer the graphene is patterned in a Hall bar geometry. The six triangular features are Ti/Au
+            electrical leads. The scale bar is 20 $\mu$m.}
+            \label{'fig:sem'}
+            \end{figure}
+            
+    \subsection{Optical measurements of strain}
+    
+            \begin{figure*}
+            \centering
+            \includegraphics[width=\columnwidth]{images/resultsanddiscussion/strainarraypaper/Figure3}
+            \caption{Raman peak positions for graphene on micropatterned and flat substrates. 
+                (A-B) Raman G and 2D peak positions extracted from a raster scan of graphene on
+                strain array and flat substrates for array spacings from 300nm to 700 nm. The 
+                data for the flat substrates is collected separately for each device to account for
+                the varying residual doping present in each sample.
+                (C) Raman G peak position vs. 2D peak position for graphene on a flat substrate
+                and a 700 nm-spaced strain array substrate. The black dashed line shows the ratio 
+                $r = \frac{\Delta \, \omega_\text{2D}}{\Delta \, \omega_\text{G}}$ expected for shifts due to
+                strain, and the purple dotted line shows the ratio expected for shifts due to doping.
+                The two lines intersect at the expected peak positions for undoped, unstrained graphene.
+                }
+            \label{'fig:raman'}
+            \end{figure*}
+            
+            Optical measurements of graphene devices fabricated on substrates prepared by the process described above
+            confirm the presence of strain. Raman measurements are collected in a raster pattern across a 
+            20 $\mu$m  $\times$ 20 $\mu$m area with a measurement spot size of 350 nm. 
+            At each raster point the Raman G and 2D peak positions are extracted\cite{ferrari2006raman}. 
+            Figures \ref{'fig:raman'}A and \ref{'fig:raman'}B summarize the extracted positions 
+            of the Raman G and 2D peaks, respectively, for graphene on strain array and flat substrates.  
+            
+           
+            Both the G and 2D peaks of graphene on the patterned 
+            substrates display shifted peak positions relative to graphene on a flat substrate. 
+            This shift increases with increasing strain array spacing and displays a qualitative jump
+            for spacings above 600nm. We attribute this jump to a 
+            snap-through transition\cite{gill2015mechanical, scharfenberg2012observation}
+            in the adhesion of the graphene to the substrate: for spacings below 600 nm the graphene is suspended
+            in the entire strain array region, while for spacings above 600nm the graphene adheres to the substrate
+            except in the immediate vicinity of a strain array pillar. The partial delamination
+            present in the sparse strain array samples
+            produces strain in the graphene which generates the shifted Raman peak positions.
+            
+            
+            Doping from charge impurities in the substrate is also known to 
+            shift Raman peak positions in graphene\cite{reina2008large, casiraghi2007raman}, however the ratio 
+            \begin{equation}
+                r = \frac{\Delta \, \omega_\text{2D}}{\Delta \, \omega_\text{G}}
+            \end{equation}
+            (where $\Delta \, \omega$ is the shift in a Raman peak position relative to its intrinsic value)
+            differs between the two mechanisms \cite{lee2012optical}. 
+            Experimental measurements \cite{zabel2012raman, metzger2009biaxial, ding2010stretchable} 
+            and theoretical results\cite{mohr2010splitting, mohiuddin2009uniaxial} place the ratio for strain 
+            between 2.25 and 2.8 and the ratio for doping at approximately 0.75 \cite{lee2012optical}. 
+            Figure \ref{'fig:raman'}C shows the extracted Raman G and 2D peak positions for a representative
+            strain array sample having a spacing of 700 nm,
+            along with lines corresponding to $r_\text{strain}$ (dashed) and $r_\text{doping}$ (dotted). 
+            The difference between the strain array and flat graphene samples lies along $r_\text{strain}$ thus we
+            attribute the shifted peak positions to the effect of strain in the graphene.
+            
+            \begin{figure*}
+            \centering
+            \includegraphics[width=\columnwidth]{images/resultsanddiscussion/strainarraypaper/Figure4_1}
+            \caption{
+                Longitudinal resistance $R_\text{xx}$ of a graphene device fabricated on (A) a 750nm-spaced
+                strain array substrate and (B) a flat substrate as a function of gate voltage and magnetic field. 
+                The color scale is measured in k$\Omega$.
+                (C) The same data as in (A) with a linear background $R_\text{background} = m V_g + b$ subtracted.
+            }
+            \label{'fig:transport'}
+            \end{figure*}
+            
+    \subsection{Magneto-transport measurements of quasi-bound states}
+            
+            Figures \ref{'fig:transport'}A and \ref{'fig:transport'}B show the results of magneto-transport 
+            measurements performed at 250 mK on a 750 nm-spaced strain array device and a flat control device, respectively.
+            The Dirac point for both devices is located at approximately 40 V; this reflects both the residual doping
+            from the fabrication process as well as the reduced gate capacitance of the thicker-than-normal SiO$_2$ dielectric layer.
+            Qualitative differences between the strain array and flat devices are apparent: 
+            the unstrained control device displays the onset of a typical Landau level fan pattern\cite{bolotin2009observation}, 
+            however the strain array device displays several resistance maxima not present in the control device.
+            Figure \ref{'fig:transport'}C shows the same data as Figure \ref{'fig:transport'}A with a linear background 
+            $R_\text{background} = m V_g + b$ subtracted; several additional local maxima are visible in the low gate voltage region.
+            
+            We attribute these features to the presence of local variations in the potential induced by the strain array substrate.
+            In the vicinity of each pillar the graphene is locally delaminated; this delamination alters the 
+            effective gate capacitance by including a region of vacuum in series with the SiO$_2$ dielectric layer.
+            The local variation in the gate capacitance creates a corresponding variation in the potential,
+            effectively creating a circular, smoothly varying potential barrier, e.g. a quantum dot.
+            Carriers in graphene cannot be confined electrostatically, as massless particles governed by the Dirac equation
+            (in the low energy limit)
+            they display Klein tunneling\cite{katsnelson2006chiral,young2009quantum}.
+            However, previous work has shown that circular potential barriers can create pseudo-bound states in 
+            graphene\cite{silvestrov2007quantum,matulis2008quasibound,hewageegana2008electron,chen2007fock, heinisch2013mie}.
+            Moreover, smoothly varying potential barriers like those present here have been shown to be most effective
+            in creating quasi-bound states\cite{chen2007fock}.
+            We note that the spacing of the strain array, and thus the delamination regions is greater than the coherence length
+            in this sample, so the behavior is not due to superlattice effects.
+            
+            This analysis is corroborated by both the energy and field scales of the observed features. 
+            Considering first the field scale,
+            previous work\cite{heinisch2013mie} has shown that the scattering properties of
+            quantum dots in graphene depend on the size of the dot:
+            for small dots forward scattering is strongly suppressed while large dots can focus
+            carriers and enhance conductivity.
+            In the presence of a magnetic field, we take the cyclotron radius to be the relevant length scale:
+            \begin{equation}
+                r_c = \frac{v_F m^*}{e B} = \frac{\hbar \sqrt{n \pi}}{e B}
+            \end{equation}
+            With a carrier density of $10^{11}$ cm$^{-2}$ and a field of 1 T corresponding the the field 
+            at which the transport features disappear 
+            we find a cyclotron radius of 40 nm and thus a characteristic length of 80 nm.
+            This is in excellent agreement with the 100 nm diameter of the strain array pillars
+            and the resulting local delamination regions.
+            
+            Considering next the energy scale, the features in the transport data are spaced approximately 5V apart.
+            The change in the Fermi energy in graphene for a given change in gate voltage is given by
+            \begin{equation}
+                \Delta E_F = e \cdot \alpha \cdot \Delta V_g
+            \end{equation}
+            where $\alpha = C_{bg} / C_Q$ is the capacitive lever arm of the back-gate. The capacitance of the backgate $C_{bg}$
+            is that of a SiO$_2$ parallel plate capacitor with an area of 20 $\mu$m$^2$ and a separation $d$ of 500nm.
+            The quantum capacitance of the graphene sheet is given by $C_Q = e^2 \cdot \rho(E_F)$ \cite{fang2007carrier}
+            (in the low temperature limit where $E_F \gg kT$). The density of states $\rho$ is in turn given by \cite{CastroNeto2009}
+            \begin{equation}
+                \rho(E) = \frac{g_s g_v}{2 \pi} \frac{A_c}{(\hbar v_F)^2} |E|   
+            \end{equation}
+            where $A_c$ is the area of one unit cell in graphene, $g_s = g_v = 2$ are the spin and valley degeneracy
+            factors, and $v_F = 1 \times 10^6 $ m/s is the Fermi velocity in graphene.
+            Calculating a value for $\rho$ (and thus $C_Q$ and ultimately $\Delta E_F$) 
+            requires that we know the Fermi energy; we can extract
+            a value for the Fermi energy from the sheet carrier density via
+            \begin{equation}
+                n(E_F) = \int_{0}^{\infty} \rho(E) f(E) dE
+            \end{equation}
+            where $f(E) = (1 + \text{exp}[(E - E_F) / kT])^{-1}$ is the Fermi-Dirac distribution. For a carrier density
+            of $10^{11}$ cm$^{-2}$ this gives a Fermi energy of 37 meV, a quantum capacitance of 2.6 pF,
+            and thus an energy scale for the observed transport features of approximately 40 meV.
+            
+            For a parabolic potential of the form $V = − (x/x_0)^2 U/2$
+            theoretical results \cite{silvestrov2007quantum} give the following expression for the energy scale of the
+            quasi-bound states:
+            \begin{equation}
+                E = \frac{\hbar v_F}{\xi} \;\;\; \text{with} \;\;\; \xi = \left[ \frac{\hbar v_F x_0^2}{U} \right]^{1/3}.
+            \end{equation}
+            For the experimental results described here we take $x_0=25\text{nm}$ to be half the radius of the
+            strain features, and $U$ to be the change in potential created by the locally varying gate capacitance
+            \begin{equation}
+                U = e \cdot V_g \cdot (\alpha_\text{pillar} - \alpha_\text{flat}).
+            \end{equation}
+            The capacitive lever for the flat region $\alpha_\text{flat}$ remains the same as above, and we model
+            the capacitance of the pillar region as cylinder of air in series with the SiO$_2$ substrate.
+            The cylinder of air has radius $x_0$ and height 100nm, where the latter figure
+            is half the height of the strain array features on the substrate. Taking $V_g = 22.5\text{V}$ 
+            as the midpoint of the region of interest we find a predicted energy scale of 57 meV, in
+            good agreement with our experimental results.
+            
+            We note that the energy scale of the quasi-bound states depends on the height of the 
+            potential barrier as $E \propto U^{1/3} $. The height of the potential barrier depends 
+            in turn on the magnitude of the applied gate voltage as $ U \propto V_g$. 
+            The gate voltage in our measurements varies by a factor of two in the region of interest,
+            and so we expect the theoretically predicted energy scale to vary by a factor of $2^{1/3}$
+            over the course of the measurement.
+            
+            
+    \subsection{Summary}
+    
+            In summary, we describe a fabrication procedure for producing graphene devices on
+            substrates having an array of strain-generating features and we report experimental signatures
+            caused by these strain-generating features. We find that the spacing of the strain array features
+            determines the adhesion behavior of the graphene, and that for large spacings the partial
+            delamination creates strain in the graphene which we observe using optical measurements. 
+            Finally, we find that magneto-transport measurements
+            display features consistent with the presence of a locally varying potential, which we attribute to the 
+            variable gate capacitance induced by the local graphene delamination. 
+            Through careful considerations of the strain array spacing and pillar height
+            this technique can be adapted to length scales on the order of the coherence length in
+            graphene, thereby offering a novel method to explore superlattice and strain effects in graphene.
+            
 
 
 \chapter{Summary and conclusions}
@@ -1744,8 +2091,41 @@ S.P. acknowledges support from the Army Research Office under grant W911NF-14-1-
 
 \chapter{Device Fabrication Procedures}
 \label{appendix:fab}
+
 \section{Growing CVD graphene}
+
+    Begin with 99.999\% pure copper foil (Alfa Aesar part \#10950) cut into squares which are
+    approximately 2 cm $\times$ 2 cm. Place at most three such squares of copper foil
+    in a quartz boat, and slide the boat to the middle of the CVD oven. It is important
+    to accurately center the foil in the furnace so that the temperature at the foil is as
+    close as possible to the temperature set by the furnace, which is measured at the center.
+    Seal the CVD tube, and pump on it for 20 minutes. Confirm that the the H$_2$ flow rate 
+    is set to to 17 sccm and the CH$_4$ flow rate is set to 60 sccm, then turn off the CH$_4$
+    (but leave the H$_2$ flowing). Set the CVD oven to 1000 C, close the lid, and wait for the
+    system to reach 1000 C. Once the system is at 1000 C allow the copper foil to anneal for
+    one hour. Next turn on the CH$_4$ flow. Exactly 20 minutes after turning on the CH$_4$
+    open the CVD oven and allow the system to cool. Once the system reaches 200 C turn off
+    both gases. Finally, once the system reaches 100 C shut off the pump and remove the 
+    quartz boat from the CVD oven. After removing the copper foil pieces, spin coat PMMA 950 A4
+    at 3000 rpm, 1000 rpm / s acceleration for 30 seconds. Allow the PMMA to dry in air without
+    baking (ideally overnight) and then RIE the non-PMMA coated side with 20 sccm O$_2$, 100 W 
+    at 200 mTorr for 60 seconds.
+    
 \section{Graphene on flexible substrates}
+
+        The devices were fabricated using a modified transfer
+        printing process, similar to that described in Ref \cite{Kim2009}.
+        Single-layer graphene was grown using established chemical vapor deposition
+        (CVD) techniques \cite{Li2009}, and then transferred to a copper-coated silicon
+        wafer where it was patterned using photolithography and reactive ion etching.
+        Next, a piece of PDMS was mechanically pressed onto the silicon wafer, and the
+        copper was then etched to leave patterned graphene on the PDMS
+        substrate\cite{Lee2010}. Raman spectroscopy was used to confirm the presence of
+        graphene on the PDMS. The shape of the Raman 2D
+        peak\cite{Ferrari2006}, as well as subsequent AFM measurements verified the
+        single-layer character of the graphene. Finally, shadow-mask evaporation was
+        used to deposit Ti/Au contact pads.
+
 \section{Graphene on ferroelectric substrates}
 
 Substrates were prepared by pulsed-laser deposition: strontium titanate (SrTiO$_3$) substrates were first coated with 20 nm of strontium ruthenate (SrRuO$_3$) followed by 120 nm of (001)-oriented lead zirconium titanate (PbZr$_{0.2}$Ti$_{0.8}$O$_3$). The details of the substrate fabrication are discussed in Refs. 
@@ -1757,6 +2137,38 @@ Finally, electrical leads were defined in a four-point measurement configuration
 
 \section{Graphene on strain array substrates}
 
+            First an array of copper circles is deposited, using standard electron-beam lithography and evaporation techniques, 
+            on a silicon chip covered with a 1000 nm layer of thermal oxide. 
+            The thick oxide layer is necessary because subsequent etching steps remove several hundred nanometers of oxide, 
+            which would completely strip the oxide layer of a chip with the standard 300 nm of SiO$_2$.
+            The deposited copper is then used as a mask in a reactive ion etching 
+            (RIE) step to produce cylindrical pillars in the SiO$_2$ layer. 
+            For the devices described here the etch was performed in 
+            a PlasmaLab Freon RIE at 35 mtorr for 10 minutes 
+            using 100 W of incident power and 70 sccm of CF$_4$. 
+            The RIE etch time and the diameter of the deposited copper mask circles together 
+            define the aspect ratio of the resulting 
+            pillars. For these devices we use a diameter of 100 nm, and the 10 minute etch 
+            time gives a height of approximately 200 nm.
+            After the etch, the copper mask is removed by immersing the chip 
+            in a 0.1M solution of ammonium persulfate for several hours. Finally, the chip is dipped in buffered oxide etchant 
+            (6:1 40\% NH$_4$F : 49\% HF) to sharpen the SiO$_2$ pillars produced during the RIE step into pointed, conical shapes. 
+            The BOE dip time is an important parameter which depends on the initial diameter of the pillars; for the the devices
+            described here BOE was found to etch the tip of the pillars at a constant rate of approximately 2 nm/s. 
+            
+            Graphene devices are fabricated on substrates prepared by this method using a modified wet-transfer process.
+            First Ti/Au (5 nm/30 nm) leads and contact pads are defined and deposited using 
+            electron-beam lithography and evaporation. 
+            Next, a monolayer of graphene is grown using established chemical vapor deposition techniques\cite{Li2009}. 
+            The graphene is then transferred to the strain array substrate using standard polymer-assisted wet-transfer 
+            techniques\cite{li2009transfer}. The same polymer layer used to transfer the graphene is then used as a 
+            resist in an electron-beam lithography step. Next the exposed graphene is removed using a reactive ion etch 
+            (100 W, 50 mtorr, 20 sccm O$_2$, 30 s), yielding graphene in a Hall bar configuration. Finally the remaining 
+            polymer resist is dissolved in acetone and the chip is dried in a critical point drying apparatus. 
+            The critical point drying is necessary because for certain array spacings the graphene remains suspended between
+            strain features, and when the device is allowed to dry in air the surface tension 
+            of the evaporating solvent tears the suspended graphene.
+ 
 \chapter{Python Measurement Code}
 
 During the course of this research I became frustrated with the existing instrument control programs
@@ -1872,25 +2284,31 @@ In the rest of this section I describe the process used to create these drivers.
     Below I demonstrate how to create an instance of the \texttt{GPIBInstrument} class for 
     an instrument having a GPIB address of 14. Note that this tutorial closely follows the 
     PyVISA documentation, available at the link given above.
-    \begin{verbatim}
+    \begin{minted}[
+    baselinestretch=1,
+    frame=single
+    ]{python}
     import visa
     
     GPIB_addr = 14
     
     rm = visa.ResourceManager()
     my_instrument = rm.open_resource('GPIB0::{}::INSTR'.format(GPIB_addr))
-    \end{verbatim}
+    \end{minted}
     We can now use this instance of the \texttt{GPIBInstrument} class to communicate with our SR830.
     In this case we will write two functions, one for each of the commands we enumerated above.
     Note that both commands require the existence of the \texttt{my\_instrument} variable which
     we created in the previous code block.
-    \begin{verbatim}
-        def set_frequency(my_instrument, freq):
-            my_instrument.write('FREQ {}'.format(freq))
-            
-        def get_frequency(my_instrument):
-            return my_instrument.query('FREQ?')
-    \end{verbatim}
+    \begin{minted}[
+    baselinestretch=1,
+    frame=single
+    ]{python}
+    def set_frequency(my_instrument, freq):
+        my_instrument.write('FREQ {}'.format(freq))
+        
+    def get_frequency(my_instrument):
+        return my_instrument.query('FREQ?')
+    \end{minted}
     Now we can use the functions defined above to get or set the frequency of the SR830.
     
     \subsubsection*{Collect the functions into a class}
@@ -1898,18 +2316,21 @@ In the rest of this section I describe the process used to create these drivers.
     The final step is to collect the functions for a given instrument into a python class for that instrument.
     The rationale here is that collecting functions into a class allows us to more logically track multiple
     instruments. This grouping can be accomplished as follows:
-    \begin{verbatim}
-        class SR830():
-        
-            def __init__(self, GPIB_addr):
-                self.instrument = rm.open_resource('GPIB0::{}::INSTR'.format(GPIB_addr))
-                
-            def set_frequency(self, freq):
-                self.instrument.write('FREQ {}'.format(freq))
-                
-            def get_frequency(self):
-                return self.instrument.query('FREQ?')
-    \end{verbatim}
+    \begin{minted}[
+    baselinestretch=1,
+    frame=single
+    ]{python}
+    class SR830():
+    
+        def __init__(self, GPIB_addr):
+            self.instrument = rm.open_resource('GPIB0::{}::INSTR'.format(GPIB_addr))
+            
+        def set_frequency(self, freq):
+            self.instrument.write('FREQ {}'.format(freq))
+            
+        def get_frequency(self):
+            return self.instrument.query('FREQ?')
+    \end{minted}
     The code above uses the standard python class definition syntax; for an explanation of that syntax see
     the python documentation.
     
@@ -1941,7 +2362,55 @@ In the rest of this section I describe the process used to create these drivers.
     
     
 \section{Example measurement programs}
-\subsection{Gate-sweep Example}
+
+These drivers are meant to be used interactively, ideally in the Jupyter notebook environment
+\href{http://jupyter.org/}{(\textbf{link})}. 
+Briefly, Jupyter is a browser based programming environment. The central feature of Jupyter is the use of `notebooks' 
+which combine text, plotting capabilities, and code. 
+The labdrivers project contains several example Jupyter notebooks for common measurements, which are available 
+\href{https://github.com/masonlab/labdrivers/tree/master/example_nbs}{\textbf{here}}.
+A subset of those examples are reproduced here as examples of how the drivers can be used.
+
+\newpage
+\subsection{IV-sweep Example}
+
+This example performs a IV-sweep measurement using the DAQ to both source the voltage and measure the current.
+\begin{minted}[
+baselinestretch=1,
+frame=single
+]{python}
+    
+import numpy as np
+import matplotlib.pyplot as plt
+from labdrivers.ni import bnc2110
+
+daq = bnc2110('Dev1')
+
+# define some parameters
+v_min = -10E-3
+v_max = 30E-3
+v_step = 1E-3
+
+voltages = np.arange(v_min, v_max, v_step)
+readings = []
+
+for volt in voltages:
+
+    # set the DAQ output
+    daq.setVoltageOutput('ao1', volt)
+    
+    # take a measurement
+    data_pt = daq.readCurrentInput('ai1')
+    
+    readings.append(data_pt)
+    
+# plot the results
+plt.plot(voltages, readings)
+plt.xlabel('Volts')
+plt.ylabel('Amps')
+
+\end{minted}
+
 \subsection{Field-sweep Example}
 \subsection{Sheet Resistance Example}
 
@@ -1954,7 +2423,7 @@ In the rest of this section I describe the process used to create these drivers.
 %\addbibresource{pztpaper.bib}
 %\addbibresource{PrelimPaper.bib}
 %\addbibresource{thesis.bib}
-\bibliography{rippingpaper,pztpaper,PrelimPaper,thesis}
+\bibliography{rippingpaper,pztpaper,pztpaper-old,PrelimPaper,thesis,strainarray}
 
 
 \end{document}
