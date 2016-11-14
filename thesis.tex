@@ -6,6 +6,7 @@
 \usepackage[letterpaper, margin=1in]{geometry}
 \usepackage{graphicx}
 \usepackage{amsmath}
+\usepackage{gensymb}
 \usepackage{braket}
 
 % for code blocks
@@ -381,13 +382,16 @@ I wouldn't be where I am without all their love and support and good advice (loo
         \begin{figure}
             \centering
             \includegraphics[width=0.5\textwidth]{images/background/pseudospin.png}
+            \includegraphics[width=0.2\textwidth]{images/background/klein_angle.png}
             \caption[Klein tunneling in graphene]{
-            Band structure of carriers in graphene incident on a potential barrier. 
+            Left: Band structure of carriers in graphene incident on a potential barrier. 
             The color (red / teal) of
             each line indicates the sublattice origin, i.e. pseudospin, of states at the 
             specified energy and momentum. Notably, 
             positive-momentum electron states have the same pseudospin as negative-momentum 
             hole states.
+            Right: Transmission probability as a function of angle of incidence. The red and blue
+            curves correspond to different energies of the incident charge carrier.
             Adapted from \cite{katsnelson2006chiral}.
             }
             \label{fig:pseudospin}
@@ -399,7 +403,14 @@ I wouldn't be where I am without all their love and support and good advice (loo
             \left|A'\right|^2 &= 0
         \end{split}
         \end{align}
-        and so we have perfect transmission and no reflection.
+        and so we have perfect transmission and no reflection. Note that the analysis above is for normally
+        incident carriers; a similar analysis for carriers incident at an angle $\phi$ yields a transmission
+        probability of 
+        \begin{equation}
+            T = \frac{\cos^2{\phi}}{1 - \cos^2{(q_x D)} \sin^2{\phi}}
+        \end{equation}
+        where $D$ is the width of the barrier and $q_x$ is the x-component of the wavevector in the 
+        barrier region \cite{katsnelson2006chiral}; this angular dependence is shown in Figure \ref{fig:pseudospin}.
         
         Klein tunneling has been observed in graphene
         by both indirect \cite{Huard2007, stander2009evidence} and direct \cite{young2009quantum} measurements. 
@@ -460,6 +471,8 @@ I wouldn't be where I am without all their love and support and good advice (loo
         of the doping present in the device in the absence of any gate voltage, as shown in Figure
         \ref{fig:gate_sweeps}.
        
+        \subsubsection*{PN junctions}
+        
         It is also possible to produce separate, distinctly doped regions in
         graphene devices through the use of multiple gate electrodes. An example device configuration
         is shown in Figure \ref{fig:multigate_pn} \cite{williams2007quantum}. In such devices
@@ -469,7 +482,7 @@ I wouldn't be where I am without all their love and support and good advice (loo
         Transport measurements on these devices display results
         similar to the conductance profile shown in Figure \ref{fig:gate_sweeps}, however
         instead of a single minimum graphene p-n junction devices will show two distinct
-        minima. This is because the charge neutrality points are offset between the two doping
+        minima. This is because the charge neutrality points are offset in the two doping
         regions, and as the Fermi level is swept it passes through the two CNPs separately.
         
             \begin{figure}
@@ -484,6 +497,29 @@ I wouldn't be where I am without all their love and support and good advice (loo
             }
             \label{fig:multigate_pn}
             \end{figure}
+            
+        \subsubsection*{Quasi-bound states}
+        
+        External gates can also be used to create one dimensional, quantum dot-like potential profiles in graphene,
+        however the resulting electrical behavior differs from standard quantum dot dynamics.
+        As described above carriers in graphene display Klein tunneling, and thus cannot be completely confined
+        by a potential barrier. The manifestation of Klein tunneling depends on the angle at which carriers
+        are incident on the potential boundary (see Figure \ref{fig:pseudospin}); for angles far from 0 degrees
+        transmission through the potential barrier is neither perfect (as in the Klein paradox) nor 
+        exponentially decaying (as in standard, non-relativistic quantum mechanics).
+        
+        In this case (when incident at a non-zero angle on a potential barrier of the type that normally creates
+        a quantum dot) carriers in graphene instead form quasi-bound states 
+        \cite{pereira2006confined, silvestrov2007quantum, matulis2008quasibound, nguyen2009quasi}.
+        These states have been considered analytically for a variety of confining potentials, 
+        e.g. for a confining potential of the form
+        \begin{equation}
+            V = -(x/x_0)^2 U / 2
+        \end{equation}
+        the characteristic energy of the quasi-bound states is given by \cite{silvestrov2007quantum}
+        \begin{equation}
+            E = \frac{\hbar v_F}{\xi} \;\;\; \text{with} \;\;\; \xi = \left[ \frac{\hbar v_F x_0^2}{U} \right]^{1/3}.
+        \end{equation}
         
         \subsection{Chemical adsorbates}
        
@@ -511,7 +547,7 @@ I wouldn't be where I am without all their love and support and good advice (loo
         thermal \cite{pirkle2011effect, lin2011graphene} and current \cite{bolotin2008ultrahigh}
         annealing in vacuum. Current annealing requires that the graphene be suspended, and
         must be done cautiously so as not to destroy the sample. However, when successful current annealing produces
-        samples of extraordinarily high quality, as measured by mobility (\~200,000 cm$^2$ / V s \cite{bolotin2008ultrahigh});
+        samples of extraordinarily high quality, as measured by mobility ($\sim$200,000 cm$^2$ / V s \cite{bolotin2008ultrahigh});
         note that the high mobility is largely due to the suspension of the graphene, however the 
         cleaning is an important step.
         
@@ -527,7 +563,7 @@ I wouldn't be where I am without all their love and support and good advice (loo
         Solvent-based cleaning techniques have reported significant success in removing residual dopants 
         \cite{liang2011toward} as shown in Figure \ref{fig:chemical_doping}. This efficacy comes at
         the cost of increase hazard to the researcher however;
-        such processes typically involve hazardous, volatile, and / or chlorinated solvents (e.g. HF).
+        such processes typically involve hazardous, volatile, and/or chlorinated solvents (e.g. HF).
         
             \begin{figure}
             \centering
@@ -548,17 +584,32 @@ I wouldn't be where I am without all their love and support and good advice (loo
             \end{figure}
     
         \subsection{Substrate effects in graphene}
-        The substrate used to support graphene strongly affects electrical transport in the graphene. Scattering by surface phonons at the SiO$_2$ interface has been shown to limit the room temperature mobility of graphene \cite{Chen2008}, and scattering by charge impurities is responsible for the asymmetry between electron and hole conductivities \cite{Hwang2007}. Charge impurities can also create inhomogeneities in graphene's local carrier density, which are thought to be responsible for the saturation of conductivity at low carrier densities \cite{Hwang2007}. Substrate features can also cause delamination of the graphene from the substrate; previous work has observed a snap-through transition for multilayer graphene on corrugated substrates \cite{Scharfenberg2012} as well as the formation of network of wrinkle delaminations on a substrate decorated with silica nanoparticles \cite{Yamamoto2012}.
+        
+        The substrate used to support graphene strongly affects electrical transport in the graphene. 
+        Scattering by surface phonons at the SiO$_2$ interface has been shown to limit the room 
+        temperature mobility of graphene \cite{Chen2008}, and scattering by charge impurities is 
+        responsible for the asymmetry between electron and hole conductivities \cite{Hwang2007}. 
+        Charge impurities can also create inhomogeneities in graphene's local carrier density, 
+        which are thought to be responsible for the saturation of conductivity at low carrier 
+        densities \cite{Hwang2007}. Substrate features can also cause delamination of the graphene 
+        from the substrate; previous work has observed a snap-through transition for multilayer 
+        graphene on corrugated substrates \cite{Scharfenberg2012} as well as the formation of 
+        network of wrinkle delaminations on a substrate decorated with silica nanoparticles \cite{Yamamoto2012}.
     
         Certain experiments, in an attempt to minimize the effect of the substrate have fabricated 
-        devices using suspended graphene \cite{Bolotin2008}, \cite{Du2008}. In a particularly noteworthy 
+        devices using suspended graphene \cite{bolotin2008ultrahigh}, \cite{Du2008}. In a particularly noteworthy 
         example, the authors of ref \cite{bolotin2008ultrahigh} observed carrier mobilities of up 
         to 200,000 cm$^2$ V$^{-1}$ s$^{-1}$, an order of magnitude greater than the best results for 
-        graphene on silicon substrates, showing that the substrate can have a distinct impact on 
-        graphene's electrical properties. Recently several groups have also begun fabricating graphene 
-        devices on hexagonal boron nitrides (hBN) substrates, where the atomically flat surface, large 
-        bandgap, and similar lattice constant to graphene yield drastically improved electronic 
-        properties compared to samples fabricated on SiO$_2$ substrates \cite {Dean2010}, \cite{Xue2011}.
+        graphene on silicon substrates, showing that the substrate can have a dramatic impact on 
+        graphene's electrical properties. 
+        Another technique used to isolate graphene from the effects of its substrate is encapsulation
+        with hexagonal boron nitride (h-BN). 
+        Hexagonal boron nitride can be exfoliated in a manner similar to graphene; when produced this 
+        way few-layer samples have an atomically flat surface, large 
+        bandgap, and similar lattice constant to graphene. These properties combine to make it
+        an ideal substrate for graphene:
+        devices fabricated on or encapsulated with h-BN display drastically improved electronic 
+        properties compared to samples fabricated on SiO$_2$ substrates \cite{Dean2010, Xue2011}.
     
         Alternatively, strong substrate interactions can also be used to deliberately tune graphene's 
         electrical properties. In particular, functional ferroelectric substrates such as 
@@ -567,7 +618,6 @@ I wouldn't be where I am without all their love and support and good advice (loo
         \ref{fig:GonPZT}. This effect is bidirectional: application of a large bias to the graphene 
         can also flip the polarization of the underlying PZT.
     
-            %\begin{wrapfigure}[25]{R}{0.50\textwidth}
             \begin{figure}
             \centering
             \includegraphics[width=0.35\textwidth]{images/background/ChristophDevice.png}
@@ -576,20 +626,75 @@ I wouldn't be where I am without all their love and support and good advice (loo
             \label{fig:GonPZT}
             \end{figure}
         
+        \subsection{Superlattice effects in graphene}
+        
+        A special class of doping effects occur when graphene is exposed to a periodic potential.
+        Most often the periodic potential is supplied by the substrate, so these effects might also be
+        considered within the broader topic of substrate-dependent effects.
+        
+        
+        focusing
+        
+        moire hofstaddter
+        
+        
         
     \section{Straining graphene}
     
-        \subsection{Graphene's mechanical strength}
+        Graphene's mechanical properties are nearly as exceptional as its electrical properties. It is incredibly
+        strong: experimental results place its breaking strength at $42 \pm 4$ N m$^{-1}$ and its
+        Young's modulus at $1.0 \pm 0.1 $Tpa making it the strongest material ever measured \cite{Lee2008}.
+        Furthermore, when graphene is exposed to strain it displays a variety of unique physical effects depending on the 
+        spatial variation of the applied strain. In this section I summarize previous work concerning these
+        strain-dependent effects.
+        
+        \subsection{Observing strain via Raman spectroscopy}
     
+        which oscillation modes give which raman peaks
+        how strain alters these modes
+        how doping also alters these modes
+        
         \subsection{Band gap engineering}
-        Several research groups have considered, both experimentally \cite{Ni2008}, \cite{Kim2009}, \cite{Mohiuddin2009}, \cite{Zang2013} and theoretically \cite{Pereira2009}, \cite{Low2011}, the effect of uniaxial strain on graphene. A number of results are consistent between groups. First, the effect of uniaxial strain on the electronic properties of graphene can be observed through Raman spectroscopy; in ref \cite{Ni2008} the authors observe shifts in the G and 2D band peaks of -27.8 and -14.2 cm$^{-1}$ / percent strain respectively, confirming the interactivity of strain and graphene's electronic properties as well as offering a method to locally measure the strain applied to graphene.
+        
+        Several research groups have considered, both experimentally \cite{Ni2008}, \cite{Kim2009}, \cite{Mohiuddin2009}, 
+        \cite{Zang2013} and theoretically \cite{Pereira2009}, \cite{Low2011}, the effect of uniaxial 
+        strain on graphene. A number of results are consistent between groups. First, the effect of 
+        uniaxial strain on the electronic properties of graphene can be observed through Raman spectroscopy; 
+        in ref \cite{Ni2008} the authors observe shifts in the G and 2D band peaks of 
+        -27.8 and -14.2 cm$^{-1}$ / percent strain respectively, confirming the interactivity of 
+        strain and graphene's electronic properties as well as offering a method to locally 
+        measure the strain applied to graphene.
     
-        Second, uniaxial strain is predicted to open a gap in the band structure, either by itself at high strains \cite{Pereira2009} or in conjunction with a correlated scalar potential \cite{Low2011}. Experimental work following the latter approach observed an increasing sheet resistivity with decreasing temperature in a graphene device patterned atop lithographically defined corrugations on a SiO$_2$ substrate \cite{Lee2013}. This behavior is indicative of a gap in the band structure, which the authors calculate to be approximately 200 meV. In this case the periodic potential comes from the periodic, substrate-induced doping in the regions not covered by the corrugations.
+        Second, uniaxial strain is predicted to open a gap in the band structure, either by 
+        itself at high (>20\%) strains \cite{Pereira2009} or in conjunction with a correlated scalar 
+        potential \cite{Low2011}. Experimental work following the latter approach observed an 
+        increasing sheet resistivity with decreasing temperature in a graphene device patterned 
+        atop lithographically defined corrugations on a SiO$_2$ substrate \cite{Lee2013}. This 
+        behavior is indicative of a gap in the band structure, which the authors calculate to be 
+        approximately 200 meV. In this case the periodic potential comes from the periodic, 
+        substrate-induced doping in the regions not covered by the corrugations.
     
         \subsection{Pseudomagnetic fields}
-        Recent work, both theoretical \cite{Guinea2009} and experimental \cite{Levy2010}, \cite{Yan2012} suggests that non-uniform strains in graphene have an effect similar to an applied magnetic field. From a theoretical perspective these strain-induced pseudomagnetic fields stem from a modification of the nearest and next nearest neighbor hopping amplitudes; as the lattice is strained the distances between lattice sites vary, and with them the relevant hopping amplitudes $t$ and $t'$. This strain effect can be modeled by introducing a gauge field vector potential, which has an effect similar to that of a magnetic vector potential field. However, unlike an actual magnetic field a strain-generated pseudomagnetic field has a different sign for charge carriers in the \textbf{K} and \textbf{K'} Dirac points, and therefore does not violate time reversal symmetry \cite{Guinea2009}.
+        
+        Recent work, both theoretical \cite{Guinea2009} and experimental \cite{Levy2010}, \cite{Yan2012} 
+        suggests that non-uniform strains in graphene have an effect similar to an applied magnetic field. 
+        From a theoretical perspective these strain-induced pseudomagnetic fields stem from a modification 
+        of the nearest and next nearest neighbor hopping amplitudes; as the lattice is strained the distances 
+        between lattice sites vary, and with them the relevant hopping amplitudes $t$ and $t'$. This strain 
+        effect can be modeled by introducing a gauge field vector potential, which has an effect similar to 
+        that of a magnetic vector potential field. However, unlike an actual magnetic field a strain-generated 
+        pseudomagnetic field has a different sign for charge carriers in the \textbf{K} and \textbf{K'} Dirac 
+        points, and therefore does not violate time reversal symmetry \cite{Guinea2009}.
     
-        These pseudomagnetic fields are predicted to be on the order of tens of tesla. Such high fields, in conjunction with graphene's high carrier concentration and mobility, offer the potential to observe a zero field quantum Hall effect. A key requirement in generating pseudomagnetic fields is that the strain profile be anisotropic; to date experimental efforts have focused on strain created by nanobubble \cite{Levy2010} or nanoridge \cite{Yan2012} defects. However defect-oriented experimental design schemes yield extremely small areas of graphene under strain, and as such the strain-related physics is only accessible through scanning tunneling microscopy (STM) measurements. 
+        These pseudomagnetic fields have been observed experimentally; field magnitudes up to 
+        300 T \cite{levy2010strain, yan2012observation} have been reported.
+        Such high fields, in conjunction with graphene's high carrier concentration and mobility, 
+        offer the potential to observe a zero field quantum Hall effect. A key requirement in 
+        generating pseudomagnetic fields is that the strain profile be anisotropic; to date 
+        experimental efforts have focused on strain created by nanobubble \cite{Levy2010} 
+        or nanoridge \cite{Yan2012} defects. However defect-oriented experimental design 
+        schemes yield extremely small areas of graphene under strain, and as such the 
+        strain-related physics is only accessible through scanning tunneling microscopy (STM) measurements. 
 
 
 
@@ -2086,6 +2191,12 @@ S.P. acknowledges support from the Army Research Office under grant W911NF-14-1-
 \chapter{Summary and conclusions}
 \section{Summary of results}
 \section{Future work}
+
+    \subsection{Superlattice effects in strain array substrates}
+    
+    \subsection{Strain effects in strain array substrates}
+        \subsubsection*{Rounded pillars}
+        \subsubsection*{Closer spacings}
 
 \begin{appendices}
 
