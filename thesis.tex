@@ -6,7 +6,6 @@
 \usepackage[letterpaper, margin=1in]{geometry}
 \usepackage{graphicx}
 \usepackage{amsmath}
-\usepackage{gensymb}
 \usepackage{braket}
 
 % for code blocks
@@ -165,7 +164,7 @@ I wouldn't be where I am without all their love and support and good advice (loo
     This unique structure gives graphene a variety of interesting characteristics, however a complete 
     description of its attributes is beyond the scope of this report. Those properties of graphene 
     which are relevant to the research comprising this thesis are summarized below; for a more complete description 
-    of graphene see one of the existing review articles \cite{Geim2007}, \cite{CastroNeto2009}. 
+    of graphene see one of the existing review articles \cite{geim2007rise}, \cite{CastroNeto2009}. 
     Here I discuss graphene's band structure and several relevant consequences, namely 
     the massless Dirac fermion character of charge carriers in graphene, 
     the unique variant of the quantum Hall effect these carriers give rise to, 
@@ -478,7 +477,8 @@ I wouldn't be where I am without all their love and support and good advice (loo
         is shown in Figure \ref{fig:multigate_pn} \cite{williams2007quantum}. In such devices
         the Fermi level can be tuned separately in each region by adjusting the relative
         gate voltages applied to each gate electrode. This in turn allows the device to
-        be biased into p-n, n-p, n-n, or p-p junctions at will. 
+        be biased into p-n, n-p, n-n, or p-p junctions at will, where p- and n- indicate
+        the species of the carrier in each region. 
         Transport measurements on these devices display results
         similar to the conductance profile shown in Figure \ref{fig:gate_sweeps}, however
         instead of a single minimum graphene p-n junction devices will show two distinct
@@ -501,17 +501,104 @@ I wouldn't be where I am without all their love and support and good advice (loo
         \subsubsection*{Quasi-bound states}
         
         External gates can also be used to create one dimensional, quantum dot-like potential profiles in graphene,
-        however the resulting electrical behavior differs from standard quantum dot dynamics.
+        however the resulting electrical behavior differs from standard quantum dot dynamics. Here I begin with
+        a description of standard quantum dot physics, and then elaborate on the different effects present in graphene.
+        
+        A quantum dot is a one dimensional confined region in a conducting or semiconducting material
+        where the confinement determines the character of electrical transport through the region. 
+        This confinement can be created electrostatically with
+        spatially defined potential barriers, or physically by removing portions of the conducting material.
+        Transport through quantum dots is governed by three energy scales: the energy of thermal
+        fluctuations $E=k_B T$, the Coulomb charging energy required to add a charge to the dot region $E = e^2/C$,
+        and the energy required to populate the next available quantum state in a confined region $E = \Delta_{N+1}$.
+        The thermal fluctuation energy $E = k_B T$ is relevant only as a limit: it must be smaller than
+        the other energy scales in order to observe the unique effects of the confinement. 
+        
+        When the energy of thermal fluctuations is small enough,
+        transport through the quantum dot is determined by the other two energy scales as shown in 
+        Figure \ref{fig:cb_energies}. The relevant feature is the energy level of the next available quantum dot
+        state in relation to the chemical potentials in the device's electrical leads.
+        When the energy of the next available quantum dot state lies between
+        the chemical potentials of the leads charges can tunnel into and out of the dot and
+        current can flow.
+        When the energy of the next available state does not lie in between the chemical potentials of the leads
+        conductance is suppressed. 
+        By sweeping the Fermi level using an external gate one can sweep the quantum dot energy levels,
+        and thus measure their separation by observing the separation between conductance peaks.
+        
+        %The regularity of the spacing between conductance peaks depends on the energy required to populate
+        %the next available quantum state $\Delta_{N+1}$. For metal quantum dots, where the density of states
+        %is essentially continuous, $\Delta_{N+1}$ is negligible and the conductance peaks are evenly spaced by
+        %the capacitive charging energy $E = e^2/C$. For semiconducting quantum dots however 
+        
+            \begin{figure}
+            \centering
+            \includegraphics[width=0.6\textwidth]{images/background/cb_energies.png}
+            \caption[Coulomb blockade energy levels]{
+            Transport through a quantum dot depends on the energy of the next available state in
+            relation to the chemical potentials in the electrical leads connected to the dot.
+            When the next available state's energy lies between the potentials of each lead (as in \textbf{b})
+            then carriers can tunnel from one lead into the quantum dot and then out to the other lead,
+            yielding a high conductance. When the energy of the next available state does not lie between
+            the potentials of the leads (as in \textbf{a}) then conductance is suppressed. The change
+            in energy between quantum dot states depends on both the capacitive charging energy $E = e^2 / C$
+            and the quantum mechanical energy associated with populating another state $E = \Delta_{N+1}$.
+            Adapted from \cite{cb_lecture07}.
+            }
+            \label{fig:cb_energies}
+            \end{figure}
+ 
+        
         As described above carriers in graphene display Klein tunneling, and thus cannot be completely confined
-        by a potential barrier. The manifestation of Klein tunneling depends on the angle at which carriers
+        by a potential barrier. To describe transport through an electrostatically defined graphene quantum dot
+        the relevant model is thus a scattering, rather than a tunneling, process.
+        Instead of tunneling into a confined region and then tunneling out, carriers incident on an electrostatic
+        graphene quantum dot scatter off the quantum dot region, potentially exciting an internal state of the dot.
+        These excited internal states are the quasibound states which characterize graphene quantum dots
+        \cite{pereira2006confined, silvestrov2007quantum, matulis2008quasibound, nguyen2009quasi}.
+        Note that the appearance of quasibound states is unique to electrostatically defined quantum dots; 
+        quantum dots defined by etching graphene display the dynamics described above.
+        
+        The quasibound states can be understood either as drumhead-type excitations of the confined region \cite{heinisch2013mie},
+        or alternatively as circulating carrier trajectories within the potential region which repeatedly 
+        collide with the barrier at non-normal incidence angles \cite{bardarson2009electrostatic}. Recall
+        that the manifestation of Klein tunneling depends on the angle at which carriers
         are incident on the potential boundary (see Figure \ref{fig:pseudospin}); for angles far from 0 degrees
         transmission through the potential barrier is neither perfect (as in the Klein paradox) nor 
         exponentially decaying (as in standard, non-relativistic quantum mechanics).
+        Both interpretations are presented graphically in Figure \ref{fig:qb_states}.
         
-        In this case (when incident at a non-zero angle on a potential barrier of the type that normally creates
-        a quantum dot) carriers in graphene instead form quasi-bound states 
-        \cite{pereira2006confined, silvestrov2007quantum, matulis2008quasibound, nguyen2009quasi}.
-        These states have been considered analytically for a variety of confining potentials, 
+            \begin{figure}
+            \centering
+            \includegraphics[width=0.3\textwidth]{images/background/qb_density.png}
+            \includegraphics[width=0.45\textwidth]{images/background/qb_rays.png}
+            \caption[Quasibound states in graphene quantum dots]{
+            Quasibound states in graphene quantum dots can be interpreted as excited modes of the
+            confined region (left) or as circulating carrier trajectories (right). 
+            In either interpretation the permeability of the potential barrier accounts for
+            the quasibound nature of the states: in the former interpretation the wavefunction
+            does not decay exponentially outside the barrier, and in the latter interpretation
+            the transmission probability is greater than zero for each collision with the boundary.
+            Adapted from \cite{heinisch2013mie} and \cite{bardarson2009electrostatic}.
+            }
+            \label{fig:qb_states}
+            \end{figure}
+        
+        The transport properties of a graphene system containing an electrostatic quantum dot
+        are governed by the mechanics of scattering between the continuous and discrete states
+        present in the unbiased and quantum dot regions, respectively. Theoretical treatments of the
+        problem \cite{heinisch2013mie, bardarson2009electrostatic}
+        proceed using the Mie formalism \cite{mie1908beitrage} for a wave scattering from a sphere 
+        and offer a description of the
+        size and energy dependencies of transport. Briefly, forward scattering, and thus transport,
+        is suppressed when the size of the quantum dot is small and
+        when one of the quasibound states is excited at resonance,
+        i.e. when the energy of the incident carrier matches the energy of a quasibound state.
+        The suppression effect can be considered in terms of a Fano resonance \cite{fano1961effects}:
+        the system contains both continuous and discrete states at the same energy;
+        destructive interference between resonantly scattered and incident states causes the suppression.
+        
+        These quasibound states have been considered analytically for a variety of confining potentials, 
         e.g. for a confining potential of the form
         \begin{equation}
             V = -(x/x_0)^2 U / 2
@@ -535,8 +622,8 @@ I wouldn't be where I am without all their love and support and good advice (loo
         a subject of continuing research 
         \cite{leenaerts2008adsorption, Moser2008, wang2010hysteresis, Wehling2008, Sabio2008}.
         When present, polar dopant molecules like H$_2$O add an additional degree of freedom to a graphene device. 
-        In particular if the doping strength of the molecule depends on its polarization
-        then measurement processes which alter the polarization of the dopant molecule can induce
+        Different orientations of polar dopant molecules can contribute different amounts of doping;
+        measurement processes which alter the polarization of the dopant molecule can thus induce
         additional dynamics in measurements.
         
         In practice graphene is also often inadvertently (and undesirably) doped by the chemicals
@@ -587,8 +674,9 @@ I wouldn't be where I am without all their love and support and good advice (loo
         
         The substrate used to support graphene strongly affects electrical transport in the graphene. 
         Scattering by surface phonons at the SiO$_2$ interface has been shown to limit the room 
-        temperature mobility of graphene \cite{Chen2008}, and scattering by charge impurities is 
-        responsible for the asymmetry between electron and hole conductivities \cite{Hwang2007}. 
+        temperature mobility of graphene \cite{Chen2008}.
+        %, and scattering by charge impurities is 
+        %responsible for the asymmetry between electron and hole conductivities \cite{Hwang2007}. 
         Charge impurities can also create inhomogeneities in graphene's local carrier density, 
         which are thought to be responsible for the saturation of conductivity at low carrier 
         densities \cite{Hwang2007}. Substrate features can also cause delamination of the graphene 
@@ -615,9 +703,16 @@ I wouldn't be where I am without all their love and support and good advice (loo
         electrical properties. In particular, functional ferroelectric substrates such as 
         PbZr$_{0.2}$Ti$_{0.8}$O$_3$ (PZT) have been shown to vary carrier type and density in 
         graphene with varying substrate polarizations \cite{Baeumer2013}, as seen in Figure 
-        \ref{fig:GonPZT}. This effect is bidirectional: application of a large bias to the graphene 
-        can also flip the polarization of the underlying PZT.
-    
+        \ref{fig:GonPZT}. The electric field from the polarized substrate creates a local potential
+        which dopes the graphene in a manner analogous to the doping created by the electric field of a backgate.
+        The direction of the field produced by the substrate depends on the polarization of the ferroelectric,
+        so different substrate polarizations can create different doping conditions.
+        This effect is bidirectional: the application of a large bias to the graphene 
+        can also flip the polarization of underlying ferroelectric substrates. The strength of the 
+        electric field required to reverse the polarization of a ferroelectric material is called
+        the coercive field. If the voltage applied to graphene on top of a ferroelectric produces
+        an electric field greater than the coercive field it will reverse the polarization of the substrate.
+        
             \begin{figure}
             \centering
             \includegraphics[width=0.35\textwidth]{images/background/ChristophDevice.png}
@@ -644,39 +739,44 @@ I wouldn't be where I am without all their love and support and good advice (loo
         Graphene's mechanical properties are nearly as exceptional as its electrical properties. It is incredibly
         strong: experimental results place its breaking strength at $42 \pm 4$ N m$^{-1}$ and its
         Young's modulus at $1.0 \pm 0.1 $Tpa making it the strongest material ever measured \cite{Lee2008}.
-        Furthermore, when graphene is exposed to strain it displays a variety of unique physical effects depending on the 
-        spatial variation of the applied strain. In this section I summarize previous work concerning these
+        Furthermore, when graphene is exposed to strain it displays a variety of unique effects. 
+        In this section I summarize previous work concerning these
         strain-dependent effects.
         
         \subsection{Observing strain via Raman spectroscopy}
+        
+        Raman spectroscopy is often us
     
         which oscillation modes give which raman peaks
         how strain alters these modes
         how doping also alters these modes
         
-        \subsection{Band gap engineering}
-        
-        Several research groups have considered, both experimentally \cite{Ni2008}, \cite{Kim2009}, \cite{Mohiuddin2009}, 
-        \cite{Zang2013} and theoretically \cite{Pereira2009}, \cite{Low2011}, the effect of uniaxial 
-        strain on graphene. A number of results are consistent between groups. First, the effect of 
+        First, the effect of 
         uniaxial strain on the electronic properties of graphene can be observed through Raman spectroscopy; 
         in ref \cite{Ni2008} the authors observe shifts in the G and 2D band peaks of 
         -27.8 and -14.2 cm$^{-1}$ / percent strain respectively, confirming the interactivity of 
         strain and graphene's electronic properties as well as offering a method to locally 
         measure the strain applied to graphene.
-    
-        Second, uniaxial strain is predicted to open a gap in the band structure, either by 
-        itself at high (>20\%) strains \cite{Pereira2009} or in conjunction with a correlated scalar 
-        potential \cite{Low2011}. Experimental work following the latter approach observed an 
-        increasing sheet resistivity with decreasing temperature in a graphene device patterned 
-        atop lithographically defined corrugations on a SiO$_2$ substrate \cite{Lee2013}. This 
-        behavior is indicative of a gap in the band structure, which the authors calculate to be 
-        approximately 200 meV. In this case the periodic potential comes from the periodic, 
-        substrate-induced doping in the regions not covered by the corrugations.
-    
-        \subsection{Pseudomagnetic fields}
         
-        Recent work, both theoretical \cite{Guinea2009} and experimental \cite{Levy2010}, \cite{Yan2012} 
+        \subsection{Uniaxial strain}
+        
+        Several research groups have considered, both experimentally \cite{Ni2008, Kim2009, Mohiuddin2009, 
+        Zang2013} and theoretically \cite{Pereira2009, Low2011}, the effect of uniaxial 
+        strain on graphene.
+        Uniaxial strain is predicted to open a gap in the band structure, either by 
+        itself at high (\textgreater 20\%) strains \cite{Pereira2009} or in conjunction with a correlated scalar 
+        potential \cite{Low2011}. Experimental work following the latter approach 
+        measured the sheet resistivity of a graphene device patterned 
+        atop lithographically defined corrugations on a SiO$_2$ substrate \cite{lee2013modification}.
+        In this case the periodic potential comes from the periodic, 
+        substrate-induced doping in the regions not covered by the corrugations. The authors
+        observed an increasing sheet resistivity with decreasing temperature; this
+        behavior is indicative of a gap in the band structure, which the authors calculate to be 
+        approximately 200 meV. 
+    
+        \subsection{Non-uniaxial strain}
+        
+        Theoretical \cite{Guinea2009} and experimental \cite{Levy2010}, \cite{Yan2012} 
         suggests that non-uniform strains in graphene have an effect similar to an applied magnetic field. 
         From a theoretical perspective these strain-induced pseudomagnetic fields stem from a modification 
         of the nearest and next nearest neighbor hopping amplitudes; as the lattice is strained the distances 
@@ -1444,7 +1544,7 @@ I wouldn't be where I am without all their love and support and good advice (loo
                     Adapted from \cite{guttinger2008coulomb}.
                     Right: The extent of the Coulomb diamond along the two axes can be used to
                     determine the capacitive lever arm of the back gate $\alpha$.
-                    Adapted from 
+                    Adapted from \cite{cb_lecture07}.
                     }
                 \label{fig:cb_diamond}
             \end{figure}
@@ -1624,7 +1724,7 @@ I wouldn't be where I am without all their love and support and good advice (loo
         is relaxed (Fig.\ref{fig:rip-afm}f). The strain values at which we observe micro-rip formation
         are substantially lower than the reported fracture strength of
         graphene\cite{Lee2008}, however the tensile strength of graphene is strongly
-        susceptible to defects such as holes and tears\cite{Lee2013}. Although graphene
+        susceptible to defects such as holes and tears\cite{lee2013high}. Although graphene
         produced by CVD is known to be polydomain, it has been shown that rips in
         graphene do not preferentially follow grain boundaries\cite{Kim2012}. Rather,
         the fabrication procedures used to generate patterned graphene devices on
@@ -1801,13 +1901,6 @@ I wouldn't be where I am without all their love and support and good advice (loo
         precisely this situation, with exciting implications for robust, graphene-based
         electronic devices.
 
-        We thank Scott Maclaren (UIUC MRL/CMM) for technical assistance on this project. This work was
-        supported by NSF grants \#1069076 and \#1129826, NSF-CMMI grant
-        \#1130364 and NSF-NEB grant \#486171, and was carried out
-        in part in the Frederick Seitz Materials Research Laboratory Central
-        Facilities, University of Illinois.
-
-
 
 \section{Graphene on ferroelectric substrates}
 
@@ -1816,7 +1909,7 @@ I wouldn't be where I am without all their love and support and good advice (loo
 
     \subsection{Introduction}
     
-        Graphene is a subject of intense research interest due to the enormous potential of its electronic and mechanical properties\cite{Geim2007}. In particular, p-n junctions in graphene have great potential for both fundamental research and commercial applications, and have been utilized to study the quantum Hall effect \cite{Williams2007, Ozyilmaz2007, Velasco2010} and Klein tunneling\cite{Stander2009, Young2009} as well as to fabricate flexible transistors\cite{Kim2010}. Previous work on p-n junctions in graphene employed multiple electrostatic gates \cite{Meric2008, Williams2007, Ozyilmaz2007, Huard2007, Liu2008, Stander2009, Velasco2009, Velasco2010, Young2009}, charge transfer from the controlled deposition of chemical adsorbates \cite{Farmer2009,Lohmann2009,Brenner2010,Cheng2011,Sojoudi2012,Seo2014,Park2015}, high current-induced charging of trap states in the substrate \cite{Chiu2010}, or periodically poled ferroelectric substrates\cite{Baeumer2015}.
+        Graphene is a subject of intense research interest due to the enormous potential of its electronic and mechanical properties\cite{geim2007rise}. In particular, p-n junctions in graphene have great potential for both fundamental research and commercial applications, and have been utilized to study the quantum Hall effect \cite{Williams2007, Ozyilmaz2007, Velasco2010} and Klein tunneling\cite{Stander2009, Young2009} as well as to fabricate flexible transistors\cite{Kim2010}. Previous work on p-n junctions in graphene employed multiple electrostatic gates \cite{Meric2008, Williams2007, Ozyilmaz2007, Huard2007, Liu2008, Stander2009, Velasco2009, Velasco2010, Young2009}, charge transfer from the controlled deposition of chemical adsorbates \cite{Farmer2009,Lohmann2009,Brenner2010,Cheng2011,Sojoudi2012,Seo2014,Park2015}, high current-induced charging of trap states in the substrate \cite{Chiu2010}, or periodically poled ferroelectric substrates\cite{Baeumer2015}.
 
         In this section we report the fabrication of p-n junctions in graphene deposited on a uniformly poled ferroelectric substrate. The local doping in our devices is accomplished by combining simple modifications to a lead zirconium titanate (PbZr$_{0.2}$Ti$_{0.8}$O$_3$) substrate -- the evaporation of thin SiO$_2$ films in some regions -- with a self-assembled layer of environmental dopants. We find that the PbZr$_{0.2}$Ti$_{0.8}$O$_3$ substrate modulates the doping effect of the adsorbed dopants: devices are exposed to ambient conditions after fabrication whereupon experimental observations confirm both the presence of adsorbed dopants (likely primarily H$_2$O) and their enhanced doping effect on the PbZr$_{0.2}$Ti$_{0.8}$O$_3$ relative to the SiO$_2$.
         Furthermore, we demonstrate that the PbZr$_{0.2}$Ti$_{0.8}$O$_3$ substrate induces a hysteresis in the environmental doping which can be used to activate and deactivate the doping via the application of large gate voltages. We employ this effect to create p-n junctions which can be reversibly transitioned between p-n junction and uniformly conducting configurations.
@@ -1867,7 +1960,7 @@ Transport measurements in air are performed using two Keithley 2400 SourceMeters
     
         The gate-voltage dependence of the H$_2$O polarization configurations on PbZr$_{0.2}$Ti$_{0.8}$O$_3$ vs SiO$_2$ leads to hysteresis in the devices. This can be seen in figure \ref{fig:doping_dynamics}a, which shows $I_{sd}$ vs $V_{gate}$ curves for forward and reverse gate sweeps performed on the same devices as measured in Fig. \ref{fig:PZTdata}a. A pronounced hysteresis between forward and reverse gate sweeps is apparent. As in Fig. \ref{fig:PZTdata}a, devices spanning a region of evaporated SiO$_2$ display two distinct minima during forward sweeps, while a control device having no SiO$_2$ displays a single minimum. However, all devices display a single minimum during reverse gate sweeps. We note that the gate voltages applied here remain below the coercive voltage of the PbZr$_{0.2}$Ti$_{0.8}$O$_3$ film, therefore ferroelectric switching is not a possible cause of the observed hysteresis. Ferroelectric switching has been shown to produce similar behavior\cite{Park2015b}, however in this work gate voltages above the coercive voltage of the film are experimentally inaccessible due to large gate leakage in our devices.
 
-        In order to understand how the hysteresis is related to the different H$_2$O polarization configurations on the PbZr$_{0.2}$Ti$_{0.8}$O$_3$ as compared to the evaporated SiO$_2$, it is instructive to consider the gate voltages at which the various minima appear. For example, for the 17\% screened curve in Fig. \ref{fig:doping_dynamics}a the red arrows point out two minima on the forward sweep (at 0.6 V and 1.1V) and one minimum on the reverse sweep (at 0.9 V). These can be compared to the position of the Dirac point in vacuum at 0.6 V (see Fig. \ref{fig:PZTvacuum}). The minimum on the forward sweep at 0.6 V occurs at the same gate voltage as the vacuum Dirac point, implying that it corresponds to a region of the graphene without a net polarization in the adsorbed H$_2$O. The remaining minima occur at voltages larger than the Dirac point (0.9 V and 1.1 V) and thus correspond to regions of the graphene on which the adsorbed H$_2$O is polarized and produces p-doping. Polarized H$_2$O typically produces p-doping in graphene, though the precise mechanism is the subject of continuing research\cite{Leenaerts2007,Moser2008,Wang2010,Wehling2008,Sabio2008}. We identify the forward-sweep minimum at 0.6 V as corresponding to graphene on the non-screened PbZr$_{0.2}$Ti$_{0.8}$O$_3$ region. This is supported by the fact that all devices demonstrate a minimum at 0.6 V, independent of different SiO$_2$ screening fractions. In contrast, the minimum indicated by the rightmost arrow (e.g. at 1.1 V for the 17\% screened device) corresponds to graphene on the evaporated SiO$_2$ region, as evidenced by its evolution with increasing SiO$_2$ screening fraction.
+        In order to understand how the hysteresis is related to the different H$_2$O polarization configurations on the PbZr$_{0.2}$Ti$_{0.8}$O$_3$ as compared to the evaporated SiO$_2$, it is instructive to consider the gate voltages at which the various minima appear. For example, for the 17\% screened curve in Fig. \ref{fig:doping_dynamics}a the red arrows point out two minima on the forward sweep (at 0.6 V and 1.1V) and one minimum on the reverse sweep (at 0.9 V). These can be compared to the position of the Dirac point in vacuum at 0.6 V (see Fig. \ref{fig:PZTvacuum}). The minimum on the forward sweep at 0.6 V occurs at the same gate voltage as the vacuum Dirac point, implying that it corresponds to a region of the graphene without a net polarization in the adsorbed H$_2$O. The remaining minima occur at voltages larger than the Dirac point (0.9 V and 1.1 V) and thus correspond to regions of the graphene on which the adsorbed H$_2$O is polarized and produces p-doping. Polarized H$_2$O typically produces p-doping in graphene, though the precise mechanism is the subject of continuing research\cite{Leenaerts2007,Moser2008,wang2010hysteresis,Wehling2008,Sabio2008}. We identify the forward-sweep minimum at 0.6 V as corresponding to graphene on the non-screened PbZr$_{0.2}$Ti$_{0.8}$O$_3$ region. This is supported by the fact that all devices demonstrate a minimum at 0.6 V, independent of different SiO$_2$ screening fractions. In contrast, the minimum indicated by the rightmost arrow (e.g. at 1.1 V for the 17\% screened device) corresponds to graphene on the evaporated SiO$_2$ region, as evidenced by its evolution with increasing SiO$_2$ screening fraction.
 
 \begin{figure}
   \centering
@@ -1913,10 +2006,6 @@ Transport measurements in air are performed using two Keithley 2400 SourceMeters
 %\section*{Methods}
 
 %\textbf{Transport Measurements.} Transport measurements in air were performed using two Keithley 2400 SourceMeters. Current through the graphene channel was measured under a constant bias of 5 mV, while the gate voltage was swept between -1.0 and +1.5 V. Measurements in vacuum were performed using an Agilent 4156C Semiconductor Parameter Analyzer under identical electrical parameters. In both cases gate voltage sweep rates ranged from 10 mV/s to 100 mV/s; data from different sweep rates yielded qualitatively similar results.
-
-\textit{Acknowledgement.} J.H.H., R.X., S.R., and M.S. acknowledge support from the National Science Foundation and the Nanoelectronics Research Initiative under NSF-NEB grant DMR-1124696.
-S.P. acknowledges support from the Army Research Office under grant W911NF-14-1-0104. N.M. and L.W.M. acknowledge support from the National Science Foundation under grant ENG-1434147. This work was carried out in part in the Frederick Seitz Materials Research Laboratory Central Facilities at the University of Illinois.
-
 
 
 \section{Graphene on strain array substrates}
@@ -2534,7 +2623,8 @@ plt.ylabel('Amps')
 %\addbibresource{pztpaper.bib}
 %\addbibresource{PrelimPaper.bib}
 %\addbibresource{thesis.bib}
-\bibliography{rippingpaper,pztpaper,pztpaper-old,PrelimPaper,thesis,strainarray}
+%\bibliography{rippingpaper,pztpaper,pztpaper-old,PrelimPaper,thesis,strainarray}
+\bibliography{all_clean}
 
 
 \end{document}
