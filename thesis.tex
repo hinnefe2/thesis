@@ -422,7 +422,7 @@ I wouldn't be where I am without all their love and support and good advice (loo
         well, and can thus conclusively demonstrate the presence of Klein tunneling.
         
         
-    \section{Doping graphene}
+    \section{Electrical effects graphene}
     
         Graphene is eminently dopable. In fact, many of the most interesting experimental
         results involving graphene exploit the ease with which it can be doped; the 
@@ -621,6 +621,9 @@ I wouldn't be where I am without all their love and support and good advice (loo
         performed in ambient conditions, though the precise mechanism behind the p-doping is
         a subject of continuing research 
         \cite{leenaerts2008adsorption, Moser2008, wang2010hysteresis, Wehling2008, Sabio2008}.
+        Generally the effect is understood to be caused by a combination of capacitive doping
+        from the electric field of the H$_2$O dipole and charge transfer from the atomic
+        species (H or O) or dangling bond closest to the graphene.
         When present, polar dopant molecules like H$_2$O add an additional degree of freedom to a graphene device. 
         Different orientations of polar dopant molecules can contribute different amounts of doping;
         measurement processes which alter the polarization of the dopant molecule can thus induce
@@ -638,7 +641,7 @@ I wouldn't be where I am without all their love and support and good advice (loo
         note that the high mobility is largely due to the suspension of the graphene, however the 
         cleaning is an important step.
         
-        Vacuum annealing is also used to remove residual dopants from chemicals used in fabrication, in particular
+        Thermal annealing in vacuum is also used to remove residual dopants from chemicals used in fabrication, in particular
         poly(methyl methacrylate) (PMMA). The technique has several drawbacks however. First, the temperatures
         required to completely remove PMMA residues are beyond what graphene can withstand \cite{lin2011graphene}.
         Lower temperatures do remove an appreciable portion of the PMMA residue \cite{pirkle2011effect}, 
@@ -689,7 +692,8 @@ I wouldn't be where I am without all their love and support and good advice (loo
         example, the authors of ref \cite{bolotin2008ultrahigh} observed carrier mobilities of up 
         to 200,000 cm$^2$ V$^{-1}$ s$^{-1}$, an order of magnitude greater than the best results for 
         graphene on silicon substrates, showing that the substrate can have a dramatic impact on 
-        graphene's electrical properties. 
+        graphene's electrical properties. This particular example highlights the deleterious effect
+        of scattering by SiO$_2$ phonons on graphene's carrier mobility.
         Another technique used to isolate graphene from the effects of its substrate is encapsulation
         with hexagonal boron nitride (h-BN). 
         Hexagonal boron nitride can be exfoliated in a manner similar to graphene; when produced this 
@@ -698,21 +702,7 @@ I wouldn't be where I am without all their love and support and good advice (loo
         an ideal substrate for graphene:
         devices fabricated on or encapsulated with h-BN display drastically improved electronic 
         properties compared to samples fabricated on SiO$_2$ substrates \cite{Dean2010, Xue2011}.
-    
-        Alternatively, strong substrate interactions can also be used to deliberately tune graphene's 
-        electrical properties. In particular, functional ferroelectric substrates such as 
-        PbZr$_{0.2}$Ti$_{0.8}$O$_3$ (PZT) have been shown to vary carrier type and density in 
-        graphene with varying substrate polarizations \cite{Baeumer2013}, as seen in Figure 
-        \ref{fig:GonPZT}. The electric field from the polarized substrate creates a local potential
-        which dopes the graphene in a manner analogous to the doping created by the electric field of a backgate.
-        The direction of the field produced by the substrate depends on the polarization of the ferroelectric,
-        so different substrate polarizations can create different doping conditions.
-        This effect is bidirectional: the application of a large bias to the graphene 
-        can also flip the polarization of underlying ferroelectric substrates. The strength of the 
-        electric field required to reverse the polarization of a ferroelectric material is called
-        the coercive field. If the voltage applied to graphene on top of a ferroelectric produces
-        an electric field greater than the coercive field it will reverse the polarization of the substrate.
-        
+     
             \begin{figure}
             \centering
             \includegraphics[width=0.35\textwidth]{images/background/ChristophDevice.png}
@@ -721,51 +711,218 @@ I wouldn't be where I am without all their love and support and good advice (loo
             \label{fig:GonPZT}
             \end{figure}
         
-        \subsection{Superlattice effects in graphene}
+        Alternatively, strong substrate interactions can also be used to deliberately tune graphene's 
+        electrical properties. In particular, functional ferroelectric substrates such as 
+        PbZr$_{0.2}$Ti$_{0.8}$O$_3$ (PZT) have been shown to vary carrier type and density in 
+        graphene with varying substrate polarizations \cite{Baeumer2013}, as seen in Figure 
+        \ref{fig:GonPZT}. The electric field from the polarized ferroelectric substrate creates a local potential
+        which dopes the graphene in a manner analogous to the doping created by the electric field of a back gate.
+        The direction of the field produced by the substrate depends on the polarization of the ferroelectric,
+        so different substrate polarizations can create different doping conditions.
+        This effect is bidirectional: the application of a large bias to the graphene 
+        can also flip the polarization of underlying ferroelectric substrates. The strength of the 
+        electric field required to reverse the polarization of a ferroelectric material is called
+        the coercive field. If the voltage applied to graphene on top of a ferroelectric produces
+        an electric field greater than the coercive field it will reverse the polarization of the substrate.
         
-        A special class of doping effects occur when graphene is exposed to a periodic potential.
-        Most often the periodic potential is supplied by the substrate, so these effects might also be
-        considered within the broader topic of substrate-dependent effects.
+        Ferroelectric substrates display additional doping dynamics in the presence of polar adsorbates.
+        As described above, the doping effect of polar adsorbates depends on their orientation. 
+        For ferroelectric substrates the polarization of the substrate can affect which orientation
+        of adsorbates is energetically favorable, as shown in Figure \ref{fig:polar_ferro}. Notably,
+        in certain cases the combined effect of substrate polarization and substrate geometry can
+        create conditions where the polarization of adsorbed dopants is random, which effectively 
+        mitigates the doping effect of the adsorbates.
+         
+            \begin{figure}
+            \centering
+            \includegraphics[width=\textwidth]{images/background/ferro_polar_doping.png}
+            \caption[Dynamics of polar dopants on ferroelectric substrates]{
+            It is energetically favorable for the polarization of adsorbed, polar dopant molecules to align with
+            that of the substrate, however the molecular geometries of the substrate and dopant add
+            additional constraints. Specifically, the separation between donor species in the subtrate
+            must match the separation between acceptor species (or dangling bonds) in the adsorbate, and
+            vice versa in order for the adsorbate to have a stable orientation. In the example shown here
+            H$_2$O has a stable orientation when down-polarized because the separation between the donor H atoms in
+            the H$_2$O matches the separation between the acceptor O atoms in the substrate. In contrast,
+            the up-polarization state does not have a stable orientation because the distance between the
+            dangling bonds in H$_2$O does not match the separation between acceptor Ti atoms in the substrate.
+            In contrast, ammonia is stable in either up- or -down polarized orientation because it has only
+            a single dangling bond and therefore is not geometrically constrained by the spacing of the substrate Ti atoms.
+            Adapted from \cite{Lu2014}
+            }
+            \label{fig:polar_ferro}
+            \end{figure}
         
         
-        focusing
+       
+       % \subsection{Superlattice effects in graphene}
+       % 
+       % A special class of doping effects occur when graphene is exposed to a periodic potential.
+       % Most often the periodic potential is supplied by the substrate, so these effects might also be
+       % considered within the broader topic of substrate-dependent effects.
+       % 
+       % 
+       % focusing
+       % 
+       % moire hofstaddter
         
-        moire hofstaddter
         
         
-        
-    \section{Straining graphene}
+    \section{Mechanical effects in graphene}
     
         Graphene's mechanical properties are nearly as exceptional as its electrical properties. It is incredibly
         strong: experimental results place its breaking strength at $42 \pm 4$ N m$^{-1}$ and its
         Young's modulus at $1.0 \pm 0.1 $Tpa making it the strongest material ever measured \cite{Lee2008}.
         Furthermore, when graphene is exposed to strain it displays a variety of unique effects. 
-        In this section I summarize previous work concerning these
+        In this section I summarize previous work concerning these mechanical properties and
         strain-dependent effects.
         
+        \subsection{Mechanical failure in graphene}
+        
+        Despite its exceptional intrinsic mechanical strength graphene is susceptible to mechanical failure.
+        Several research groups have explored this topic, both experimentally
+        \cite{lee2013high, sen2010tearing,}
+        and theoretically 
+        \cite{zhao2010temperature, wang2012effect}.
+        Several conclusions emerge from their work: first, graphene tears preferentially along its 
+        crystallographic axes either along a zigzag or armchair edge depending
+        on the angle between the applied strain and the lattice orientation \cite{kim2011ripping}. 
+        
+        - crack propagation energetics (brittle material so well described by \cite{griffith1921phenomena})
+        - propagate along zig-zag or armchair directions, not along grain boundaries
+        - effect of processing steps (FeCl is bad, Amm pers is good. baking is bad, 
+        
         \subsection{Observing strain via Raman spectroscopy}
+        \label{sec:bg:raman}
         
-        Raman spectroscopy is often us
-    
-        which oscillation modes give which raman peaks
-        how strain alters these modes
-        how doping also alters these modes
+            \begin{figure}
+            \centering
+            \includegraphics[width=0.45\textwidth]{images/background/graphene_phonons.png}
+            \includegraphics[width=0.41\textwidth]{images/background/graphene_raman2.png}
+            \caption[Phonon dispersion and Raman spectrum of monolayer graphene]{
+            Left: The phonon dispersion of monolayer graphene. There are six phonon modes which
+            are characterized as being (i)n- or (o)ut-of plane, (L)ongitudinal or (T)ransverse,
+            and (A)coustic or (O)ptical.
+            Right: The Raman spectrum of monolayer graphene. The primary peaks of graphene's spectrum are indicated.
+            Adapted from \cite{malard2009raman}.
+            }
+            \label{fig:graphene_raman}
+            \end{figure}
+       
+        When measuring strain-dependent effects in graphene quantifying the degree of strain present in 
+        the sample is a primary task. Raman spectroscopy is useful tool for this task because it can
+        non-invasively determine the strain present in graphene, however there are several complicating factors.
+        Here I give a brief explanation of the mechanisms underlying Raman spectroscopy, and then
+        describe graphene's Raman spectrum, the origin of the major features in its spectrum,
+        and how those features can be related to strain.
         
-        First, the effect of 
-        uniaxial strain on the electronic properties of graphene can be observed through Raman spectroscopy; 
-        in ref \cite{Ni2008} the authors observe shifts in the G and 2D band peaks of 
-        -27.8 and -14.2 cm$^{-1}$ / percent strain respectively, confirming the interactivity of 
-        strain and graphene's electronic properties as well as offering a method to locally 
-        measure the strain applied to graphene.
+        Raman spectroscopy operates by illuminating a sample with a laser and measuring the spectrum
+        of the reflected light. The inelastic scattering properties of a material depend on its
+        internal degrees of freedom, so by 
+        observing the shift in frequency of the reflected light relative to the incident light one can
+        gain information about the internal states of the material. 
+        The strength of the interaction between the incident light and the material depends on the polarizability
+        of the material. This is particularly relevant when considering the vibrational states in 
+        a system (e.g. phonons): oscillation modes which strongly vary the polarizability of the material
+        will strongly couple to the incident light, and thus display high intensities in Raman measurements.
+        Conversely, vibrational modes which do not vary the polarizability will not couple to the incident
+        light and will not show up in Raman measurements.
+        
+        The phonon dispersion and Raman spectrum of graphene are shown in Figure \ref{fig:graphene_raman}. 
+        Graphene has two atoms per unit cell and therefore has both optical and acoustic modes. Each mode
+        is characterized by its axis of oscillation which can be in- or out-of-plane, and for the in-plane 
+        modes can be longitudinal or transverse relative to the C-C bond.
+        Three primary peaks are apparent in the Raman spectrum,
+        one (called the G peak) at approximately 1580 cm$^{-1}$, 
+        another (alternately called the G$'$ or 2D peak) at approximately 2700 cm$^{-1}$, and
+        and a third (called the D peak) at approximately 1350 cm$^{-1}$. 
+       
+        Graphene's G peak is due to scattering by iTO and iLO phonons at the $\Gamma$ point: an incident photon
+        scatters inelastically and creates an electron-hole pair, which then recombines into a phonon
+        with zero momentum. The three optical modes have non-zero energy at zero momentum and are thus 
+        candidates for the emitted phonon, however the out-of-plane mode does not induce a change in the 
+        polarizability of the graphene and thus does not have an appreciable Raman intensity. The
+        remaining iLO and iTO modes are degenerate at the $\Gamma$ point, both having a frequency of
+        1582 cm$^{-1}$, which corresponds to the frequency of the observed G peak.
+                   
+            \begin{figure}
+            \centering
+            \includegraphics[width=0.65\textwidth]{images/background/raman_scattering.png}
+            \caption[Phonon scattering processes for the D and 2D Raman peaks]{
+            Schematic illustrations of the Raman scattering processes that lead the the D and G$'$ peaks in
+            graphene. The G$'$ peak is due to a second order scattering process involving two iTO phonons
+            near the K point. the D peak is due to a similar process involving a single iTO phonon and a defect.
+            Adapted from \cite{malard2009raman}.
+            }
+            \label{fig:raman_scattering}
+            \end{figure}
+ 
+        The D and G$'$ (or 2D) peaks are due to second order scattering by iTO phonons near the K and K$'$ points.
+        These processes are illustated schematically in Figure \ref{fig:raman_scattering}.
+        For the 2D peak, the scattering process involves two iTO photons: the first scatters an
+        electron from a point near the electron K point to a point near the K$'$ point, and the 
+        second scatters the electron back to the original K point where it recombines with a hole
+        to emit the inelastically scattered photon. Each iTO phonon has a frequency of 1350 cm$^{-1}$
+        near the K point, so the scattered photon's frequency is shifted by approximately 2700 cm$^{-1}$.
+        The D peak is due to a similar process, except one of the iTO scattering steps is replaced
+        by scattering from a defect. Recall that the two inequivalent K points stem from the two carbon
+        atoms in graphene's unit cell. A scatterer which acts only on a single atom of the unit cell (i.e.
+        a defect in the lattice) can therefore alter the pseudo-spin of a carrier without changing it's 
+        momentum or energy, thus scattering it from one K point to the other. In this case the incident photon 
+        is scattered inelastically by a single iTO phonon and the measured shift is 1350 cm$^{-1}$.
+        
+        Applying strain to graphene modifies the positions of its Raman peaks by modifying the bond
+        lengths in the graphene lattice. Longer bond distances lead to a softer lattice and lower
+        energy phonons. This softening of graphene's phonons creates a redshift in its Raman peak positions,
+        which has been observed in many experimental studies 
+        \cite{mohiuddin2009uniaxial, ni2008uniaxial, huang2009phonon, huang2010probing, yoon2011strain, ding2010stretchable, metzger2009biaxial}. These results provide a characterization of the expected Raman shift per unit
+        strain, and can in principle be used to measure the strain in graphene. The situation is complicated however
+        in the case where there is also a varying charge density in the graphene, which in practice is all the time.
+        
+        Charge doping in graphene also produces shifts in graphene's Raman spectra 
+        \cite{casiraghi2007raman, yan2007electric, pisana2007breakdown, lazzeri2006nonadiabatic, das2008monitoring}. 
+        In the case of the G peak this
+        is a consequence of renormalization caused by the coupling between zero-momentum iTO and iLO phonons and
+        particle-hole excitations in graphene \cite{yan2007electric, lazzeri2006nonadiabatic, pisana2007breakdown}.
+        The number of electron-hole excitation states available in graphene depends on the Fermi level;
+        changing the charge doping shifts the Fermi level, thereby changing the number of available
+        electron-hole states and thus the strength of the renormalization effect.
+        The shift in the 2D peak is due to a similar renormalization effect, however the 
+        size of the shift is only $\sim$10\% as big as it is for the G peak. 
+        The smaller shift stems from a smaller renormalization effect:
+        the magnitude of the renormalization effect is inversely proportional to the energy of electron-hole
+        excitations at the phonon wavevector \cite{yan2007electric}, and the phonons responsible for the 2D peak have much larger
+        wavevectors (and therefore corresponding electron-hole excitation energies)
+        than those responsible for the G peak.
         
         \subsection{Uniaxial strain}
+                    
+            \begin{figure}
+            \centering
+            \includegraphics[width=0.75\textwidth]{images/background/strain_gap2.png}
+            \caption[Gap opening in graphene via uniaxial strain]{
+            Uniaxial strain opens a gap in graphene by merging the two Dirac points. Recall that
+            graphene's band structure is composed of two cosine type bands;
+            increasing strain decreases the amplitude of each cosine band, gradually shifting the Dirac
+            point of the band structure away from the K point of the Brillouin zone. For large enough
+            strain the bands cross and a gap opens.
+            }
+            \label{fig:strain_gap}
+            \end{figure}
         
         Several research groups have considered, both experimentally \cite{Ni2008, Kim2009, Mohiuddin2009, 
         Zang2013} and theoretically \cite{Pereira2009, Low2011}, the effect of uniaxial 
-        strain on graphene.
-        Uniaxial strain is predicted to open a gap in the band structure, either by 
+        strain on graphene. Uniaxial strain is predicted to open a gap in the band structure, either by 
         itself at high (\textgreater 20\%) strains \cite{Pereira2009} or in conjunction with a correlated scalar 
-        potential \cite{Low2011}. Experimental work following the latter approach 
+        potential \cite{Low2011}. In both cases the gap is a consequence of a shift in the position of the Dirac
+        point of the band structure relative to the K point of the Brillouin zone. Recall that graphene's
+        band structure is given by the intersection of two cosine-like bands. 
+        Both strain and local scalar potentials reduce the amplitude of these cosine bands.
+        As the amplitude of each band is
+        reduced the point of intersection between the two shifts away from the K point, until at high
+        strains the bands cross and a gap opens. This is illustrated schematically in Figure \ref{fig:strain_gap}.
+        
+        Experimental work following the latter approach 
         measured the sheet resistivity of a graphene device patterned 
         atop lithographically defined corrugations on a SiO$_2$ substrate \cite{lee2013modification}.
         In this case the periodic potential comes from the periodic, 
@@ -776,25 +933,44 @@ I wouldn't be where I am without all their love and support and good advice (loo
     
         \subsection{Non-uniaxial strain}
         
-        Theoretical \cite{Guinea2009} and experimental \cite{Levy2010}, \cite{Yan2012} 
-        suggests that non-uniform strains in graphene have an effect similar to an applied magnetic field. 
+        Theoretical \cite{manes2007symmetry, Guinea2009} and experimental \cite{Levy2010}, \cite{Yan2012} 
+        results suggest that non-uniaxial strains in graphene have an effect similar to an applied magnetic field. 
         From a theoretical perspective these strain-induced pseudomagnetic fields stem from a modification 
-        of the nearest and next nearest neighbor hopping amplitudes; as the lattice is strained the distances 
-        between lattice sites vary, and with them the relevant hopping amplitudes $t$ and $t'$. This strain 
-        effect can be modeled by introducing a gauge field vector potential, which has an effect similar to 
-        that of a magnetic vector potential field. However, unlike an actual magnetic field a strain-generated 
-        pseudomagnetic field has a different sign for charge carriers in the \textbf{K} and \textbf{K'} Dirac 
-        points, and therefore does not violate time reversal symmetry \cite{Guinea2009}.
-    
-        These pseudomagnetic fields have been observed experimentally; field magnitudes up to 
-        300 T \cite{levy2010strain, yan2012observation} have been reported.
-        Such high fields, in conjunction with graphene's high carrier concentration and mobility, 
-        offer the potential to observe a zero field quantum Hall effect. A key requirement in 
-        generating pseudomagnetic fields is that the strain profile be anisotropic; to date 
-        experimental efforts have focused on strain created by nanobubble \cite{Levy2010} 
-        or nanoridge \cite{Yan2012} defects. However defect-oriented experimental design 
+        of the nearest and next nearest neighbor hopping amplitudes: as the lattice is strained the distances 
+        between lattice sites vary, and with them the relevant hopping amplitudes $t$ and $t'$. 
+        This effect can be modeled by introducing a gauge field vector potential \cite{manes2007symmetry}. 
+        Derivations of this correspondence proceed by considering the Hamiltonian which describes
+        electron coupling to long-wavelength phonons (such phonons being essentially large scale deformations
+        of the graphene lattice, i.e. strain).
+        When the differential terms in this Hamiltonian
+        are written in terms of the strain tensor (e.g. $\partial_x R_x = u_{xx}$) then it can be shown
+        that the phonon-electron Hamiltonian is equivalent to a Hamiltonian for electrons in the presence of
+        a vector potential $\textbf{A}$ under the condition
+        \begin{equation}
+            \textbf{A} = \frac{\beta}{a} \left( \begin{matrix} u_{xx} - u_{yy} \\ -2u_{xy} \end{matrix} \right)
+        \end{equation}
+        where $u_{ij}$ is the strain tensor and $\beta = -\partial \ln t / \partial \ln a$
+        where $t$ is the hopping amplitude and $a$ is graphene's lattice constant \cite{manes2007symmetry}. 
+        Magnetic fields also manifest
+        as vector potentials in the Hamiltonian, hence the claim that non-uniform strains have an
+        effect similar to that of a magnetic field.
+        
+        A key requirement in generating pseudomagnetic fields is that the strain profile be anisotropic: 
+        \begin{equation}
+            \textbf{B} = \nabla \times \textbf{A} = \frac{\beta}{a} \left( \frac{\partial (-2 u_{xy})}{\partial x} - \frac{\partial (u_{xx} - u_{yy})}{\partial y} \right).
+        \end{equation}
+        To date experimental efforts have focused on creating anisotropic strain via nanobubble \cite{Levy2010} 
+        or nanoridge \cite{Yan2012} defects; using these types of samples field magnitudes up to 
+        300 T have been reported. However defect-oriented experimental design
         schemes yield extremely small areas of graphene under strain, and as such the 
         strain-related physics is only accessible through scanning tunneling microscopy (STM) measurements. 
+        Observing transport signatures of these pseudomagnetic fields was 
+        a primary motivation for the experiments on topographically patterned substrates 
+        described in Section \ref{sec:res:strain}; 
+        such high fields in conjunction with graphene's high carrier concentration and mobility
+        offer the potential to observe a zero field quantum Hall effect.
+        While the experiments described in this thesis did not display the desired signatures their results do 
+        suggest potential refinements for future work which are described in Section \ref{sec:fw}.
 
 
 
@@ -1142,7 +1318,7 @@ I wouldn't be where I am without all their love and support and good advice (loo
         
         Raman measurements of graphene can also be used to gain information about the electrical doping
         and strain present in graphene \cite{lee2012optical}. Both strain and doping produce shifts
-        in the G and 2D peak locations by modifying the bond lengths in the graphene lattice. 
+        in the G and 2D peak locations; see Section \ref{sec:bg:raman} for details. 
         A measurement of either peak shift by itself is therefore insufficient to disentangle the competing effects
         of strain and doping. However, the two mechanisms (strain and doping) shift the locations of the two
         peaks by different relative amounts; the ratio
@@ -1574,16 +1750,16 @@ I wouldn't be where I am without all their love and support and good advice (loo
     
     \subsection{Introduction}
     
-        Recent advances in graphene production\cite{Kim2009, Bae2010, Lee2010} have
+        Recent advances in graphene production \cite{Kim2009, Bae2010, Lee2010} have
         enabled the fabrication of a variety of flexible, graphene-based electronic
-        components, including transparent interconnects\cite{Kim2011}, high-performance
-        capacitors\cite{El-Kady2012}, and transistors\cite{Lee2011}. The prospect of
+        components, including transparent interconnects \cite{Kim2011}, high-performance
+        capacitors \cite{El-Kady2012}, and transistors \cite{Lee2011}. The prospect of
         flexible and transparent graphene-based electronic devices suggested by these
         results raises an important question: are graphene's electrical properties and
         mechanical integrity robust under the strains graphene is likely to experience
         in such devices? Pristine graphene has an exceptionally high breaking
-        strength\cite{Lee2008}, yet it may be susceptible to ripping, particularly if
-        it has defects \cite{Kim2012} and/or strong  surface adhesion\cite{Sen2010}. It
+        strength \cite{Lee2008}, yet it may be susceptible to ripping, particularly if
+        it has defects \cite{Kim2012} and/or strong  surface adhesion \cite{Sen2010}. It
         is still relatively unknown under what strain conditions substrate-supported
         graphene rips, and how the electrical properties are then altered.
         
@@ -1611,10 +1787,10 @@ I wouldn't be where I am without all their love and support and good advice (loo
         Likewise, in applications such as portable consumer electronics where low power
         consumption is a priority the increased resistance of strained graphene films
         may limit the potentially applicable strain, or require the use of more
-        complicated interconnect geometries\cite{Kim2011}. Graphene's exceptional
+        complicated interconnect geometries \cite{Kim2011}. Graphene's exceptional
         resilience as described here may also motivate its inclusion in device
         applications where other conducting thin films have been used to date;
-        bio-integrated devices\cite{Viventi2010} are especially appealing candidates
+        bio-integrated devices \cite{viventi2010conformal} are especially appealing candidates
         because of the difficulty involved in replacing devices installed \textit{in
         vivo}, as well as because of graphene's non-toxicity.
        
@@ -2009,6 +2185,7 @@ Transport measurements in air are performed using two Keithley 2400 SourceMeters
 
 
 \section{Graphene on strain array substrates}
+\label{sec:res:strain}
 
             
     In this section I describe a research project which examined electrical transport in graphene
@@ -2141,14 +2318,14 @@ Transport measurements in air are performed using two Keithley 2400 SourceMeters
             
             
             Doping from charge impurities in the substrate is also known to 
-            shift Raman peak positions in graphene\cite{reina2008large, casiraghi2007raman}, however the ratio 
+            shift Raman peak positions in graphene \cite{reina2008large, casiraghi2007raman}, however the ratio 
             \begin{equation}
                 r = \frac{\Delta \, \omega_\text{2D}}{\Delta \, \omega_\text{G}}
             \end{equation}
             (where $\Delta \, \omega$ is the shift in a Raman peak position relative to its intrinsic value)
             differs between the two mechanisms \cite{lee2012optical}. 
             Experimental measurements \cite{zabel2012raman, metzger2009biaxial, ding2010stretchable} 
-            and theoretical results\cite{mohr2010splitting, mohiuddin2009uniaxial} place the ratio for strain 
+            and theoretical results \cite{mohr2010splitting, mohiuddin2009uniaxial} place the ratio for strain 
             between 2.25 and 2.8 and the ratio for doping at approximately 0.75 \cite{lee2012optical}. 
             Figure \ref{'fig:raman'}C shows the extracted Raman G and 2D peak positions for a representative
             strain array sample having a spacing of 700 nm,
@@ -2280,6 +2457,7 @@ Transport measurements in air are performed using two Keithley 2400 SourceMeters
 \chapter{Summary and conclusions}
 \section{Summary of results}
 \section{Future work}
+\label{sec:fw}
 
     \subsection{Superlattice effects in strain array substrates}
     
