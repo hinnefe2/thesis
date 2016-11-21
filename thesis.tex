@@ -432,6 +432,7 @@ I wouldn't be where I am without all their love and support and good advice (loo
         on methods of doping graphene.
         
         \subsection{Electrostatic gating}
+        \label{sec:bg:gating}
       
             \begin{figure}
             \centering
@@ -674,6 +675,7 @@ I wouldn't be where I am without all their love and support and good advice (loo
             \end{figure}
     
         \subsection{Substrate effects in graphene}
+        \label{sec:bg:substrates}
         
         The substrate used to support graphene strongly affects electrical transport in the graphene. 
         Scattering by surface phonons at the SiO$_2$ interface has been shown to limit the room 
@@ -776,21 +778,46 @@ I wouldn't be where I am without all their love and support and good advice (loo
         Furthermore, when graphene is exposed to strain it displays a variety of unique effects. 
         In this section I summarize previous work concerning these mechanical properties and
         strain-dependent effects.
+      
+            \begin{figure}
+            \centering
+            \includegraphics[width=0.3\textwidth]{images/background/zigzag_armchair.png}
+            \caption[Armchair and zigzag edges in graphene]{
+            Graphene edges are described as zigzag (red) or armchair (green).
+            }
+            \label{fig:zigzag_armchair}
+            \end{figure}
         
         \subsection{Mechanical failure in graphene}
         
         Despite its exceptional intrinsic mechanical strength graphene is susceptible to mechanical failure.
         Several research groups have explored this topic, both experimentally
-        \cite{lee2013high, sen2010tearing,}
-        and theoretically 
-        \cite{zhao2010temperature, wang2012effect}.
-        Several conclusions emerge from their work: first, graphene tears preferentially along its 
-        crystallographic axes either along a zigzag or armchair edge depending
+        \cite{huang2011grains, ruiz2011softened, lee2013high} and theoretically 
+        \cite{zhao2010temperature, wang2012effect, terdalkar2010nanoscale}.
+        Several conclusions emerge from their work. First, graphene tears preferentially along its 
+        crystallographic axes, either along a zigzag or armchair edge (the two edge types are shown
+        in Figure \ref{fig:zigzag_armchair}) depending
         on the angle between the applied strain and the lattice orientation \cite{kim2011ripping}. 
+        This experimental observation is justified theoretically by comparing the surface
+        energy of zigzag and armchair edges to the potential energy stored in the lattice under a tensile load.
+        Introducing a tear, or elongating an existing tear, requires an increase in the surface energy.
+        At the same time, the lattice deformation of a tear releases some of the stored elastic
+        potential energy. The balance between the two considerations determines the extent of tear propagation
+        \cite{griffith1921phenomena}.
+        The degree of elastic potential energy relaxation depends on the angle between the applied stress and
+        the crystal lattice, so different stress orientations produce rips along either zigzag or armchair edges.
         
-        - crack propagation energetics (brittle material so well described by \cite{griffith1921phenomena})
-        - propagate along zig-zag or armchair directions, not along grain boundaries
-        - effect of processing steps (FeCl is bad, Amm pers is good. baking is bad, 
+        Second, in polycrystalline samples tears do not propagate along grain boundaries in the crystal lattice, and such
+        boundaries do not dramatically affect the mechanical strength of graphene. The latter point
+        was initially the subject of debate, with several experimental results indicating that polycrystalline
+        graphene samples  were mechanically weaker than monocrystalline graphene samples \cite{huang2011grains,ruiz2011softened}.
+        However subsequent work \cite{lee2013high, rasool2013measurement} revealed that certain processing steps 
+        (namely exposure to 
+        ferric chloride and thermal baking in air) were responsible for most of the degradation in the mechanical strength.
+        
+        %- crack propagation energetics (brittle material so well described by 
+        %- propagate along zig-zag or armchair directions, not along grain boundaries
+        %- effect of processing steps (FeCl is bad, Amm pers is good. baking is bad, 
         
         \subsection{Observing strain via Raman spectroscopy}
         \label{sec:bg:raman}
@@ -1750,24 +1777,53 @@ I wouldn't be where I am without all their love and support and good advice (loo
     
     \subsection{Introduction}
     
-        Recent advances in graphene production \cite{Kim2009, Bae2010, Lee2010} have
+        Recent advances in graphene production \cite{Kim2009, Bae2010, Lee2010} -- namely
+        the ability to produce large area monolayer films by chemical vapor deposition -- have
         enabled the fabrication of a variety of flexible, graphene-based electronic
         components, including transparent interconnects \cite{Kim2011}, high-performance
         capacitors \cite{El-Kady2012}, and transistors \cite{Lee2011}. The prospect of
         flexible and transparent graphene-based electronic devices suggested by these
         results raises an important question: are graphene's electrical properties and
         mechanical integrity robust under the strains graphene is likely to experience
-        in such devices? Pristine graphene has an exceptionally high breaking
-        strength \cite{Lee2008}, yet it may be susceptible to ripping, particularly if
-        it has defects \cite{Kim2012} and/or strong  surface adhesion \cite{Sen2010}. It
-        is still relatively unknown under what strain conditions substrate-supported
-        graphene rips, and how the electrical properties are then altered.
+        in such devices? 
         
+        Pristine graphene has an exceptionally high breaking strength \cite{Lee2008}.
+        This is due to the strong covalent bonding between the sp2 orbitals of its
+        adjacent carbon atoms and the perfect crystallinity of pristine graphene samples.
+        The latter point is as important as the first: the breaking strength of brittle
+        materials depends on the size and density of defects within the material 
+        in addition to the intrinsic properties of the material \cite{griffith1921phenomena}.
+        This result can be derived by considering the energetics of forming or extending
+        a rip under an external stress: the formation of a rip creates two new edges at the cost of the surface energy
+        associated with each edge, however the subsequent relaxation of the lattice releases some
+        of the elastic potential energy associated with the applied stress. The balance between these
+        two effects determines the strength of the material.
+        For a material with Young's modulus $E$, surface energy $\gamma$ and interatomic distance $r_0$
+        the breaking strength (for pristine and non-pristine samples) is given by
+        \begin{equation}
+            \sigma_\text{pristine} = \sqrt{\frac{E \gamma}{r_0}}, \;\;\;\;\;
+            \sigma_\text{with defect} = \sqrt{\frac{E \gamma \rho}{4 a r_0}}
+        \end{equation}
+        where $a$ is half the length of the defect and $\rho$ is the radius of curvature of the defect.
+        Only in the limit of a perfect crystal does the breaking strength of a crystal approach the strength
+        of its atomic bonds. 
+        %A similar analysis of the energetics of rip elongation and strain relaxation
+        %gives the critical length 
+        
+        In experimental settings graphene is rarely pristine and may therefore
+        be susceptible to ripping at lower strains than its intrinsic strength would suggest. 
+        Previous work suggests that the presence of defects 
+        \cite{Kim2012, zandiatashbar2014effect, huang2011grains, lee2013high} 
+        adversely affects the breaking strength of suspended graphene. 
+        For practical applications however graphene is likely to be supported by a substrate;
+        it is still relatively unknown under what strain conditions substrate-supported
+        graphene rips, and how the electrical properties are then altered.
         
         In this section I present the results of a research project in which 
         we combine atomic force microscopy (AFM), coarse-grained
         mechanical simulations, and electrical transport measurements to study the
-        effects of lateral strain on rips in graphene. We find that graphene adhered to
+        effects of lateral strain on rips in graphene supported by a flexible substrate. 
+        We find that graphene adhered to
         a flexible substrate and then stretched laterally can develop small rips with
         only 1\% applied strain. However, even with ripping, the electrical properties
         remain relatively robust: introducing small rips slightly increases the
@@ -1775,12 +1831,13 @@ I wouldn't be where I am without all their love and support and good advice (loo
         change transport only modestly, and in a largely reversible fashion. Such
         resilience is atypical for conducting thin films, which typically demonstrate
         rapid and irreversible device failure after the onset of rip
-        formation\cite{Cairns2000,Fortunato2002}.
+        formation \cite{Cairns2000,Fortunato2002}.
     
         This new understanding of when and how graphene rips, and how its electrical
         properties are thereby altered is immediately applicable to the implementation
         and production of devices which include the graphene-based components mentioned
-        above. Some applications, for instance frequency-tuned RC circuits using
+        above. Some applications, for instance frequency-tuned RC circuits (where the 
+        time constant of the device depends strongly on the resistance of the graphene components) using
         graphene capacitors and interconnects, would require careful consideration of
         what strains the device can withstand while keeping strain-induced variations
         in the electronic properties of graphene within the required specifications.
@@ -1894,17 +1951,28 @@ I wouldn't be where I am without all their love and support and good advice (loo
         mechanically stretched (Fig. \ref{fig:rip-afm}b) the existing rips widen and new rips form;
         when the applied strain is relaxed (Fig. \ref{fig:rip-afm}c), pre-existing defects return to
         nearly their original condition and newly formed rips close. Subsequent
-        strain-relaxation cycles over the same strain range re-open existing rips (Fig.\ref{fig:rip-afm}d), 
+        strain-relaxation cycles over the same strain range re-open existing rips (Fig. \ref{fig:rip-afm}d), 
         but proceeding to a higher strain range forms new rips and widens
-        pre-existing ones (Fig.\ref{fig:rip-afm}e), which then close less completely when the strain
-        is relaxed (Fig.\ref{fig:rip-afm}f). The strain values at which we observe micro-rip formation
+        pre-existing ones (Fig. \ref{fig:rip-afm}e), which then close less completely when the strain
+        is relaxed (Fig. \ref{fig:rip-afm}f). The strain values at which we observe micro-rip formation
         are substantially lower than the reported fracture strength of
-        graphene\cite{Lee2008}, however the tensile strength of graphene is strongly
-        susceptible to defects such as holes and tears\cite{lee2013high}. Although graphene
+        graphene \cite{Lee2008}, however as described above the tensile strength of graphene is strongly
+        susceptible to defects such as holes and tears \cite{lee2013high}. 
+        
+        We note that the reduced strength of the graphene devices here is not
+        a result of the use of chemical vapor deposition-grown graphene. Although graphene
         produced by CVD is known to be polydomain, it has been shown that rips in
-        graphene do not preferentially follow grain boundaries\cite{Kim2012}. Rather,
+        graphene do not preferentially follow grain boundaries \cite{Kim2012}. 
+        This is because, as described above, the dynamics of rip formation in graphene are governed by the competing
+        effects of surface energy and lattice strain relaxation. Depending on the orientation of
+        the applied strain, the most energetically favorable rip direction always lies along either
+        the zigzag or armchair direction, even in the presence of grain boundaries \cite{lee2013high}.
+        Previous experimental results which indicated that grain boundaries adversely affect
+        the strength of graphene \cite{huang2011grains, ruiz2011softened} were compromised by
+        certain details of the fabrication procedures used to transfer the CVD graphene.
+        In the case of this work we are limited by the fact that 
         the fabrication procedures used to generate patterned graphene devices on
-        polymer substrates routinely introduce rips and other defects in the graphene,
+        polymer substrates routinely introduce rips and other defects in graphene,
         which accounts for the mechanical failure observed at low strain values.
  
         \begin{figure}
@@ -1944,8 +2012,10 @@ I wouldn't be where I am without all their love and support and good advice (loo
         As the applied tensile strain first increases to 5\%, the stress concentration
         near the tips of the short middle crack ($\sim$15.7 nm in length) becomes
         sufficiently high to cause the propagation of the short crack in both
-        directions. Due to the nature of displacement loading, the driving force for
-        crack propagation decreases as the crack extends. As a result, the middle crack
+        directions. As the crack extends the lattice strain relaxes and elastic
+        potential energy is released; this process continues until the energy
+        released by the relaxation of the lattice strain is smaller than the surface energy
+        required to extend the crack. As a result, the middle crack
         stops advancing at a length of $\sim$40.1 nm (Fig. \ref{fig:rip-simulation}b). Upon unloading of the
         tensile strain the elongated middle crack closes, nearly fully recovering the
         original shape of the graphene (Fig. \ref{fig:rip-simulation}c); however, the atomic bond breaking in
@@ -1954,10 +2024,13 @@ I wouldn't be where I am without all their love and support and good advice (loo
         
         Further tensile loading up to 5\% causes the cracks to reopen but further
         extension of the cracks is shown to be negligible (Fig. \ref{fig:rip-simulation}d), largely due to a
-        lack of sufficient driving force for crack propagation. The application of a
+        lack of sufficient driving force for crack propagation. The crack
+        previously extended to the point where the energy required to extend the crack
+        was less than the energy released by relaxing the lattice; re-establishing
+        the same strain returns the graphene to the same energetic balance. The application of a
         tensile loading of 10\% provides sufficient driving force to cause all three
         cracks to extend significantly. The crack propagation eventually saturates due
-        to the decreasing driving force under displacement loading (Fig. \ref{fig:rip-simulation}e). Upon
+        to the same energetic balance argument as before (Fig. \ref{fig:rip-simulation}e). Upon
         unloading to zero strain, all newly formed cracks close, resulting in a
         graphene morphology nearly identical to its original shape (Fig. \ref{fig:rip-simulation}f), similar
         to the experimental observation (Fig. \ref{fig:rip-afm}e to Fig. \ref{fig:rip-afm}f).
@@ -1967,10 +2040,15 @@ I wouldn't be where I am without all their love and support and good advice (loo
         unloading, which agrees with the experimental observations (Fig. \ref{fig:rip-afm}). We
         attribute the formation of these delamination and wrinkle features to the
         combined effect of a mismatch in Poisson's ratios between graphene and the PDMS
-        substrate and the relatively weak graphene/PDMS interfacial bonding. In
-        addition, recent studies show that the location of wrinkles in graphene can be
-        guided by the debris distribution on the substrate surface \cite{Zhu2014b},
-        consistent with our experimental observations in Fig. \ref{fig:rip-afm}.
+        substrate and the relatively weak graphene/PDMS interfacial bonding. 
+        Poisson's ratio $\nu$ describes the extent to which, for a given material, a longitudinal strain creates a lateral
+        compression: $\nu = -\Delta L / \Delta W$. In our devices the graphene is clamped to the PDMS
+        at the ends by the evaporated contact pads so we expect both the PDMS and graphene
+        to experience the same longitudinal strain $\Delta L$. However, the different Poisson
+        ratios of the two materials cause the identical $\Delta L$ to produce non-identical changes in 
+        lateral strain. This mismatch in lateral compression, combined with the relatively weak
+        adhesion between PDMS and graphene leads to the horizontal wrinkles.
+        
         
         The close agreement between the experimental observations and mechanics
         simulations yields two conclusions: first, pre-existing defects play a decisive
@@ -2078,6 +2156,7 @@ I wouldn't be where I am without all their love and support and good advice (loo
         electronic devices.
 
 
+\pagebreak
 \section{Graphene on ferroelectric substrates}
 
 
@@ -2085,10 +2164,33 @@ I wouldn't be where I am without all their love and support and good advice (loo
 
     \subsection{Introduction}
     
-        Graphene is a subject of intense research interest due to the enormous potential of its electronic and mechanical properties\cite{geim2007rise}. In particular, p-n junctions in graphene have great potential for both fundamental research and commercial applications, and have been utilized to study the quantum Hall effect \cite{Williams2007, Ozyilmaz2007, Velasco2010} and Klein tunneling\cite{Stander2009, Young2009} as well as to fabricate flexible transistors\cite{Kim2010}. Previous work on p-n junctions in graphene employed multiple electrostatic gates \cite{Meric2008, Williams2007, Ozyilmaz2007, Huard2007, Liu2008, Stander2009, Velasco2009, Velasco2010, Young2009}, charge transfer from the controlled deposition of chemical adsorbates \cite{Farmer2009,Lohmann2009,Brenner2010,Cheng2011,Sojoudi2012,Seo2014,Park2015}, high current-induced charging of trap states in the substrate \cite{Chiu2010}, or periodically poled ferroelectric substrates\cite{Baeumer2015}.
+        Graphene is a subject of intense research interest due to the enormous potential of its 
+        electronic and mechanical properties \cite{geim2007rise}. As described in Section
+        \ref{sec:bg:gating}, p-n junctions 
+        in graphene have great potential for both fundamental research and commercial applications, 
+        and have been utilized to study the quantum Hall effect \cite{Williams2007, Ozyilmaz2007, Velasco2010} 
+        and Klein tunneling \cite{Stander2009, Young2009} as well as to fabricate flexible 
+        transistors \cite{Kim2010}. Previous work on p-n junctions in graphene employed multiple electrostatic gates 
+        \cite{Meric2008, Williams2007, Ozyilmaz2007, Huard2007, Liu2008, Stander2009, Velasco2009, Velasco2010, Young2009}, 
+        charge transfer from the controlled deposition of chemical adsorbates 
+        \cite{Farmer2009,Lohmann2009,Brenner2010,Cheng2011,Sojoudi2012,Seo2014,Park2015}, 
+        high current-induced charging of trap states in the substrate \cite{Chiu2010}, 
+        or periodically poled ferroelectric substrates \cite{Baeumer2015}.
 
-        In this section we report the fabrication of p-n junctions in graphene deposited on a uniformly poled ferroelectric substrate. The local doping in our devices is accomplished by combining simple modifications to a lead zirconium titanate (PbZr$_{0.2}$Ti$_{0.8}$O$_3$) substrate -- the evaporation of thin SiO$_2$ films in some regions -- with a self-assembled layer of environmental dopants. We find that the PbZr$_{0.2}$Ti$_{0.8}$O$_3$ substrate modulates the doping effect of the adsorbed dopants: devices are exposed to ambient conditions after fabrication whereupon experimental observations confirm both the presence of adsorbed dopants (likely primarily H$_2$O) and their enhanced doping effect on the PbZr$_{0.2}$Ti$_{0.8}$O$_3$ relative to the SiO$_2$.
-        Furthermore, we demonstrate that the PbZr$_{0.2}$Ti$_{0.8}$O$_3$ substrate induces a hysteresis in the environmental doping which can be used to activate and deactivate the doping via the application of large gate voltages. We employ this effect to create p-n junctions which can be reversibly transitioned between p-n junction and uniformly conducting configurations.
+        In this section we report the fabrication of p-n junctions in graphene deposited on a uniformly 
+        poled ferroelectric substrate. As described in Section \ref{sec:bg:substrates}
+        ferroelectric substrates produce doping in graphene devices, with additional dynamics
+        in the presence of polar adsorbates. In this work we use the ferroelectric material lead zirconium titanate
+        (PbZr$_{0.2}$Ti$_{0.8}$O$_3$) and simple substrate modifications -- the evaporation 
+        of thin SiO$_2$ films in some regions -- to create local doping regions.
+        We find that the PbZr$_{0.2}$Ti$_{0.8}$O$_3$ substrate modulates the doping effect of adsorbed dopants: 
+        devices are exposed to ambient conditions after fabrication whereupon experimental observations 
+        confirm both the presence of adsorbed dopants (likely primarily H$_2$O) and their enhanced doping
+        effect on the PbZr$_{0.2}$Ti$_{0.8}$O$_3$ relative to the SiO$_2$.
+        Furthermore, we demonstrate that the PbZr$_{0.2}$Ti$_{0.8}$O$_3$ substrate induces a hysteresis 
+        in the environmental doping which can be used to activate and deactivate the doping via the 
+        application of large gate voltages. We employ this effect to create p-n junctions which can 
+        be reversibly transitioned between p-n junction and uniformly conducting configurations.
 
     \subsection{Device configuration}
     
@@ -2162,14 +2264,14 @@ Transport measurements in air are performed using two Keithley 2400 SourceMeters
         The absence of Dirac point splitting in vacuum measurements also eliminates differences in gate capacitance as a dominant source of the splitting effect. The screened and non-screened regions of the device have different gate thicknesses and dielectric constants, which might suggest that the application of the same gate voltage would generate different doping levels in each region, and hence the transport behavior we observe. However, any capacitative differences between the regions are static, depending only on the geometry of the device, while the Dirac point splitting effect is dynamic, disappearing in vacuum. Capacitance-based explanations are further ruled out by the nearly identical Dirac point locations observed in all devices under vacuum. In particular, the similarity of data under vacuum from the control device (having no evaporated SiO$_2$), and from the devices which do span an evaporated SiO$_2$ region confirms that gate capacitance differences between the two regions are not the primary cause of the Dirac point splitting effect.
 
 
-\begin{figure}
-  \centering
-  \includegraphics[width=.5\textwidth]{images/resultsanddiscussion/pztpaper/figure4}
-  \caption[I-V curves for graphene-ferroelectric pn junction devices measured in vacuum]{
-   Offset $I_{sd}$ vs $V_{gate}$ curves for devices measured in vacuum. The Dirac point splitting effect disappears in vacuum, but can be recovered by leaving the device in ambient conditions overnight.
-  }
-  \label{fig:PZTvacuum}
-\end{figure}
+        \begin{figure}
+          \centering
+          \includegraphics[width=.50\textwidth]{images/resultsanddiscussion/pztpaper/figure4}
+          \caption[I-V curves for graphene-ferroelectric pn junction devices measured in vacuum]{
+           Offset $I_{sd}$ vs $V_{gate}$ curves for devices measured in vacuum. The Dirac point splitting effect disappears in vacuum, but can be recovered by leaving the device in ambient conditions overnight.
+          }
+          \label{fig:PZTvacuum}
+        \end{figure}
 
         We note that the vacuum-dependence of our results requires that the ambient dopant molecules be present on top of the graphene rather than trapped between the graphene and the substrate. Pristine monolayer graphene is impermeable to atomic and molecular species\cite{Bunch2008}, therefore the brief application of a moderate vacuum would be insufficient to remove any molecules trapped underneath the graphene. This in turn requires that the substrate-dependent localization of the ambient dopants occurs through the graphene; similar behavior has been previously reported elsewhere\cite{Moser2007, Moser2008, Lohmann2009, Lafkioti2010}.
 
@@ -2184,6 +2286,7 @@ Transport measurements in air are performed using two Keithley 2400 SourceMeters
 %\textbf{Transport Measurements.} Transport measurements in air were performed using two Keithley 2400 SourceMeters. Current through the graphene channel was measured under a constant bias of 5 mV, while the gate voltage was swept between -1.0 and +1.5 V. Measurements in vacuum were performed using an Agilent 4156C Semiconductor Parameter Analyzer under identical electrical parameters. In both cases gate voltage sweep rates ranged from 10 mV/s to 100 mV/s; data from different sweep rates yielded qualitatively similar results.
 
 
+\pagebreak
 \section{Graphene on strain array substrates}
 \label{sec:res:strain}
 
