@@ -77,16 +77,24 @@ To my family.
 \chapter*{Acknowledgments}
 
 Whenever anyone asks me for advice about graduate school the first thing
-I say is ``Find a good advisor.'' Nothing has a larger impact on your quality
+I say is ``Find a good advisor.'' Nothing has a larger impact on your scientific growth, 
+your professional development, and your quality
 of life as a graduate student than your advisor, and I have been incredibly fortunate
-to have had Nadya as mine. I'm leaving grad school with both my sanity and my enthusiasm
-for physics intact, both of which are due to Nadya's consistently upbeat attitude, generous mentorship,
-and supportive guidance. Finally, grad school is a time to learn and 
-grow as a scientist and researcher, and I certainly have, but I've also grown as a person
+to have had Nadya as mine. I'm leaving grad school as a competent scientist with both my sanity and my enthusiasm
+for physics intact, all of which is due to Nadya's consistently upbeat attitude, generous mentorship,
+and supportive guidance. 
+Not only that, I feel like I've also grown as a person
 during this time by having a broad and meaningful life outside of lab.
 Many, many thanks to Nadya for creating an environment and offering perspective 
 %fostering relationships with all of us in the group 
-which made this all possible.
+which all made this possible.
+
+%Finally, grad school is a time to learn and 
+%grow as a scientist and researcher, and I certainly have, but I've also grown as a person
+%during this time by having a broad and meaningful life outside of lab.
+%Many, many thanks to Nadya for creating an environment and offering perspective 
+%%fostering relationships with all of us in the group 
+%which made this all possible.
 
 Thanks to everyone in the group too -- Nick who convinced me to come to UIUC and join
 the lab in the first place, Scott for showing me the ropes in the beginning, Serena and Clare 
@@ -122,7 +130,7 @@ I wouldn't be where I am without all their love and support and good advice (loo
 \setcounter{tocdepth}{2}
 
 \tableofcontents
-\listoftables
+%\listoftables
 \listoffigures
 
 %% Create a List of Abbreviations. The left column
@@ -130,8 +138,13 @@ I wouldn't be where I am without all their love and support and good advice (loo
 \chapter{List of Abbreviations}
 
 \begin{symbollist*}
-\item[CA] Caffeine Addict.
-\item[CD] Coffee Drinker.
+\item[BOE] Buffered oxide etchant
+\item[CNP] Charge neutrality point
+\item[CVD] Chemical vapor deposition
+\item[PDMS] Polydimethylsiloxane
+\item[PMMA] Poly(methyl methacrylate)
+\item[PZT] Lead zirconate titanate
+\item[RIE] Reactive ion etching
 \end{symbollist*}
 
 %% Create a List of Symbols. The left column
@@ -923,6 +936,7 @@ I wouldn't be where I am without all their love and support and good advice (loo
         than those responsible for the G peak.
         
         \subsection{Uniaxial strain}
+        \label{sec:bg:uniaxial}
                     
             \begin{figure}
             \centering
@@ -959,6 +973,7 @@ I wouldn't be where I am without all their love and support and good advice (loo
         approximately 200 meV. 
     
         \subsection{Non-uniaxial strain}
+        \label{sec:bg:nonuniaxial}
         
         Theoretical \cite{manes2007symmetry, Guinea2009} and experimental \cite{Levy2010}, \cite{Yan2012} 
         results suggest that non-uniaxial strains in graphene have an effect similar to an applied magnetic field. 
@@ -2200,7 +2215,7 @@ I wouldn't be where I am without all their love and support and good advice (loo
   \centering
   \includegraphics[width=.8\textwidth]{images/resultsanddiscussion/pztpaper/figure1}
   \caption[Schematic illustration of graphene-ferroelectric pn junction device geometry]{
-   (a-c) Schematic illustration of the device geometry. The graphene (grey) spans the regions of evaporated SiO$_2$ (purple) on the bare substrate (teal) and is contacted by Cr/Au electrodes (yellow). The universal backgate is shown in red.
+   (a-c) Schematic illustration of the device geometry. The graphene (grey) spans the regions of evaporated SiO$_2$ (purple) on the PZT substrate (teal) and is contacted by Cr/Au electrodes (yellow). The universal backgate is shown in red.
    (d) Raman spectra of graphene from a device fabricated on a thermal SiO$_2$ substrate. %The relative intensities of the G and 2D peaks, at 1593 cm$^{-1}$ and 2688 cm$^{-1}$ respectively, and the shape of the G peak confirm the monolayer character and high quality of the graphene.
    Inset: a false-color SEM micrograph of a representative device. The scale bar is 2 $\mu$m.
   }
@@ -2221,7 +2236,7 @@ Transport measurements in air are performed using two Keithley 2400 SourceMeters
         \end{equation}
         This is simulated in Figure \ref{fig:PZTdata}b which shows $I_{sd}$ vs $V_{gate}$ curves for screening fractions ranging from 0\% to 75\% and is in excellent agreement with our experimental data. We note that the simulations agree with our data for $\mu > 0$ and $\delta \geq 0$, which is consistent with the extrinsic p-doping typically observed in graphene devices fabricated on PbZr$_{0.2}$Ti$_{0.8}$O$_3$\cite{Baeumer2013}.
 
-\begin{figure}[!b]
+\begin{figure}
   \centering
   \includegraphics[width=.8\textwidth]{images/resultsanddiscussion/pztpaper/figure2}
 
@@ -2232,11 +2247,71 @@ Transport measurements in air are performed using two Keithley 2400 SourceMeters
 \label{fig:PZTdata}
 \end{figure}
 
-        The substrate-selectivity of the doping in our devices suggests that the ambient dopants are polar H$_2$O molecules. Polar surface adsorbates have been shown to dramatically affect the electronic properties of complex oxide systems\cite{Xie2011} as well as graphene\cite{Schedin2007, Lohmann2009,Lu2014}. The H$_2$O doping is substrate-selective because of the unique ferroelectric nature of the PbZr$_{0.2}$Ti$_{0.8}$O$_3$ substrate. Previous work\cite{Leenaerts2007,Leenaerts2009} has established the importance of the orbital structure of the adsorbate in determining the most energetically favorable orientation. For standard graphene devices on SiO$_2$ substrates, the structure of H$_2$O favors a uniform polarization throughout the range of applicable gate voltages. For graphene on ferroelectric substrates however, previous work\cite{Lu2014} indicates that electrostatic effects of the remnant polarization and substrate lattice geometry can modulate the stability of the H$_2$O polarization. In the devices described here, it is likely that the interaction between the remnant polarization of the PbZr$_{0.2}$Ti$_{0.8}$O$_3$ substrate and the H$_2$O molecules sufficiently alters the energetics of different H$_2$O orientations as to destroy the stability of the H$_2$O polarization, and thus create less-polarized regions. This hypothesis is in agreement with data collected from similar devices fabricated on non-ferroelectric substrates; such devices show none of the characteristic Dirac point splitting associated with p-n junctions.
+        The substrate-selectivity of the doping in our devices suggests that the ambient dopants 
+        are polar H$_2$O molecules. Polar surface adsorbates have been shown to dramatically 
+        affect the electronic properties of complex oxide systems \cite{Xie2011} as well as graphene 
+        \cite{Schedin2007, Lohmann2009,Lu2014}. The H$_2$O doping is substrate-selective because of the unique 
+        ferroelectric nature of the PbZr$_{0.2}$Ti$_{0.8}$O$_3$ substrate. Previous work
+        \cite{Leenaerts2007,Leenaerts2009} has established the importance of the orbital 
+        structure of the adsorbate in determining the most energetically favorable orientation.
+        For standard graphene devices on SiO$_2$ substrates, the structure of H$_2$O favors 
+        a uniform polarization throughout the range of applicable gate voltages. For graphene 
+        on ferroelectric substrates however, previous work \cite{Lu2014} indicates that electrostatic 
+        effects of the remnant polarization and substrate lattice geometry can modulate the 
+        stability of the H$_2$O polarization as described in Section \ref{sec:bg:substrates}. 
+        Repeating the explanation here for convenience, it is energetically favorable for 
+        the polarization of the H$_2$O to match
+        that of the substrate. However in the case where the physical spacing between donor atoms
+        in the substrate is different than the spacing between acceptor atoms in the H$_2$O (or vice
+        versa) the resulting polarization of the H$_2$O is unstable.
+     
+        \begin{figure}
+        \centering
+        \includegraphics[width=0.4\linewidth]{images/resultsanddiscussion/pztpaper/Dev5_gateSweep_0007.png}
+            \caption[I-V curves for graphene-SiO$_2$ devices]{
+            I-V measurements performed on devices identical to those shown in Figure \ref{fig:devices}
+            except with a SiO$_2$ substrate in place of a ferroelectric substrate. The non-ferroelectric
+            devices display a well-understood hysteresis associated with charge trapping phenomena \cite{wang2010hysteresis}
+            but show none of the Dirac point splitting associated with distinct doping regions.
+            The absence of Dirac point splitting in these devices supports the conclusion that such
+            splitting in the devices measured above is due to interactions between the ferroelectric
+            substrate and the adsorbed dopants.
+            }
+        \label{fig:sio2_devices}
+        \end{figure}
+        
+        In the devices described here, it is likely that 
+        the interaction between the remnant polarization of the PbZr$_{0.2}$Ti$_{0.8}$O$_3$ 
+        substrate and the H$_2$O molecules sufficiently alters the energetics of different 
+        H$_2$O orientations as to destroy the stability of the H$_2$O polarization, and thus 
+        create less-polarized regions. This hypothesis is in agreement with data collected 
+        from similar devices fabricated on non-ferroelectric substrates, shown in Figure
+        \ref{fig:sio2_devices}. Such devices show 
+        a well-understood hysteresis associated with charge trapping in the substrate \cite{wang2010hysteresis}
+        but display none of the characteristic Dirac point splitting associated with different
+        doping regions. In these control devices the entire substrate is SiO$_2$; the absence
+        p-n junction-type transport signatures supports the conclusion that the variable doping
+        behavior observed above is due to the effect of the ferroelectric substrate.
+        
 
     \subsection{Hysteresis in local doping}
     
-        The gate-voltage dependence of the H$_2$O polarization configurations on PbZr$_{0.2}$Ti$_{0.8}$O$_3$ vs SiO$_2$ leads to hysteresis in the devices. This can be seen in figure \ref{fig:doping_dynamics}a, which shows $I_{sd}$ vs $V_{gate}$ curves for forward and reverse gate sweeps performed on the same devices as measured in Fig. \ref{fig:PZTdata}a. A pronounced hysteresis between forward and reverse gate sweeps is apparent. As in Fig. \ref{fig:PZTdata}a, devices spanning a region of evaporated SiO$_2$ display two distinct minima during forward sweeps, while a control device having no SiO$_2$ displays a single minimum. However, all devices display a single minimum during reverse gate sweeps. We note that the gate voltages applied here remain below the coercive voltage of the PbZr$_{0.2}$Ti$_{0.8}$O$_3$ film, therefore ferroelectric switching is not a possible cause of the observed hysteresis. Ferroelectric switching has been shown to produce similar behavior\cite{Park2015b}, however in this work gate voltages above the coercive voltage of the film are experimentally inaccessible due to large gate leakage in our devices.
+        The gate-voltage dependence of the H$_2$O polarization configurations on 
+        PbZr$_{0.2}$Ti$_{0.8}$O$_3$ vs SiO$_2$ leads to hysteresis in the devices. 
+        This can be seen in figure \ref{fig:doping_dynamics}a, which shows $I_{sd}$ 
+        vs $V_{gate}$ curves for forward and reverse gate sweeps performed on the same 
+        devices as measured in Fig. \ref{fig:PZTdata}a. A pronounced hysteresis between 
+        forward and reverse gate sweeps is apparent. As in Fig. \ref{fig:PZTdata}a, 
+        devices spanning a region of evaporated SiO$_2$ display two distinct minima 
+        during forward sweeps, while a control device having no SiO$_2$ displays a 
+        single minimum. However, all devices display a single minimum during reverse 
+        gate sweeps. We note that the gate voltages applied here remain below the coercive 
+        voltage of the PbZr$_{0.2}$Ti$_{0.8}$O$_3$ film (the voltage required to reverse
+        the polarization of the ferroelectric substrate), therefore ferroelectric switching 
+        is not a possible cause of the observed hysteresis. Ferroelectric switching has 
+        been shown to produce similar behavior\cite{Park2015b}, however in this work gate
+        voltages above the coercive voltage of the film are experimentally inaccessible 
+        due to large gate leakage in our devices.
 
         In order to understand how the hysteresis is related to the different H$_2$O polarization configurations on the PbZr$_{0.2}$Ti$_{0.8}$O$_3$ as compared to the evaporated SiO$_2$, it is instructive to consider the gate voltages at which the various minima appear. For example, for the 17\% screened curve in Fig. \ref{fig:doping_dynamics}a the red arrows point out two minima on the forward sweep (at 0.6 V and 1.1V) and one minimum on the reverse sweep (at 0.9 V). These can be compared to the position of the Dirac point in vacuum at 0.6 V (see Fig. \ref{fig:PZTvacuum}). The minimum on the forward sweep at 0.6 V occurs at the same gate voltage as the vacuum Dirac point, implying that it corresponds to a region of the graphene without a net polarization in the adsorbed H$_2$O. The remaining minima occur at voltages larger than the Dirac point (0.9 V and 1.1 V) and thus correspond to regions of the graphene on which the adsorbed H$_2$O is polarized and produces p-doping. Polarized H$_2$O typically produces p-doping in graphene, though the precise mechanism is the subject of continuing research\cite{Leenaerts2007,Moser2008,wang2010hysteresis,Wehling2008,Sabio2008}. We identify the forward-sweep minimum at 0.6 V as corresponding to graphene on the non-screened PbZr$_{0.2}$Ti$_{0.8}$O$_3$ region. This is supported by the fact that all devices demonstrate a minimum at 0.6 V, independent of different SiO$_2$ screening fractions. In contrast, the minimum indicated by the rightmost arrow (e.g. at 1.1 V for the 17\% screened device) corresponds to graphene on the evaporated SiO$_2$ region, as evidenced by its evolution with increasing SiO$_2$ screening fraction.
 
@@ -2293,7 +2368,7 @@ Transport measurements in air are performed using two Keithley 2400 SourceMeters
             
     In this section I describe a research project which examined electrical transport in graphene
     devices fabricated on substrates having arrays of topographic features.
-    Engineered substrates offer an interesting avenue towards graphene devices with tunable properties.
+    Engineered substrates offer an avenue towards graphene devices with tunable properties.
     In particular, substrates which apply strain to graphene can expose unique behavior.
     However, existing options for fabricating strain-inducing substrates are not suitable for creating 
     devices for electrical transport measurements.
@@ -2306,12 +2381,13 @@ Transport measurements in air are performed using two Keithley 2400 SourceMeters
             Graphene is a material with enormous potential for both scientific research and technical applications
             \cite{novoselov2004electric,novoselov2005two,zhang2005experimental,geim2007rise}.
             In particular, the ability to tune graphene's properties through the use of engineered substrates offers a practical
-            method to explore graphene's properties and modify them for specific applications\cite{guinea2010energy, zhou2007substrate}.
+            method to explore graphene's properties and modify them for specific applications 
+            \cite{guinea2010energy, zhou2007substrate} as described in Sections \ref{sec:bg:uniaxial} and \ref{sec:bg:nonuniaxial}.
             Engineered substrates offer a variety of avenues by which to modulate graphene's properties:
-            previous work has employed substrate topography\cite{Tomori2011},
-            electrostatic charge injection\cite{chiu2010controllable},
-            substrate lattice mis-match\cite{zhou2007substrate},
-            and ferroelectric polarization\cite{hinnefeld2016single}
+            previous work has employed substrate topography \cite{Tomori2011},
+            electrostatic charge injection \cite{chiu2010controllable},
+            substrate lattice mis-match \cite{zhou2007substrate},
+            and ferroelectric polarization \cite{hinnefeld2016single}
             to achieve a range of modifications to graphene's properties.
              
             Of the various substrate engineering techniques, applying strain via substrate topography is particularly interesting
@@ -2420,7 +2496,7 @@ Transport measurements in air are performed using two Keithley 2400 SourceMeters
             produces strain in the graphene which generates the shifted Raman peak positions.
             
             
-            Doping from charge impurities in the substrate is also known to 
+            As described in Section \ref{sec:bg:raman}, doping from charge impurities in the substrate is also known to 
             shift Raman peak positions in graphene \cite{reina2008large, casiraghi2007raman}, however the ratio 
             \begin{equation}
                 r = \frac{\Delta \, \omega_\text{2D}}{\Delta \, \omega_\text{G}}
@@ -2449,13 +2525,14 @@ Transport measurements in air are performed using two Keithley 2400 SourceMeters
             \end{figure*}
             
     \subsection{Magneto-transport measurements of quasi-bound states}
+    \label{sec:sa_project}
             
             Figures \ref{'fig:transport'}A and \ref{'fig:transport'}B show the results of magneto-transport 
             measurements performed at 250 mK on a 750 nm-spaced strain array device and a flat control device, respectively.
             The Dirac point for both devices is located at approximately 40 V; this reflects both the residual doping
             from the fabrication process as well as the reduced gate capacitance of the thicker-than-normal SiO$_2$ dielectric layer.
             Qualitative differences between the strain array and flat devices are apparent: 
-            the unstrained control device displays the onset of a typical Landau level fan pattern\cite{bolotin2009observation}, 
+            the unstrained control device displays the onset of a typical Landau level fan pattern \cite{bolotin2009observation}, 
             however the strain array device displays several resistance maxima not present in the control device.
             Figure \ref{'fig:transport'}C shows the same data as Figure \ref{'fig:transport'}A with a linear background 
             $R_\text{background} = m V_g + b$ subtracted; several additional local maxima are visible in the low gate voltage region.
@@ -2464,34 +2541,55 @@ Transport measurements in air are performed using two Keithley 2400 SourceMeters
             In the vicinity of each pillar the graphene is locally delaminated; this delamination alters the 
             effective gate capacitance by including a region of vacuum in series with the SiO$_2$ dielectric layer.
             The local variation in the gate capacitance creates a corresponding variation in the potential,
-            effectively creating a circular, smoothly varying potential barrier, e.g. a quantum dot.
-            Carriers in graphene cannot be confined electrostatically, as massless particles governed by the Dirac equation
+            effectively creating a circular potential barrier, e.g. a quantum dot. This is illustrated schematically
+            in Figure \ref{'fig:transport'}D.
+            Carriers in graphene cannot be confined electrostatically: as massless particles governed by the Dirac equation
             (in the low energy limit)
-            they display Klein tunneling\cite{katsnelson2006chiral,young2009quantum}.
-            However, previous work has shown that circular potential barriers can create pseudo-bound states in 
-            graphene\cite{silvestrov2007quantum,matulis2008quasibound,hewageegana2008electron,chen2007fock, heinisch2013mie}.
-            Moreover, smoothly varying potential barriers like those present here have been shown to be most effective
-            in creating quasi-bound states\cite{chen2007fock}.
+            they display Klein tunneling \cite{katsnelson2006chiral,young2009quantum}.
+            However, as described in Section \ref{sec:bg:gating}
+            previous work has shown that circular potential barriers can create pseudo-bound states in 
+            graphene \cite{silvestrov2007quantum,matulis2008quasibound,hewageegana2008electron,chen2007fock, heinisch2013mie}.
+            We attribute the transport behavior of our devices to resonant scattering off of pseudo-bound
+            states in the quantum dots defined by the local delamination regions.
             We note that the spacing of the strain array, and thus the delamination regions is greater than the coherence length
-            in this sample, so the behavior is not due to superlattice effects.
+            in this sample, so the behavior is not due to superlattice or Fabry-P\'erot resonance effects.
             
-            This analysis is corroborated by both the energy and field scales of the observed features. 
+            This analysis is corroborated by both the energy and field scales of the features we observe in our data. 
             Considering first the field scale,
-            previous work\cite{heinisch2013mie} has shown that the scattering properties of
+            previous work \cite{heinisch2013mie} has shown that the scattering properties of
             quantum dots in graphene depend on the size of the dot:
             for small dots forward scattering is strongly suppressed while large dots can focus
-            carriers and enhance conductivity.
+            carriers and enhance conductivity. These size dynamics stem from the interaction of the incident
+            plane wave and the excited wavefunction within the quantum dot. In the limit where the quantum dot
+            is much smaller than the relevant length scale of the incident wave the quantum dot can be treated
+            as a zero-dimensional region subject to quantized excitations. 
+            In contrast, the case where the quantum dot is of a similar
+            size to the length scale of the incident wave is dominated by the internal dynamics of the wave within
+            the quantum dot region. In this latter case the system behaves analogously to an optical system,
+            with the incident particle wavefunction refracting and then interfering with the original wave
+            \cite{cserti2007caustics}.
+            
             In the presence of a magnetic field, we take the cyclotron radius to be the relevant length scale:
             \begin{equation}
-                r_c = \frac{v_F m^*}{e B} = \frac{\hbar \sqrt{n \pi}}{e B}
+                r_c = \frac{v_F m^*}{e B} = \frac{\hbar \sqrt{n \pi}}{e B}.
             \end{equation}
-            With a carrier density of $10^{11}$ cm$^{-2}$ and a field of 1 T corresponding the the field 
-            at which the transport features disappear 
+            We take the cyclotron radius as the relevant length scale because 
+            when $r_c$ is comparable to the size of the quantum dot region the incident carrier
+            is no longer well approximated by a plane wave. The transport dynamics
+            of a system containing quasi-bound states depend on the interference between the incident
+            plane wave and the reflected or refracted wave. When the incident wave is not a plane wave the
+            interference effects, and thus the transport behavior, will differ from the expected behavior.
+            In our devices, with a carrier density of $10^{11}$ cm$^{-2}$ and a field of 1 T corresponding the the field 
+            at which the transport features disappear,
             we find a cyclotron radius of 40 nm and thus a characteristic length of 80 nm.
             This is in excellent agreement with the 100 nm diameter of the strain array pillars
             and the resulting local delamination regions.
             
-            Considering next the energy scale, the features in the transport data are spaced approximately 5V apart.
+            Next we consider the agreement between theoretical predictions and our observations in
+            the energy scale; the goal in the following section is to relate the observed gate voltage
+            spacing between resistance maxima to the spacing between the energe levels of
+            quasi-bound states.
+            We start with the gate voltage spacing: features in the transport data are spaced approximately 5V apart.
             The change in the Fermi energy in graphene for a given change in gate voltage is given by
             \begin{equation}
                 \Delta E_F = e \cdot \alpha \cdot \Delta V_g
@@ -2514,6 +2612,7 @@ Transport measurements in air are performed using two Keithley 2400 SourceMeters
             where $f(E) = (1 + \text{exp}[(E - E_F) / kT])^{-1}$ is the Fermi-Dirac distribution. For a carrier density
             of $10^{11}$ cm$^{-2}$ this gives a Fermi energy of 37 meV, a quantum capacitance of 2.6 pF,
             and thus an energy scale for the observed transport features of approximately 40 meV.
+            Next we relate this experimental value to theoretical predictions.
             
             For a parabolic potential of the form $V = − (x/x_0)^2 U/2$
             theoretical results \cite{silvestrov2007quantum} give the following expression for the energy scale of the
@@ -2521,7 +2620,11 @@ Transport measurements in air are performed using two Keithley 2400 SourceMeters
             \begin{equation}
                 E = \frac{\hbar v_F}{\xi} \;\;\; \text{with} \;\;\; \xi = \left[ \frac{\hbar v_F x_0^2}{U} \right]^{1/3}.
             \end{equation}
-            For the experimental results described here we take $x_0=25\text{nm}$ to be half the radius of the
+            As shown in Figure \ref{'fig:transport'}D, the potential profile in our devices is 
+            defined by the local delamination of graphene in the vicinity of the SiO$_2$ pillars.
+            Approximating the potential profile in our devices as parabolic in order to use the 
+            theoretical prediction for the energy scale of the quasi-bound states,
+            we take $x_0=25\text{nm}$ to be half the radius of the
             strain features, and $U$ to be the change in potential created by the locally varying gate capacitance
             \begin{equation}
                 U = e \cdot V_g \cdot (\alpha_\text{pillar} - \alpha_\text{flat}).
@@ -2530,11 +2633,14 @@ Transport measurements in air are performed using two Keithley 2400 SourceMeters
             the capacitance of the pillar region as cylinder of air in series with the SiO$_2$ substrate.
             The cylinder of air has radius $x_0$ and height 100nm, where the latter figure
             is half the height of the strain array features on the substrate. Taking $V_g = 22.5\text{V}$ 
-            as the midpoint of the region of interest we find a predicted energy scale of 57 meV, in
-            good agreement with our experimental results.
+            as the midpoint of the region of interest we find a predicted energy scale of 57 meV. This
+            is in good agreement with our experimental results: the energy spacing extracted from our 
+            experimental features (40 meV) closely matches the theoretically predicted spacing of energy levels (57 meV) of 
+            the quasi-bound states for a quantum dot potential which approximates our experimental system
             
             We note that the energy scale of the quasi-bound states depends on the height of the 
-            potential barrier as $E \propto U^{1/3} $. The height of the potential barrier depends 
+            potential barrier as $E \propto U^{1/3} $. In our experimental configuration 
+            the height of the potential barrier depends 
             in turn on the magnitude of the applied gate voltage as $ U \propto V_g$. 
             The gate voltage in our measurements varies by a factor of two in the region of interest,
             and so we expect the theoretically predicted energy scale to vary by a factor of $2^{1/3}$
@@ -2558,15 +2664,154 @@ Transport measurements in air are performed using two Keithley 2400 SourceMeters
 
 
 \chapter{Summary and conclusions}
-\section{Summary of results}
-\section{Future work}
-\label{sec:fw}
 
-    \subsection{Superlattice effects in strain array substrates}
+    In this section I give a summary of the primary research results of the experiments comprising this thesis, 
+    present the overarching conclusions of the work, 
+    and offer experimental extensions which build on the foundations established here.
     
-    \subsection{Strain effects in strain array substrates}
-        \subsubsection*{Rounded pillars}
-        \subsubsection*{Closer spacings}
+    \section{Summary of results}
+     
+            In summary, we have observed the formation and subsequent evolution of
+            micro-rips in graphene using atomic force microscopy. While an initial
+            application of tensile strain introduces new mechanical defects, successive
+            strain-relaxation cycles over the same strain range elastically open and close
+            the existing rips. Mechanics simulations further reveal the underlying
+            deformation and failure mechanisms of the graphene sample under initial and
+            subsequent cyclic tensile loadings, which agree well with the AFM measurements.
+            This mechanical effect has a corresponding electrical effect: the graphene's
+            transport properties are degraded by the initial application of strain, but
+            show small, mostly reversible changes during ensuing strain-relaxation cycles.
+            
+            Graphene's combination of superlative electronic properties, extreme
+            flexibility, and robust functionality after partial mechanical failure is
+            unique among conducting thin films and lends itself to a variety of promising
+            future device applications. For applications with stringent component
+            requirements such as RC frequency filters or devices used for precise metrology
+            the onset of rip formation and the subsequent variation in electrical
+            properties described here are crucial design considerations. Similarly, the
+            interplay between strain-dependent resistance increases and power consumption
+            requirements may impose design limits on the use of graphene in next-generation
+            flexible displays and touchscreens. If graphene is to be used in applied
+            devices outside the laboratory a thorough understanding of when and how it will
+            fail is essential. In this manuscript we present a detailed description of
+            precisely this situation, with exciting implications for robust, graphene-based
+            electronic devices.
+
+            In summary, we have fabricated a controllable p-n junction in graphene on a ferroelectric 
+            substrate. We employ simple substrate modifications to define local doping regions, where 
+            the doping is accomplished through the substrate-selective formation of a self-assembled 
+            layer of ambient doping molecules. Alternative explanations for the local doping effect 
+            are ruled out, and the dynamics of the ambient doping suggest that it is due to polar 
+            H$_2$O molecules. Finally, the PbZr$_{0.2}$Ti$_{0.8}$O$_3$ substrate creates a hysteresis 
+            in the ambient doping effect which can be used to controllably bias the device into and 
+            out of a p-n junction configuration, using a single, universal backgate.
+
+            In summary, we describe a fabrication procedure for producing graphene devices on
+            substrates having an array of strain-generating features and we report experimental signatures
+            caused by these strain-generating features. We find that the spacing of the strain array features
+            determines the adhesion behavior of the graphene, and that for large spacings the partial
+            delamination creates strain in the graphene which we observe using optical measurements. 
+            Finally, we find that magneto-transport measurements
+            display features consistent with the presence of a locally varying potential, which we attribute to the 
+            variable gate capacitance induced by the local graphene delamination. 
+            Through careful considerations of the strain array spacing and pillar height
+            this technique can be adapted to length scales on the order of the coherence length in
+            graphene, thereby offering a novel method to explore superlattice and strain effects in graphene.
+    
+    \section{Future work}
+    \label{sec:fw}
+    
+        Part of the appeal of experimental research is that every answer begets a new question.
+        The work described in this thesis addresses certain aspects of graphene's interactions with
+        substrates, and how those interactions modify graphene's properties, but each conclusion
+        generates new potential avenues for exploration.
+        Below I propose two new experiments which build on the most experimentally promising elements
+        of the work described in this thesis. 
+    
+        \subsection{Quasi-bound states in a single graphene quantum dot}
+        
+        The results of Section \ref{sec:sa_project} provide a preliminary observation of quasi-bound states
+        in electrostatically defined graphene quantum dots, however a precise interpretation of the data is complicated 
+        by certain factors in the sample design. In particular, the presence of an array of 
+        quantum dot regions rather than a single dot, the conical shape of the potential profile,
+        and the semi-uncontrollable delamination dependence of the dot region make it difficult to 
+        quantitatively compare experimental results to theoretical predictions. Here I propose an
+        experiment to perform transport measurements on an electrostatically defined graphene 
+        quantum dot device in a manner which closely mimics situations which have been treated theoretically.
+        
+        \subsubsection*{Proposed devices}
+        
+            The proposed device geometry is illustrated in Figure XXXX: devices consist of 
+            a graphene channel contacted in a Hall bar configuration, which
+            spans a single evaporated disk of SiO$_2$. Different devices on a single chip
+            have different disk radii, and each chip includes at least one control device
+            having no evaporated SiO$_2$ disk. The width of the graphene channel is twice
+            the diameter of the largest evaporated disk. Such devices should be able to
+            be made using standard wet-transfer techniques, without requiring the use of
+            critical point drying.
+            Additionally, the controlled deposition of additional SiO$_2$ on a substrate of known thickness
+            (in contrast to the etching processes used in the experiment of Section \ref{sec:sa_project})
+            should allow for more precise determination of the gate capacitance.
+        
+        \subsubsection*{Proposed measurements}
+        
+            The relevant experimental results can be collected via low temperature transport
+            measurements. Specifically, sweeps of longitudinal resistivity $\rho_\text{xx}$
+            as a function of gate voltage will display signatures of 
+            quasi-bound states if such behavior is present in the proposed devices. 
+            These measurements can be performed using an SR830 lockin amplifier to measure the signal,
+            a Keithley 2400 to provide the gate voltage, and optionally a voltage preamplifier
+            like the PAR 113 to clean the resulting signal.
+            
+            Coloumb blockade-type measurements of differential conductance $dI/dV$ as a function of
+            both dc source-drain bias and gate voltage could also serve to emphasize the difference
+            between quantum dot behavior in graphene and other two dimensional materials. These 
+            measurements can be performed with a Keithley 2400 for gating and a National Instruments DAQ
+            for supplying the source-drain bias, as well as for measuring the current (optionally using
+            a current preamplifier).
+        
+        \subsubsection*{Proposed analysis}
+        
+            The collected resistivity data will be analyzed in terms of scattering from quasi-bound
+            states in the quantum dot region defined by the evaporated SiO$_2$; as in the current work
+            the quantum dot potential is established by the different gate capacitances in the two regions.
+            Transport through such devices is predicted to display a Fano
+            resonance when the Fermi energy of carriers in the flat graphene matches the energy of a quasi-bound
+            state in the dot. This resonance will manifest as an increase in the device resistivity; by
+            correlating the gate voltages at which the resistivity displays a maximum with the theoretically
+            predicted energy levels of the quasi-bound states this experiment will provide a direct observation
+            of quasi-bound states in graphene.
+            
+        
+    \subsection{Psuedo-magnetic field effects in strain array substrates}
+        
+            Observing pseudo-magnetic field effects in transport measurements was the original motivation
+            for the project described in Section \ref{sec:sa_project}. Experimentally the behavior of the
+            devices was dominated by the scattering mechanics of the quantum dot regions produced by 
+            the local delamination of the graphene, and so ultimately we were unable to observe pseudo-magnetic
+            field effects. However, in addition to the observation of quasi-bound state dynamics, the experiment
+            also provided a better understanding of how strain is generated in such strain array-type devices: 
+            contrary to our expectations the dominant contribution to the strain stems from the 
+            competition between surface adhesion and delamination, rather than from conformal adhesion to the sharp
+            tips of the pillars.
+            Here I propose an experiment which employs this understanding to produce similar devices for which strain
+            (rather than scattering from quantum dots) will be the dominant effect.
+            
+            \subsubsection*{Proposed devices}
+            
+            The proposed device geometry is illustrated in Figure XXXX: devices consist of 
+            a graphene channel contacted in a Hall bar configuration, which
+            sits atop a strain array substrate. The pitch of the substrate is calculated to 
+            maximize the density of strain features (pillars) while still ensuring that the 
+            graphene remains adhered to the substrate between features. As local (but not global)
+            delamination is the dominant factor leading to strain in these devices increasing
+            the density of the local delaminations will increase the effective strain applied to
+            the graphene. 
+            The absence of large suspended regions of graphene should also dramatically improve
+            the yield of these devices, compared to previous efforts.
+            
+            \subsubsection*{Proposed measurements}
+            \subsubsection*{Proposed analysis}
 
 \begin{appendices}
 
@@ -2780,6 +3025,7 @@ In the rest of this section I describe the process used to create these drivers.
     In this case we will write two functions, one for each of the commands we enumerated above.
     Note that both commands require the existence of the \texttt{my\_instrument} variable which
     we created in the previous code block.
+    \pagebreak
     \begin{minted}[
     baselinestretch=1,
     frame=single
