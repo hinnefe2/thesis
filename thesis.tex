@@ -57,18 +57,43 @@ Professor Emeritus Richard Weaver}
 %% Create an abstract that can also be used for the ProQuest abstract.
 %% Note that ProQuest truncates their abstracts at 350 words.
 \begin{abstract}
-This is a comprehensive study of caffeine consumption by graduate
-students at the University of Illinois who are in the very final
-stages of completing their doctoral degrees. A study group of six
-hundred doctoral students\ldots.
+
+As a perfectly two-dimensional material graphene is exceptionally susceptible to
+its environment. In particular, the substrate used to support graphene can dramatically
+alter its electrical and mechanical properties.
+In this thesis we investigate the interactions between graphene and three distinct
+types of substrate.
+First we consider graphene on flexible substrates and the interaction
+between the strain induced by the substrate and graphene's mechanical integrity.
+Next we consider ferroelectric substrates, the doping effect of the substrate polarization,
+and the effects of that polarization on polar adsorbates.
+Finally we consider topographically patterned substrates and the effects of local variations
+in strain and doping on the transport properties of graphene.
+
+We explore these three topics using optical measurements, atomic force microscopy, and electrical
+transport measurements.
+We first find that graphene on flexible substrates undergoes partial mechanical failure when
+the substrate is stretched, but that graphene is robust to subsequent applications of strain
+provided the applied strain does not exceed the maximum strain previously applied.
+We next find that ferroelectric substrates can affect the orientation of polar dopants adsorbed
+on graphene, and that different orientations contribute different degrees of doping.
+Finally, we find that local variations in doping can create quantum dot regions in graphene
+which are characterized by quasi-bound states rather than the fully bound states typically found
+in quantum dot systems.
+We discuss the significance of these findings, and conclude by proposing future experiments which
+expand on the results presented here.
+
+
+
+
 \end{abstract}
 
 %% Create a dedication in italics with no heading, centered vertically
 %% on the page.
 \begin{dedication}
-To my family.
+To my family
 
-\foreignlanguage{thai}{\textthai{หนังสน้อยือี}}
+\foreignlanguage{thai}{\textthai{หนังสือน้อย}}
 
 \end{dedication}
 
@@ -83,11 +108,11 @@ of life as a graduate student than your advisor, and I have been incredibly fort
 to have had Nadya as mine. I'm leaving grad school as a competent scientist with both my sanity and my enthusiasm
 for physics intact, all of which is due to Nadya's consistently upbeat attitude, generous mentorship,
 and supportive guidance. 
-Not only that, I feel like I've also grown as a person
-during this time by having a broad and meaningful life outside of lab.
+Not only that, I've also grown as a person
+during this time by having a meaningful life outside of lab.
 Many, many thanks to Nadya for creating an environment and offering perspective 
 %fostering relationships with all of us in the group 
-which all made this possible.
+which made all of this possible.
 
 %Finally, grad school is a time to learn and 
 %grow as a scientist and researcher, and I certainly have, but I've also grown as a person
@@ -99,8 +124,8 @@ which all made this possible.
 Thanks to everyone in the group too -- Nick who convinced me to come to UIUC and join
 the lab in the first place, Scott for showing me the ropes in the beginning, Serena and Clare 
 for modeling the persistence it takes to graduate, Malcolm for always knowing how
-everything in the lab works, Jeff and Stephen for their Statler-and-Waldorf style commentary
-on lab stuff, Angela and Rita for commiserating about failed experiments, Sungjae, Joe, Yingjie,
+everything in the lab works, Jeff and Stephen for their Statler-and-Waldorf style commentary, 
+Angela and Rita for commiserating about failed experiments, Sungjae, Joe, Yingjie,
 and Vincent for their advice from the other side, and Greg and Junseok for keeping things going.
 
 Thanks to everyone in both of the bands -- Adrian, Jackson, Matt, Alex, and Apoorv,
@@ -114,7 +139,14 @@ Mondays at the Hootenanny, \textit{mulats\'{a}gs} at Apoorv's place til the wee 
 and all the rest.
 
 Last, and most importantly, thanks to my family and especially my wife (!) Nadha.
-I wouldn't be where I am without all their love and support and good advice (looking at you Brother).
+I wouldn't be where I am without all their love, support, and guidance. Thanks to Dad
+for sparking my love of science and physics in the first place, to Mom for all her support
+when things got tough, to Brother for his good advice these past few years, and 
+to Nadha for being the best thing that begin the best thing that ever happened to anyone in grad school.
+
+%and to everyone else for being so positive and encouraging.
+
+
 
 %% The thesis format requires the Table of Contents to come
 %% before any other major sections, all of these sections after
@@ -160,13 +192,61 @@ I wouldn't be where I am without all their love and support and good advice (loo
 \chapter{Introduction}
 
    \epigraph{God created the bulk; surfaces were invented by the devil.}{Wolfgang Pauli}
-    
+   
+   
+%    Working with graphene offers daily opportunities to wonder at the order and sense of the universe, 
+%    to marvel at the structure of creation.
+%    
+%    This thesis attempts to shine a light into a few obscure corners of the structure of the universe
+%    as revealed by graphene. Insofar as it succeeds, it does so thanks to the richness of graphene's physics.
+%    Likewise, where it falls short the complexity of graphene's environmental interactions (combined with
+%    the shortcomings of my experimental design and analysis) is its downfall. 
 
     \section{Motivation}
+    
+    If ``surfaces were invented by the devil'' then graphene might be the most infernal
+    material known to humankind. As a perfectly two-dimensional crystal graphene is exceptionally 
+    susceptible to its environment: it adsorbs dopants at the first opportunity, it is both
+    fantastically strong and extremely fragile, and it intimately pairs with any substrate it is placed upon.
+    All in all graphene can be incredibly frustrating to work with as an experimentalist. 
+    At the same time, graphene displays an extraordinarily rich set of physical effects.
+    Relativistic tunneling, mind-boggling strength and stiffness,
+    effective magnetic fields an order of magnitude larger than what can otherwise be produced -- 
+    all are present in graphene and accessible via the standard experimental methods of condensed matter physics.
+    Graphene offers a small window with a remarkably large view into the workings of the universe.
+    
+    The motivation for the experiments described in this thesis is to reconsider the fiendishness
+    of graphene's susceptibility to its environment. Rather than asking, ``How does the environment
+    distort the physics I'm trying to observe?'' we ask, ``What does the distortion tell me about
+    the physics of the environment?'' In this spirit we explore three primary topics:
+    graphene's dependence on a substrate to preserve its mechanical integrity,
+    graphene's susceptibility to doping from both its substrate and its environment, and
+    graphene's response to local variations in mechanical strain and doping induced by a substrate.
+    
+    The thesis is organized as follows: in Chapter \ref{sec:ch:bg} we present relevant background
+    information about graphene and its properties. In Chapter \ref{sec:ch:exptech} we summarize
+    the relevant experimental techniques. In Chapter \ref{sec:ch:rd} we present the results of the experiments
+    which comprise this thesis and discuss their significance. Finally, in Chapter \ref{sec:ch:summary}
+    we summarize our results and offer suggestions for future work.
+    
     \section{Statement of thesis problem}
-
+    
+    In this thesis we report measurements of graphene's electrical properties and mechanical
+    integrity as a function of strain, doping, substrate topography, and substrate material.
+    Our primary goal is to better understand how interactions between graphene
+    and its substrate modulate the properties of graphene. 
+    In particular we address the following questions: 
+    First, how does the support of a flexible substrate affect the mechanical integrity and 
+    electrical resistance of graphene when the graphene is strained by stretching the flexible substrate?
+    Second, what effect does a polarized ferroelectric substrate have on graphene, and how 
+    does the ferroelectic polarization interact with other dopants? And finally, how do local
+    variations in strain and doping induced by substrate topography affect the electrical properties of graphene?
+    
+    These three question are addressed via optical, atomic force microscope, and electrical transport
+    measurements of microfabricated graphene devices. 
 
 \chapter{Background}
+\label{sec:ch:bg}
 
     Since its initial isolation in 2004 graphene has been the subject of intense research interest. 
     The following chapter presents a summary of the relevant properties and research results 
@@ -435,7 +515,7 @@ I wouldn't be where I am without all their love and support and good advice (loo
         well, and can thus conclusively demonstrate the presence of Klein tunneling.
         
         
-    \section{Electrical effects graphene}
+    \section{Electrical effects in graphene}
     
         Graphene is eminently dopable. In fact, many of the most interesting experimental
         results involving graphene exploit the ease with which it can be doped; the 
@@ -791,17 +871,40 @@ I wouldn't be where I am without all their love and support and good advice (loo
         Furthermore, when graphene is exposed to strain it displays a variety of unique effects. 
         In this section I summarize previous work concerning these mechanical properties and
         strain-dependent effects.
-      
+        
             \begin{figure}
             \centering
-            \includegraphics[width=0.3\textwidth]{images/background/zigzag_armchair.png}
-            \caption[Armchair and zigzag edges in graphene]{
-            Graphene edges are described as zigzag (red) or armchair (green).
+            \includegraphics[width=0.5\textwidth]{images/background/griffith_rip.png}
+              \raisebox{0.25\height}{
+                \includegraphics[width=0.3\textwidth]{images/background/zigzag_armchair.png}}
+            \caption[Mechanical failure in graphene]{
+            Left: Energy as a function of crack length in a brittle material. 
+            Mechanical failure in brittle materials under a tensile load is governed by the competing energetics of 
+            lattice relaxation and surface creation. Creating or extending a crack in a material 
+            requires the creation of two new surfaces, each requiring some amount of surface energy. 
+            At the same time, cracks allow for the relaxation of strain in the lattice which releases elastic potential energy.
+            Failure occurs above a critical crack length $x_c$ when the system minimizes its energy by expanding
+            the crack indefinitely.
+            Right: Graphene edges are described as zigzag (red) or armchair (green).
             }
             \label{fig:zigzag_armchair}
             \end{figure}
+      
         
         \subsection{Mechanical failure in graphene}
+        
+        As shown in Figure \ref{fig:zigzag_armchair} mechanical failure in brittle materials under a tensile load is 
+        governed by the competing energetics of lattice relaxation
+        and surface creation \cite{griffith1921phenomena}. Creating or extending a crack in a material 
+        requires the creation of two new surfaces, each requiring some amount of surface energy. 
+        At the same time, cracks allow for the relaxation of strain in the lattice which releases elastic potential energy. 
+        As shown in Figure \ref{fig:zigzag_armchair} the two energies scale differently with crack length:
+        the surface energy is linear while the elastic potential energy is quadratic.
+        Beyond a critical crack length $x_c$ the energy of the system is minimized by extending the crack indefinitely
+        i.e. by total mechanical failure. 
+        Note that this analysis requires that the stress in the system be applied at the boundaries of the 
+        system; if the stress is applied locally then rips can completely relieve the strain in their vicinity
+        and stop propagating.
         
         Despite its exceptional intrinsic mechanical strength graphene is susceptible to mechanical failure.
         Several research groups have explored this topic, both experimentally
@@ -813,11 +916,9 @@ I wouldn't be where I am without all their love and support and good advice (loo
         on the angle between the applied strain and the lattice orientation \cite{kim2011ripping}. 
         This experimental observation is justified theoretically by comparing the surface
         energy of zigzag and armchair edges to the potential energy stored in the lattice under a tensile load.
-        Introducing a tear, or elongating an existing tear, requires an increase in the surface energy.
-        At the same time, the lattice deformation of a tear releases some of the stored elastic
-        potential energy. The balance between the two considerations determines the extent of tear propagation
-        \cite{griffith1921phenomena}.
-        The degree of elastic potential energy relaxation depends on the angle between the applied stress and
+        As described above, the dynamics of tear propagation depend on the energetics of surface creation
+        and lattice relaxation. 
+        In graphene the degree of elastic potential energy relaxation depends on the angle between the applied stress and
         the crystal lattice, so different stress orientations produce rips along either zigzag or armchair edges.
         
         Second, in polycrystalline samples tears do not propagate along grain boundaries in the crystal lattice, and such
@@ -1017,6 +1118,7 @@ I wouldn't be where I am without all their love and support and good advice (loo
 
 
 \chapter{Experimental Techniques}
+\label{sec:ch:exptech}
 
     This thesis describes the results of experimental work, and while the experimental results comprise the bulk
     of this work's novelty a thorough record of the the experimental methods employed to produce those results 
@@ -1241,7 +1343,7 @@ I wouldn't be where I am without all their love and support and good advice (loo
     
     \section{Sample Characterization}
     
-    The primary challenge of experimental condensed matter research, at least as measured by graduate student effort, lies in fabricating working devices. The fabrication techniques described above require finesse, skill, and a certain degree of luck (especially when working with temperamental equipment). As such, a substantial fraction of the fabricated devices will fail to work. Characterizing the different failure modes of a given fabrication process -- and thereby determining the optimal process parameters -- is a crucial part of each research project. In this section several techniques which effectively characterize the quality and physical integrity of graphene and other fabricated device elements are described.
+    The primary challenge of experimental condensed matter research, at least as measured by graduate student effort, lies in fabricating working devices. The fabrication techniques described above require finesse, skill, and a certain degree of luc -- (especially when working with temperamental equipment). As such, a substantial fraction of the fabricated devices will fail to work. Characterizing the different failure modes of a given fabrication process -- and thereby determining the optimal process parameters -- is a crucial part of each research project. In this section several techniques which effectively characterize the quality and physical integrity of graphene and other fabricated device elements are described.
     
         \subsection{Atomic Force Microscopy}
         
@@ -1770,8 +1872,10 @@ I wouldn't be where I am without all their love and support and good advice (loo
             
     
 \chapter{Results and Discussion}
+\label{sec:ch:rd}
 
 \section{Graphene on flexible substrates}
+\label{sec:res:ripping}
 
     In this section I present the results of research which examines
     the mechanical properties of graphene devices stretched on flexible
@@ -2027,7 +2131,7 @@ I wouldn't be where I am without all their love and support and good advice (loo
         As the applied tensile strain first increases to 5\%, the stress concentration
         near the tips of the short middle crack ($\sim$15.7 nm in length) becomes
         sufficiently high to cause the propagation of the short crack in both
-        directions. As the crack extends the lattice strain relaxes and elastic
+        directions. As the crack extends the local lattice strain relaxes and elastic
         potential energy is released; this process continues until the energy
         released by the relaxation of the lattice strain is smaller than the surface energy
         required to extend the crack. As a result, the middle crack
@@ -2173,6 +2277,7 @@ I wouldn't be where I am without all their love and support and good advice (loo
 
 \pagebreak
 \section{Graphene on ferroelectric substrates}
+\label{sec:res:pzt}
 
 
     In this section I report the results of a project where my collaborators and I performed electrical transport measurements on graphene p-n junctions formed via simple modifications to a PbZr$_{0.2}$Ti$_{0.8}$O$_3$ substrate, combined with a self-assembled layer of ambient environmental dopants. We show that the substrate configuration controls the local doping region, and that the p-n junction behavior can be controlled with a single gate. Finally, we show that the ferroelectric substrate induces a hysteresis in the environmental doping which can be utilized to activate and deactivate the doping, yielding an `on-demand' p-n junction in graphene controlled by a single, universal backgate.
@@ -2446,7 +2551,7 @@ Transport measurements in air are performed using two Keithley 2400 SourceMeters
             \begin{figure}
             \centering
             \includegraphics[width=0.7\columnwidth]{images/resultsanddiscussion/strainarraypaper/Figure2}
-            \caption{SEM micrographs of substrates prepared by this method. 
+            \caption[SEM micrographs of strain array substrates]{SEM micrographs of substrates prepared by this method. 
             (A) SiO$_2$ pillars before the BOE etch. The scale bar is 1$\mu$m.
             (B) After the BOE dip the SiO$_2$ pillars are sharpened into cones with a tip diameter of less than 10 nm.
             The scale bar is 1 $\mu$m. Inset: A single sharpened cone. The scale bar is 100 nm.
@@ -2462,7 +2567,8 @@ Transport measurements in air are performed using two Keithley 2400 SourceMeters
             \begin{figure*}
             \centering
             \includegraphics[width=\columnwidth]{images/resultsanddiscussion/strainarraypaper/Figure3}
-            \caption{Raman peak positions for graphene on micropatterned and flat substrates. 
+            \caption[Raman measurements of graphene on strain array substrates]
+                {Raman peak positions for graphene on micropatterned and flat substrates. 
                 (A-B) Raman G and 2D peak positions extracted from a raster scan of graphene on
                 strain array and flat substrates for array spacings from 300nm to 700 nm. The 
                 data for the flat substrates is collected separately for each device to account for
@@ -2515,7 +2621,7 @@ Transport measurements in air are performed using two Keithley 2400 SourceMeters
             \begin{figure*}
             \centering
             \includegraphics[width=\columnwidth]{images/resultsanddiscussion/strainarraypaper/Figure4_1}
-            \caption{
+            \caption[Magneto-transport measurements of graphene on strain array substrates]{
                 Longitudinal resistance $R_\text{xx}$ of a graphene device fabricated on (A) a 750nm-spaced
                 strain array substrate and (B) a flat substrate as a function of gate voltage and magnetic field. 
                 The color scale is measured in k$\Omega$.
@@ -2657,6 +2763,9 @@ Transport measurements in air are performed using two Keithley 2400 SourceMeters
             Finally, we find that magneto-transport measurements
             display features consistent with the presence of a locally varying potential, which we attribute to the 
             variable gate capacitance induced by the local graphene delamination. 
+            In particular, we observe
+            transport signatures consistent with the presence of quasi-bound states in the quantum
+            dot region defined by the local delamination regions.
             Through careful considerations of the strain array spacing and pillar height
             this technique can be adapted to length scales on the order of the coherence length in
             graphene, thereby offering a novel method to explore superlattice and strain effects in graphene.
@@ -2664,60 +2773,53 @@ Transport measurements in air are performed using two Keithley 2400 SourceMeters
 
 
 \chapter{Summary and conclusions}
+\label{sec:ch:summary}
 
-    In this section I give a summary of the primary research results of the experiments comprising this thesis, 
-    present the overarching conclusions of the work, 
+    In this section I give a summary of the primary research results of this thesis 
     and offer experimental extensions which build on the foundations established here.
+%    and present the overarching conclusions of the work, 
     
     \section{Summary of results}
      
-            In summary, we have observed the formation and subsequent evolution of
+            In Section \ref{sec:res:ripping}, we observed the formation and subsequent evolution of
             micro-rips in graphene using atomic force microscopy. While an initial
-            application of tensile strain introduces new mechanical defects, successive
-            strain-relaxation cycles over the same strain range elastically open and close
-            the existing rips. Mechanics simulations further reveal the underlying
+            application of tensile strain introduced new mechanical defects, successive
+            strain-relaxation cycles over the same strain range elastically opened and closed
+            the existing rips. Mechanics simulations further revealed the underlying
             deformation and failure mechanisms of the graphene sample under initial and
-            subsequent cyclic tensile loadings, which agree well with the AFM measurements.
-            This mechanical effect has a corresponding electrical effect: the graphene's
-            transport properties are degraded by the initial application of strain, but
-            show small, mostly reversible changes during ensuing strain-relaxation cycles.
+            subsequent cyclic tensile loadings, which agreed well with the AFM measurements.
+            This mechanical effect had a corresponding electrical effect: the graphene's
+            transport properties were degraded by the initial application of strain, but
+            showed small, mostly reversible changes during ensuing strain-relaxation cycles.
+            This project provided insight into graphene's failure modes when supported by a
+            flexible substrate, how such failures differed from the well studied failure of
+            suspended graphene, and finally how the transport properties of graphene degrade
+            under mechanical strain and partial mechanical failure. 
             
-            Graphene's combination of superlative electronic properties, extreme
-            flexibility, and robust functionality after partial mechanical failure is
-            unique among conducting thin films and lends itself to a variety of promising
-            future device applications. For applications with stringent component
-            requirements such as RC frequency filters or devices used for precise metrology
-            the onset of rip formation and the subsequent variation in electrical
-            properties described here are crucial design considerations. Similarly, the
-            interplay between strain-dependent resistance increases and power consumption
-            requirements may impose design limits on the use of graphene in next-generation
-            flexible displays and touchscreens. If graphene is to be used in applied
-            devices outside the laboratory a thorough understanding of when and how it will
-            fail is essential. In this manuscript we present a detailed description of
-            precisely this situation, with exciting implications for robust, graphene-based
-            electronic devices.
-
-            In summary, we have fabricated a controllable p-n junction in graphene on a ferroelectric 
-            substrate. We employ simple substrate modifications to define local doping regions, where 
-            the doping is accomplished through the substrate-selective formation of a self-assembled 
+            In Section \ref{sec:res:pzt}, we fabricated a controllable p-n junction in graphene on a ferroelectric 
+            substrate. We employed simple substrate modifications to define local doping regions, where 
+            the doping was accomplished through the substrate-selective formation of a self-assembled 
             layer of ambient doping molecules. Alternative explanations for the local doping effect 
-            are ruled out, and the dynamics of the ambient doping suggest that it is due to polar 
-            H$_2$O molecules. Finally, the PbZr$_{0.2}$Ti$_{0.8}$O$_3$ substrate creates a hysteresis 
-            in the ambient doping effect which can be used to controllably bias the device into and 
-            out of a p-n junction configuration, using a single, universal backgate.
+            were ruled out, and the dynamics of the ambient doping suggested that it was due to polar 
+            H$_2$O molecules. Finally, the PbZr$_{0.2}$Ti$_{0.8}$O$_3$ substrate created a hysteresis 
+            in the ambient doping effect which could be used to controllably bias the device into and 
+            out of a p-n junction configuration, using a single, universal backgate. This project
+            elucidated the role of ferroelectric polarization in the stability of polar
+            dopants on graphene, and how the orientation of such dopants modulates their doping effect.
 
-            In summary, we describe a fabrication procedure for producing graphene devices on
-            substrates having an array of strain-generating features and we report experimental signatures
-            caused by these strain-generating features. We find that the spacing of the strain array features
+            In Section \ref{sec:res:strain}, we described a fabrication procedure for producing graphene devices on
+            substrates having an array of strain-generating features and we reported experimental signatures
+            caused by these strain-generating features. We found that the spacing of the strain array features
             determines the adhesion behavior of the graphene, and that for large spacings the partial
-            delamination creates strain in the graphene which we observe using optical measurements. 
-            Finally, we find that magneto-transport measurements
-            display features consistent with the presence of a locally varying potential, which we attribute to the 
-            variable gate capacitance induced by the local graphene delamination. 
-            Through careful considerations of the strain array spacing and pillar height
-            this technique can be adapted to length scales on the order of the coherence length in
-            graphene, thereby offering a novel method to explore superlattice and strain effects in graphene.
-    
+            delamination created strain in the graphene which we observed using optical measurements. 
+            Finally, we found that magneto-transport measurements
+            displayed features consistent with the presence of a locally varying potential, which we attributed to the 
+            variable gate capacitance induced by the local graphene delamination. In particular, we observed
+            transport signatures consistent with the presence of quasi-bound states in the quantum
+            dot region defined by the local delamination regions. This project offered a preliminary 
+            experimental observation of quasi-bound states in electrostatically defined quantum dots.
+            
+   
     \section{Future work}
     \label{sec:fw}
     
@@ -2786,7 +2888,7 @@ Transport measurements in air are performed using two Keithley 2400 SourceMeters
     \subsection{Psuedo-magnetic field effects in strain array substrates}
         
             Observing pseudo-magnetic field effects in transport measurements was the original motivation
-            for the project described in Section \ref{sec:sa_project}. Experimentally the behavior of the
+            for the project described in Section \ref{sec:res:strain}. Experimentally the behavior of the
             devices was dominated by the scattering mechanics of the quantum dot regions produced by 
             the local delamination of the graphene, and so ultimately we were unable to observe pseudo-magnetic
             field effects. However, in addition to the observation of quasi-bound state dynamics, the experiment
@@ -2801,18 +2903,41 @@ Transport measurements in air are performed using two Keithley 2400 SourceMeters
             
             The proposed device geometry is illustrated in Figure XXXX: devices consist of 
             a graphene channel contacted in a Hall bar configuration, which
-            sits atop a strain array substrate. The pitch of the substrate is calculated to 
+            sits atop a strain array substrate. The strain array in these devices is both shorter
+            and more densely packed than previously. Referencing previous work \cite{gill2015mechanical}
+            on the snap-through transition in graphene, the pitch of the strain array is chosen to 
             maximize the density of strain features (pillars) while still ensuring that the 
             graphene remains adhered to the substrate between features. As local (but not global)
             delamination is the dominant factor leading to strain in these devices increasing
             the density of the local delaminations will increase the effective strain applied to
-            the graphene. 
+            the graphene. At the same time, minimizing the height of the strain features will
+            reduce the capacitive difference between delaminated and adhered regions, and thus minimize
+            the formation of quantum dot type potential profiles.
             The absence of large suspended regions of graphene should also dramatically improve
             the yield of these devices, compared to previous efforts.
             
             \subsubsection*{Proposed measurements}
+            
+            This experiment requires low temperature magneto-transport measurements.
+            Measurements of the longitudinal and Hall resistivity ($\rho_\text{xx}$ and $\rho_\text{xy}$) as a
+            function of both gate voltage and applied magnetic field will display pseudo-magnetic field effects
+            if any are present in the system.
+            These measurements can be performed using two SR830 lockin amplifiers (one for longitudinal and
+            one for Hall resistivity so that both can be measured simultaneously) and a Keithley 2400
+            to provide the gate voltage.
+            
             \subsubsection*{Proposed analysis}
-
+            
+            The magneto-transport data will be analyzed in terms of the quantum Hall effect. The quantum
+            Hall effect in graphene is well understood; deviations from typical behavior would provide
+            strong indications of psuedo-magnetic effects. In particular, asymmetries between different
+            field directions, as well as unexpected peaks or plateaux at zero applied field, along with
+            the evolution of such features with increasing field are the primary experimental signatures
+            of interest.
+            
+%    \section{Conclusions}
+   
+ 
 \begin{appendices}
 
 \chapter{Device Fabrication Procedures}
@@ -2838,7 +2963,7 @@ Transport measurements in air are performed using two Keithley 2400 SourceMeters
     at 200 mTorr for 60 seconds.
     
 \section{Graphene on flexible substrates}
-
+   
         The devices were fabricated using a modified transfer
         printing process, similar to that described in Ref \cite{Kim2009}.
         Single-layer graphene was grown using established chemical vapor deposition
@@ -2847,8 +2972,8 @@ Transport measurements in air are performed using two Keithley 2400 SourceMeters
         Next, a piece of PDMS was mechanically pressed onto the silicon wafer, and the
         copper was then etched to leave patterned graphene on the PDMS
         substrate\cite{Lee2010}. Raman spectroscopy was used to confirm the presence of
-        graphene on the PDMS. The shape of the Raman 2D
-        peak\cite{Ferrari2006}, as well as subsequent AFM measurements verified the
+        graphene on the PDMS: the shape of the Raman 2D
+        peak\cite{Ferrari2006} along with subsequent AFM measurements verified the
         single-layer character of the graphene. Finally, shadow-mask evaporation was
         used to deposit Ti/Au contact pads.
 
@@ -3098,8 +3223,7 @@ The labdrivers project contains several example Jupyter notebooks for common mea
 \href{https://github.com/masonlab/labdrivers/tree/master/example_nbs}{\textbf{here}}.
 A subset of those examples are reproduced here as examples of how the drivers can be used.
 
-\newpage
-\subsection{IV-sweep Example}
+\subsection{IV-sweep example}
 
 This example performs a IV-sweep measurement using the DAQ to both source the voltage and measure the current.
 \begin{minted}[
@@ -3138,8 +3262,94 @@ plt.ylabel('Amps')
 
 \end{minted}
 
-\subsection{Field-sweep Example}
-\subsection{Sheet Resistance Example}
+\subsection{Coulomb blockade measurement example}
+
+This example performs a two dimensional sweep of longitudinal resistance as a function
+of both gate voltage and source drain bias. The measurement uses an SR830 to measure
+the resistance, a National Instruments DAQ to supply to bias voltage, and a Keithley 2400
+to supply the gate voltage.
+\begin{minted}[
+baselinestretch=1,
+frame=single
+]{python}
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+from labdrivers.ni import bnc2110
+from labdrivers.srs import sr830
+from labdrivers.keithley import keithley2400
+
+# define some parameters
+vgate_min = 20
+vgate_max = 50
+vgate_step = 0.5
+sleep_time = 0.05
+
+vbias_min = -10E-3
+vbias_max = 10E-3
+vbias_step = 0.5E-3
+
+gate_lines = np.arange(vgate_min, vgate_max, vgate_step)
+bias_lines = np.arange(vbias_min, vbias_max, vbias_step)
+
+# make data frames w vbias as columns, vg as index
+lockin_x_2d = pd.DataFrame(columns=bias_lines, index=gate_lines)
+lockin_y_2d = pd.DataFrame(columns=bias_lines, index=gate_lines)
+
+# for temporarily storing each 1d gate sweep
+lockin_x = []
+lockin_y = []
+
+for vbias in bias_lines:
+    
+    # connect to the instruments
+    dac = bnc2110('Dev1')
+    lockin = sr830(8)
+    gate_keithley = keithley2400(20)
+
+    # configure the gate keithley
+    gate_keithley.setMeasure('current')
+    gate_keithley.setSourceDC('voltage')
+    gate_keithley.setCompliance('current', 0.5E-6)
+
+    # turn the outputs on
+    gate_keithley.rampOutputOn(vgate_min, 0.5)
+    time.sleep(3)
+
+    # set s-d bias to vbias
+    dac.setVoltageOutput('ao1', vbias)
+    
+    lockin_tuples = []
+
+    # do the gate sweep
+    for volts in gate_lines:
+
+        # set the keithley output, then take a measurement
+        gate_keithley.setSourceDC('voltage', volts)
+        lockin_tuples.append(lockin.getSnapshot(1,2))
+        
+        # sleep so that the gate doesn't sweep too fast
+        time.sleep(sleep_time)
+
+    # unpack [(x1, y1), (x2, y2), (x3, y3), ...] 
+    # to [x1, x2, x3, ...] and [y1, y2, y3, ...]
+    lockin_x, lockin_y = zip(*lockin_tuples)
+        
+    lockin_x_2d[vbias] = lockin_x
+    lockin_y_2d[vbias] = lockin_y
+
+    # to keep track of where we are in the scan
+    print('V_bias: {:.3e}'.format(vbias))
+    
+    # turn the keithley output off
+    gate_keithley.rampOutputOff(vgate_max, 0.5)
+
+# save the data to file
+lockin_x_2d.to_csv('path/to/save x', index=True)
+lockin_y_2d.to_csv('path/to/save y', index=True)
+\end{minted}
+
 
 \end{appendices}
 
