@@ -129,7 +129,7 @@ Angela and Rita for commiserating about failed experiments, Sungjae, Joe, Yingji
 and Vincent for their advice from the other side, and Greg and Junseok for keeping things going.
 
 Thanks to everyone in both of the bands -- Adrian, Jackson, Matt, Alex, and Apoorv,
-Venanzio, Nate, Ariel, Sergio, and Carlos. First, for putting up with me as I
+Venanzio, Nate, Ariel, Sergio, and Carlo. First, for putting up with me as I
 was learning the fiddle, and then for being so much fun to make music with.
 Of all the things (bar one) that I did while in graduate school, making music
 with all of you was far and away my favorite. Also thanks to Brian, Mo, Srinidhi, Brandon,
@@ -142,7 +142,8 @@ Last, and most importantly, thanks to my family and especially my wife (!) Nadha
 I wouldn't be where I am without all their love, support, and guidance. Thanks to Dad
 for sparking my love of science and physics in the first place, to Mom for all her support
 when things got tough, to Brother for his good advice these past few years, and 
-to Nadha for being the best thing that begin the best thing that ever happened to anyone in grad school.
+to Nadha for being the best thing that ever happened to anyone in grad school 
+(and for keeping me on task while writing so I actually graduate!)
 
 %and to everyone else for being so positive and encouraging.
 
@@ -223,7 +224,7 @@ to Nadha for being the best thing that begin the best thing that ever happened t
     graphene's susceptibility to doping from both its substrate and its environment, and
     graphene's response to local variations in mechanical strain and doping induced by a substrate.
     
-    The thesis is organized as follows: in Chapter \ref{sec:ch:bg} we present relevant background
+    The thesis is organized as follows: in Chapter \ref{sec:ch:bg} we present background
     information about graphene and its properties. In Chapter \ref{sec:ch:exptech} we summarize
     the relevant experimental techniques. In Chapter \ref{sec:ch:rd} we present the results of the experiments
     which comprise this thesis and discuss their significance. Finally, in Chapter \ref{sec:ch:summary}
@@ -241,9 +242,11 @@ to Nadha for being the best thing that begin the best thing that ever happened t
     Second, what effect does a polarized ferroelectric substrate have on graphene, and how 
     does the ferroelectic polarization interact with other dopants? And finally, how do local
     variations in strain and doping induced by substrate topography affect the electrical properties of graphene?
+    We address these three question via optical, atomic force microscope, and electrical transport
+    measurements of microfabricated graphene devices. The resulting data are analyzed within the framework
+    of existing theory, and offer both experimental validation of theory and further insight into
+    the physics of graphene's interactions with its substrate.
     
-    These three question are addressed via optical, atomic force microscope, and electrical transport
-    measurements of microfabricated graphene devices. 
 
 \chapter{Background}
 \label{sec:ch:bg}
@@ -254,8 +257,9 @@ to Nadha for being the best thing that begin the best thing that ever happened t
     \section{Introduction to graphene}
 
     Much of graphene's interesting behavior comes from its unique, two-dimensional structure. 
-    This unique structure gives graphene a variety of interesting characteristics, however a complete 
-    description of its attributes is beyond the scope of this report. Those properties of graphene 
+    %This unique structure gives graphene a variety of interesting characteristics, however a complete 
+    %description of its attributes is beyond the scope of this report. 
+    Those properties of graphene 
     which are relevant to the research comprising this thesis are summarized below; for a more complete description 
     of graphene see one of the existing review articles \cite{geim2007rise}, \cite{CastroNeto2009}. 
     Here I discuss graphene's band structure and several relevant consequences, namely 
@@ -286,7 +290,7 @@ to Nadha for being the best thing that begin the best thing that ever happened t
         E(\mathbf{k}) = \pm t \sqrt{3 + f(\mathbf{k})} - t' f(\mathbf{k}) \;\;\; \text{with} \;\;\; f(\mathbf{k}) = 2 \cos{\sqrt{3} k_y a } + 4 \cos{\frac{\sqrt{3}}{2} k_y a} \cos{\frac{3}{2} k_x a}
         \end{equation} 
         which is plotted in Figure \ref{fig:bandstructure}.
-    
+   
         \begin{figure}
         \centering
         \includegraphics[width=0.6\textwidth]{images/background/ElecPropertiesFig3.png}
@@ -301,7 +305,7 @@ to Nadha for being the best thing that begin the best thing that ever happened t
         \begin{equation}
         E = \hbar v_F \sqrt{k_x^2 + k_y^2}
         \end{equation}
-        (where $k_x$ and $k_y$ are measured from the corner point). This has the same form as the energy of a massless, relativistic particle governed by the Dirac equation. These points are therefore called Dirac points, and in their vicinity the electrons behave as massless Dirac fermions. Each corner of the hexagonal Brillouin zone is related to two others by a reciprocal lattice vector, therefore two of the Dirac points, typically labelled $K$ and $K'$ are inequivalent.
+        (where $\hbar$ is the reduced Planck's constant and $k_x$ and $k_y$ are measured from the corner point). This has the same form as the energy of a massless, relativistic particle governed by the Dirac equation. These points are therefore called Dirac points, and in their vicinity the electrons behave as massless Dirac fermions. Each corner of the hexagonal Brillouin zone is related to two others by a reciprocal lattice vector, therefore two of the Dirac points, typically labelled $K$ and $K'$ are inequivalent.
     
         The linear dispersion relation is not the only factor which ties transport in graphene to the Dirac equation; the two-component wave function of pseudoparticles in graphene is analogous to the spinor wavefunction used to describe spin $\frac{1}{2}$ particles in the Dirac equation \cite{Katsnelson2006}. In graphene the two components correspond to the contributions to the pseudoparticle wavefunction from each of the two sublattices, whereas in quantum electrodynamics the spinor accounts for the spin up and spin down components of the wavefunction.
         The correspondence relies on the linkage of electron-like and hole-like states in graphene:
@@ -317,10 +321,24 @@ to Nadha for being the best thing that begin the best thing that ever happened t
         to have two components.
         The \textit{valley} degeneracy accounts for the fact that the Bravais lattice for graphene
         has a basis of two elements. This is the degeneracy that leads to the presence
-        of two inequivalent Dirac points \textbf{K} and \textbf{K'}. In the absence of the latter
-        \note{ASK NADYA ABOUT THIS}
-        degeneracy charge carriers in graphene would still act as massless Dirac fermions, however
-        the former degeneracy is critical to this behavior.
+        of two inequivalent Dirac points \textbf{K} and \textbf{K'}. 
+        %In the absence of the latter
+        %degeneracy charge carriers in graphene would still act as massless Dirac fermions, however
+        %the former degeneracy is critical to this behavior.
+         
+        Near the $K$ and $K'$ points graphene is a zero-bandgap semiconductor and its transport properties are
+        determined by the position of the Fermi level. When the Fermi level lies well within either of the bands
+        graphene conducts, with a conductivity which is proportional to the number of carriers \cite{Hwang2007}.
+        Conversely, when the Fermi level lies near the intersection of the two bands conductivity is suppressed,
+        but does not reach zero. The latter point is due to the suppression of localization in systems governed
+        by the Dirac equation. In the absence of localization effects the mean free path $l$ of charge carriers
+        cannot be smaller than the wavelength $\lambda_F$ of the carrier  \cite{novoselov2005two}. Writing
+        the conductivity in terms of the carrier wavelength
+        \begin{equation}
+            \sigma = n e \mu = \frac{e^2}{h} \frac{l}{\lambda_F}
+        \end{equation}
+        where $h$ is Planck's constant and $e$ is the charge of an electron, we see that $\sigma$ cannot be less
+        than $e^2/h$.
         
     \subsection{Quantum Hall effect}
     	
@@ -335,15 +353,18 @@ to Nadha for being the best thing that begin the best thing that ever happened t
         field leads to a quantization of the allowed energy levels. These quantized energy states are 
         called Landau levels, and for massive carriers the allowed energies are given by
         \begin{equation}
-            E=\hbar \omega_c (n + 1/2) \;\;\; \text{with} \;\;\; \omega_c = \frac{e B}{m^*}.
+            E=\hbar \omega_c (n + 1/2) \;\;\; \text{with} \;\;\; \omega_c = \frac{e B}{m^*}
         \end{equation}
+        where $\omega_c$ is the cyclotron frequency, $B$ is the applied magnetic field,
+        and $m^*$ is the effective mass of the carrier.
         Additionally, each of these energy levels is highly degenerate, having
         \begin{equation}
             \mathcal{N} = g_s \frac{e B A}{h} = g_s \frac{A B}{\Phi_0}
             \label{eqn:ll_degeneracy}
         \end{equation}
-        states per level, where $g_s$ accounts for additional degeneracies in each state (for example,
-        the spin and sublattice degeneracies in graphene)
+        states per level, where $A$ is the area of the device,
+        $g_s$ accounts for additional degeneracies in each state (for example,
+        the spin and sublattice degeneracies in graphene),
         and $\Phi_0 = h / e$ is the quantum of flux. 
         %note that $g_s=4$ for graphene due to the combined effects of spin and sublattice degeneracy. 
         The former result 
@@ -582,15 +603,36 @@ to Nadha for being the best thing that begin the best thing that ever happened t
             \begin{figure}
             \centering
             \includegraphics[width=0.4\textwidth]{images/background/multigate_pn.png}
-            \caption[PN junctions in graphene via multiple gates]{
-            PN junctions can be formed in graphene using device geometries having multiple
+            \includegraphics[width=0.3\textwidth]{images/background/pn_edge_states.png}
+            \caption[PN junctions in graphene and edge states]{
+            Left: PN junctions can be formed in graphene using device geometries having multiple
             gate electrodes. By varying the voltage applied to each gate electrode individually
             one can control the carrier species in each region, producing p-n, n-p, p-p, and n-n 
             junctions.
             Adapted from \cite{williams2007quantum}.
+            Right: An applied magnetic field creates ciruclating edge states. When the carrier
+            species is different in two regions the edge states will count-circulate; at the
+            boundary between regions edge states from both regions will propagate in the same
+            direction. Adapted from \cite{williams2007quantum}.
             }
             \label{fig:multigate_pn}
             \end{figure}
+            
+        Graphene pn junctions display additional plateaux in quantum Hall measurements \cite{williams2007quantum}.
+        This is due to the dynamics of the circulating edge modes at the junction.
+        The application of a large magnetic field produces circulating edge states in two-dimensional devices;
+        in a sample which has separate regions containing p- and n-type carriers
+        the edge states will circulate in opposite directions (clockwise and counterclockwise) in the two regions
+        because the carrier species is different. However, at the boundary
+        between the two regions (i.e. at the pn junction) the edge states will propagate in the
+        same direction as shown in Figure \ref{fig:multigate_pn}. 
+        This co-propagation facilitates mixing between the edge states of both regions,
+        which modifies the conductance. In the case of perfect mixing between the edge states the expected
+        conductance plateaux are given by \cite{williams2007quantum}
+        \begin{equation}
+            g = \frac{|\nu_1| |\nu_2|}{|\nu_1| + |\nu_2|} \times 2 e^2 / h.
+        \end{equation}
+        where $\nu_1$ and $\nu_2$ are the filling factors in the two regions.
             
         \subsubsection*{Quasi-bound states}
         
@@ -797,57 +839,7 @@ to Nadha for being the best thing that begin the best thing that ever happened t
         an ideal substrate for graphene:
         devices fabricated on or encapsulated with h-BN display drastically improved electronic 
         properties compared to samples fabricated on SiO$_2$ substrates \cite{Dean2010, Xue2011}.
-     
-            \begin{figure}
-            \centering
-            \includegraphics[width=0.35\textwidth]{images/background/ChristophDevice.png}
-            \includegraphics[width=0.45\textwidth]{images/background/ChristophFig4.png}
-            \caption[Graphene on ferroelectric substrates]{Left: A graphene FET fabricated on a PZT substrate. Right: Variable carrier type in a graphene FET on a ferroelectric substrate. I-V sweeps are shown for for the same device after gate voltage pulses are applied to switch the polarization of the ferroelectric layer. Adapted from \cite{Baeumer2013}.}
-            \label{fig:GonPZT}
-            \end{figure}
-        
-        Alternatively, strong substrate interactions can also be used to deliberately tune graphene's 
-        electrical properties. In particular, functional ferroelectric substrates such as 
-        PbZr$_{0.2}$Ti$_{0.8}$O$_3$ (PZT) have been shown to vary carrier type and density in 
-        graphene with varying substrate polarizations \cite{Baeumer2013}, as seen in Figure 
-        \ref{fig:GonPZT}. The electric field from the polarized ferroelectric substrate creates a local potential
-        which dopes the graphene in a manner analogous to the doping created by the electric field of a back gate.
-        The direction of the field produced by the substrate depends on the polarization of the ferroelectric,
-        so different substrate polarizations can create different doping conditions.
-        This effect is bidirectional: the application of a large bias to the graphene 
-        can also flip the polarization of underlying ferroelectric substrates. The strength of the 
-        electric field required to reverse the polarization of a ferroelectric material is called
-        the coercive field. If the voltage applied to graphene on top of a ferroelectric produces
-        an electric field greater than the coercive field it will reverse the polarization of the substrate.
-        
-        Ferroelectric substrates display additional doping dynamics in the presence of polar adsorbates.
-        As described above, the doping effect of polar adsorbates depends on their orientation. 
-        For ferroelectric substrates the polarization of the substrate can affect which orientation
-        of adsorbates is energetically favorable, as shown in Figure \ref{fig:polar_ferro}. Notably,
-        in certain cases the combined effect of substrate polarization and substrate geometry can
-        create conditions where the polarization of adsorbed dopants is random, which effectively 
-        mitigates the doping effect of the adsorbates.
-         
-            \begin{figure}
-            \centering
-            \includegraphics[width=\textwidth]{images/background/ferro_polar_doping.png}
-            \caption[Dynamics of polar dopants on ferroelectric substrates]{
-            It is energetically favorable for the polarization of adsorbed, polar dopant molecules to align with
-            that of the substrate, however the molecular geometries of the substrate and dopant add
-            additional constraints. Specifically, the separation between donor species in the subtrate
-            must match the separation between acceptor species (or dangling bonds) in the adsorbate, and
-            vice versa in order for the adsorbate to have a stable orientation. In the example shown here
-            H$_2$O has a stable orientation when down-polarized because the separation between the donor H atoms in
-            the H$_2$O matches the separation between the acceptor O atoms in the substrate. In contrast,
-            the up-polarization state does not have a stable orientation because the distance between the
-            dangling bonds in H$_2$O does not match the separation between acceptor Ti atoms in the substrate.
-            In contrast, ammonia is stable in either up- or -down polarized orientation because it has only
-            a single dangling bond and therefore is not geometrically constrained by the spacing of the substrate Ti atoms.
-            Adapted from \cite{Lu2014}
-            }
-            \label{fig:polar_ferro}
-            \end{figure}
-        
+       
         
        
        % \subsection{Superlattice effects in graphene}
@@ -891,43 +883,40 @@ to Nadha for being the best thing that begin the best thing that ever happened t
             \end{figure}
       
         
-        \subsection{Mechanical failure in graphene}
-        
-        As shown in Figure \ref{fig:zigzag_armchair} mechanical failure in brittle materials under a tensile load is 
+        \subsection{Mechanical failure in brittle materials}
+        \label{sec:bg:tearing}
+  
+        Mechanical failure in brittle materials under global strain is
         governed by the competing energetics of lattice relaxation
         and surface creation \cite{griffith1921phenomena}. Creating or extending a crack in a material 
         requires the creation of two new surfaces, each requiring some amount of surface energy. 
         At the same time, cracks allow for the relaxation of strain in the lattice which releases elastic potential energy. 
-        As shown in Figure \ref{fig:zigzag_armchair} the two energies scale differently with crack length:
-        the surface energy is linear while the elastic potential energy is quadratic.
+        As shown in Figure \ref{fig:zigzag_armchair} the energies associated with the two effects 
+        scale differently with crack length:
+        the surface energy is positive and linear while the elastic potential energy is negative and quadratic.
         Beyond a critical crack length $x_c$ the energy of the system is minimized by extending the crack indefinitely
         i.e. by total mechanical failure. 
-        Note that this analysis requires that the stress in the system be applied at the boundaries of the 
-        system; if the stress is applied locally then rips can completely relieve the strain in their vicinity
-        and stop propagating.
+        The breaking strength of brittle
+        materials therefore depends on the size and density of defects within the material 
+        in addition to the intrinsic properties of the material \cite{griffith1921phenomena}.
+        For a material with Young's modulus $E$, surface energy $\gamma$ and interatomic distance $r_0$
+        the breaking strength (for pristine and non-pristine samples) is given by
+        \begin{equation}
+            \sigma_\text{pristine} = \sqrt{\frac{E \gamma}{r_0}}, \;\;\;\;\;
+            \sigma_\text{with defect} = \sqrt{\frac{E \gamma \rho}{4 a r_0}}
+        \end{equation}
+        where $a$ is half the length of the defect and $\rho$ is the radius of curvature of the defect.
+        Only in the limit of a perfect crystal does the breaking strength of a crystal approach the strength
+        of its atomic bonds. 
         
-        Despite its exceptional intrinsic mechanical strength graphene is susceptible to mechanical failure.
-        Several research groups have explored this topic, both experimentally
-        \cite{huang2011grains, ruiz2011softened, lee2013high} and theoretically 
-        \cite{zhao2010temperature, wang2012effect, terdalkar2010nanoscale}.
-        Several conclusions emerge from their work. First, graphene tears preferentially along its 
-        crystallographic axes, either along a zigzag or armchair edge (the two edge types are shown
-        in Figure \ref{fig:zigzag_armchair}) depending
-        on the angle between the applied strain and the lattice orientation \cite{kim2011ripping}. 
-        This experimental observation is justified theoretically by comparing the surface
-        energy of zigzag and armchair edges to the potential energy stored in the lattice under a tensile load.
-        As described above, the dynamics of tear propagation depend on the energetics of surface creation
-        and lattice relaxation. 
-        In graphene the degree of elastic potential energy relaxation depends on the angle between the applied stress and
-        the crystal lattice, so different stress orientations produce rips along either zigzag or armchair edges.
-        
-        Second, in polycrystalline samples tears do not propagate along grain boundaries in the crystal lattice, and such
-        boundaries do not dramatically affect the mechanical strength of graphene. The latter point
-        was initially the subject of debate, with several experimental results indicating that polycrystalline
-        graphene samples  were mechanically weaker than monocrystalline graphene samples \cite{huang2011grains,ruiz2011softened}.
-        However subsequent work \cite{lee2013high, rasool2013measurement} revealed that certain processing steps 
-        (namely exposure to 
-        ferric chloride and thermal baking in air) were responsible for most of the degradation in the mechanical strength.
+        For brittle materials under global strain only two states obtain: stasis or total mechanical failure.
+        This is the case for suspended graphene samples, where the strain is applied at the boundaries of the system.
+        The situation is more complex when strain is applied to the sample locally rather than globally, 
+        as when graphene is supported by a flexible substrate. 
+        In this case partial mechanical failure is also possible.
+        This is because when the strain is local a partial mechanical failure can relax the strain locally, 
+        reducing the amount of elastic potential energy released by a crack extension, and thus altering
+        the energetic balance of the system so that crack propagation is no longer favorable.
         
         %- crack propagation energetics (brittle material so well described by 
         %- propagate along zig-zag or armchair directions, not along grain boundaries
@@ -1909,26 +1898,29 @@ to Nadha for being the best thing that begin the best thing that ever happened t
         Pristine graphene has an exceptionally high breaking strength \cite{Lee2008}.
         This is due to the strong covalent bonding between the sp2 orbitals of its
         adjacent carbon atoms and the perfect crystallinity of pristine graphene samples.
-        The latter point is as important as the first: the breaking strength of brittle
-        materials depends on the size and density of defects within the material 
-        in addition to the intrinsic properties of the material \cite{griffith1921phenomena}.
-        This result can be derived by considering the energetics of forming or extending
-        a rip under an external stress: the formation of a rip creates two new edges at the cost of the surface energy
-        associated with each edge, however the subsequent relaxation of the lattice releases some
-        of the elastic potential energy associated with the applied stress. The balance between these
-        two effects determines the strength of the material.
-        For a material with Young's modulus $E$, surface energy $\gamma$ and interatomic distance $r_0$
-        the breaking strength (for pristine and non-pristine samples) is given by
-        \begin{equation}
-            \sigma_\text{pristine} = \sqrt{\frac{E \gamma}{r_0}}, \;\;\;\;\;
-            \sigma_\text{with defect} = \sqrt{\frac{E \gamma \rho}{4 a r_0}}
-        \end{equation}
-        where $a$ is half the length of the defect and $\rho$ is the radius of curvature of the defect.
-        Only in the limit of a perfect crystal does the breaking strength of a crystal approach the strength
-        of its atomic bonds. 
-        %A similar analysis of the energetics of rip elongation and strain relaxation
-        %gives the critical length 
+        Despite its exceptional intrinsic mechanical strength graphene is still susceptible to mechanical failure.
+        Several research groups have explored this topic, both experimentally
+        \cite{huang2011grains, ruiz2011softened, lee2013high} and theoretically 
+        \cite{zhao2010temperature, wang2012effect, terdalkar2010nanoscale}.
+        Several conclusions emerge from their work. First, graphene tears preferentially along its 
+        crystallographic axes, either along a zigzag or armchair edge (the two edge types are shown
+        in Figure \ref{fig:zigzag_armchair}) depending
+        on the angle between the applied strain and the lattice orientation \cite{kim2011ripping}. 
+        This experimental observation is justified theoretically by comparing the surface
+        energy of zigzag and armchair edges to the potential energy stored in the lattice under a tensile load.
+        As described in Section \ref{sec:bg:tearing} the dynamics of tear propagation 
+        depend on the energetics of surface creation and lattice relaxation. 
+        In graphene the degree of elastic potential energy relaxation depends on the angle between the applied stress and
+        the crystal lattice, so different stress orientations produce rips along either zigzag or armchair edges.
         
+        Second, in polycrystalline samples tears do not propagate along grain boundaries in the crystal lattice, and such
+        boundaries do not dramatically affect the mechanical strength of graphene. The latter point
+        was initially the subject of debate, with several experimental results indicating that polycrystalline
+        graphene samples  were mechanically weaker than monocrystalline graphene samples \cite{huang2011grains,ruiz2011softened}.
+        However subsequent work \cite{lee2013high, rasool2013measurement} revealed that certain processing steps 
+        (namely exposure to 
+        ferric chloride and thermal baking in air) were responsible for most of the degradation in the mechanical strength.
+ 
         In experimental settings graphene is rarely pristine and may therefore
         be susceptible to ripping at lower strains than its intrinsic strength would suggest. 
         Previous work suggests that the presence of defects 
@@ -2288,10 +2280,10 @@ to Nadha for being the best thing that begin the best thing that ever happened t
         electronic and mechanical properties \cite{geim2007rise}. As described in Section
         \ref{sec:bg:gating}, p-n junctions 
         in graphene have great potential for both fundamental research and commercial applications, 
-        and have been utilized to study the quantum Hall effect \cite{Williams2007, Ozyilmaz2007, Velasco2010} 
+        and have been utilized to study the quantum Hall effect \cite{williams2007quantum, Ozyilmaz2007, Velasco2010} 
         and Klein tunneling \cite{Stander2009, Young2009} as well as to fabricate flexible 
         transistors \cite{Kim2010}. Previous work on p-n junctions in graphene employed multiple electrostatic gates 
-        \cite{Meric2008, Williams2007, Ozyilmaz2007, Huard2007, Liu2008, Stander2009, Velasco2009, Velasco2010, Young2009}, 
+        \cite{Meric2008, williams2007quantum, Ozyilmaz2007, Huard2007, Liu2008, Stander2009, Velasco2009, Velasco2010, Young2009}, 
         charge transfer from the controlled deposition of chemical adsorbates 
         \cite{Farmer2009,Lohmann2009,Brenner2010,Cheng2011,Sojoudi2012,Seo2014,Park2015}, 
         high current-induced charging of trap states in the substrate \cite{Chiu2010}, 
@@ -2311,7 +2303,58 @@ to Nadha for being the best thing that begin the best thing that ever happened t
         in the environmental doping which can be used to activate and deactivate the doping via the 
         application of large gate voltages. We employ this effect to create p-n junctions which can 
         be reversibly transitioned between p-n junction and uniformly conducting configurations.
-
+     
+            \begin{figure}
+            \centering
+            \includegraphics[width=0.35\textwidth]{images/background/ChristophDevice.png}
+            \includegraphics[width=0.45\textwidth]{images/background/ChristophFig4.png}
+            \caption[Graphene on ferroelectric substrates]{Left: A graphene FET fabricated on a PZT substrate. Right: Variable carrier type in a graphene FET on a ferroelectric substrate. I-V sweeps are shown for for the same device after gate voltage pulses are applied to switch the polarization of the ferroelectric layer. Adapted from \cite{Baeumer2013}.}
+            \label{fig:GonPZT}
+            \end{figure}
+        
+    \subsection{Doping via ferroelectric substrates}
+    
+        Ferroelectric substrates such as 
+        PbZr$_{0.2}$Ti$_{0.8}$O$_3$ (PZT) have been shown to vary carrier type and density in 
+        graphene with varying substrate polarizations \cite{Baeumer2013}, as seen in Figure 
+        \ref{fig:GonPZT}. The electric field from the polarized ferroelectric substrate creates a local potential
+        which dopes the graphene in a manner analogous to the doping created by the electric field of a back gate.
+        The direction of the field produced by the substrate depends on the polarization of the ferroelectric,
+        so different substrate polarizations can create different doping conditions.
+        This effect is bidirectional: the application of a large bias to the graphene 
+        can also flip the polarization of underlying ferroelectric substrates. The strength of the 
+        electric field required to reverse the polarization of a ferroelectric material is called
+        the coercive field. If the voltage applied to graphene on top of a ferroelectric produces
+        an electric field greater than the coercive field it will reverse the polarization of the substrate.
+        
+        Ferroelectric substrates display additional doping dynamics in the presence of polar adsorbates.
+        As described above, the doping effect of polar adsorbates depends on their orientation. 
+        For ferroelectric substrates the polarization of the substrate can affect which orientation
+        of adsorbates is energetically favorable, as shown in Figure \ref{fig:polar_ferro}. Notably,
+        in certain cases the combined effect of substrate polarization and substrate geometry can
+        create conditions where the polarization of adsorbed dopants is random, which effectively 
+        mitigates the doping effect of the adsorbates.
+         
+            \begin{figure}
+            \centering
+            \includegraphics[width=\textwidth]{images/background/ferro_polar_doping.png}
+            \caption[Dynamics of polar dopants on ferroelectric substrates]{
+            It is energetically favorable for the polarization of adsorbed, polar dopant molecules to align with
+            that of the substrate, however the molecular geometries of the substrate and dopant add
+            additional constraints. Specifically, the separation between donor species in the subtrate
+            must match the separation between acceptor species (or dangling bonds) in the adsorbate, and
+            vice versa in order for the adsorbate to have a stable orientation. In the example shown here
+            H$_2$O has a stable orientation when down-polarized because the separation between the donor H atoms in
+            the H$_2$O matches the separation between the acceptor O atoms in the substrate. In contrast,
+            the up-polarization state does not have a stable orientation because the distance between the
+            dangling bonds in H$_2$O does not match the separation between acceptor Ti atoms in the substrate.
+            In contrast, ammonia is stable in either up- or -down polarized orientation because it has only
+            a single dangling bond and therefore is not geometrically constrained by the spacing of the substrate Ti atoms.
+            Adapted from \cite{Lu2014}
+            }
+            \label{fig:polar_ferro}
+            \end{figure}
+ 
     \subsection{Device configuration}
     
         Devices consist of graphene micro-ribbons deposited on substrates which are partially covered by a thin layer of evaporated SiO$_2$, and contacted in a four-point geometry, as illustrated in Figures \ref{fig:devices}a-c. An SEM micrograph of a typical device is shown in the inset of Figure \ref{fig:devices}d. The devices are fabricated using standard lithography and deposition techniques on thin-film ferroelectric substrates. For the ferroelectric substrates, 120 nm thick (001)-oriented lead zirconium titanate (PbZr$_{0.2}$Ti$_{0.8}$O$_3$) films are prepared by pulsed-laser deposition (PLD) on a strontium titanate (SrTiO$_3$) substrate coated with 20 nm of strontium ruthenate (SrRuO$_3$), following established procedures\cite{Xu2014,Karthik2012}. For each substrate, an 80 nm-thick layer of SiO$_2$ is evaporated in small rectangular regions, with region widths ranging from 0.5 $\mu$m to 3 $\mu$m, as illustrated in Figs. \ref{fig:devices}a-c. CVD graphene is then transferred using standard wet transfer techniques\cite{Li2009}, and patterned into ribbons spanning the deposited SiO$_2$ using photolithography and reactive ion etching. The graphene channel is 6 $\mu$m by 4 $\mu$m measured from the inner contacts. Control devices which span regions with no evaporated SiO$_2$ are also fabricated. Finally, Cr/Au (3 nm/20 nm) leads are deposited in a four-point measurement configuration.  Raman spectroscopy is used to confirm the monolayer character and high quality of the graphene after fabrication; a representative spectra is shown in Figure \ref{fig:devices}d.
@@ -2620,12 +2663,16 @@ Transport measurements in air are performed using two Keithley 2400 SourceMeters
             
             \begin{figure*}
             \centering
-            \includegraphics[width=\columnwidth]{images/resultsanddiscussion/strainarraypaper/Figure4_1}
+            \includegraphics[width=\columnwidth]{images/resultsanddiscussion/strainarraypaper/Figure4_2}
             \caption[Magneto-transport measurements of graphene on strain array substrates]{
                 Longitudinal resistance $R_\text{xx}$ of a graphene device fabricated on (A) a 750nm-spaced
                 strain array substrate and (B) a flat substrate as a function of gate voltage and magnetic field. 
                 The color scale is measured in k$\Omega$.
                 (C) The same data as in (A) with a linear background $R_\text{background} = m V_g + b$ subtracted.
+                (D) The potential profile created by the local delamination of the graphene. In the delamination
+                regions the vacuum layer alters the gate capacitance, and thus creates local variations in the potential. 
+                In order to compare our results to theoretical predictions we model the potential as a parabola
+                of height $U$ and half-width at half-maximum $x_0$.
             }
             \label{'fig:transport'}
             \end{figure*}
@@ -2841,9 +2888,21 @@ Transport measurements in air are performed using two Keithley 2400 SourceMeters
         experiment to perform transport measurements on an electrostatically defined graphene 
         quantum dot device in a manner which closely mimics situations which have been treated theoretically.
         
+        
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.4\columnwidth]{images/futurework/ProposedDevice1_crop}
+            \caption[Proposed device geometry for quasi-bound state experiments]{
+            Proposed device geometry for experiments measuring transport signatures of
+            quasi-bound states in an electrostatically defined graphene quantum dot. Graphene is patterned in a 
+            Hall bar shape atop a single SiO$_2$ pillar and contacted with Au leads.
+            }
+            \label{fig:propdev1}
+        \end{figure}
+            
         \subsubsection*{Proposed devices}
         
-            The proposed device geometry is illustrated in Figure XXXX: devices consist of 
+            The proposed device geometry is illustrated in Figure \ref{fig:propdev1}: devices consist of 
             a graphene channel contacted in a Hall bar configuration, which
             spans a single evaporated disk of SiO$_2$. Different devices on a single chip
             have different disk radii, and each chip includes at least one control device
@@ -2899,9 +2958,22 @@ Transport measurements in air are performed using two Keithley 2400 SourceMeters
             Here I propose an experiment which employs this understanding to produce similar devices for which strain
             (rather than scattering from quantum dots) will be the dominant effect.
             
+            \begin{figure}
+            \centering
+            \includegraphics[width=0.4\columnwidth]{images/futurework/ProposedDevice2_crop}
+            \caption[Proposed device geometry for pseudo-magnetic field experiments]{
+            Proposed device geometry for experiments measuring transport signatures of
+            strain-induced psuedo-magnetic fields in graphene. Graphene is patterned in a 
+            Hall bar shape atop a dense array of short SiO$_2$ pillars and contacted with Au leads. 
+            The pitch of the array is chosen to maximize the density of pillars without causing total delamination of 
+            the graphene.
+            }
+            \label{fig:propdev3}
+            \end{figure}
+        
             \subsubsection*{Proposed devices}
             
-            The proposed device geometry is illustrated in Figure XXXX: devices consist of 
+            The proposed device geometry is illustrated in Figure \ref{fig:propdev2}: devices consist of 
             a graphene channel contacted in a Hall bar configuration, which
             sits atop a strain array substrate. The strain array in these devices is both shorter
             and more densely packed than previously. Referencing previous work \cite{gill2015mechanical}
