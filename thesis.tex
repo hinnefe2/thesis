@@ -37,6 +37,14 @@
 %\makeatother
 %\usepackage{CJKutf8}
 
+% fix pdfEncoding warnings about \hskip
+% see http://tex.stackexchange.com/questions/142251/hyperref-token-not-allowed-warning-possible-bug
+
+\pdfstringdefDisableCommands{%
+  \let\enspace\empty  % this causes the warning for \kern
+  \let\hskip\empty % this causes the warning for \indent
+}
+
 \begin{document}
 
 \title{Substrate-Mediated Modulations of Graphene's Electronic Properties}
@@ -75,12 +83,18 @@ transport measurements.
 We first find that graphene on flexible substrates undergoes partial mechanical failure when
 the substrate is stretched, but that graphene is robust to subsequent applications of strain
 provided the applied strain does not exceed the maximum strain previously applied.
+This result extends our understanding of graphene's mechanical failure to the non-suspended case, 
+and is directly applicable to technological applications which use graphene as a flexible conductor.
 We next find that ferroelectric substrates can affect the orientation of polar dopants adsorbed
 on graphene, and that different orientations contribute different degrees of doping.
+This result illuminates the subtleties of doping graphene via polarizable mediums.
 Finally, we find that local variations in doping can create quantum dot regions in graphene
 which are characterized by quasi-bound states rather than the fully bound states typically found
 in quantum dot systems.
-We discuss the significance of these findings, and conclude by proposing future experiments which
+This result provides experimental verification of theoretical predictions
+and presents an experimental paradigm with which to further explore the interactions
+between local strain and doping and graphene's electric properties.
+We discuss these findings in detail, and conclude by proposing future experiments which
 expand on the results presented here.
 
 
@@ -142,8 +156,7 @@ Last, and most importantly, thanks to my family and especially my wife (!) Nadha
 I wouldn't be where I am without all their love, support, and guidance. Thanks to Dad
 for sparking my love of science and physics in the first place, to Mom for all her support
 when things got tough, to Brother for his good advice these past few years, and 
-to Nadha for being the best thing that ever happened to anyone in grad school 
-(and for keeping me on task while writing so I actually graduate!)
+to Nadha for being the best thing that ever happened to anyone in grad school.
 
 %and to everyone else for being so positive and encouraging.
 
@@ -171,26 +184,44 @@ to Nadha for being the best thing that ever happened to anyone in grad school
 \chapter{List of Abbreviations}
 
 \begin{symbollist*}
+\item[AC] Alternating current
+\item[AFM] Atomic force microscopy
 \item[BOE] Buffered oxide etchant
+\item[CG] Coarse grained
 \item[CNP] Charge neutrality point
 \item[CVD] Chemical vapor deposition
+\item[DAQ] Data Acquisition (device)
+\item[DC] Direct current
+\item[FET] Field effect transistor
+\item[hBN] Hexagonal boron nitride
+\item[HF] Hydrofluoric acid
+\item[iLO] in-plane, longitudinal optical (phonon mode)
+\item[iTO] in-plane, transverse optical (phonon mode)
+\item[ITO] Indium tin oxide
+\item[KPFM] Kelvin probe force microscopy
 \item[PDMS] Polydimethylsiloxane
+\item[PFM] Piezoresponse force microscopy
+\item[PLD] Pulsed laser deposition
 \item[PMMA] Poly(methyl methacrylate)
-\item[PZT] Lead zirconate titanate
+\item[PZT] Lead zirconate titanate PbZr$_{0.2}$Ti$_{0.8}$O$_3$
+\item[SEM] Scanning electron microscopy
+\item[STM] Scanning tunneling microscopy
+\item[SMU] Source-measure unit
 \item[RIE] Reactive ion etching
 \end{symbollist*}
 
 %% Create a List of Symbols. The left column
 %% is 0.7 inch wide and centered
-\chapter{List of Symbols}
-
-\begin{symbollist}[0.7in]
-\item[$\tau$] Time taken to drink one cup of coffee.
-\item[$\mu$g] Micrograms (of caffeine, generally).
-\end{symbollist}
+%\chapter{List of Symbols}
+%
+%\begin{symbollist}[0.7in]
+%\item[$\tau$] Time taken to drink one cup of coffee.
+%\item[$\mu$g] Micrograms (of caffeine, generally).
+%\end{symbollist}
 
 \mainmatter
 \chapter{Introduction}
+\label{sec:ch:intro}
 
    \epigraph{God created the bulk; surfaces were invented by the devil.}{Wolfgang Pauli}
    
@@ -219,17 +250,13 @@ to Nadha for being the best thing that ever happened to anyone in grad school
     The motivation for the experiments described in this thesis is to reconsider the fiendishness
     of graphene's susceptibility to its environment. Rather than asking, ``How does the environment
     distort the physics I'm trying to observe?'' we ask, ``What does the distortion tell me about
-    the physics of the environment?'' In this spirit we explore three primary topics:
+    the system, and how might we use this knowledge to advance science and technology?'' 
+    In this spirit we explore three primary topics:
     graphene's dependence on a substrate to preserve its mechanical integrity,
     graphene's susceptibility to doping from both its substrate and its environment, and
     graphene's response to local variations in mechanical strain and doping induced by a substrate.
     
-    The thesis is organized as follows: in Chapter \ref{sec:ch:bg} we present background
-    information about graphene and its properties. In Chapter \ref{sec:ch:exptech} we summarize
-    the relevant experimental techniques. In Chapter \ref{sec:ch:rd} we present the results of the experiments
-    which comprise this thesis and discuss their significance. Finally, in Chapter \ref{sec:ch:summary}
-    we summarize our results and offer suggestions for future work.
-    
+   
     \section{Statement of thesis problem}
     
     In this thesis we report measurements of graphene's electrical properties and mechanical
@@ -247,12 +274,35 @@ to Nadha for being the best thing that ever happened to anyone in grad school
     of existing theory, and offer both experimental validation of theory and further insight into
     the physics of graphene's interactions with its substrate.
     
+    \section{Outline}
+    
+    The thesis is organized as follows: in Chapter \ref{sec:ch:intro} we motivate the work
+    and state the thesis problem. In Chapter \ref{sec:ch:bg} we present background
+    information about graphene and its properties. In Chapter \ref{sec:ch:exptech} we summarize
+    the relevant experimental techniques. In Chapter \ref{sec:ch:rd} we present the results of the experiments
+    which comprise this thesis and discuss them in detail. Finally, in Chapter \ref{sec:ch:summary}
+    we summarize our results and offer suggestions for future work.
+    
+    The results of Chapter \ref{sec:ch:rd} are published in the following papers:
+    \begin{itemize}
+    
+        \item Hinnefeld, J. Henry, et al. ``Reversible mechanical and electrical properties of ripped graphene." Physical Review Applied 3.1 (2015): 014010.
+        
+        \item Hinnefeld, J. Henry, et al. ``Single gate pn junctions in graphene-ferroelectric devices." Applied Physics Letters 108.20 (2016): 203109.
+        
+        \item Gill, Stephen T., Hinnefeld, J. Henry, et al. ``Mechanical control of graphene on engineered pyramidal strain arrays." ACS Nano 9.6 (2015): 5799-5806.
+        
+        \item Hinnefeld, J. Henry, et al. ``Transport measurements of quasi-bound states in graphene on engineered strain arrays" \textit{Manuscript in preparation}
+    
+    \end{itemize}
+    
+    
 
 \chapter{Background}
 \label{sec:ch:bg}
 
-    Since its initial isolation in 2004 graphene has been the subject of intense research interest. 
-    The following chapter presents a summary of the relevant properties and research results 
+    %Since its initial isolation in 2004 graphene has been the subject of intense research interest. 
+    %The following chapter presents a summary of the relevant properties and research results 
 
     \section{Introduction to graphene}
 
@@ -261,7 +311,7 @@ to Nadha for being the best thing that ever happened to anyone in grad school
     %description of its attributes is beyond the scope of this report. 
     Those properties of graphene 
     which are relevant to the research comprising this thesis are summarized below; for a more complete description 
-    of graphene see one of the existing review articles \cite{geim2007rise}, \cite{CastroNeto2009}. 
+    of graphene see one of the existing review articles \cite{geim2007rise,CastroNeto2009,rozhkov2011electronic}. 
     Here I discuss graphene's band structure and several relevant consequences, namely 
     the massless Dirac fermion character of charge carriers in graphene, 
     the unique variant of the quantum Hall effect these carriers give rise to, 
@@ -316,9 +366,9 @@ to Nadha for being the best thing that ever happened to anyone in grad school
         This last point leads to the manifestation of Klein tunneling in graphene, as described below.
     
         Note that there are two distinct two-fold degeneracies. The \textit{pseudospin} degeneracy
-        accounts for the contribution to the wave function from each of the two carbon atoms in
-        the unit cell. This is the degeneracy which causes the wave function of an electron in graphene
-        to have two components.
+        accounts for the geometric phase introduced by the hexagonal lattice of graphene.
+        This is the degeneracy which causes the wavefunction of an electron in graphene to have two
+        components.
         The \textit{valley} degeneracy accounts for the fact that the Bravais lattice for graphene
         has a basis of two elements. This is the degeneracy that leads to the presence
         of two inequivalent Dirac points \textbf{K} and \textbf{K'}. 
@@ -332,13 +382,14 @@ to Nadha for being the best thing that ever happened to anyone in grad school
         Conversely, when the Fermi level lies near the intersection of the two bands conductivity is suppressed,
         but does not reach zero. The latter point is due to the suppression of localization in systems governed
         by the Dirac equation. In the absence of localization effects the mean free path $l$ of charge carriers
-        cannot be smaller than the wavelength $\lambda_F$ of the carrier  \cite{novoselov2005two}. Writing
+        cannot be smaller than the wavelength $\lambda_F$ of the carrier \cite{novoselov2005two}. Writing
         the conductivity in terms of the carrier wavelength
         \begin{equation}
             \sigma = n e \mu = \frac{e^2}{h} \frac{l}{\lambda_F}
         \end{equation}
-        where $h$ is Planck's constant and $e$ is the charge of an electron, we see that $\sigma$ cannot be less
-        than $e^2/h$.
+        where $n$ is the carrier density, $e$ is the charge of an electron, $\mu$ is the carrier mobility,
+        and $h$ is Planck's constant
+        we see that the conductivity $\sigma$ cannot be less than $e^2/h$.
         
     \subsection{Quantum Hall effect}
     	
@@ -691,7 +742,7 @@ to Nadha for being the best thing that ever happened to anyone in grad school
         Instead of tunneling into a confined region and then tunneling out, carriers incident on an electrostatic
         graphene quantum dot scatter off the quantum dot region, potentially exciting an internal state of the dot.
         These excited internal states are the quasibound states which characterize graphene quantum dots
-        \cite{pereira2006confined, silvestrov2007quantum, matulis2008quasibound, nguyen2009quasi}.
+        \cite{pereira2006confined, silvestrov2007quantum, matulis2008quasibound, nguyen2009quasi, lee2016imaging}.
         Note that the appearance of quasibound states is unique to electrostatically defined quantum dots; 
         quantum dots defined by etching graphene display the dynamics described above.
         
@@ -922,9 +973,9 @@ to Nadha for being the best thing that ever happened to anyone in grad school
         %- propagate along zig-zag or armchair directions, not along grain boundaries
         %- effect of processing steps (FeCl is bad, Amm pers is good. baking is bad, 
         
-        \subsection{Observing strain via Raman spectroscopy}
+        \subsection{Graphene's Raman spectrum}
         \label{sec:bg:raman}
-        
+          
             \begin{figure}
             \centering
             \includegraphics[width=0.45\textwidth]{images/background/graphene_phonons.png}
@@ -938,14 +989,15 @@ to Nadha for being the best thing that ever happened to anyone in grad school
             }
             \label{fig:graphene_raman}
             \end{figure}
-       
-        When measuring strain-dependent effects in graphene quantifying the degree of strain present in 
-        the sample is a primary task. Raman spectroscopy is useful tool for this task because it can
-        non-invasively determine the strain present in graphene, however there are several complicating factors.
-        Here I give a brief explanation of the mechanisms underlying Raman spectroscopy, and then
-        describe graphene's Raman spectrum, the origin of the major features in its spectrum,
-        and how those features can be related to strain.
-        
+      
+        As a two-dimensional material graphene's mechanical properties are uniquely accessible via surface
+        measurements. In particular, Raman spectroscopy is especially useful for characterizing graphene.
+        %When measuring strain-dependent effects in graphene quantifying the degree of strain present in 
+        %the sample is a primary task. Raman spectroscopy is useful tool for this task because it can
+        %non-invasively determine the strain present in graphene, however there are several complicating factors.
+        %Here I give a brief explanation of the mechanisms underlying Raman spectroscopy, and then
+        %describe graphene's Raman spectrum, the origin of the major features in its spectrum,
+        %and how those features can be related to strain.
         Raman spectroscopy operates by illuminating a sample with a laser and measuring the spectrum
         of the reflected light. The inelastic scattering properties of a material depend on its
         internal degrees of freedom, so by 
@@ -957,7 +1009,7 @@ to Nadha for being the best thing that ever happened to anyone in grad school
         will strongly couple to the incident light, and thus display high intensities in Raman measurements.
         Conversely, vibrational modes which do not vary the polarizability will not couple to the incident
         light and will not show up in Raman measurements.
-        
+       
         The phonon dispersion and Raman spectrum of graphene are shown in Figure \ref{fig:graphene_raman}. 
         Graphene has two atoms per unit cell and therefore has both optical and acoustic modes. Each mode
         is characterized by its axis of oscillation which can be in- or out-of-plane, and for the in-plane 
@@ -997,50 +1049,27 @@ to Nadha for being the best thing that ever happened to anyone in grad school
         The D peak is due to a similar process, except one of the iTO scattering steps is replaced
         by scattering from a defect. Recall that the two inequivalent K points stem from the two carbon
         atoms in graphene's unit cell. A scatterer which acts only on a single atom of the unit cell (i.e.
-        a defect in the lattice) can therefore alter the pseudo-spin of a carrier without changing it's 
+        a defect in the lattice) can alter the phase of the carrier wavefunction on one sublattice relative to the
+        other. This allows defects to alter the pseudo-spin of a carrier without changing it's 
         momentum or energy, thus scattering it from one K point to the other. In this case the incident photon 
         is scattered inelastically by a single iTO phonon and the measured shift is 1350 cm$^{-1}$.
-        
-        Applying strain to graphene modifies the positions of its Raman peaks by modifying the bond
-        lengths in the graphene lattice. Longer bond distances lead to a softer lattice and lower
-        energy phonons. This softening of graphene's phonons creates a redshift in its Raman peak positions,
-        which has been observed in many experimental studies 
-        \cite{mohiuddin2009uniaxial, ni2008uniaxial, huang2009phonon, huang2010probing, yoon2011strain, ding2010stretchable, metzger2009biaxial}. These results provide a characterization of the expected Raman shift per unit
-        strain, and can in principle be used to measure the strain in graphene. The situation is complicated however
-        in the case where there is also a varying charge density in the graphene, which in practice is all the time.
-        
-        Charge doping in graphene also produces shifts in graphene's Raman spectra 
-        \cite{casiraghi2007raman, yan2007electric, pisana2007breakdown, lazzeri2006nonadiabatic, das2008monitoring}. 
-        In the case of the G peak this
-        is a consequence of renormalization caused by the coupling between zero-momentum iTO and iLO phonons and
-        particle-hole excitations in graphene \cite{yan2007electric, lazzeri2006nonadiabatic, pisana2007breakdown}.
-        The number of electron-hole excitation states available in graphene depends on the Fermi level;
-        changing the charge doping shifts the Fermi level, thereby changing the number of available
-        electron-hole states and thus the strength of the renormalization effect.
-        The shift in the 2D peak is due to a similar renormalization effect, however the 
-        size of the shift is only $\sim$10\% as big as it is for the G peak. 
-        The smaller shift stems from a smaller renormalization effect:
-        the magnitude of the renormalization effect is inversely proportional to the energy of electron-hole
-        excitations at the phonon wavevector \cite{yan2007electric}, and the phonons responsible for the 2D peak have much larger
-        wavevectors (and therefore corresponding electron-hole excitation energies)
-        than those responsible for the G peak.
-        
+       
         \subsection{Uniaxial strain}
         \label{sec:bg:uniaxial}
-                    
+                      
             \begin{figure}
             \centering
-            \includegraphics[width=0.75\textwidth]{images/background/strain_gap2.png}
+            \includegraphics[width=0.85\textwidth]{images/background/dp_merge_shift.png}
             \caption[Gap opening in graphene via uniaxial strain]{
             Uniaxial strain opens a gap in graphene by merging the two Dirac points. Recall that
             graphene's band structure is composed of two cosine type bands;
-            increasing strain decreases the amplitude of each cosine band, gradually shifting the Dirac
+            increasing strain shifts the two bands away from each other, gradually shifting the Dirac
             point of the band structure away from the K point of the Brillouin zone. For large enough
             strain the bands cross and a gap opens.
             }
             \label{fig:strain_gap}
             \end{figure}
-        
+       
         Several research groups have considered, both experimentally \cite{Ni2008, Kim2009, Mohiuddin2009, 
         Zang2013} and theoretically \cite{Pereira2009, Low2011}, the effect of uniaxial 
         strain on graphene. Uniaxial strain is predicted to open a gap in the band structure, either by 
@@ -1061,7 +1090,7 @@ to Nadha for being the best thing that ever happened to anyone in grad school
         observed an increasing sheet resistivity with decreasing temperature; this
         behavior is indicative of a gap in the band structure, which the authors calculate to be 
         approximately 200 meV. 
-    
+   
         \subsection{Non-uniaxial strain}
         \label{sec:bg:nonuniaxial}
         
@@ -1128,8 +1157,8 @@ to Nadha for being the best thing that ever happened to anyone in grad school
             \subsubsection{Mechanical exfoliation}
             
             There are two widely used methods used to produce graphene for 
-        experimental research: mechanical exfoliation\cite{novoselov2004electric} and chemical vapor
-        deposition (CVD) growth\cite{li2009large}. In mechanical exfoliation highly ordered
+        experimental research: mechanical exfoliation \cite{novoselov2004electric} and chemical vapor
+        deposition (CVD) growth \cite{li2009large}. In mechanical exfoliation highly ordered
         pyrolitic graphite is repeatedly cleaved, typically by attaching and 
         then peeling off Scotch tape. After a succession of such cleaving steps
         small regions of monolayer graphene are left attached to the Scotch
@@ -1175,7 +1204,7 @@ to Nadha for being the best thing that ever happened to anyone in grad school
         disadvantage of CVD graphene's limited mobility
         is counter-balanced by the ease and volume of production via this method:
         while exfoliated graphene flakes are limited to tens of square microns, 
-        CVD graphene has been grown in 30 inch-wide films\cite{bae2010roll}.
+        CVD graphene has been grown in 30 inch-wide films \cite{bae2010roll}.
         Larger graphene films allow for entire substrates to be covered, which 
         in turn allows for device designs where graphene is deposited atop existing
         substrate features.
@@ -1229,8 +1258,22 @@ to Nadha for being the best thing that ever happened to anyone in grad school
         \end{figure}
 
 
-            \subsubsection{Copper transfer}
-            
+        \subsubsection{Copper transfer}
+          
+         \begin{figure}
+            \centering
+            \includegraphics[width=0.5\linewidth]{images/experimentaltechniques/cu_transfer.png}
+            \caption[Graphene transfer process for polymer substrates]{
+                Schematic illustration of the process used to transfer graphene onto 
+                polymer substrates. First, using the standard wet transfer process
+                graphene is transferred to an intermediate substrate coated in a thin layer of copper. Next the 
+                target substrate is mechanically pressed onto the intermediate substrate. The two substrates
+                are then immersed in a chemical bath which etches the copper layer, leaving the graphene
+                attached to the target, polymer substrate. 
+            }
+            \label{fig:cutransfer}
+        \end{figure}
+          
         The standard wet transfer procedure fails in cases where the graphene must be 
         transferred to polymer substrates: the final acetone step which removes the sacrificial
         PMMA layer also damages the target substrate.
@@ -1422,6 +1465,9 @@ to Nadha for being the best thing that ever happened to anyone in grad school
         not be described in detail here.
         
         \subsection{Raman Spectroscopy}
+        \label{sec:exp:raman}
+        
+        \subsubsection*{Characterizing graphene quality}
         
         Raman spectroscopy is another characterization technique which is particularly useful for
         its ability to non-intrusively measure certain electrical properties of graphene.
@@ -1448,13 +1494,42 @@ to Nadha for being the best thing that ever happened to anyone in grad school
                 }
             \label{fig:pristine_raman}
         \end{figure}
+               
+        \subsubsection*{Characterizing graphene strain and doping}
         
-        Raman measurements of graphene can also be used to gain information about the electrical doping
-        and strain present in graphene \cite{lee2012optical}. Both strain and doping produce shifts
-        in the G and 2D peak locations; see Section \ref{sec:bg:raman} for details. 
-        A measurement of either peak shift by itself is therefore insufficient to disentangle the competing effects
-        of strain and doping. However, the two mechanisms (strain and doping) shift the locations of the two
-        peaks by different relative amounts; the ratio
+        When measuring strain-dependent effects in graphene quantifying the degree of strain present in 
+        the sample is a primary task. Raman spectroscopy is a useful tool for this task because it can
+        non-invasively determine the strain present in graphene, however there are several complicating factors.
+        Specifically, both strain and doping produce shifts in the G and 2D peak locations \cite{lee2012optical};
+        a measurement of either peak shift by itself is therefore insufficient to disentangle the competing effects
+        of strain and doping. Below we describe the mechanisms by which strain and doping shift the Raman peaks,
+        and how the two can be disentangled.
+                
+        Applying strain to graphene modifies the positions of its Raman peaks by modifying the bond
+        lengths in the graphene lattice. Longer bond distances lead to a softer lattice and lower
+        energy phonons. This softening of graphene's phonons creates a redshift in its Raman peak positions,
+        which has been observed in many experimental studies 
+        \cite{mohiuddin2009uniaxial, ni2008uniaxial, huang2009phonon, huang2010probing, yoon2011strain, ding2010stretchable, metzger2009biaxial}. These results provide a characterization of the expected Raman shift per unit
+        strain, and can in principle be used to measure the strain in graphene. The situation is complicated however
+        in the case where there is also a varying charge density in the graphene, which in practice is all the time.
+        
+        Charge doping in graphene also produces shifts in graphene's Raman spectra 
+        \cite{casiraghi2007raman, yan2007electric, pisana2007breakdown, lazzeri2006nonadiabatic, das2008monitoring}. 
+        In the case of the G peak this
+        is a consequence of renormalization caused by the coupling between zero-momentum iTO and iLO phonons and
+        particle-hole excitations in graphene \cite{yan2007electric, lazzeri2006nonadiabatic, pisana2007breakdown}.
+        The number of electron-hole excitation states available in graphene depends on the Fermi level.
+        Changing the charge doping shifts the Fermi level, thereby changing the number of available
+        electron-hole states and thus the strength of the renormalization effect.
+        The shift in the 2D peak is due to a similar renormalization effect, however the 
+        size of the shift is only $\sim$10\% as big as it is for the G peak. 
+        The smaller shift stems from a smaller renormalization effect:
+        the magnitude of the renormalization effect is inversely proportional to the energy of electron-hole
+        excitations at the phonon wavevector \cite{yan2007electric}, and the phonons responsible for the 2D peak have much larger
+        wavevectors (and therefore corresponding electron-hole excitation energies)
+        than those responsible for the G peak.
+        
+        The two mechanisms (strain and doping) shift the locations of the two peaks by different relative amounts; the ratio
         $$
         r = \frac{\Delta \omega_{2D}}{\Delta \omega_G}
         $$
@@ -1462,11 +1537,11 @@ to Nadha for being the best thing that ever happened to anyone in grad school
         Experimental measurements \cite{zabel2012raman, metzger2009biaxial, ding2010stretchable} and theoretical \cite{mohr2010splitting, mohiuddin2009uniaxial} results place the ratio for strain between 2.25 and 2.8 and the ratio for doping at approximately 0.75 \cite{lee2012optical}.
         Thus by plotting the Raman G and 2D peak positions against one another and comparing to the expected
         values for intrinsic, unstrained graphene one can decompose the peak shifts into components due to
-        strain and doping\cite{lee2012optical}. This decomposition is shown in Figure \ref{fig:raman_decomposition}.
+        strain and doping \cite{lee2012optical}. This decomposition is shown in Figure \ref{fig:raman_decomposition}.
         
         \begin{figure}
             \centering
-            \includegraphics[width=0.5\linewidth]{images/experimentaltechniques/lee2012_raman.png}
+            \includegraphics[width=0.65\linewidth]{images/experimentaltechniques/lee2012_raman.png}
             \caption[Graphene G vs 2D peak positions for strain and doping]{
                 Raman G and 2D peak locations for graphene.
                 The black dashed line shows the ratio 
@@ -1476,6 +1551,9 @@ to Nadha for being the best thing that ever happened to anyone in grad school
                 By comparing measured Raman G and 2D peak positions to vectors corresponding to the
                 black and purple lines one can determine the degree to which strain and doping, respectively,
                 contribute to the observed shifts in peak positions.
+                The data here show measurements of graphene both before (top right cluster) and after (bottom left
+                cluster) annealing: the annealing step shifts the measurements along the doping axis, but
+                preserves the distribution of strain values.
                 Adapted from \cite{lee2012optical}.
                 }
             \label{fig:raman_decomposition}
@@ -1484,7 +1562,6 @@ to Nadha for being the best thing that ever happened to anyone in grad school
         Finally, Raman measurements can be used to measure spatial variations in the electronic quality
         and physical integrity of a graphene sample. By performing Raman measurements in a raster pattern
         across a region of interest one can map local variations in peak locations.
-        
     
     \section{Data collection}
     
@@ -1553,96 +1630,28 @@ to Nadha for being the best thing that ever happened to anyone in grad school
             varying noise characteristics which can drastically affect both considerations, thus a careful
             consideration of the advantages and disadvantages of each piece of equipment is necessary.
             In this section I describe the relevant characteristics of the primary pieces of measurement
-            instrumentation used in this research.
+            instrumentation used in this research. For a more detailed description of each instrument see
+            Appendix \ref{sec:app:instruments}.
+           
+            \textbf{Keithley 2400 SMU} The Keithley 2400 Source-Measure Unit (SMU) is capable of 
+            sourcing and measuring voltage and
+            current over a wide operating range. Its wide operating range makes it useful for preliminary
+            explorations as well as for applying large gate voltages; for delicate measurements however
+            other instruments have greater sensitivity.
             
-        \begin{figure}
-            \centering
-            \includegraphics[width=0.75\linewidth]{images/experimentaltechniques/DACvKeithley.png}\\
-            \includegraphics[width=0.75\linewidth]{images/experimentaltechniques/preams_k.png}\\
-            \includegraphics[width=0.75\linewidth]{images/experimentaltechniques/preamps.png}
-            \caption[Noise characteristics of electronic measurement instruments]{
-                Top: The voltage output of a Keithley 2400 SMU and a National Instruments BNC2110 Digital to Analog Converter
-                measured over 10 seconds. Both were set to source 1 V.
-                Middle: The output of a Keithley 2400 SMU before and after being passed through three different
-                voltage pre-amplifiers.
-                Bottom: The same data as above with only the amplified signals shown.
-                }
-            \label{fig:electronics_noise}
-        \end{figure}
+            \textbf{Stanford Research SR830} The SR830 is a lockin amplifier which provides excellent
+            sensitivity even in noisy measurements. For measurements which are amenable to an AC bias 
+            the SR830 is the preferred measurement instrument. High resistance samples present a slight 
+            complication: the instrument can only source voltage so measurements requiring a current bias must 
+            pass the sourced voltage through a resistor which is large relative to the resistance of the sample.
             
-            \subsubsection*{Keithley 2400 SMU} 
+            \textbf{National Instruments DAQ} The National Instruments Data Acquisition Device (DAQ) is
+            capable of precisely sourcing and measuring voltage and current over a limited operating range.
+            The DAQ is ideal for experiments which require precise DC biases or measurements.
             
-            The Keithley 2400 is a source-measure unit (SMU) capable of 
-            sourcing both current and voltage, and simultaneously measuring either current, voltage,
-            or resistance. Its primary advantage is its wide operational range: it can source and measure
-            up to 1 A in current mode, or 200 V in voltage mode.
-            The Keithley 2400's wide operational range comes at the expense of precision; Figure \ref{fig:electronics_noise}A
-            shows the measured output of a Keithley 2400 set to source 1 V, along with a similarly
-            configured BNC2110 DAQ. The Keithley's output fluctuates by up to 0.5\% of the specified output value.
-            The Keithley's precision can be improved by setting the `Range' parameter of the input and
-            output: using the smallest range which still encompasses all the required values will provide the
-            best precision.
-            
-            In practice, the Keithley 2400 is most useful for preliminary sample characterization (i.e. determining
-            if a device conducts, and if so approximately what its resistance is) and for applying gate voltages.
-            In the first case, the Keithley is useful because it can be manually configured by using the buttons
-            on its face; for simple `Does the device conduct or not?'-type measurements this is often the most 
-            convenient option.
-            The Keithley 2400 is also particularly well suited to the latter use case: effectively gating graphene
-            samples often requires gate voltages in the tens of volts, and the precise value of the supplied voltage
-            is typically less critical for gating than for other applications.
-            
-            
-            \subsubsection*{National Instruments Multifunction Data Acquisition Device (DAQ)} 
-            
-            The National Instruments Multifunction Data Acquisition Device (DAQ) is a source-measure unit 
-            mounted on a PCI card. The PCI card must be physically installed in a computer, at which point
-            it can be connected to an external connector block (e.g. the NI BNC-2110) which provides
-            BNC connectors. Measurements using the DAQ must use instrument control programs installed
-            on the computer which makes it less suitable for quick, one-of measurements.
-            
-            The DAQ makes the opposite trade-offs as the Keithley: 
-            it provides high precision sourcing and measurement in a limited operational range.
-            The DAQ can source and measure voltages from -10 V to 10 V.
-            However, within this limited range the DAQ is more precise than the Keithley as seen
-            in Figure \ref{fig:electronics_noise}A.
-            The DAQ is particularly useful for applications which require high precision, for example
-            providing the bias voltage in an I-V sweep or in a $V_\text{gate}$ vs $V_\text{bias}$ Coulomb
-            blockade-type scan.
-            
-            \subsubsection*{Stanford Research System SR830} 
-            
-            The SR830 is a lock-in amplifier. Lock-in amplifiers operate by applying an AC drive to
-            a device, measuring the resulting signal, and then multiplying the original drive
-            and resulting signal and integrating over time.
-            Because sinusoidal functions at different frequencies are orthogonal, the multiplication
-            of the original drive and resulting signal and the subsequent integration combine to filter out
-            components of the measured signal which are not at the same frequency as the original drive.
-            Since most noise components will not be at the same frequency as the drive this technique
-            is particularly effective at extracting a desired signal from a noisy measurement.
-            
-            In practice the SR830 is the preferred instrument for measuring resistance,
-            provided the particular measurement is amenable to an AC bias.
-            Additionally, the SR830 can only provide a voltage output; for applications which require a current bias 
-            the output of the SR830 must be passed through a large resistor to convert the 
-            voltage to a current. `Large' in this case means `large enough that the resistance of the device 
-            being measured in
-            series does not appreciably change the total resistance of the circuit'.
-            
-            \subsubsection*{Voltage and current preamplifiers}
-            
-            Voltage and current preamplifiers are useful for amplifying and filtering signals. Current
-            preamplifiers are also useful for converting current signals into voltage signals.
-            Figure \ref{fig:electronics_noise}B demonstrates the filtering capabilities of 
-            a voltage preamplifier: it shows the output of a Keithley 2400 before and after
-            being passed through several different preamplifiers (the raw Keithley signal has been
-            rescaled to allow for direct comparison). All three preamplifiers drastically improve
-            the cleanliness of the signal. Figure \ref{fig:electronics_noise}C compares the performance
-            of the three preamplifiers; The PAR 113 provedes the best performance, while the 
-            SRS 560 and ITHACO provide good accuracy at the expense of precision, and vice versa.
-            
-            %\subsubsection*{The probe station}
-            
+            \textbf{Voltage and Current Preamplifiers} Preamplifiers can also be used to clean
+            experimental signals. The experiments in this thesis used several different preamplifiers
+            which were capable of applying various high- and low-pass filters to both current and voltage signals.
             
        
         
@@ -1659,26 +1668,27 @@ to Nadha for being the best thing that ever happened to anyone in grad school
              
        
             Graphene devices can be measured using a variety of contact geometries, the simplest of which
-            is the two-point configuration shown in Figure \ref{fig:contact_config}a. In this configuration
+            is the two-point configuration shown in Figure \ref{fig:contact_config}, top left. In this configuration
             the device being measured is contacted once at either end, and then these two leads are used both
             to bias the device and measure the result. This configuration has the advantage of being simple
             to fabricate and measure, however this simplicity comes at the cost of accuracy. Contacts between
             an electrical lead and a graphene device will necessarily create a contact resistance; when a 
             measurement is performed using the same leads which are used to bias the graphene the resulting
-            signal is in fact a measurement of the device and the contact resistances in series. This situation
-            is illustrated schematically in Figure \ref{fig:contact_config}b.
+            signal is in fact a measurement of the device and the contact resistances in series. 
+            %This situation is illustrated schematically in Figure \ref{fig:contact_config}, top right.
             
             To remove the confounding effect of contact resistances between the electrical leads and the graphene
             device one can perform measurements using a four-point configuration, illustrated in
-            Figure \ref{fig:contact_config}c. This configuration employs two separate sets of leads, one set to
+            Figure \ref{fig:contact_config}, top right. This configuration employs two separate sets of leads, one set to
             bias the sample and a second set, placed in between the first set, to record the measurement. 
             In this case no current flows through the measurement leads, and thus there is no voltage drop
             across their contact resistances and the resulting measurement reflects only the properties of 
-            the graphene device. This is illustrated schematically in Figure \ref{fig:contact_config}d.
+            the graphene device. 
+            %This is illustrated schematically in Figure \ref{fig:contact_config}d.
             
             The contact configurations above are appropriate for measuring the longitudinal resistance, however it 
             is also useful to measure the lateral (or Hall) resistance. This requires a third contact configuration
-            which is commonly called a Hall bar and which is illustrated in Figure \ref{fig:contact_config}e.
+            which is commonly called a Hall bar and which is illustrated in Figure \ref{fig:contact_config}, bottom left.
             In this configuration a bias current is applied through the two leads at the end of the device
             and the voltage is measured between either the horizontal or the vertical set of leads; the former 
             is equivalent to a four-point measurement of the longitudinal resistance while the latter measures
@@ -1723,8 +1733,9 @@ to Nadha for being the best thing that ever happened to anyone in grad school
             
             Finally, it is sometimes useful to measure the sheet resistance of a device in addition to 
             its longitudinal and Hall resistances.
-            This measurement requires another contact configuration which is illustrated in Figure XXX
-            and which is commonly called the van der Pauw configuration\cite{van1958method}.
+            This measurement requires another contact configuration which is illustrated in Figure \ref{fig:contact_config},
+            bottom right,
+            and which is commonly called the van der Pauw configuration \cite{van1958method}.
             The sheet resistance cannot be measured directly in this configuration; it must be calculated
             using the results of two preliminary measurements. First, current is made to flow along one
             edge of the sample and the voltage drop is measured across the edge opposite to the current flow.
@@ -1863,11 +1874,11 @@ to Nadha for being the best thing that ever happened to anyone in grad school
 \chapter{Results and Discussion}
 \label{sec:ch:rd}
 
-\section{Graphene on flexible substrates}
+\section{Rip formation in graphene on flexible substrates}
 \label{sec:res:ripping}
 
     In this section I present the results of research which examines
-    the mechanical properties of graphene devices stretched on flexible
+    the mechanical and electrical properties of graphene devices stretched on flexible
     elastomer substrates. Using atomic force microscopy, electrical transport
     measurements, and mechanics simulations, we show that micro-rips form in the
     graphene during the initial application of tensile strain; however subsequent
@@ -1990,9 +2001,9 @@ to Nadha for being the best thing that ever happened to anyone in grad school
         wafer where it was patterned using photolithography and reactive ion etching.
         Next, a piece of PDMS was mechanically pressed onto the silicon wafer, and the
         copper was then etched to leave patterned graphene on the PDMS
-        substrate\cite{Lee2010}. Raman spectroscopy was used to confirm the presence of
+        substrate \cite{Lee2010}. Raman spectroscopy was used to confirm the presence of
         graphene on the PDMS as shown in Figure \ref{fig:rip-device}c; the shape of the Raman 2D
-        peak\cite{Ferrari2006}, as well as subsequent AFM measurements verified the
+        peak \cite{Ferrari2006}, as well as subsequent AFM measurements verified the
         single-layer character of the graphene. Finally, shadow-mask evaporation was
         used to deposit Ti/Au contact pads. The device geometry is illustrated in
         Figure \ref{fig:rip-device}a: a narrow graphene bridge connects two large graphene pads, each of
@@ -2004,7 +2015,7 @@ to Nadha for being the best thing that ever happened to anyone in grad school
         in transport data between different devices were uncorrelated with the bridge
         dimensions, and instead seemed to be dominated by pre-existing rips in the
         graphene, which are often introduced during the graphene transfer
-        process\cite{Kim2012}.
+        process \cite{Kim2012}.
 
         AFM and transport measurements were performed while the PDMS substrate was
         mounted in a mechanical stretching stage, as shown in Figure \ref{fig:rip-device}. The substrate
@@ -2103,14 +2114,14 @@ to Nadha for being the best thing that ever happened to anyone in grad school
         
         To shed light on the underlying mechanism of the rip formation and evolution,
         our collaborators simulated rip formation and the subsequent elastic opening and closing of
-        rips in graphene, via a coarse-grained (CG) modeling scheme\cite{Zhu2014}.
+        rips in graphene, via a coarse-grained (CG) modeling scheme \cite{Zhu2014}.
         The following description of simulation results describes their work.
         Given the prohibitive simulation expense to model rips of real size in
         experiments (microns in length), they simulated a scaled-down model of a graphene
         monolayer with a size of 24 nm by 200 nm (Fig. \ref{fig:rip-simulation}). Three pre-cracks of various
         sizes were introduced in the model (Fig. \ref{fig:rip-simulation}a) to mimic the pre-existing defects
         in the as-made sample. Each CG bead in the graphene interacts with a virtual
-        substrate via a Lennard-Jones potential\cite{Scharfenberg2011} $V_{gs}(r)
+        substrate via a Lennard-Jones potential \cite{Scharfenberg2011} $V_{gs}(r)
         =4\varepsilon_{gs} \left( \frac{\sigma_{gs}^{12}}{r^{12}} -
         \frac{\sigma_{gs}^6}{r^6} \right)$, where $\varepsilon_{gs}=0.01844 \,
         \text{eV}$ and $\sigma_{gs}=0.29 \, \text{nm}$, which gives rise to an adhesion
@@ -2222,14 +2233,14 @@ to Nadha for being the best thing that ever happened to anyone in grad school
         
         Previous experimental work has demonstrated reversible transport changes in
         strained graphene, either by depositing graphene on pre-strained substrates so
-        as to create controlled crumpling\cite{Zang2013} and buckling\cite{Wang2011},
-        by patterning complex interconnect geometries\cite{Kim2011,Lee2010}, or by
-        measuring transport across macroscopic graphene films\cite{Kim2009,Bae2010}. In
+        as to create controlled crumpling \cite{Zang2013} and buckling \cite{Wang2011},
+        by patterning complex interconnect geometries \cite{Kim2011,Lee2010}, or by
+        measuring transport across macroscopic graphene films \cite{Kim2009,Bae2010}. In
         comparison, this work demonstrates the continuing robustness of device
         functionality \textit{after} partial mechanical failure. Such resilience is
         distinctly atypical for conducting thin films: similar studies performed on
-        tin-doped indium oxide (ITO)\cite{Cairns2000} and zinc
-        oxide\cite{Fortunato2002} reported rapid and irreversible device failure after
+        tin-doped indium oxide (ITO) \cite{Cairns2000} and zinc
+        oxide \cite{Fortunato2002} reported rapid and irreversible device failure after
         the onset of rip formation.  One potential explanation for graphene's
         exceptional resilience is its morphological simplicity: as a two-dimensional
         membrane re-establishing electrical contact between two sides of a rip is as
@@ -2244,7 +2255,9 @@ to Nadha for being the best thing that ever happened to anyone in grad school
         micro-rips in graphene using atomic force microscopy. While an initial
         application of tensile strain introduces new mechanical defects, successive
         strain-relaxation cycles over the same strain range elastically open and close
-        the existing rips. Mechanics simulations further reveal the underlying
+        the existing rips. This behavior is a consequence of of graphene's two-dimensional
+        character and the local nature of the applied strain.
+        Mechanics simulations further reveal the underlying
         deformation and failure mechanisms of the graphene sample under initial and
         subsequent cyclic tensile loadings, which agree well with the AFM measurements.
         This mechanical effect has a corresponding electrical effect: the graphene's
@@ -2268,7 +2281,7 @@ to Nadha for being the best thing that ever happened to anyone in grad school
 
 
 \pagebreak
-\section{Graphene on ferroelectric substrates}
+\section{Doping in graphene on ferroelectric substrates}
 \label{sec:res:pzt}
 
 
@@ -2276,9 +2289,7 @@ to Nadha for being the best thing that ever happened to anyone in grad school
 
     \subsection{Introduction}
     
-        Graphene is a subject of intense research interest due to the enormous potential of its 
-        electronic and mechanical properties \cite{geim2007rise}. As described in Section
-        \ref{sec:bg:gating}, p-n junctions 
+        As described in Section \ref{sec:bg:gating}, p-n junctions 
         in graphene have great potential for both fundamental research and commercial applications, 
         and have been utilized to study the quantum Hall effect \cite{williams2007quantum, Ozyilmaz2007, Velasco2010} 
         and Klein tunneling \cite{Stander2009, Young2009} as well as to fabricate flexible 
@@ -2308,7 +2319,7 @@ to Nadha for being the best thing that ever happened to anyone in grad school
             \centering
             \includegraphics[width=0.35\textwidth]{images/background/ChristophDevice.png}
             \includegraphics[width=0.45\textwidth]{images/background/ChristophFig4.png}
-            \caption[Graphene on ferroelectric substrates]{Left: A graphene FET fabricated on a PZT substrate. Right: Variable carrier type in a graphene FET on a ferroelectric substrate. I-V sweeps are shown for for the same device after gate voltage pulses are applied to switch the polarization of the ferroelectric layer. Adapted from \cite{Baeumer2013}.}
+            \caption[Graphene on ferroelectric substrates]{Left: A graphene field-effect transistor (FET) fabricated on a PZT substrate. Right: Variable carrier type in a graphene FET on a ferroelectric substrate. I-V sweeps are shown for for the same device after gate voltage pulses are applied to switch the polarization of the ferroelectric layer. Adapted from \cite{Baeumer2013}.}
             \label{fig:GonPZT}
             \end{figure}
         
@@ -2357,7 +2368,7 @@ to Nadha for being the best thing that ever happened to anyone in grad school
  
     \subsection{Device configuration}
     
-        Devices consist of graphene micro-ribbons deposited on substrates which are partially covered by a thin layer of evaporated SiO$_2$, and contacted in a four-point geometry, as illustrated in Figures \ref{fig:devices}a-c. An SEM micrograph of a typical device is shown in the inset of Figure \ref{fig:devices}d. The devices are fabricated using standard lithography and deposition techniques on thin-film ferroelectric substrates. For the ferroelectric substrates, 120 nm thick (001)-oriented lead zirconium titanate (PbZr$_{0.2}$Ti$_{0.8}$O$_3$) films are prepared by pulsed-laser deposition (PLD) on a strontium titanate (SrTiO$_3$) substrate coated with 20 nm of strontium ruthenate (SrRuO$_3$), following established procedures\cite{Xu2014,Karthik2012}. For each substrate, an 80 nm-thick layer of SiO$_2$ is evaporated in small rectangular regions, with region widths ranging from 0.5 $\mu$m to 3 $\mu$m, as illustrated in Figs. \ref{fig:devices}a-c. CVD graphene is then transferred using standard wet transfer techniques\cite{Li2009}, and patterned into ribbons spanning the deposited SiO$_2$ using photolithography and reactive ion etching. The graphene channel is 6 $\mu$m by 4 $\mu$m measured from the inner contacts. Control devices which span regions with no evaporated SiO$_2$ are also fabricated. Finally, Cr/Au (3 nm/20 nm) leads are deposited in a four-point measurement configuration.  Raman spectroscopy is used to confirm the monolayer character and high quality of the graphene after fabrication; a representative spectra is shown in Figure \ref{fig:devices}d.
+        Devices consist of graphene micro-ribbons deposited on substrates which are partially covered by a thin layer of evaporated SiO$_2$, and contacted in a four-point geometry, as illustrated in Figures \ref{fig:devices}a-c. An SEM micrograph of a typical device is shown in the inset of Figure \ref{fig:devices}d. The devices are fabricated using standard lithography and deposition techniques on thin-film ferroelectric substrates. For the ferroelectric substrates, 120 nm thick (001)-oriented lead zirconium titanate (PbZr$_{0.2}$Ti$_{0.8}$O$_3$) films are prepared by pulsed-laser deposition (PLD) on a strontium titanate (SrTiO$_3$) substrate coated with 20 nm of strontium ruthenate (SrRuO$_3$), following established procedures \cite{Xu2014,Karthik2012}. For each substrate, an 80 nm-thick layer of SiO$_2$ is evaporated in small rectangular regions, with region widths ranging from 0.5 $\mu$m to 3 $\mu$m, as illustrated in Figs. \ref{fig:devices}a-c. CVD graphene is then transferred using standard wet transfer techniques \cite{Li2009}, and patterned into ribbons spanning the deposited SiO$_2$ using photolithography and reactive ion etching. The graphene channel is 6 $\mu$m by 4 $\mu$m measured from the inner contacts. Control devices which span regions with no evaporated SiO$_2$ are also fabricated. Finally, Cr/Au (3 nm/20 nm) leads are deposited in a four-point measurement configuration.  Raman spectroscopy is used to confirm the monolayer character and high quality of the graphene after fabrication; a representative spectra is shown in Figure \ref{fig:devices}d.
 
 \begin{figure}
   \centering
@@ -2378,7 +2389,7 @@ Transport measurements in air are performed using two Keithley 2400 SourceMeters
     
         Figure \ref{fig:PZTdata}a shows room temperature $I_{sd}$ vs $V_{gate}$ curves for devices having different widths of evaporated SiO$_2$ on a PbZr$_{0.2}$Ti$_{0.8}$O$_3$ substrate. For the data shown here, the fraction of the graphene channel screened by evaporated SiO$_2$ ranges from 0\% to 50\% (corresponding to SiO$_2$ widths of 0 to 3 microns). Two features of the data are immediately apparent: first, for devices which span an evaporated SiO$_2$ region, the characteristic conductance minimum typically observed in graphene at the Dirac point is split into two distinct minima, one at the original Dirac point location and a second shifted to the right. This is apparent in the top and bottom curves of the Figure: the bottom curve, corresponding to a device with 0\% screening, displays a single minimum, while the top curve, corresponding to a device with 50\% screening, displays two pronounced minima. Second, the width of the evaporated SiO$_2$ region determines which of the two minima has a smaller absolute value. As the screening fraction is increased, `weight' is transferred from the minimum at the original Dirac point location to the secondary minimum, and the depths of the two minima vary accordingly. We attribute both of these effects to the presence of two different doping regions in the graphene, defined by the PbZr$_{0.2}$Ti$_{0.8}$O$_3$ substrate and the evaporated SiO$_2$.
 
-        The data can be understood by considering that as the gate voltage is swept from negative to positive, the Fermi level passes through the charge-neutrality point (CNP) of each graphene region separately. Taking the conductance to be linear with carrier density\cite{Hwang2007} $\sigma \propto k_F \langle\tau\rangle \propto n$ and the carrier density to be linear with the thermally smeared energy difference between the Fermi level and the CNP\cite{CastroNeto2009}, we model the conductance in the vicinity of the CNP as: $\rho^{-1} \propto n \propto 1 - e^{{-(V_{gate}}-\mu-\delta)^2/2c^2} + \epsilon$ where the constant $\mu$ accounts for the extrinsic doping introduced by the fabrication process, $\delta \in \{0,1\}$ describes the substrate-dependent doping, and $\epsilon$ accounts for the non-vanishing carrier density at the CNP. Assuming diffusive transport in the graphene, the relative weight of each separately doped region, and therefore the relative magnitude of the measured conductance minima, is determined by the fraction of the graphene channel which is screened:
+        The data can be understood by considering that as the gate voltage is swept from negative to positive, the Fermi level passes through the charge-neutrality point (CNP) of each graphene region separately. Taking the conductance to be linear with carrier density \cite{Hwang2007} $\sigma \propto k_F \langle\tau\rangle \propto n$ and the carrier density to be linear with the thermally smeared energy difference between the Fermi level and the CNP \cite{CastroNeto2009}, we model the conductance in the vicinity of the CNP as: $\rho^{-1} \propto n \propto 1 - e^{{-(V_{gate}}-\mu-\delta)^2/2c^2} + \epsilon$ where the constant $\mu$ accounts for the extrinsic doping introduced by the fabrication process, $\delta \in \{0,1\}$ describes the substrate-dependent doping, and $\epsilon$ accounts for the non-vanishing carrier density at the CNP. Assuming diffusive transport in the graphene, the relative weight of each separately doped region, and therefore the relative magnitude of the measured conductance minima, is determined by the fraction of the graphene channel which is screened:
         \begin{equation}
             I_{sd} \propto \left[ \rho_\text{scr.} \times (\text{pct.}_\text{scr.}) + \rho_\text{non-scr.} \times (\text{pct.}_\text{non-scr.}) \right]^{-1}
         \end{equation}
@@ -2457,11 +2468,11 @@ Transport measurements in air are performed using two Keithley 2400 SourceMeters
         voltage of the PbZr$_{0.2}$Ti$_{0.8}$O$_3$ film (the voltage required to reverse
         the polarization of the ferroelectric substrate), therefore ferroelectric switching 
         is not a possible cause of the observed hysteresis. Ferroelectric switching has 
-        been shown to produce similar behavior\cite{Park2015b}, however in this work gate
+        been shown to produce similar behavior \cite{Park2015b}, however in this work gate
         voltages above the coercive voltage of the film are experimentally inaccessible 
         due to large gate leakage in our devices.
 
-        In order to understand how the hysteresis is related to the different H$_2$O polarization configurations on the PbZr$_{0.2}$Ti$_{0.8}$O$_3$ as compared to the evaporated SiO$_2$, it is instructive to consider the gate voltages at which the various minima appear. For example, for the 17\% screened curve in Fig. \ref{fig:doping_dynamics}a the red arrows point out two minima on the forward sweep (at 0.6 V and 1.1V) and one minimum on the reverse sweep (at 0.9 V). These can be compared to the position of the Dirac point in vacuum at 0.6 V (see Fig. \ref{fig:PZTvacuum}). The minimum on the forward sweep at 0.6 V occurs at the same gate voltage as the vacuum Dirac point, implying that it corresponds to a region of the graphene without a net polarization in the adsorbed H$_2$O. The remaining minima occur at voltages larger than the Dirac point (0.9 V and 1.1 V) and thus correspond to regions of the graphene on which the adsorbed H$_2$O is polarized and produces p-doping. Polarized H$_2$O typically produces p-doping in graphene, though the precise mechanism is the subject of continuing research\cite{Leenaerts2007,Moser2008,wang2010hysteresis,Wehling2008,Sabio2008}. We identify the forward-sweep minimum at 0.6 V as corresponding to graphene on the non-screened PbZr$_{0.2}$Ti$_{0.8}$O$_3$ region. This is supported by the fact that all devices demonstrate a minimum at 0.6 V, independent of different SiO$_2$ screening fractions. In contrast, the minimum indicated by the rightmost arrow (e.g. at 1.1 V for the 17\% screened device) corresponds to graphene on the evaporated SiO$_2$ region, as evidenced by its evolution with increasing SiO$_2$ screening fraction.
+        In order to understand how the hysteresis is related to the different H$_2$O polarization configurations on the PbZr$_{0.2}$Ti$_{0.8}$O$_3$ as compared to the evaporated SiO$_2$, it is instructive to consider the gate voltages at which the various minima appear. For example, for the 17\% screened curve in Fig. \ref{fig:doping_dynamics}a the red arrows point out two minima on the forward sweep (at 0.6 V and 1.1V) and one minimum on the reverse sweep (at 0.9 V). These can be compared to the position of the Dirac point in vacuum at 0.6 V (see Fig. \ref{fig:PZTvacuum}). The minimum on the forward sweep at 0.6 V occurs at the same gate voltage as the vacuum Dirac point, implying that it corresponds to a region of the graphene without a net polarization in the adsorbed H$_2$O. The remaining minima occur at voltages larger than the Dirac point (0.9 V and 1.1 V) and thus correspond to regions of the graphene on which the adsorbed H$_2$O is polarized and produces p-doping. Polarized H$_2$O typically produces p-doping in graphene, though the precise mechanism is the subject of continuing research \cite{Leenaerts2007,Moser2008,wang2010hysteresis,Wehling2008,Sabio2008}. We identify the forward-sweep minimum at 0.6 V as corresponding to graphene on the non-screened PbZr$_{0.2}$Ti$_{0.8}$O$_3$ region. This is supported by the fact that all devices demonstrate a minimum at 0.6 V, independent of different SiO$_2$ screening fractions. In contrast, the minimum indicated by the rightmost arrow (e.g. at 1.1 V for the 17\% screened device) corresponds to graphene on the evaporated SiO$_2$ region, as evidenced by its evolution with increasing SiO$_2$ screening fraction.
 
 \begin{figure}
   \centering
@@ -2478,11 +2489,11 @@ Transport measurements in air are performed using two Keithley 2400 SourceMeters
 
     \subsection{Polar adsorbates as local dopants}
     
-        We conclude that the application of a negative gate voltage destroys the net polarization of adsorbed H$_2$O on PbZr$_{0.2}$Ti$_{0.8}$O$_3$, but preserves a net polarization on the SiO$_2$-screened regions. This creates different local doping levels and thus a p-n junction. A positive gate voltage establishes a net polarization in both regions, and thus a uniform channel with no p-n junction, as depicted in Figure \ref{fig:doping_dynamics}b. This interpretation is further corroborated by the different widths of the forward and reverse minima for the control (0\% screened) device, as evident in Fig. \ref{fig:doping_dynamics}a. This difference can be explained by considering that conductance is linear with carrier density\cite{Hwang2007}, so the width of the conductance minimum at the Dirac point is determined by the slope of the carrier density vs. gate voltage curve. Typically the slope is constant, determined by the gate capacitance. However, for our devices the onset of H$_2$O dipole doping introduces a nonlinearity in the regime where the adsorbed H$_2$O transitions from unpolarized to polarized; this is shown schematically in Fig. \ref{fig:doping_dynamics}c. The polarized H$_2$O in our devices p-dopes the graphene, so the onset of its doping contribution temporarily reduces the slope of the carrier density vs. gate voltage curve, broadening the conductance minimum. During reverse sweeps, the transition from polarized to unpolarized H$_2$O occurs far from the CNP, so the width of the conductance minimum is unaffected. The hysteresis in H$_2$O polarization is illustrated schematically in Figure \ref{fig:doping_dynamics}d. Experimentally, the polarization hysteresis displays a dependence on both the magnitude of the applied gate voltage and the duration of its application, which prevents an exact determination of the gate voltages required to establish or destroy the H$_2$O polarization.
+        We conclude that the application of a negative gate voltage destroys the net polarization of adsorbed H$_2$O on PbZr$_{0.2}$Ti$_{0.8}$O$_3$, but preserves a net polarization on the SiO$_2$-screened regions. This creates different local doping levels and thus a p-n junction. A positive gate voltage establishes a net polarization in both regions, and thus a uniform channel with no p-n junction, as depicted in Figure \ref{fig:doping_dynamics}b. This interpretation is further corroborated by the different widths of the forward and reverse minima for the control (0\% screened) device, as evident in Fig. \ref{fig:doping_dynamics}a. This difference can be explained by considering that conductance is linear with carrier density \cite{Hwang2007}, so the width of the conductance minimum at the Dirac point is determined by the slope of the carrier density vs. gate voltage curve. Typically the slope is constant, determined by the gate capacitance. However, for our devices the onset of H$_2$O dipole doping introduces a nonlinearity in the regime where the adsorbed H$_2$O transitions from unpolarized to polarized; this is shown schematically in Fig. \ref{fig:doping_dynamics}c. The polarized H$_2$O in our devices p-dopes the graphene, so the onset of its doping contribution temporarily reduces the slope of the carrier density vs. gate voltage curve, broadening the conductance minimum. During reverse sweeps, the transition from polarized to unpolarized H$_2$O occurs far from the CNP, so the width of the conductance minimum is unaffected. The hysteresis in H$_2$O polarization is illustrated schematically in Figure \ref{fig:doping_dynamics}d. Experimentally, the polarization hysteresis displays a dependence on both the magnitude of the applied gate voltage and the duration of its application, which prevents an exact determination of the gate voltages required to establish or destroy the H$_2$O polarization.
 
         The hysteresis of the H$_2$O polarization on PbZr$_{0.2}$Ti$_{0.8}$O$_3$ substrates adds an `on/off' switching element to the p-n behavior. Specifically, we can selectively transition the device into and out of the p-n junction configuration through the application of large positive and negative gate voltages. The initial application of a large positive gate voltages establishes a uniform polarization across the device, yielding a unipolar conducting channel, while a large negative gate voltage destabilizes the polarization on regions supported by PbZr$_{0.2}$Ti$_{0.8}$O$_3$. In the latter case the different H$_2$O polarizations create separate locally doped regions, and thus a p-n junction. This `on/off' switching is different than the standard gate induced switching observed in p-n junctions, for example from p-n to p$^+$-p. By comparison, in our devices the same applied gate voltage can generate either a p-n junction or a uniformly doped channel, depending on the H$_2$O polarization condition.
 
-        The ferroelectric nature of the PbZr$_{0.2}$Ti$_{0.8}$O$_3$ substrate might suggest that the residual electric field from the substrate polarization dopes the regions of graphene in direct contact with the substrate\cite{Baeumer2013,Zheng2010}, but has less effect in the graphene regions screened by evaporated SiO$_2$. Similarly, graphene-ferroelectric interfaces are known to have complex interfacial charge trap dynamics which can generate similar transport signatures\cite{Park2015b}. However, both explanations are precluded by several further experimental observations. First, the Dirac point splitting effect disappears when the devices are measured in vacuum. Figure \ref{fig:PZTvacuum} shows $I_{sd}$ vs $V_{gate}$ curves for the same devices measured at $5\times10^{-6}$ Torr but otherwise under conditions identical to those of Figure \ref{fig:PZTdata}a. All devices show a single minimum, independent of evaporated SiO$_2$ width or gate sweep rate. Second, leaving the devices in ambient conditions overnight recovers the splitting effect. The observed behavior is consistent with an ambient dopant mechanism, i.e., the substrate-selective formation of a self-assembled layer of dopant molecules. In vacuum, dopant molecules desorb from the surface leaving all regions of the graphene identically doped. Leaving the device in ambient conditions allows the dopant layer to reassemble, thereby re-establishing the separately doped regions.
+        The ferroelectric nature of the PbZr$_{0.2}$Ti$_{0.8}$O$_3$ substrate might suggest that the residual electric field from the substrate polarization dopes the regions of graphene in direct contact with the substrate \cite{Baeumer2013,Zheng2010}, but has less effect in the graphene regions screened by evaporated SiO$_2$. Similarly, graphene-ferroelectric interfaces are known to have complex interfacial charge trap dynamics which can generate similar transport signatures \cite{Park2015b}. However, both explanations are precluded by several further experimental observations. First, the Dirac point splitting effect disappears when the devices are measured in vacuum. Figure \ref{fig:PZTvacuum} shows $I_{sd}$ vs $V_{gate}$ curves for the same devices measured at $5\times10^{-6}$ Torr but otherwise under conditions identical to those of Figure \ref{fig:PZTdata}a. All devices show a single minimum, independent of evaporated SiO$_2$ width or gate sweep rate. Second, leaving the devices in ambient conditions overnight recovers the splitting effect. The observed behavior is consistent with an ambient dopant mechanism, i.e., the substrate-selective formation of a self-assembled layer of dopant molecules. In vacuum, dopant molecules desorb from the surface leaving all regions of the graphene identically doped. Leaving the device in ambient conditions allows the dopant layer to reassemble, thereby re-establishing the separately doped regions.
 
         The absence of Dirac point splitting in vacuum measurements also eliminates differences in gate capacitance as a dominant source of the splitting effect. The screened and non-screened regions of the device have different gate thicknesses and dielectric constants, which might suggest that the application of the same gate voltage would generate different doping levels in each region, and hence the transport behavior we observe. However, any capacitative differences between the regions are static, depending only on the geometry of the device, while the Dirac point splitting effect is dynamic, disappearing in vacuum. Capacitance-based explanations are further ruled out by the nearly identical Dirac point locations observed in all devices under vacuum. In particular, the similarity of data under vacuum from the control device (having no evaporated SiO$_2$), and from the devices which do span an evaporated SiO$_2$ region confirms that gate capacitance differences between the two regions are not the primary cause of the Dirac point splitting effect.
 
@@ -2496,7 +2507,7 @@ Transport measurements in air are performed using two Keithley 2400 SourceMeters
           \label{fig:PZTvacuum}
         \end{figure}
 
-        We note that the vacuum-dependence of our results requires that the ambient dopant molecules be present on top of the graphene rather than trapped between the graphene and the substrate. Pristine monolayer graphene is impermeable to atomic and molecular species\cite{Bunch2008}, therefore the brief application of a moderate vacuum would be insufficient to remove any molecules trapped underneath the graphene. This in turn requires that the substrate-dependent localization of the ambient dopants occurs through the graphene; similar behavior has been previously reported elsewhere\cite{Moser2007, Moser2008, Lohmann2009, Lafkioti2010}.
+        We note that the vacuum-dependence of our results requires that the ambient dopant molecules be present on top of the graphene rather than trapped between the graphene and the substrate. Pristine monolayer graphene is impermeable to atomic and molecular species \cite{Bunch2008}, therefore the brief application of a moderate vacuum would be insufficient to remove any molecules trapped underneath the graphene. This in turn requires that the substrate-dependent localization of the ambient dopants occurs through the graphene; similar behavior has been previously reported elsewhere \cite{Moser2007, Moser2008, Lohmann2009, Lafkioti2010}.
 
 %\section*{Conclusions}
 
@@ -2510,7 +2521,7 @@ Transport measurements in air are performed using two Keithley 2400 SourceMeters
 
 
 \pagebreak
-\section{Graphene on strain array substrates}
+\section{Quasi-bound states in graphene on strain array substrates}
 \label{sec:res:strain}
 
             
@@ -2518,17 +2529,19 @@ Transport measurements in air are performed using two Keithley 2400 SourceMeters
     devices fabricated on substrates having arrays of topographic features.
     Engineered substrates offer an avenue towards graphene devices with tunable properties.
     In particular, substrates which apply strain to graphene can expose unique behavior.
-    However, existing options for fabricating strain-inducing substrates are not suitable for creating 
-    devices for electrical transport measurements.
-    In this section I describe the fabrication of strain-inducing substrates suitable for transport measurements,
-    and I report both optical and transport measurements of graphene devices showing characteristics induced by these substrates.
+    However, existing options for fabricating strain-inducing substrates do not create devices which
+    are suitable for electrical transport measurements.
+    Here I describe the fabrication of substrates which induce strain in graphene via controlled
+    local adhesion and delamination; analysis of these devices offers a better understanding of
+    how to controllably strain graphene using topographic substrates.
+    We then apply this understanding to develop similar substrates suitable for transport measurements,
+    and report both optical and transport measurements of graphene devices
+    showing characteristics induced by these substrates.
             
             
     \subsection{Introduction}
     
-            Graphene is a material with enormous potential for both scientific research and technical applications
-            \cite{novoselov2004electric,novoselov2005two,zhang2005experimental,geim2007rise}.
-            In particular, the ability to tune graphene's properties through the use of engineered substrates offers a practical
+            The ability to tune graphene's properties through the use of engineered substrates offers a practical
             method to explore graphene's properties and modify them for specific applications 
             \cite{guinea2010energy, zhou2007substrate} as described in Sections \ref{sec:bg:uniaxial} and \ref{sec:bg:nonuniaxial}.
             Engineered substrates offer a variety of avenues by which to modulate graphene's properties:
@@ -2540,37 +2553,176 @@ Transport measurements in air are performed using two Keithley 2400 SourceMeters
              
             Of the various substrate engineering techniques, applying strain via substrate topography is particularly interesting
             because of the large effect strain has on graphene's electrical 
-            properties\cite{guinea2010energy, pereira2009strain, levy2010strain}. 
-            To date however, the techniques used to produce strain in graphene are either not tunable\cite{levy2010strain}
+            properties \cite{guinea2010energy, pereira2009strain, levy2010strain}. 
+            To date however, the techniques used to produce strain in graphene are either not tunable \cite{levy2010strain}
             or not amenable to performing electrical transport measurements on graphene
             \cite{Tomori2011, mohiuddin2009uniaxial, ni2008uniaxial, gill2015mechanical}.
-            Here we demonstrate a fabrication procedure for producing engineered arrays of strain-generating features on standard silicon
-            substrates, and we report optical and transport measurements which display characteristics induced by these substrates.
+            Here we demonstrate the fabrication of engineered arrays of strain-generating features.
+            The process is first developed using flexible, polymer substrates which are used to 
+            explore the origin of the generated strain as well as methods with which to tune it.
+            This understanding is then used to develop silicon substrates appropriate for transport measurements.
+            Finally, we report optical and transport measurements which display characteristics induced by these substrates.
             
+    \subsection{Strain engineering via substrate topography}
+ 
+        \begin{figure}
+          \centering
+          \includegraphics[width=0.8\textwidth]{images/resultsanddiscussion/strainarraypaper/stephen11}
+          \caption[Pyramidal strain arrays in PDMS]{
+          (A) 3D AFM rendering of a pyramid array fabricated on a PDMS surface. 
+          (B) AFM phase image demonstrating the contrast in an area with and without graphene 
+          (dark gray and light gray, respectively).
+          (C) Profile trace of a PDMS pyramid from AFM height data before and after 
+          depositing monolayer graphene. The flexibility of the substrate and the rigidity
+          of graphene combine to make deformations of the substrate more energetically favorable
+          than delamination.
+          }
+          \label{fig:stephen1}
+        \end{figure}
+
+        \begin{figure}
+          \centering
+          \includegraphics[width=0.4\textwidth]{images/resultsanddiscussion/strainarraypaper/stephen12}
+          \caption[Pyramidal flattening as a function of strain array spacing]{
+          Pyramidal flattening factor as a function of strain array spacing. Larger spacings
+          produce smaller flattening effects, reflecting the reduced strain present in sparsely
+          spaced arrays. The relation between strain and spacing highlights the tunable
+          nature of this experimental paradigm.
+          }
+          \label{fig:stephen12}
+        \end{figure}
+
+    
+We begin by exploring the mechanical
+response of monolayer graphene deposited
+on substrates patterned with arrays of mesoscale
+triangular pyramids. We systematically
+study the morphology of graphene for
+pyramid arrays having different spacing,
+symmetry, and surface rigidity by atomic
+force microscopy (AFM) and Raman spectroscopy, and we find
+that the adhesion of
+graphene to the substrate -- and hence the
+strain experienced by the graphene -- can be controlled
+by changing the array aspect ratio and/or
+the topological arrangement of pyramids in the array. 
+%We also demonstrate that the arrays can be used to induce
+%large areas of nonuniform strain in graphene on the
+%order of 1\%.
+
+Figure \ref{fig:stephen1}A shows a representative AFM micrograph
+of a pyramid array formed in polydimethylsiloxane
+(PDMS). Substrates were fabricated by casting PDMS liquid precursors 
+into a nano-indented mold. 
+Figures \ref{fig:stephen1}B and \ref{fig:stephen1}C show that graphene on PDMS
+both adheres conformally to and flattens the topographic
+features. This flattening effect reflects the competing energetics of
+deforming the substrate and relaxing the strain associated with graphene's
+conformal adhesion to the topography.
+%the elastic potential associated with deforming the substrate and
+%the strain generated by graphene's conformal adhesion to the topography.
+As shown in Figure \ref{fig:stephen12}, the degree to which the substrate is 
+flattened decreases with increasing array spacing. This demonstrates the 
+tunable character of strain generated by patterned, topographic substrates:
+%the amount of strain applied to graphene can be controlled via patterned, topographic substrates:
+since flattening occurs to minimize
+strain in graphene, the decrease in flattening with increasing
+spacing demonstrates that strain on graphene can be
+systematically varied as a function of array spacing.
+
+The compliant nature of flexible, polymer substrates limits the amount of 
+strain which can be applied via substrate features, so we next consider similar devices with 
+enhanced rigidity. Specifically, we prepare identical PDMS substrates and then apply a coating
+of 5 nm Ti followed by 50 nm SiO$_2$. For rigid substrates the behavior of the graphene is
+determined by the competing energetics of graphene's surface adhesion and strain relaxation.
+As shown in Figure \ref{fig:stephen2} the resulting behavior depends on both the symmetry
+and aspect ratio of the strain array. Square arrays display conformal adhesion for all
+experimentally accessible aspect ratios, down to $\lambda / H = 3$ where $\lambda$ is the array spacing
+and $H$ is the height of the pyramid features.
+For triangular arrays graphene 
+adheres conformally for aspect ratios $\lambda / H \geq 7$,
+partially de-adheres for aspect ratios $\lambda / H \approx 5$,
+and de-adheres everywhere except at the tip of the pyramid for aspect ratios $\lambda / H \approx 3$.
+          
+        \begin{figure}
+          \centering
+          \includegraphics[width=\textwidth]{images/resultsanddiscussion/strainarraypaper/stephen2}
+          \caption[Delamination of graphene on rigid, pyramidal strain arrays]{
+          AFM images of rigid, pyramidal strain arrays before (top) and after (middle) the deposition
+          of graphene; line traces across a pyramid are shown in the bottom row. 
+          The aspect ratios of the arrays are, from left to right, 3, 7, 5, 3.
+          The adhesion behavior of graphene depends on both the symmetry and the aspect 
+          ratio of strain array substrates. For square arrays (A) graphene adheres conformally for 
+          aspect ratios as low as $\lambda / H=3$. For triangular arrays graphene 
+          adheres conformally for aspect ratios $\lambda / H \geq 7$ (B),
+          partially de-adheres for aspect ratios $\lambda / H \approx 5$ (C),
+          and de-adheres everywhere except at the tip of the pyramid for aspect ratios $\lambda / H \approx 3$ (D).
+          }
+          \label{fig:stephen2}
+        \end{figure}
+          
+        \begin{figure}
+          \centering
+          \includegraphics[width=0.4\textwidth]{images/resultsanddiscussion/strainarraypaper/stephen3}
+          \caption[Raman spectra of graphene on rigid pyramidal strain arrays]{
+          Raman measurements of the 2D peak in graphene display shifts associated with strain
+          when the graphene is delaminated. For pyramidal substrate features, the 2D peak shifts 
+          upward compared its location on flat substrates.
+          The upward shift indicates a stiffening of the lattice, which corresponds to compressive strain.
+          
+          }
+          \label{fig:stephen3}
+        \end{figure}
+
+Finally, we examine the strain in these partially delaminated devices using Raman spectroscopy.
+The results are presented in Figure \ref{fig:stephen3}: for graphene which adheres conformally
+to the substrate we observe no meaningful shift in the Raman 2D peak location compared
+to its location on flat substrates. For delaminated graphene however we observe a distinct
+blueshift. The increase in peak location indicates a stiffening of the lattice, which 
+corresponds to compressive strain. We attribute this to the region of graphene which remains
+pinned to the tip of the pyramid. In the regime where graphene partially delaminates from the
+pyramids,
+%thereby minimizing stress in the depinned region, 
+areas that remain pinned to
+the pyramid accumulate compression to enable the delamination of graphene. We emphasize that the
+strain present in graphene is a consequence of the competition between adhesion and delamination;
+cases where the graphene is either conformal or entirely delaminated display no signs of strain.
+
+           
+        We next apply the understanding of delamination-induced strain developed here to the fabrication
+        of SiO$_2$ substrates suitable for transport measurements.
+            
+    \subsection{Device configuration for transport measurements}
+ 
             \begin{figure}
             \centering
             \includegraphics[width=0.5\columnwidth]{images/resultsanddiscussion/strainarraypaper/Figure1}
             \caption{Fabrication procedure for creating graphene devices on strain-array substrates.}
             \label{'fig:fab'}
             \end{figure}
-            
-    \subsection{Device configuration}
-            
            
-          
-           
-            The process used to create the strain features on the substrate is illustrated schematically in Figures \ref{'fig:fab'}A-D.
+            The process used to create strain features on SiO$_2$ substrates 
+            is illustrated schematically in Figures \ref{'fig:fab'}A-D.
             First an array of copper circles is deposited, using standard electron-beam lithography and evaporation techniques, 
             on a silicon chip covered with a 1000 nm layer of thermal oxide. 
             The thick oxide layer is necessary because subsequent etching steps remove several hundred nanometers of oxide, 
             which would completely strip the oxide layer of a chip with the standard 300 nm of SiO$_2$.
             The deposited copper is then used as a mask in a reactive ion etching 
-            (RIE) step to produce cylindrical pillars in the SiO$_2$ layer. For the devices described here the etch was performed in 
+            (RIE) step to produce cylindrical pillars in the SiO$_2$ layer. For the 
+            devices described here the etch was performed in 
             a PlasmaLab Freon RIE at 35 mtorr for 10 minutes 
             using 100 W of incident power and 70 sccm of CF$_4$. 
-            The RIE etch time and the diameter of the deposited copper mask circles together define the aspect ratio of the resulting 
-            pillars. For these devices we use a diameter of 100 nm, and the 10 minute etch time gives a height of approximately  
-            200 nm.
+            The RIE etch time and the diameter of the deposited copper mask circles together 
+            define the aspect ratio of the resulting pillars; note that the aspect ratio of the pillar
+            $r/H$, where $H$ is the height of the pillar and $r$ is its radius, is distinct from the 
+            aspect ratio of the array $\lambda/H$.
+            For these devices we use a diameter of 100 nm, and the 10 minute etch time gives a 
+            height of approximately 200 nm. 
+            Devices were fabricated with array spacings ranging from 250 nm to 750 nm, corresponding to array aspect ratios from
+            5:4 to 15:4. The range of aspect ratios is informed by the experiments on pyramidal strain arrays described above:
+            our goal is to apply strain, which is present when graphene is partially delaminated. The strain arrays
+            produced in this section are square arrays, so we fabricate arrays having aspect ratios $\lambda / H \leq 3$
+            corresponding to the range where delamination is expected to occur.
             After the etch, the copper mask is removed by immersing the chip 
             in a 0.1M solution of ammonium persulfate for several hours. Finally, the chip is dipped in buffered oxide etchant 
             (6:1 40\% NH$_4$F : 49\% HF) to sharpen the SiO$_2$ pillars produced during the RIE step into pointed, conical shapes. 
@@ -2579,9 +2731,9 @@ Transport measurements in air are performed using two Keithley 2400 SourceMeters
             
             Graphene devices are fabricated on substrates prepared by this method using the process shown in Figures \ref{'fig:fab'}E-F. 
             First Ti/Au (5 nm/30 nm) leads and contact pads are defined and deposited using electron-beam lithography and evaporation. 
-            Next, a monolayer of graphene is grown using established chemical vapor deposition techniques\cite{Li2009}. 
+            Next, a monolayer of graphene is grown using established chemical vapor deposition techniques \cite{Li2009}. 
             The graphene is then transferred to the strain array substrate using standard polymer-assisted wet-transfer 
-            techniques\cite{li2009transfer}. The same polymer layer used to transfer the graphene is then used as a 
+            techniques \cite{li2009transfer}. The same polymer layer used to transfer the graphene is then used as a 
             resist in an electron-beam lithography step. Next the exposed graphene is removed using a reactive ion etch 
             (100 W, 50 mtorr, 20 sccm O$_2$, 30 s), yielding graphene in a Hall bar configuration. Finally the remaining 
             polymer resist is dissolved in acetone and the chip is dried in a critical point drying apparatus. 
@@ -2628,25 +2780,41 @@ Transport measurements in air are performed using two Keithley 2400 SourceMeters
             Optical measurements of graphene devices fabricated on substrates prepared by the process described above
             confirm the presence of strain. Raman measurements are collected in a raster pattern across a 
             20 $\mu$m  $\times$ 20 $\mu$m area with a measurement spot size of 350 nm. 
-            At each raster point the Raman G and 2D peak positions are extracted\cite{ferrari2006raman}. 
+            At each raster point the Raman G and 2D peak positions are extracted \cite{ferrari2006raman}. 
             Figures \ref{'fig:raman'}A and \ref{'fig:raman'}B summarize the extracted positions 
             of the Raman G and 2D peaks, respectively, for graphene on strain array and flat substrates.  
             
-           
             Both the G and 2D peaks of graphene on the patterned 
             substrates display shifted peak positions relative to graphene on a flat substrate. 
             This shift increases with increasing strain array spacing and displays a qualitative jump
             for spacings above 600nm. We attribute this jump to a 
-            snap-through transition\cite{gill2015mechanical, scharfenberg2012observation}
+            snap-through transition \cite{gill2015mechanical, scharfenberg2012observation}
             in the adhesion of the graphene to the substrate: for spacings below 600 nm the graphene is suspended
             in the entire strain array region, while for spacings above 600nm the graphene adheres to the substrate
             except in the immediate vicinity of a strain array pillar. The partial delamination
             present in the sparse strain array samples
             produces strain in the graphene which generates the shifted Raman peak positions.
             
+            We note that for these devices we observe a redshift in the Raman peak location, 
+            rather than the blueshift observed for the pyramid samples above. We attribute this to
+            the drastically different aspect ratios of the PDMS pyramids compared to the SiO$_2$ pillars.
+            The pyramids have an aspect ratio of approximately 10. Near their tips the SiO$_2$ pillars 
+            have a radius on the order of 10 nm, giving them an aspect ratio of approximately 0.05.
+            The redshift in the pyramid experiment is attributed to the compression of graphene 
+            conformally adhered to the tip of the pyramid; the SiO$_2$ pillars are so sharp that
+            they do not have an appreciable area over which graphene adheres conformally.
+            For the SiO$_2$ pillars the dominant strain contribution stems from the frustrated
+            adhesion in the vicinity of the pillars.
+            However, despite the opposite sign of the Raman shift in the two experiments
+            the underlying source of strain in both cases is the competition between adhesion and delamination.
             
-            As described in Section \ref{sec:bg:raman}, doping from charge impurities in the substrate is also known to 
-            shift Raman peak positions in graphene \cite{reina2008large, casiraghi2007raman}, however the ratio 
+            As described in Section \ref{sec:exp:raman}, doping from charge impurities in the substrate is also known to 
+            shift Raman peak positions in graphene \cite{reina2008large, casiraghi2007raman}. SiO$_2$ substrates in particular
+            are known to dope graphene,
+            therefore it is possible that the shift in Raman peak positions is due
+            to variable doping from the substrate caused by the local delaminations. 
+            This explanation can be ruled out by examining the relative shifts of the G and 2D peaks.
+            The ratio 
             \begin{equation}
                 r = \frac{\Delta \, \omega_\text{2D}}{\Delta \, \omega_\text{G}}
             \end{equation}
@@ -2690,7 +2858,15 @@ Transport measurements in air are performed using two Keithley 2400 SourceMeters
             Figure \ref{'fig:transport'}C shows the same data as Figure \ref{'fig:transport'}A with a linear background 
             $R_\text{background} = m V_g + b$ subtracted; several additional local maxima are visible in the low gate voltage region.
             
-            We attribute these features to the presence of local variations in the potential induced by the strain array substrate.
+            We attribute these features to the presence of local variations in the 
+            electrostatic potential induced by the strain array substrate.
+            This is a different effect than the one we set out to observe. Fortuitously, transport measurements
+            across local variations in the electrostatic potential are also experimentally fruitful.
+            In the following we examine the case of transport through electrostatically defined graphene 
+            quantum dots;
+            in Section \ref{sec:fw} we propose two new experiments which expand on these results to disentangle
+            the local variations in strain and doping.
+            
             In the vicinity of each pillar the graphene is locally delaminated; this delamination alters the 
             effective gate capacitance by including a region of vacuum in series with the SiO$_2$ dielectric layer.
             The local variation in the gate capacitance creates a corresponding variation in the potential,
@@ -2732,7 +2908,11 @@ Transport measurements in air are performed using two Keithley 2400 SourceMeters
             of a system containing quasi-bound states depend on the interference between the incident
             plane wave and the reflected or refracted wave. When the incident wave is not a plane wave the
             interference effects, and thus the transport behavior, will differ from the expected behavior.
-            In our devices, with a carrier density of $10^{11}$ cm$^{-2}$ and a field of 1 T corresponding the the field 
+            In our experiment, where the cyclotron radius is the relevant length scale, 
+            the quantum dot is `small' at low fields (because $r_c$ is large)
+            and `large' at high fields (because $r_c$ is small); we therefore expect suppressed
+            conductance at low fields and enhanced conductance at high fields.
+            For our devices, with a carrier density of $10^{11}$ cm$^{-2}$ and a field of 1 T corresponding the the field 
             at which the transport features disappear,
             we find a cyclotron radius of 40 nm and thus a characteristic length of 80 nm.
             This is in excellent agreement with the 100 nm diameter of the strain array pillars
@@ -2804,7 +2984,7 @@ Transport measurements in air are performed using two Keithley 2400 SourceMeters
     
             In summary, we describe a fabrication procedure for producing graphene devices on
             substrates having an array of strain-generating features and we report experimental signatures
-            caused by these strain-generating features. We find that the spacing of the strain array features
+            caused by these features. We find that the spacing of the strain array features
             determines the adhesion behavior of the graphene, and that for large spacings the partial
             delamination creates strain in the graphene which we observe using optical measurements. 
             Finally, we find that magneto-transport measurements
@@ -2814,8 +2994,8 @@ Transport measurements in air are performed using two Keithley 2400 SourceMeters
             transport signatures consistent with the presence of quasi-bound states in the quantum
             dot region defined by the local delamination regions.
             Through careful considerations of the strain array spacing and pillar height
-            this technique can be adapted to length scales on the order of the coherence length in
-            graphene, thereby offering a novel method to explore superlattice and strain effects in graphene.
+            this technique can be adapted to regimes where either the quantum dot or strain dependent dynamics dominate,
+            thereby offering a novel method to study both quasi-bound states and strain effects in graphene.
             
 
 
@@ -2968,7 +3148,7 @@ Transport measurements in air are performed using two Keithley 2400 SourceMeters
             The pitch of the array is chosen to maximize the density of pillars without causing total delamination of 
             the graphene.
             }
-            \label{fig:propdev3}
+            \label{fig:propdev2}
             \end{figure}
         
             \subsubsection*{Proposed devices}
@@ -3043,9 +3223,9 @@ Transport measurements in air are performed using two Keithley 2400 SourceMeters
         wafer where it was patterned using photolithography and reactive ion etching.
         Next, a piece of PDMS was mechanically pressed onto the silicon wafer, and the
         copper was then etched to leave patterned graphene on the PDMS
-        substrate\cite{Lee2010}. Raman spectroscopy was used to confirm the presence of
+        substrate \cite{Lee2010}. Raman spectroscopy was used to confirm the presence of
         graphene on the PDMS: the shape of the Raman 2D
-        peak\cite{Ferrari2006} along with subsequent AFM measurements verified the
+        peak \cite{Ferrari2006} along with subsequent AFM measurements verified the
         single-layer character of the graphene. Finally, shadow-mask evaporation was
         used to deposit Ti/Au contact pads.
 
@@ -3082,9 +3262,9 @@ Finally, electrical leads were defined in a four-point measurement configuration
             Graphene devices are fabricated on substrates prepared by this method using a modified wet-transfer process.
             First Ti/Au (5 nm/30 nm) leads and contact pads are defined and deposited using 
             electron-beam lithography and evaporation. 
-            Next, a monolayer of graphene is grown using established chemical vapor deposition techniques\cite{Li2009}. 
+            Next, a monolayer of graphene is grown using established chemical vapor deposition techniques \cite{Li2009}. 
             The graphene is then transferred to the strain array substrate using standard polymer-assisted wet-transfer 
-            techniques\cite{li2009transfer}. The same polymer layer used to transfer the graphene is then used as a 
+            techniques \cite{li2009transfer}. The same polymer layer used to transfer the graphene is then used as a 
             resist in an electron-beam lithography step. Next the exposed graphene is removed using a reactive ion etch 
             (100 W, 50 mtorr, 20 sccm O$_2$, 30 s), yielding graphene in a Hall bar configuration. Finally the remaining 
             polymer resist is dissolved in acetone and the chip is dried in a critical point drying apparatus. 
@@ -3279,7 +3459,7 @@ In the rest of this section I describe the process used to create these drivers.
     existing Python libraries to facilitate this task. A complete accounting of these existing libraries
     is beyond the scope of this thesis, and in fact would likely be immediately out of date;
     the motivated reader is encouraged to Google around. For examples
-    of drivers created by this process see the drivers for the National Instruments BNC-2100 DAC
+    of drivers created by this process see the drivers for the National Instruments BNC-2100 DAQ
     (\href{https://github.com/masonlab/labdrivers/blob/master/labdrivers/ni/bnc2110.py}{\textbf{link}})
     and the Quantum Design PPMS DynaCool 
     (\href{https://github.com/masonlab/labdrivers/blob/master/labdrivers/quantumdesign/dynacool.py}{\textbf{link}}).
@@ -3422,7 +3602,95 @@ lockin_x_2d.to_csv('path/to/save x', index=True)
 lockin_y_2d.to_csv('path/to/save y', index=True)
 \end{minted}
 
-
+\chapter{Measurement instrumentation}
+\label{sec:app:instruments}
+            
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.75\linewidth]{images/experimentaltechniques/DACvKeithley.png}\\
+            \includegraphics[width=0.75\linewidth]{images/experimentaltechniques/preams_k.png}\\
+            \includegraphics[width=0.75\linewidth]{images/experimentaltechniques/preamps.png}
+            \caption[Noise characteristics of electronic measurement instruments]{
+                Top: The voltage output of a Keithley 2400 SMU and a National Instruments BNC2110 Digital to Analog Converter
+                measured over 10 seconds. Both were set to source 1 V.
+                Middle: The output of a Keithley 2400 SMU before and after being passed through three different
+                voltage pre-amplifiers.
+                Bottom: The same data as above with only the amplified signals shown.
+                }
+            \label{fig:electronics_noise}
+        \end{figure}
+            
+            \section{Keithley 2400 SMU} 
+            
+            The Keithley 2400 is a source-measure unit (SMU) capable of 
+            sourcing both current and voltage, and simultaneously measuring either current, voltage,
+            or resistance. Its primary advantage is its wide operational range: it can source and measure
+            up to 1 A in current mode, or 200 V in voltage mode.
+            The Keithley 2400's wide operational range comes at the expense of precision; Figure \ref{fig:electronics_noise}A
+            shows the measured output of a Keithley 2400 set to source 1 V, along with a similarly
+            configured BNC2110 DAQ. The Keithley's output fluctuates by up to 0.5\% of the specified output value.
+            The Keithley's precision can be improved by setting the `Range' parameter of the input and
+            output: using the smallest range which still encompasses all the required values will provide the
+            best precision.
+            
+            In practice, the Keithley 2400 is most useful for preliminary sample characterization (i.e. determining
+            if a device conducts, and if so approximately what its resistance is) and for applying gate voltages.
+            In the first case, the Keithley is useful because it can be manually configured by using the buttons
+            on its face; for simple `Does the device conduct or not?'-type measurements this is often the most 
+            convenient option.
+            The Keithley 2400 is also particularly well suited to the latter use case: effectively gating graphene
+            samples often requires gate voltages in the tens of volts, and the precise value of the supplied voltage
+            is typically less critical for gating than for other applications.
+            
+            
+            \section{National Instruments Multifunction Data Acquisition Device (DAQ)} 
+            
+            The National Instruments Multifunction Data Acquisition Device (DAQ) is a source-measure unit 
+            mounted on a PCI card. The PCI card must be physically installed in a computer, at which point
+            it can be connected to an external connector block (e.g. the NI BNC-2110) which provides
+            BNC connectors. Measurements using the DAQ must use instrument control programs installed
+            on the computer which makes it less suitable for quick, one-of measurements.
+            
+            The DAQ makes the opposite trade-offs as the Keithley: 
+            it provides high precision sourcing and measurement in a limited operational range.
+            The DAQ can source and measure voltages from -10 V to 10 V.
+            However, within this limited range the DAQ is more precise than the Keithley as seen
+            in Figure \ref{fig:electronics_noise}A.
+            The DAQ is particularly useful for applications which require high precision, for example
+            providing the bias voltage in an I-V sweep or in a $V_\text{gate}$ vs $V_\text{bias}$ Coulomb
+            blockade-type scan.
+            
+            \section{Stanford Research System SR830} 
+            
+            The SR830 is a lock-in amplifier. Lock-in amplifiers operate by applying an AC drive to
+            a device, measuring the resulting signal, and then multiplying the original drive
+            and resulting signal and integrating over time.
+            Because sinusoidal functions at different frequencies are orthogonal, the multiplication
+            of the original drive and resulting signal and the subsequent integration combine to filter out
+            components of the measured signal which are not at the same frequency as the original drive.
+            Since most noise components will not be at the same frequency as the drive this technique
+            is particularly effective at extracting a desired signal from a noisy measurement.
+            
+            In practice the SR830 is the preferred instrument for measuring resistance,
+            provided the particular measurement is amenable to an AC bias.
+            Additionally, the SR830 can only provide a voltage output; for applications which require a current bias 
+            the output of the SR830 must be passed through a large resistor to convert the 
+            voltage to a current. `Large' in this case means `large enough that the resistance of the device 
+            being measured in
+            series does not appreciably change the total resistance of the circuit'.
+            
+            \section{Voltage and current preamplifiers}
+            
+            Voltage and current preamplifiers are useful for amplifying and filtering signals. Current
+            preamplifiers are also useful for converting current signals into voltage signals.
+            Figure \ref{fig:electronics_noise}B demonstrates the filtering capabilities of 
+            a voltage preamplifier: it shows the output of a Keithley 2400 before and after
+            being passed through several different preamplifiers (the raw Keithley signal has been
+            rescaled to allow for direct comparison). All three preamplifiers drastically improve
+            the cleanliness of the signal. Figure \ref{fig:electronics_noise}C compares the performance
+            of the three preamplifiers; The PAR 113 provedes the best performance, while the 
+            SRS 560 and ITHACO provide good accuracy at the expense of precision, and vice versa.
+ 
 \end{appendices}
 
 \backmatter
